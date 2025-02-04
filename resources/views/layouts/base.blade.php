@@ -25,7 +25,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
 
-    <body class="h-screen antialiased leading-none bg-gray-300">
+    <body>
+        <x-dialog z-index="z-50" blur="md" align="center" width="lg" />
         @yield('body')
     </body>
 </html>

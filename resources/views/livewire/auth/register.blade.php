@@ -1,132 +1,126 @@
 @section('title', 'Create a new account')
 
-<div>
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <img class="w-auto h-24 mx-auto" src="{{ asset('img/logo_tekun.png') }}" />
-        <h2 class="mt-6 text-3xl font-extrabold leading-9 text-center text-gray-900">
-            Daftar Akaun
-        </h2>
-        <p class="mt-2 text-sm leading-5 text-center text-gray-600 max-w">
-            atau
-            <a href="{{ route('login') }}" class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:outline-none focus:underline">
-                log masuk akaun anda
-            </a>
-        </p>
+<div class="flex min-h-screen bg-white">
+    <div class="hidden relative flex-1 w-0 lg:block">
+        <img class="object-cover absolute inset-0 w-full h-full" src="{{ asset('img/bg.jpg') }}" alt="">
     </div>
+    <div class="relative z-10 pb-8 bg-white max-w-1 sm:pb-16 lg:w-full">
+        <svg class="hidden absolute inset-y-0 right-1 w-48 h-full text-white transform translate-x-1/2 lg:block" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polygon points="50,0 100,0 50,100 0,100"></polygon>
+        </svg>
+    </div>
+    <div class="flex flex-col flex-1 justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+        <div class="mx-auto w-full max-w-sm lg:w-96">
+            <div class="sm:mx-auto sm:w-full sm:max-w-md">
+                <a href="{{ route('home') }}">
+                    <x-logo class="mx-auto w-auto h-16 text-indigo-600" />
+                </a>
 
-    @if($errors->has('ic_no'))
-    @else
+                <h2 class="mt-6 text-3xl font-extrabold leading-9 text-center text-gray-900">
+                    Create a new account
+                </h2>
 
-    @error('age')
-    <div class="fixed inset-0 flex items-end justify-center px-4 py-6 opacity-0 pointer-events-none sm:p-20 sm:items-start sm:justify-end notification">
-        <div class="w-full max-w-sm bg-white rounded-lg shadow-lg pointer-events-auto">
-            <div class="overflow-hidden rounded-lg shadow-xs">
-                <div class="p-4">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z">
-                                </path>
-                            </svg>
-                        </div>
-                        <div class="ml-3 w-0 flex-1 pt-0.5">
-                            <p class="text-sm font-medium leading-5 text-gray-900">
-                                Ralat!
-                            </p>
-                            <p class="mt-1 text-sm leading-5 text-gray-500">
-                                {{ $message }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <p class="mt-2 text-sm leading-5 text-center text-gray-600 max-w">
+                    Or
+                    <a href="{{ route('login') }}" class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:outline-none focus:underline">
+                        sign in to your account
+                    </a>
+                </p>
             </div>
-        </div>
-    </div>
-    @enderror
-    @endif
 
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
-            <form action="{{ route('register') }}" method="POST">
-                @csrf
-                <div>
-                    <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
-                        Nama
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input id="name" type="text" name="name" value="{{ old('name') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name')  border-red-500 @enderror" />
+            <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+                <form wire:submit.prevent="register">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
+                                Name
+                            </label>
 
-                        @error('name')
-                        <p class="mt-4 text-xs italic text-red-500">
-                            {{ $message }}
-                        </p>
-                        @enderror
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="name" id="name" type="text" required autofocus class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                            </div>
+
+                            @error('name')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
+                                Email
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="email" id="email" type="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                            </div>
+
+                            @error('email')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="phoneNo" class="block text-sm font-medium leading-5 text-gray-700">
+                                Phone Number
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="phoneNo" id="phoneNo" type="text" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('phoneNo') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                            </div>
+
+                            @error('phoneNo')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">
+                                IC Number
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="ic_no" id="ic_no" type="text" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('ic_no') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                            </div>
+
+                            @error('ic_no')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
+                                Password
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="password" id="password" type="password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                            </div>
+
+                            @error('password')
+                                <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
+                                Confirm Password
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input wire:model.lazy="passwordConfirmation" id="password" type="password" required class="block px-3 py-2 w-full placeholder-gray-400 rounded-md border border-gray-300 transition duration-150 ease-in-out appearance-none focus:outline-none focus:ring-red-500 focus:border-red-300 sm:text-sm sm:leading-5" />
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="mt-6">
-                    <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">
-                        No Kad Pengenalan
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input id="ic_no" type="text" name="ic_no" value="{{ old('ic_no') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('ic_no')  border-red-500 @enderror" onkeyup="findAge()" />
-                        <input id="age" type="number" name="age" value="{{ old('age') }}" class="hidden">
-
-                        @error('ic_no')
-                        <p class="mt-4 text-xs italic text-red-500">
-                            {{ $message }}
-                        </p>
-                        @enderror
+                    <div class="mt-6">
+                        <span class="block w-full rounded-md shadow-sm">
+                            <button type="submit" class="flex justify-center px-4 py-2 w-full text-sm font-medium text-white bg-red-600 rounded-md border border-transparent transition duration-150 ease-in-out hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring-red active:bg-red-700">
+                                Register
+                            </button>
+                        </span>
                     </div>
-                </div>
-
-                <div class="mt-6">
-                    <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
-                        Alamat emel
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-500 @enderror" />
-
-                        @error('email')
-                        <p class="mt-4 text-xs italic text-red-500">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="mt-6">
-                    <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
-                        Kata laluan
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input id="password" type="password" name="password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-500 @enderror" />
-
-                        @error('password')
-                        <p class="mt-4 text-xs italic text-red-500">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="mt-6">
-                    <label for="password-confirm" class="block text-sm font-medium leading-5 text-gray-700">
-                        Sahkan Kata laluan
-                    </label>
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input id="password-confirm" type="password" name="password_confirmation" required class="block w-full px-3 py-2 placeholder-gray-400 transition duration-150 ease-in-out border border-gray-300 rounded-md appearance-none focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" />
-                    </div>
-                </div>
-
-                <div class="mt-6">
-                    <span class="block w-full rounded-md shadow-sm">
-                        <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
-                            Daftar Akaun
-                        </button>
-                    </span>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
