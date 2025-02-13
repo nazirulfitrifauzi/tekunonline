@@ -1,7 +1,7 @@
 <div>
     <div class="pb-32 bg-gray-800">
         <nav x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-gray-800">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-20">
+            <div class="mx-auto max-w-7xl">
                 <div class="border-b border-gray-700">
                     <div class="flex justify-between items-center px-4 h-16 sm:px-0">
                         <div class="flex items-center">
@@ -41,7 +41,7 @@
             </div>
         </nav>
         <header class="py-10">
-            <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-20">
+            <div class="px-4 mx-auto max-w-7xl">
                 <div class="flex">
                     <h1 class="text-3xl font-bold leading-9 text-white">
                         Sistem Online Permohonan Pembiayaan Tekun
@@ -52,7 +52,7 @@
     </div>
 
     <main class="-mt-32">
-        <div class="px-4 pb-12 mx-auto max-w-7xl sm:px-6 lg:px-20">
+        <div class="px-4 pb-12 mx-auto max-w-7xl">
             <div class="px-5 py-6 bg-gray-100 rounded-lg shadow sm:px-6">
                 <div
                     x-data="{
@@ -80,45 +80,45 @@
                     <!-- 2a) Tab Buttons (fixed height, no scroll) -->
                     <div
                         x-ref="tabButtons"
-                        class="inline-grid relative grid-cols-5 justify-center items-center p-1 w-full h-10 bg-white rounded-lg border border-gray-200 select-none dark:bg-gray-800 dark:border-gray-700"
+                        class="inline-grid relative grid-cols-5 justify-center items-center p-1 w-full h-10 bg-gray-100 rounded-lg select-none dark:bg-gray-800 dark:border-gray-700"
                     >
                         <button
                             id="tabs-1"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-600 text-indigo-100': tabButtonActive(1) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-600 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(1) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                             Maklumat Peribadi
                         </button>
                         <button
                             id="tabs-2"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-600 text-indigo-100': tabButtonActive(2) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-600 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(2) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                             Maklumat Perniagaan
                         </button>
                         <button
                             id="tabs-3"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-600 text-indigo-100': tabButtonActive(3) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-600 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(3) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                             Maklumat Pinjaman
                         </button>
                         <button
                             id="tabs-4"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-600 text-indigo-100': tabButtonActive(4) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-600 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(4) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                             Maklumat Lain 1
                         </button>
                         <button
                             id="tabs-5"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-600 text-indigo-100': tabButtonActive(5) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-600 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(5) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                             Maklumat Lain 2
                         </button>
@@ -135,7 +135,7 @@
 
                     <div class="flex relative flex-col flex-1 mt-4 w-full min-h-0">
                         <div
-                            class="overflow-y-auto flex-1 p-6 min-w-0 min-h-0 bg-white rounded-lg border border-gray-100 shadow-lg transition-all duration-300 dark:bg-gray-800 hover:shadow-xl dark:border-gray-700"
+                            class="overflow-y-auto flex-1 p-6 min-w-0 min-h-0 rounded-lg transition-all duration-300 dark:bg-gray-800 dark:border-gray-700"
                         >
                             <!-- Tab #1 -->
                             <div x-show="tabContentActive(1)" class="relative">
@@ -161,9 +161,6 @@
                             <div x-show="tabContentActive(5)" class="relative" x-cloak>
                                 {{-- @livewire('module.cif.account-information.owing', ['accountNo' => $accountNo]) --}}
                             </div>
-
-                            <!-- Optional: Add a subtle border accent -->
-                            <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r to-transparent from-indigo-500/60"></div>
                         </div>
                     </div>
                 </div>
