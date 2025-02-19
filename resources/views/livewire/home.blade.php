@@ -159,7 +159,7 @@
 
                             <!-- Tab #3 -->
                             <div x-show="tabContentActive(3)" class="relative" x-cloak>
-                                {{-- @livewire('module.cif.account-information.disbursement', ['accountNo' => $accountNo]) --}}
+                                @livewire('module.maklumat-perniagaan2')
                             </div>
 
                             <!-- Tab #4 -->
@@ -168,6 +168,10 @@
                             </div>
 
                             <!-- Tab #5 -->
+                            <div x-show="tabContentActive(5)" class="relative" x-cloak>
+                                {{-- @livewire('module.cif.account-information.owing', ['accountNo' => $accountNo]) --}}
+                            </div>
+                            <!-- Tab #6 -->
                             <div x-show="tabContentActive(5)" class="relative" x-cloak>
                                 {{-- @livewire('module.cif.account-information.owing', ['accountNo' => $accountNo]) --}}
                             </div>

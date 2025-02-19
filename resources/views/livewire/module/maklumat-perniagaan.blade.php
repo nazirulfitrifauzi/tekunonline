@@ -12,7 +12,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
 
-                            <div class="col-span-6 sm:col-span-2">
+                            <div class="col-span-2">
                                 <label for="business_syariah" class="block text-sm font-medium leading-5 text-gray-700">Perniagaan Patuh Syariah<span class="text-red-700">*</span></label>
                                 <select id="business_syariah" name="business_syariah" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_syariah">
                                     <option value="">SILA PILIH</option>
@@ -21,12 +21,12 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-4">
+                            <div class="col-span-4">
                                     <label for="business_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perniagaan / Syarikat<span class="text-red-700">*</span></label>
                                     <input id="business_name" name="business_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_name">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
+                            <div class="col-span-2">
                                 <label for="license_type" class="block text-sm font-medium leading-5 text-gray-700">Lesen<span class="text-red-700">*</span></label>
                                 <select id="license_type" name="license_type" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="license_type">
                                     <option value="">SILA PILIH</option>
@@ -35,12 +35,12 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-4">
+                            <div class="col-span-4">
                                     <label for="business no" class="block text-sm font-medium leading-5 text-gray-700">No. SSM / Lesen / Ordinan<span class="text-red-700">*</span></label>
                                     <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_no">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-3">
                                 <label for="business_sector" class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan <span class="text-red-700">*</span></label>
                                 <select id="business_sector" name="business_sector" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_sector">
                                     <option value="">SILA PILIH</option>
@@ -50,7 +50,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-3">
                                 <label for="business_activity" class="block text-sm font-medium leading-5 text-gray-700">Aktiviti Perniagaan<span class="text-red-700">*</span></label>
                                 <select id="business_activity" name="business_activity" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_activity">
                                     <option value="">SILA PILIH</option>
@@ -60,7 +60,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-3">
                                 <label for="sub_business_activity" class="block text-sm font-medium leading-5 text-gray-700">Sub Aktiviti Perniagaan
                                     <span class="text-red-700">*</span></label>
                                 <select id="sub_business_activity" name="sub_business_activity" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="sub_business_activity">
@@ -73,7 +73,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
+                            <div class="col-span-2">
                                 <label for="business_duration" class="block text-sm font-medium leading-5 text-gray-700">Tempoh / Pengalaman Berniaga(Bulan)<span class="text-red-700">*</span></label>
                                 <input id="business_duration" name="business_duration" type="number" min="0" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_duration">
                             </div>
@@ -84,12 +84,12 @@
                                 <input id="business_address2" name="business_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_address2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-3">
                                 <label for="business_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                 <input id="business_postcode" name="business_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6">
                                 <label for="business_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
                                 <input id="business_city" name="business_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_city">
                             </div>
@@ -263,36 +263,36 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-1">
+                            <div class="col-span-1">
                                 <x-checkbox id="cert_recognition_myipo_flag" left-label="Pengiktirafan Sijil MYIPO" wire:model="cert_recognition_myipo_flag" value="1" />
                             </div>
 
-                            <div class="col-span-6 sm:col-span-1">
+                            <div class="col-span-1">
                                 <x-checkbox id="cert_recognition_gmp_flag" left-label="Pengiktirafan Sijil GMP" wire:model="cert_recognition_gmp_flag" value="1" />
                             </div>
 
-                            <div class="col-span-6 sm:col-span-1">
+                            <div class="col-span-1">
                                 <x-checkbox id="cert_recognition_mesti_flag" left-label="Pengiktirafan Sijil MESTI" wire:model="cert_recognition_mesti_flag" value="1" />
                             </div>
 
-                            <div class="col-span-6 sm:col-span-1">
+                            <div class="col-span-1">
                                 <x-checkbox id="cert_recognition_haccp_flag" left-label="Pengiktirafan Sijil HACCP" wire:model="cert_recognition_haccp_flag" value="1" />
                             </div>
 
-                            <div class="col-span-6 sm:col-span-1">
+                            <div class="col-span-1">
                                 <x-checkbox id="cert_recognition_halal_flag" left-label="Pengiktirafan Sijil HALAL" wire:model="cert_recognition_halal_flag" value="1" />
                             </div>
 
-                            <div class="col-span-6 sm:col-span-1">
+                            <div class="col-span-1">
                                 <x-checkbox id="cert_recognition_iso_flag" left-label="Pengiktirafan Sijil ISO" wire:model="cert_recognition_iso_flag" value="1" />
                             </div>
 
-                             <div class="col-span-6 sm:col-span-3">
+                             <div class="col-span-3">
                                 <label for="business_asset_value" class="block text-sm font-medium leading-5 text-gray-700">Nilai Aset Perniagaan Sedia Ada<span class="text-red-700">*</span></label>
                                 <input id="business_asset_value" name="business_asset_value" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_asset_value">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-3">
                                 <label for="business_start_resources" class="block text-sm font-medium leading-5 text-gray-700">Sumber Modal Memulakan Perniagaan<span class="text-red-700">*</span></label>
                                 <input id="business_start_resources" name="business_start_resources" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_start_resources">
                             </div>
@@ -347,12 +347,12 @@
                 </div>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <div class="overflow-hidden shadow sm:rounded-md">
+                <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white sm:p-6">
-                        <div class="grid grid-cols-6 gap-6 mt-6">
+                        <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-6">
                                 <label for="partner_name" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
-                                <input id="partner_name" name="napartner_nameme" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_name">
+                                <input id="partner_name" name="partner_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_name">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
