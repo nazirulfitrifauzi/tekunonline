@@ -41,4 +41,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function maklumatPeribadi()
+    {
+        return $this->hasOne(MaklumatPeribadi::class, 'user_id', 'id');
+    }
+
+    public function maklumatPerniagaan()
+    {
+        return $this->hasOne(MaklumatPerniagaan::class, 'user_id', 'id');
+    }
 }
