@@ -67,16 +67,16 @@ trait MaklumatPeribadiValidation
     public $spouse_income;
 
     // Validation rules
-    protected $rules = [
-        'tekun_state' => 'required',
-        'tekun_branch' => 'required',
-        // ... other commented rules remain the same ...
-    ];
+    // protected $rules = [
+    //     'tekun_state' => 'required',
+    //     'tekun_branch' => 'required',
+    //     // ... other commented rules remain the same ...
+    // ];
 
-    // Validation messages
-    protected $messages = [
-        'tekun_state.required' => 'Sila Pilih Negeri',
-        'tekun_branch.required' => 'Sila Pilih Cawangan',
-        // ... other commented messages remain the same ...
-    ];
+    // // Validation messages
+    // protected $messages = [
+    //     'tekun_state.required' => 'Sila Pilih Negeri',
+    //     'tekun_branch.required' => 'Sila Pilih Cawangan',
+    //     // ... other commented messages remain the same ...
+    // ];
 } 

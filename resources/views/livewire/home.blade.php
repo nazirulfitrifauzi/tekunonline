@@ -164,7 +164,7 @@
 
                             <!-- Tab #4 -->
                             <div x-show="tabContentActive(4)" class="relative" x-cloak>
-                                {{-- @livewire('module.cif.account-information.repayment-schedule', ['accountNo' => $accountNo]) --}}
+                                @livewire('module.maklumat-pinjaman')
                             </div>
 
                             <!-- Tab #5 -->

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Livewire\Module;
 
 use Livewire\Component;
@@ -19,13 +20,23 @@ class MaklumatPeribadi extends Component
 
     public function submit()
     {
-        $this->validate();
-        
+        // $this->validate();
+
+        // Dapatkan data sedia ada dalam database
+        $existingData = ModelsMaklumatPeribadi::where('user_id', Auth::id())->first();
+
+        // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
+        $existingDataArray = $existingData ? $existingData->toArray() : [];
+
+        // Gabungkan data lama dengan data baru, tetapi pastikan nilai baru tidak menimpa dengan `null`
+        $updatedData = array_merge($existingDataArray, array_filter($this->getFormData(), fn($value) => !is_null($value)));
+
+        // Simpan data ke dalam database
         ModelsMaklumatPeribadi::updateOrCreate(
             ['user_id' => Auth::id()],
-            $this->getFormData()
+            $updatedData
         );
-
+        
         return redirect()->route('home');
     }
 
