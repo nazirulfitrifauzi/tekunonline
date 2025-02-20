@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class MaklumatPerniagaan2 extends Component
 {
-    USE MaklumatPerniagaan2Validation;
+    use MaklumatPerniagaan2Validation;
 
     public $negeriSelection = [];
 

@@ -91,12 +91,12 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
 
-                            <div class="col-span-4">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="reference_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perujuk 1<span class="text-red-700">*</span></label>
                                 <input id="reference_name" name="reference_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_name">                               
                             </div>
 
-                            <div class="col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="reference_icno" class="block text-sm font-medium leading-5 text-gray-700">No KP Perujuk 1<span class="text-red-700">*</span></label>
                                 <input id="reference_icno" name="reference_icno" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_icno">                               
                             </div>
@@ -140,12 +140,12 @@
                             <div class="col-span-4">
                             </div>
 
-                            <div class="col-span-4">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="reference2_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perujuk 2<span class="text-red-700">*</span></label>
                                 <input id="reference2_name" name="reference2_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_name">                               
                             </div>
 
-                            <div class="col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="reference2_icno" class="block text-sm font-medium leading-5 text-gray-700">No KP Perujuk 2<span class="text-red-700">*</span></label>
                                 <input id="reference2_icno" name="reference2_icno" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_icno">                               
                             </div>
@@ -383,12 +383,12 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="icno_penamaan" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
                                 <input id="icno_penamaan" name="icno_penamaan" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="icno_penamaan">                               
                             </div>
 
-                            <div class="col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="passportno_penamaan" class="block text-sm font-medium leading-5 text-gray-700">No. Passport<span class="text-red-700">*</span></label>
                                 <input id="passportno_penamaan" name="passportno_penamaan" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="passportno_penamaan">                               
                             </div>
