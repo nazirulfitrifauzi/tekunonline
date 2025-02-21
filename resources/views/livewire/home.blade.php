@@ -112,15 +112,16 @@
                             :class="{ 'bg-indigo-500 text-white': tabButtonActive(4) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
-                            Maklumat Pinjaman
+                            Pinjaman Teman Tekun    
                         </button>
+
                         <button
                             id="tabs-5"
                             @click="tabButtonClicked($el)"
                             :class="{ 'bg-indigo-500 text-white': tabButtonActive(5) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
-                            Maklumat Lain 2
+                            Pinjaman Kontrak i
                         </button>
 
                         <button
@@ -129,7 +130,7 @@
                             :class="{ 'bg-indigo-500 text-white': tabButtonActive(6) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
-                            Maklumat Lain 3
+                            Maklumat Pinjaman
                         </button>
 
 
@@ -164,16 +165,17 @@
 
                             <!-- Tab #4 -->
                             <div x-show="tabContentActive(4)" class="relative" x-cloak>
-                                @livewire('module.maklumat-pinjaman')
+                                @livewire('module.pinjaman-teman')
                             </div>
 
                             <!-- Tab #5 -->
-                            <div x-show="tabContentActive(5)" class="relative" x-cloak>
-                                {{-- @livewire('module.cif.account-information.owing', ['accountNo' => $accountNo]) --}}
-                            </div>
+                            <div x-show="tabContentActive(5)" class="relative" x-cloak>  
+                            @livewire('module.pinjaman-kontrak-i')
+                                </div>
+                            
                             <!-- Tab #6 -->
-                            <div x-show="tabContentActive(5)" class="relative" x-cloak>
-                                {{-- @livewire('module.cif.account-information.owing', ['accountNo' => $accountNo]) --}}
+                            <div x-show="tabContentActive(6)" class="relative" x-cloak>
+                            @livewire('module.maklumat-pinjaman')
                             </div>
                         </div>
                     </div>

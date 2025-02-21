@@ -2,24 +2,24 @@
 
 namespace App\Livewire\Module;
 
-use App\Models\MaklumatPinjaman as ModelsMaklumatPinjaman;
+use App\Models\MaklumatPinjaman;
 use App\Models\Negeri;
-use App\Traits\MaklumatPinjamanValidation;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\PinjamanKontrakIValidation;
 use Livewire\Component;
 
-class MaklumatPinjaman extends Component
+class PinjamanKontrakI extends Component
 {
-    use MaklumatPinjamanValidation;
+    use PinjamanKontrakIValidation;
 
-    public $negeriSelection = []; // Pastikan ia sentiasa array
+    public $negeriSelection = [];
 
     public function submit()
     {
         // $this->validate();
         
         // Dapatkan data sedia ada dalam database
-        $existingData = ModelsMaklumatPinjaman::where('user_id', Auth::id())->first();
+        $existingData = MaklumatPinjaman::where('user_id', Auth::id())->first();
 
         // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
         $existingDataArray = $existingData ? $existingData->toArray() : [];
@@ -28,7 +28,7 @@ class MaklumatPinjaman extends Component
         $updatedData = array_merge($existingDataArray, array_filter($this->getFormData(), fn($value) => !is_null($value)));
 
         // Simpan data ke dalam database
-        ModelsMaklumatPinjaman::updateOrCreate(
+        MaklumatPinjaman::updateOrCreate(
             ['user_id' => Auth::id()],
             $updatedData
         );
@@ -53,8 +53,7 @@ class MaklumatPinjaman extends Component
         ->where('kod', '!=', '1')
         ->orderBy('namanegeri', 'ASC')
         ->get();    
-
-
-        return view('livewire.module.maklumat-pinjaman');
+        
+        return view('livewire.module.pinjaman-kontrak-i');
     }
 }

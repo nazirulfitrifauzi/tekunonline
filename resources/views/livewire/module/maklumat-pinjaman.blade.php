@@ -129,7 +129,7 @@
 
                             <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                                 <label for="reference_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 1 Dengan Pemohon<span class="text-red-700">*</span></label>
-                                <input id="reference_relation" name="reference_relation" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference1_relation">
+                                <input id="reference_relation" name="reference_relation" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_relation">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -290,7 +290,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
 
-                            <div class="col-span-6 sm:col-span-2">
+                            <div class="col-span-6 sm:col-span-3">
                                 <fieldset>
                                     <legend class="block text-sm font-medium leading-5 text-gray-700">Kebenaran Penzahiran Maklumat Kredit Individu<span class="text-red-700">*</span></legend>
                                     <div class="mt-3">

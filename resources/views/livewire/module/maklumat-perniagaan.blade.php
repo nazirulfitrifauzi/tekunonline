@@ -104,7 +104,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="business_income" class="block text-sm font-medium leading-5 text-gray-700">Anggaran Pendapatan Kasar (Sebulan)<span class="text-red-700">*</span></label>
                                 <select id="business_income" name="business_income" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="business_income">
                                     <option value="">SILA PILIH</option>
@@ -115,17 +115,17 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="business_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Premis Perniagaan<span class="text-red-700">*</span></label>
                                 <input id="business_phone" name="business_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_phone">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="business_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit Perniagaan<span class="text-red-700">*</span></label>
                                 <input id="business_phone_hp" name="business_phone_hp" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_phone_hp">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="business_premise" class="block text-sm font-medium leading-5 text-gray-700">Status Premis / Projek<span class="text-red-700">*</span></label>
                                 <select id="business_premise" name="business_premise" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_premise">
                                     <option value="">SILA PILIH</option>
@@ -136,7 +136,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="business_other_premise" class="block text-sm font-medium leading-5 text-gray-700">Status Premis / Projek (Lain-lain)<span class="text-red-700">*</span></label>
                                 <input id="business_other_premise" name="business_other_premise" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_other_premise">
                             </div>
@@ -152,7 +152,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="business_modal" class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar (Sendirian Berhad)<span class="text-red-700">*</span></label>
                                 <input id="business_modal" name="business_modal" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_modal">
                             </div>
@@ -192,14 +192,14 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+                            <div class="col-span-6 sm:col-span-3">
                                 <!-- <label for="register_date" class="block text-sm font-medium leading-5 text-gray-700">Tarikh Didaftarkan<span class="text-red-700">*</span></label>
                                 <input id="register_date" name="register_date" type="date" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="register_date"> -->
                                 <x-datetime-picker label="Tarikh Didaftarkan" id="register_date"
                                     placeholder="Appointment Date" without-time wire:model="register_date"/>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+                            <div class="col-span-6 sm:col-span-3">
                                 <!-- <label for="license_expired_date" class="block text-sm font-medium leading-5 text-gray-700">Tarikh Tamat Lesen<span class="text-red-700">*</span></label>
                                 <input id="license_expired_date" name="license_expired_date" type="date" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="license_expired_date"> -->
                                 <x-datetime-picker label="Tarikh Tamat Lesen" id="license_expired_date"
@@ -207,7 +207,7 @@
                             
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="shareholder" class="block text-sm font-medium leading-5 text-gray-700">Adakah Pemohon Pemegang Saham (Share Holder)<span class="text-red-700">*</span></label>
                                 <select id="shareholder" name="shareholder" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="shareholder">
                                     <option value="">SILA PILIH</option>
@@ -234,7 +234,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
                                     id="business_open"
                                     label="Masa Berniaga Dari"
@@ -244,7 +244,7 @@
                                 />
                              </div>
 
-                             <div class="col-span-6 sm:col-span-6 lg:col-span-3">
+                             <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
                                     id="business_closed"
                                     label="Masa Berniaga Hingga"
@@ -254,7 +254,7 @@
                                 />
                              </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="cert_recognition_flag" class="block text-sm font-medium leading-5 text-gray-700">Pengiktirafan Sijil<span class="text-red-700">*</span></label>
                                 <select id="cert_recognition_flag" name="cert_recognition_flag" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="cert_recognition_flag">
                                     <option value="">SILA PILIH</option>
