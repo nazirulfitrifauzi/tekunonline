@@ -63,6 +63,19 @@ class MaklumatPerniagaan extends Component
                 ->toArray()
         );
     }
+
+    public function mount()
+    {
+        $existingData = ModelsMaklumatPerniagaan::where('user_id', Auth::id())->first();
+
+        if ($existingData) {
+            foreach ($existingData->toArray() as $key => $value) {
+                if (property_exists($this, $key)) {
+                    $this->$key = $value;
+                }
+            }
+        }
+    }
     
     public function render()
     {
@@ -87,6 +100,7 @@ class MaklumatPerniagaan extends Component
         ->where('status', '=', '1')
         ->orderBy('Aktiviti', 'ASC')
         ->get();
+
 
         return view('livewire.module.maklumat-perniagaan');
     }

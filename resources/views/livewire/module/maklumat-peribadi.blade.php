@@ -54,6 +54,11 @@
                                     <option value="SEDANG BERNIAGA">SEDANG BERNIAGA</option>
                                     <option value="MEMULAKAN PERNIAGAAN">MEMULAKAN PERNIAGAAN</option>
                                 </select>
+                                @error('business_status')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -65,6 +70,11 @@
                                     <option value="1">ONLINE</option>
                                     <option value="2">ONLINE & OFFLINE</option>
                                 </select>
+                                @error('business_method')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                         </div>     
 
@@ -77,11 +87,16 @@
                                         <option value="{{ $bankas->id }}">{{ $bankas->nama_bank }}</option>
                                         @endforeach
                                     </select>
+                                    @error('bank1')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank 1<span class="text-red-700">*</span></label>
-                                <input id="bank1_acct" name="bank1_acct" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank1_acct">
+                                <input id="bank1_acct" name="bank1_acct" value="" maxlength="17" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank1_acct">
                             </div>
                         </div>
 
@@ -115,7 +130,7 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="bank2_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank 2<span class="text-red-700">*</span></label>
-                                <input id="bank2_acct" name="bank2_acct" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank2_acct">
+                                <input id="bank2_acct" name="bank2_acct" value="" maxlength="17" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank2_acct">
                             </div>
                         </div>
 
@@ -169,7 +184,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP
                                     (Baru) <span class="text-red-700">*</span></label>
-                                <input id="ic_no" name="ic_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="ic_no">
+                                <input id="ic_no" name="ic_no" value="" maxlength="12" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="ic_no">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -234,7 +249,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Umur<span class="text-red-700">*</span></label>
-                                <input id="age" name="age" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="age">
+                                <input id="age" name="age" value="" maxlength="3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="age">
                             </div> 
 
                             <div class="col-span-6 sm:col-span-2">
@@ -250,7 +265,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="dependent" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Tanggungan<span class="text-red-700">*</span></label>
-                                <input id="dependent" name="dependent" type="number" min="0" value="3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="dependent">
+                                <input id="dependent" name="dependent" type="number" min="0" value="2" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="dependent">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -300,17 +315,17 @@
                                 <input id="address2" name="address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="address2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                 <input id="postcode" name="postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
                                 <input id="city" name="city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="city">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="state" class="block text-sm font-medium leading-5 text-gray-700">Negeri<span class="text-red-700">*</span></label>
                                 <select id="state" name="state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="state">
                                     <option value="">SILA PILIH</option>
@@ -331,16 +346,28 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="phone_home" class="block text-sm font-medium leading-5 text-gray-700">No
-                                    Telefon (Rumah)</label>
-                                <input id="phone_home" name="phone_home" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="phone_home">
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="phone_home" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (Rumah)<span class="text-red-700">*</span></label>
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="phone_home" name="phone_home" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="phone_home">
+                                </div>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No
-                                    Telefon (HP) - cth (0123456789) <span class="text-red-700">*</span></label>
-                                <input id="phone_hp" name="phone_hp" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="phone_hp">
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP)<span class="text-red-700">*</span></label>
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="phone_hp" name="phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="phone_hp">
+                                </div>
                             </div>
                         </div>
 
@@ -372,21 +399,20 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="profession" class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang
+                                <label for="profession" class="block text-sm font-medium leading-5 text-gray-700">Pekerjaan Sekarang
                                     <span class="text-red-700">*</span></label>
                                 <input id="profession" name="profession" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="profession">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan Bulanan
-                                    <span class="text-red-700">*</span></label>
+                                <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan Bulanan <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
                                             RM
                                         </span>
                                     </div>
-                                    <input id="income" name="income" min="0" value="4200.00" type="number" step="0.01" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="income">
+                                    <input id="income" name="income" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="income">
                                 </div>
                             </div>
 
@@ -401,17 +427,17 @@
                                 <input id="employer_address2" name="employer_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_address2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="employer_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
                                 <input id="employer_postcode" name="employer_postcode" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="employer_postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="employer_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
                                 <input id="employer_city" name="employer_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_city">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="employer_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="employer_state" name="employer_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_state">
                                     <option value="">Sila Pilih</option>
@@ -433,9 +459,15 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="employer_phone" class="block text-sm font-medium leading-5 text-gray-700">No
-                                    Telefon Majikan</label>
-                                <input id="employer_phone" name="employer_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="employer_phone">
+                                <label for="employer_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon Majikan</label>
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="employer_phone" name="employer_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_phone">
+                                </div>
                             </div>
 
                         </div>
@@ -494,7 +526,7 @@
                                 <input id="spouse_name" name="spouse_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="spouse_name">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_nationality" class="block text-sm font-medium leading-5 text-gray-700">Warganegara Malaysia</label>
                                 <select id="spouse_nationality" name="spouse_nationality" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_nationality">
                                     <option value="">Sila Pilih</option>
@@ -504,7 +536,7 @@
                             </div>
 
                             <div class="block col-span-6 sm:col-span-2" id="spuose_ic_div">
-                                <label for="spouse_ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan - cth (900000010000) <span class="text-red-700">*</span></label>
+                                <label for="spouse_ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
                                 <input id="spouse_ic_no" name="spouse_ic_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="spouse_ic_no">
                             </div>
 
@@ -519,9 +551,15 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="spouse_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) - cth
-                                    (0123456789) <span class="text-red-700">*</span></label>
-                                <input id="spouse_phone" name="spouse_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_phone">
+                                <label for="spouse_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP)<span class="text-red-700">*</span></label>
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="spouse_phone" name="spouse_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_phone">
+                                </div>
                             </div>
 
 
@@ -532,17 +570,17 @@
                                 <input id="spouse_employer_address2" name="spouse_employer_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="spouse_employer_address2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_employer_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
                                 <input id="spouse_employer_postcode" name="spouse_employer_postcode" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_employer_postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_employer_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
                                 <input id="spouse_employer_city" name="spouse_employer_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_employer_city">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_employer_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="spouse_employer_state" name="spouse_employer_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="spouse_employer_state">
                                     <option value="">Sila Pilih</option>
@@ -564,16 +602,28 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="spouse_employer_no" class="block text-sm font-medium leading-5 text-gray-700">No. Telefon Majikan (Premis) - cth
-                                    (0123456789) <span class="text-red-700">*</span></label>
-                                <input id="spouse_employer_no" name="spouse_employer_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_employer_no">
+                                <label for="spouse_employer_no" class="block text-sm font-medium leading-5 text-gray-700">No. Telefon Majikan<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="spouse_employer_no" name="spouse_employer_no" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_employer_no">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="spouse_income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan<span class="text-red-700">*</span></label>
-                                <input id="spouse_income" name="spouse_income" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_income">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="spouse_income" name="spouse_income" min="0" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_income">
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

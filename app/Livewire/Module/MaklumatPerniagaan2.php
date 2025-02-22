@@ -14,12 +14,18 @@ class MaklumatPerniagaan2 extends Component
 
     public $negeriSelection = [];
 
+    public function mount()
+    {
+        $existingData = MaklumatPerniagaan::where('user_id', Auth::id())->first();
 
-
-    // public function mount()
-    // {
-    //     $negeri = Auth::user()->maklumatPeribadi->tekun_state;
-    // }
+        if ($existingData) {
+            foreach ($existingData->toArray() as $key => $value) {
+                if (property_exists($this, $key)) {
+                    $this->$key = $value;
+                }
+            }
+        }
+    }
 
     public function submit()
     {

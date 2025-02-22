@@ -8,7 +8,7 @@
             </div>
 
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <div class="shadow sm:rounded-md sm:overflow-hidden">
+                <div class="shadow sm:rounded-md sm:overflow-visible">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
@@ -31,12 +31,14 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <x-datetime-picker label="Tarikh Mula Kontrak" id="start_date_contract"
-                                    placeholder="Tarikh Mula Kontrak" without-time wire:model="start_date_contract"/>
+                                    placeholder="Tarikh Mula Kontrak" without-time wire:model="start_date_contract"
+                                    class="w-full"/>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <x-datetime-picker label="Tarikh Tamat Kontrak" id="end_date_contract"
-                                    placeholder="Tarikh Tamat Kontrak" without-time wire:model="end_date_contract"/>
+                                    placeholder="Tarikh Tamat Kontrak" without-time wire:model="end_date_contract"
+                                    class="w-full"/>
                             </div>
 
                             <div class="col-span-6">
@@ -46,12 +48,26 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="contract_value" class="block text-sm font-medium leading-5 text-gray-700">Nilai Kontrak<span class="text-red-700">*</span></label>
-                                <input id="contract_value" name="contract_value" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="contract_value">                               
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="contract_value" name="contract_value" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="contract_value">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="max_value" class="block text-sm font-medium leading-5 text-gray-700">Nilai Maksima<span class="text-red-700">*</span></label>
-                                <input id="max_value" name="max_value" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="max_value">                               
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="max_value" name="max_value" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="max_value">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,12 +128,26 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="penawar_kontrak_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel<span class="text-red-700">*</span></label>
-                                <input id="penawar_kontrak_phone" name="penawar_kontrak_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="penawar_kontrak_phone">                               
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="penawar_kontrak_phone" name="penawar_kontrak_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="penawar_kontrak_phone">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="penawar_kontrak_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks<span class="text-red-700">*</span></label>
-                                <input id="penawar_kontrak_fax" name="penawar_kontrak_fax" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="penawar_kontrak_fax">                               
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="penawar_kontrak_fax" name="penawar_kontrak_fax" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="penawar_kontrak_fax">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -178,12 +208,26 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="pembayar_kontrak_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel<span class="text-red-700">*</span></label>
-                                <input id="pembayar_kontrak_phone" name="pembayar_kontrak_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="pembayar_kontrak_phone">                               
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="pembayar_kontrak_phone" name="pembayar_kontrak_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="pembayar_kontrak_phone">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="pembayar_kontrak_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks<span class="text-red-700">*</span></label>
-                                <input id="pembayar_kontrak_fax" name="pembayar_kontrak_fax" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="pembayar_kontrak_fax">                               
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="pembayar_kontrak_fax" name="pembayar_kontrak_fax" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="pembayar_kontrak_fax">
+                                </div>
                             </div>
                         </div>
                     </div>

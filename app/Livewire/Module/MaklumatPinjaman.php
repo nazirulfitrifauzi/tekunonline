@@ -14,6 +14,19 @@ class MaklumatPinjaman extends Component
 
     public $negeriSelection = []; // Pastikan ia sentiasa array
 
+    public function mount()
+    {
+        $existingData = ModelsMaklumatPinjaman::where('user_id', Auth::id())->first();
+
+        if ($existingData) {
+            foreach ($existingData->toArray() as $key => $value) {
+                if (property_exists($this, $key)) {
+                    $this->$key = $value;
+                }
+            }
+        }
+    }
+
     public function submit()
     {
         // $this->validate();

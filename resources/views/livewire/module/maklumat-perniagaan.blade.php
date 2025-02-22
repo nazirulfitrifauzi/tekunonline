@@ -23,7 +23,7 @@
 
                             <div class="col-span-6 sm:col-span-6">
                                     <label for="business_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perniagaan / Syarikat<span class="text-red-700">*</span></label>
-                                    <input id="business_name" name="business_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_name">
+                                    <input id="business_name" name="business_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model="business_name">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -75,7 +75,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_duration" class="block text-sm font-medium leading-5 text-gray-700">Tempoh / Pengalaman Berniaga(Bulan)<span class="text-red-700">*</span></label>
-                                <input id="business_duration" name="business_duration" type="number" min="0" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_duration">
+                                <input id="business_duration" name="business_duration" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_duration">
                             </div>
 
                             <div class="col-span-6">
@@ -104,7 +104,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="business_income" class="block text-sm font-medium leading-5 text-gray-700">Anggaran Pendapatan Kasar (Sebulan)<span class="text-red-700">*</span></label>
                                 <select id="business_income" name="business_income" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="business_income">
                                     <option value="">SILA PILIH</option>
@@ -117,12 +117,26 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Premis Perniagaan<span class="text-red-700">*</span></label>
-                                <input id="business_phone" name="business_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_phone">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="business_phone" name="business_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_phone">
+                                </div>    
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit Perniagaan<span class="text-red-700">*</span></label>
-                                <input id="business_phone_hp" name="business_phone_hp" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_phone_hp">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="business_phone_hp" name="business_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_phone_hp">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -154,7 +168,14 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="business_modal" class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar (Sendirian Berhad)<span class="text-red-700">*</span></label>
-                                <input id="business_modal" name="business_modal" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_modal">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="business_modal" name="business_modal" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_modal">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -289,12 +310,26 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="business_asset_value" class="block text-sm font-medium leading-5 text-gray-700">Nilai Aset Perniagaan Sedia Ada<span class="text-red-700">*</span></label>
-                                <input id="business_asset_value" name="business_asset_value" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_asset_value">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="business_asset_value" name="business_asset_value" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_asset_value">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="business_start_resources" class="block text-sm font-medium leading-5 text-gray-700">Sumber Modal Memulakan Perniagaan<span class="text-red-700">*</span></label>
-                                <input id="business_start_resources" name="business_start_resources" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_start_resources">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="business_start_resources" name="business_start_resources" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_start_resources">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -366,12 +401,12 @@
                                 <input id="partner_address2" name="partner_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_address2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="partner_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                 <input id="partner_postcode" name="partner_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="partner_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
                                 <input id="partner_city" name="partner_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_city">
                             </div>
@@ -386,19 +421,40 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="partner_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Rumah<span class="text-red-700">*</span></label>
-                                <input id="partner_phone" name="partner_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_phone">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="partner_phone" name="partner_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_phone">
+                                </div>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="partner_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit<span class="text-red-700">*</span></label>
-                                <input id="partner_phone_hp" name="partner_phone_hp" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_phone_hp">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="partner_phone_hp" name="partner_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_phone_hp">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="partner_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham<span class="text-red-700">*</span></label>
-                                <input id="partner_total_shares" name="partner_total_shares" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_total_shares">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="partner_total_shares" name="partner_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_total_shares">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">

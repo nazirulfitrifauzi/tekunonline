@@ -18,9 +18,23 @@ class MaklumatPeribadi extends Component
     public $cawanganSelection = [];
     public $bank = [];
 
+    public function mount()
+    {
+        $existingData = ModelsMaklumatPeribadi::where('user_id', Auth::id())->first();
+
+        if ($existingData) {
+            foreach ($existingData->toArray() as $key => $value) {
+                if (property_exists($this, $key)) {
+                    $this->$key = $value;
+                }
+            }
+        }
+    }
+
+
     public function submit()
     {
-        // $this->validate();
+        $this->validate();
 
         // Dapatkan data sedia ada dalam database
         $existingData = ModelsMaklumatPeribadi::where('user_id', Auth::id())->first();
@@ -68,6 +82,7 @@ class MaklumatPeribadi extends Component
         ->where('res', '0')
         ->orderby('nama_bank', 'ASC')
         ->get();
+
 
         return view('livewire.module.maklumat-peribadi');
     }

@@ -11,7 +11,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
 
-                        <div class="col-span-6 sm:col-span-2">
+                        <div class="col-span-6 sm:col-span-3">
                                 <label for="purchase_price" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Diperlukan<span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -19,7 +19,7 @@
                                             RM
                                         </span>
                                     </div>
-                                    <input id="purchase_price" name="purchase_price" min="0" value="" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="purchase_price">
+                                    <input id="purchase_price" name="purchase_price" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="purchase_price">
                                 </div>
                             </div>
                             
@@ -107,12 +107,12 @@
                                 <input id="reference_address2" name="reference_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_address2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="reference_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 1<span class="text-red-700">*</span></label>
                                 <input id="reference_postcode" name="reference_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="reference_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 1<span class="text-red-700">*</span></label>
                                 <input id="reference_city" name="reference_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_city">
                             </div>
@@ -127,14 +127,21 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="reference_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 1 Dengan Pemohon<span class="text-red-700">*</span></label>
                                 <input id="reference_relation" name="reference_relation" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_relation">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="reference_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Perujuk 1<span class="text-red-700">*</span></label>
-                                <input id="reference_phone" name="reference_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_phone">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="reference_phone" name="reference_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="reference_phone">
+                                </div>
                             </div>
 
                             <div class="col-span-4">
@@ -156,14 +163,21 @@
                                 <input id="reference2_address2" name="reference2_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_address2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="reference2_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 2 Dengan Pemohon<span class="text-red-700">*</span></label>
                                 <input id="reference2_relation" name="reference2_relation" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_relation">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="reference2_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Perujuk 2<span class="text-red-700">*</span></label>
-                                <input id="reference2_phone" name="reference2_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_phone">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="reference2_phone" name="reference2_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="reference2_phone">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -191,7 +205,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
 
-                            <div class="col-span-6 sm:col-span-2">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="takaful_incident" class="block text-sm font-medium leading-5 text-gray-700">Takaful Kemalangan Peribadi Berkelompok<span class="text-red-700">*</span></label>
                                 <select id="takaful_incident" name="takaful_incident" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="takaful_incident">
                                     <option value="">SILA PILIH</option>
@@ -260,7 +274,7 @@
                                             RM
                                         </span>
                                     </div>
-                                    <input id="will_fi" name="will_fi" value="200" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="will_fi">
+                                    <input id="will_fi" name="will_fi" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="will_fi">
                                 </div>
                             </div>
 
@@ -289,19 +303,11 @@
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <fieldset>
-                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Kebenaran Penzahiran Maklumat Kredit Individu<span class="text-red-700">*</span></legend>
-                                    <div class="mt-3">
-                                        <div class="flex items-center">
-                                            <input id="auth_disc_info_flag" name="oku" value="1" type="radio" class="w-4 h-4 text-indigo-600 transition duration-150 ease-in-out form-radio" wire:model.live="auth_disc_info_flag">
-                                            <label for="auth_disc_info_flag" class="ml-3" >
-                                                <span class="block text-sm font-medium leading-5 text-gray-700">Ya</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
+                            <div class="col-span-6">
+                                <legend class="block text-sm font-medium leading-5 text-gray-700">Kebenaran Penzahiran Maklumat Kredit Individu<span class="text-red-700">*</span></legend>
+                            </div>
+                            <div class="col-span-6">
+                                <x-checkbox id="auth_disc_info_flag" label="Ya" wire:model="auth_disc_info_flag" value="1" />
                             </div>
                         </div>
                     </div>
@@ -328,20 +334,12 @@
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
-
-                            <div class="col-span-6 sm:col-span-6">
-                                <fieldset>
-                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Akuan Pemohon<span class="text-red-700">*</span></legend>
-                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Dengan ini saya mengesahkan semua maklumat yang diisi adalah benar.</legend>
-                                    <div class="mt-3">
-                                        <div class="flex items-center">
-                                            <input id="appl_stmt_flag" name="oku" value="1" type="radio" class="w-4 h-4 text-indigo-600 transition duration-150 ease-in-out form-radio" wire:model.live="appl_stmt_flag">
-                                            <label for="appl_stmt_flag" class="ml-3" >
-                                                <span class="block text-sm font-medium leading-5 text-gray-700">Ya</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
+                            <div class="col-span-6">
+                                <legend class="block text-sm font-medium leading-5 text-gray-700">Akuan Pemohon<span class="text-red-700">*</span></legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700">Dengan ini saya mengesahkan semua maklumat yang diisi adalah benar.</legend>
+                            </div>
+                            <div class="col-span-6">
+                                <x-checkbox id="appl_stmt_flag" label="Ya" wire:model="appl_stmt_flag" value="1" />
                             </div>
                         </div>
                     </div>
@@ -399,14 +397,21 @@
                                 <input id="penamaan_addr2" name="penamaan_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="penamaan_addr2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="penamaan_relationship" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan Pemohon<span class="text-red-700">*</span></label>
                                 <input id="penamaan_relationship" name="penamaan_relationship" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="penamaan_relationship">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="penamaan_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Telefon<span class="text-red-700">*</span></label>
-                                <input id="penamaan_phone" name="penamaan_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="penamaan_phone">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="penamaan_phone" name="penamaan_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="penamaan_phone">
+                                </div>
                             </div>
                         </div>
                     </div>

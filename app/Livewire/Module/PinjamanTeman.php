@@ -12,6 +12,19 @@ class PinjamanTeman extends Component
 
     use PinjamanTemanValidation;
 
+    public function mount()
+    {
+        $existingData = MaklumatPinjaman::where('user_id', Auth::id())->first();
+
+        if ($existingData) {
+            foreach ($existingData->toArray() as $key => $value) {
+                if (property_exists($this, $key)) {
+                    $this->$key = $value;
+                }
+            }
+        }
+    }
+
     public function submit()
     {
         // $this->validate();

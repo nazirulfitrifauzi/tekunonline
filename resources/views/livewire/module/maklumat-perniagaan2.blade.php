@@ -70,7 +70,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
                                     id="buss1_hours_start"
                                     label="Masa Berniaga Dari"
@@ -80,7 +80,7 @@
                                 />
                              </div>
 
-                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                             <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
                                     id="buss1_hours_end"
                                     label="Masa Berniaga Hingga"
@@ -96,12 +96,12 @@
                                 <input id="buss1_addr2" name="buss1_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_addr2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss1_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 1<span class="text-red-700">*</span></label>
                                 <input id="buss1_postcode" name="buss1_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss1_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 1<span class="text-red-700">*</span></label>
                                 <input id="buss1_city" name="buss1_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_city">
                             </div>
@@ -116,14 +116,28 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss1_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 1<span class="text-red-700">*</span></label>
-                                <input id="buss1_phone" name="buss1_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_phone">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="buss1_phone" name="buss1_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_phone">
+                                </div>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss1_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 1<span class="text-red-700">*</span></label>
-                                <input id="buss1_fax" name="buss1_fax" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_fax">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="buss1_fax" name="buss1_fax" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_fax">
+                                </div>
                             </div>
 
                             <div class="col-span-6 ">
@@ -176,7 +190,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
                                     id="buss2_hours_start"
                                     label="Masa Berniaga Dari"
@@ -186,7 +200,7 @@
                                 />
                              </div>
 
-                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                             <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
                                     id="buss2_hours_end"
                                     label="Masa Berniaga Hingga"
@@ -202,12 +216,12 @@
                                 <input id="buss2_addr2" name="buss2_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_addr2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss2_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 2<span class="text-red-700">*</span></label>
                                 <input id="buss2_postcode" name="buss2_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss2_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 2<span class="text-red-700">*</span></label>
                                 <input id="buss2_city" name="buss2_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_city">
                             </div>
@@ -222,14 +236,28 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss2_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 2<span class="text-red-700">*</span></label>
-                                <input id="buss2_phone" name="buss2_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_phone">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="buss2_phone" name="buss2_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_phone">
+                                </div>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss2_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 2<span class="text-red-700">*</span></label>
-                                <input id="buss2_fax" name="buss2_fax" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_fax">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="buss2_fax" name="buss2_fax" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_fax">
+                                </div>
                             </div>
 
 
@@ -283,7 +311,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
                                     id="buss3_hours_start"
                                     label="Masa Berniaga Dari"
@@ -293,7 +321,7 @@
                                 />
                              </div>
 
-                             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                             <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
                                     id="buss3_hours_end"
                                     label="Masa Berniaga Hingga"
@@ -309,12 +337,12 @@
                                 <input id="buss3_addr2" name="buss3_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_addr2">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss3_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 3<span class="text-red-700">*</span></label>
                                 <input id="buss3_postcode" name="buss3_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_postcode">
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss3_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 3<span class="text-red-700">*</span></label>
                                 <input id="buss3_city" name="buss3_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_city">
                             </div>
@@ -329,14 +357,28 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss3_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 3<span class="text-red-700">*</span></label>
-                                <input id="buss3_phone" name="buss3_phone" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_phone">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="buss3_phone" name="buss3_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_phone">
+                                </div>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="buss3_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 3<span class="text-red-700">*</span></label>
-                                <input id="buss3_fax" name="buss3_fax" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_fax">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            +60
+                                        </span>
+                                    </div>
+                                    <input id="buss3_fax" name="buss3_fax" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_fax">
+                                </div>
                             </div>
                         </div>
                         
@@ -390,12 +432,26 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="mara_tot_fin" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan MARA<span class="text-red-700">*</span></label>
-                                <input id="mara_tot_fin" name="mara_tot_fin" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="mara_tot_fin">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="mara_tot_fin" name="mara_tot_fin" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="mara_tot_fin">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="mara_bal_fin" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan MARA<span class="text-red-700">*</span></label>
-                                <input id="mara_bal_fin" name="mara_bal_fin" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="mara_bal_fin">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="mara_bal_fin" name="mara_bal_fin" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="mara_bal_fin">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -414,12 +470,26 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="aim_tot_fin" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan AIM<span class="text-red-700">*</span></label>
-                                <input id="aim_tot_fin" name="aim_tot_fin" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="aim_tot_fin">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="aim_tot_fin" name="aim_tot_fin" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="aim_tot_fin">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="aim_bal_fin" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan AIM<span class="text-red-700">*</span></label>
-                                <input id="aim_bal_fin" name="aim_bal_fin" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="aim_bal_fin">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="aim_bal_fin" name="aim_bal_fin" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="aim_bal_fin">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -429,12 +499,26 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="others_tot_fin" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan LAIN-LAIN AGENSI KERAJAAN<span class="text-red-700">*</span></label>
-                                <input id="others_tot_fin" name="others_tot_fin" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="others_tot_fin">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="others_tot_fin" name="others_tot_fin" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="others_tot_fin">
+                                </div>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="others_bal_fin" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan LAIN-LAIN AGENSI KERAJAAN<span class="text-red-700">*</span></label>
-                                <input id="others_bal_fin" name="others_bal_fin" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="others_bal_fin">
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="others_bal_fin" name="others_bal_fin" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="others_bal_fin">
+                                </div>
                             </div>
                         </div>
                     </div>
