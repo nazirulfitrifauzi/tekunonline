@@ -80,7 +80,7 @@
                     <!-- 2a) Tab Buttons (fixed height, no scroll) -->
                     <div
                         x-ref="tabButtons"
-                        class="inline-grid relative grid-cols-6 justify-center items-center p-1 w-full h-10 bg-gray-100 rounded-lg select-none dark:bg-gray-800 dark:border-gray-700"
+                        class="inline-grid relative grid-cols-7 justify-center items-center p-1 w-full h-10 bg-gray-100 rounded-lg select-none dark:bg-gray-800 dark:border-gray-700"
                     >
                         <button
                             id="tabs-1"
@@ -107,12 +107,21 @@
                             Maklumat Perniagaan 2
                         </button>
                         <button
+                            id="tabs-7"
+                            @click="tabButtonClicked($el)"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(7) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                        >
+                            Maklumat Pinjaman
+                        </button>
+
+                        <button
                             id="tabs-4"
                             @click="tabButtonClicked($el)"
                             :class="{ 'bg-indigo-500 text-white': tabButtonActive(4) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
-                            Pinjaman Teman Tekun    
+                        Pinjaman Teman Tekun    
                         </button>
 
                         <button
@@ -130,9 +139,8 @@
                             :class="{ 'bg-indigo-500 text-white': tabButtonActive(6) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
-                            Maklumat Pinjaman
+                            Muat Naik Dokumen
                         </button>
-
 
                         <!-- Marker for the active tab highlight -->
                         <div
@@ -170,13 +178,19 @@
 
                             <!-- Tab #5 -->
                             <div x-show="tabContentActive(5)" class="relative" x-cloak>  
-                            @livewire('module.pinjaman-kontrak-i')
-                                </div>
-                            
+                                @livewire('module.pinjaman-kontrak-i')
+                            </div>
+
                             <!-- Tab #6 -->
                             <div x-show="tabContentActive(6)" class="relative" x-cloak>
+                                @livewire('module.muat-naik-dokumen')
+                            </div>
+                            
+                            <!-- Tab #7 -->
+                            <div x-show="tabContentActive(7)" class="relative" x-cloak>
                             @livewire('module.maklumat-pinjaman')
                             </div>
+
                         </div>
                     </div>
                 </div>
