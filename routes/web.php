@@ -8,7 +8,9 @@ use App\Livewire\Auth\Passwords\Email;
 use App\Livewire\Auth\Passwords\Reset;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Verify;
+use App\Livewire\Dashboard;
 use App\Livewire\Home;
+use App\Livewire\Module\MaklumatAkaun;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,10 +51,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('password/confirm', Confirm::class)
         ->name('password.confirm');
+
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', Home::class)->name('home');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/maklumat-akaun', MaklumatAkaun::class)->name('maklumat-akaun');
     
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
         ->middleware('signed')
@@ -61,3 +66,4 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', LogoutController::class)
         ->name('logout');
 });
+

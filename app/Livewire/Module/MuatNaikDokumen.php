@@ -18,7 +18,7 @@ class MuatNaikDokumen extends Component
 
     public function mount()
     {
-        $this->existingData = MaklumatPinjaman::where('user_id', Auth::id())->first();
+        $this->existingData = MaklumatPinjaman::where('appln_id', Auth::id())->first();
     }
 
     public function submit()
@@ -28,6 +28,7 @@ class MuatNaikDokumen extends Component
         // Get user's IC number for folder name
         $user = Auth::user();
         $folderName = $user->ic_no;
+        $appln_id = $user->applnStatus->id;
 
         // Get file extensions
         $ic_extension = $this->document_ic_no->getClientOriginalExtension();
@@ -46,8 +47,8 @@ class MuatNaikDokumen extends Component
         ];
 
         // Create full paths for storage
-        $documentPaths = array_map(function($fileName) use ($folderName) {
-            return $folderName . '/' . $fileName;
+        $documentPaths = array_map(function($fileName) use ($folderName, $appln_id) {
+            return $folderName . '/' . $appln_id . '/' . $fileName;
         }, $fileNames);
 
         // Store files with the new names
@@ -58,7 +59,7 @@ class MuatNaikDokumen extends Component
         $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
 
         // Dapatkan data sedia ada dalam database
-        $existingData = MaklumatPinjaman::where('user_id', Auth::id())->first();
+        $existingData = MaklumatPinjaman::where('appln_id', Auth::id())->first();
 
         // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
         $existingDataArray = $existingData ? $existingData->toArray() : [];
@@ -67,12 +68,12 @@ class MuatNaikDokumen extends Component
         $updatedData = array_merge(
             $existingDataArray,
             $fileNames,  // Using fileNames instead of documentPaths to store only filenames
-            ['user_id' => Auth::id()]
+            ['appln_id' => Auth::id()]
         );
 
         // Simpan data ke dalam database
         MaklumatPinjaman::updateOrCreate(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             $updatedData
         );
 

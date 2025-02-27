@@ -10,8 +10,8 @@ class MaklumatPinjaman extends Model
 
     protected $guarded = [];
 
-    public function user()
+    public function applnStatus()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(ApplnStatus::class, 'appln_id', 'id');
     }
 }

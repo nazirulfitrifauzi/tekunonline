@@ -16,7 +16,7 @@ class MaklumatPinjaman extends Component
 
     public function mount()
     {
-        $existingData = ModelsMaklumatPinjaman::where('user_id', Auth::id())->first();
+        $existingData = ModelsMaklumatPinjaman::where('appln_id', Auth::id())->first();
 
         if ($existingData) {
             foreach ($existingData->toArray() as $key => $value) {
@@ -32,7 +32,7 @@ class MaklumatPinjaman extends Component
         // $this->validate();
         
         // Dapatkan data sedia ada dalam database
-        $existingData = ModelsMaklumatPinjaman::where('user_id', Auth::id())->first();
+        $existingData = ModelsMaklumatPinjaman::where('appln_id', Auth::id())->first();
 
         // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
         $existingDataArray = $existingData ? $existingData->toArray() : [];
@@ -42,7 +42,7 @@ class MaklumatPinjaman extends Component
 
         // Simpan data ke dalam database
         ModelsMaklumatPinjaman::updateOrCreate(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             $updatedData
         );
 
@@ -52,7 +52,7 @@ class MaklumatPinjaman extends Component
     protected function getFormData()
     {
         return array_merge(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             collect($this->all())
                 ->except(['negeriSelection'])
                 ->toArray()

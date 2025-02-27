@@ -1,4 +1,12 @@
 <div>
+    <div id="top-message">
+        @if (session()->has('message'))
+            <div class="px-4 py-3 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
+
     <div class="">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
@@ -641,4 +649,12 @@
             </button>
         </span>
     </div>
+
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            Livewire.on('scrollToTop', () => {
+                document.getElementById('top-message').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </div>

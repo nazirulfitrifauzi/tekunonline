@@ -10,8 +10,8 @@
                             </div>
                             <div class="hidden md:block">
                                 <div class="flex items-baseline ml-10">
-                                    <a href="#" class="px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-md focus:outline-none focus:text-white focus:bg-gray-700">
-                                        Laman Utama
+                                    <a href="{{ route('dashboard') }}" class="px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-md focus:outline-none focus:text-white focus:bg-gray-700">
+                                    Laman Utama
                                     </a>
                                 </div>
                             </div>

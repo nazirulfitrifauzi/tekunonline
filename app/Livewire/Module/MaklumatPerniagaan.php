@@ -30,7 +30,7 @@ class MaklumatPerniagaan extends Component
         // $this->validate();
         
         // Dapatkan data sedia ada dalam database
-        $existingData = ModelsMaklumatPerniagaan::where('user_id', Auth::id())->first();
+        $existingData = ModelsMaklumatPerniagaan::where('appln_id', Auth::id())->first();
 
         // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
         $existingDataArray = $existingData ? $existingData->toArray() : [];
@@ -40,7 +40,7 @@ class MaklumatPerniagaan extends Component
 
         // Simpan data ke dalam database
         ModelsMaklumatPerniagaan::updateOrCreate(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             $updatedData
         );
 
@@ -57,7 +57,7 @@ class MaklumatPerniagaan extends Component
     protected function getFormData()
     {
         return array_merge(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             collect($this->all())
                 ->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection'])
                 ->toArray()
@@ -66,7 +66,7 @@ class MaklumatPerniagaan extends Component
 
     public function mount()
     {
-        $existingData = ModelsMaklumatPerniagaan::where('user_id', Auth::id())->first();
+        $existingData = ModelsMaklumatPerniagaan::where('appln_id', Auth::id())->first();
 
         if ($existingData) {
             foreach ($existingData->toArray() as $key => $value) {

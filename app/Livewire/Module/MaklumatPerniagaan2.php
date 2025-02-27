@@ -16,7 +16,7 @@ class MaklumatPerniagaan2 extends Component
 
     public function mount()
     {
-        $existingData = MaklumatPerniagaan::where('user_id', Auth::id())->first();
+        $existingData = MaklumatPerniagaan::where('appln_id', Auth::id())->first();
 
         if ($existingData) {
             foreach ($existingData->toArray() as $key => $value) {
@@ -33,7 +33,7 @@ class MaklumatPerniagaan2 extends Component
         // $this->validate();
 
         // Dapatkan data sedia ada dalam database
-        $existingData = MaklumatPerniagaan::where('user_id', Auth::id())->first();
+        $existingData = MaklumatPerniagaan::where('appln_id', Auth::id())->first();
 
         // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
         $existingDataArray = $existingData ? $existingData->toArray() : [];
@@ -43,7 +43,7 @@ class MaklumatPerniagaan2 extends Component
 
         // Simpan data ke dalam database
         MaklumatPerniagaan::updateOrCreate(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             $updatedData
         );        
 
@@ -53,7 +53,7 @@ class MaklumatPerniagaan2 extends Component
     protected function getFormData()
     {
         return array_merge(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             collect($this->all())
                 ->except(['negeriSelection'])
                 ->toArray()

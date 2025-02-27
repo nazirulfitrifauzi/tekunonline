@@ -20,7 +20,7 @@ class MaklumatPeribadi extends Component
 
     public function mount()
     {
-        $existingData = ModelsMaklumatPeribadi::where('user_id', Auth::id())->first();
+        $existingData = ModelsMaklumatPeribadi::where('appln_id', Auth::id())->first();
 
         if ($existingData) {
             foreach ($existingData->toArray() as $key => $value) {
@@ -37,7 +37,7 @@ class MaklumatPeribadi extends Component
         $this->validate();
 
         // Dapatkan data sedia ada dalam database
-        $existingData = ModelsMaklumatPeribadi::where('user_id', Auth::id())->first();
+        $existingData = ModelsMaklumatPeribadi::where('appln_id', Auth::id())->first();
 
         // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
         $existingDataArray = $existingData ? $existingData->toArray() : [];
@@ -47,17 +47,20 @@ class MaklumatPeribadi extends Component
 
         // Simpan data ke dalam database
         ModelsMaklumatPeribadi::updateOrCreate(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             $updatedData
         );
         
-        return redirect()->route('home');
+        session()->flash('message', 'Maklumat berjaya disimpan.');
+
+        // Dispatch browser event to scroll to top
+        $this->dispatch('scrollToTop');
     }
 
     protected function getFormData()
     {
         return array_merge(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             collect($this->all())
                 ->except(['negeriSelection', 'cawanganSelection', 'bank'])
                 ->toArray()

@@ -16,7 +16,7 @@ class PinjamanKontrakI extends Component
     
     public function mount()
     {
-        $existingData = MaklumatPinjaman::where('user_id', Auth::id())->first();
+        $existingData = MaklumatPinjaman::where('appln_id', Auth::id())->first();
 
         if ($existingData) {
             foreach ($existingData->toArray() as $key => $value) {
@@ -33,7 +33,7 @@ class PinjamanKontrakI extends Component
         // $this->validate();
         
         // Dapatkan data sedia ada dalam database
-        $existingData = MaklumatPinjaman::where('user_id', Auth::id())->first();
+        $existingData = MaklumatPinjaman::where('appln_id', Auth::id())->first();
 
         // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
         $existingDataArray = $existingData ? $existingData->toArray() : [];
@@ -43,7 +43,7 @@ class PinjamanKontrakI extends Component
 
         // Simpan data ke dalam database
         MaklumatPinjaman::updateOrCreate(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             $updatedData
         );
 
@@ -53,7 +53,7 @@ class PinjamanKontrakI extends Component
     protected function getFormData()
     {
         return array_merge(
-            ['user_id' => Auth::id()],
+            ['appln_id' => Auth::id()],
             collect($this->all())
                 ->except(['negeriSelection'])
                 ->toArray()

@@ -42,13 +42,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function maklumatPeribadi()
+    public function applnStatus()
     {
-        return $this->hasOne(MaklumatPeribadi::class, 'user_id', 'id');
+        return $this->hasOne(ApplnStatus::class, 'user_id', 'id');
     }
 
-    public function maklumatPerniagaan()
-    {
-        return $this->hasOne(MaklumatPerniagaan::class, 'user_id', 'id');
-    }
 }
