@@ -12,6 +12,9 @@ use App\Livewire\Dashboard;
 use App\Livewire\Home;
 use App\Livewire\Module\MaklumatAkaun;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use App\Livewire\Auth\ChangePassword;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,10 +48,6 @@ Route::get('password/reset/{token}', Reset::class)
     ->name('password.reset');
 
 Route::middleware('auth')->group(function () {
-    Route::get('email/verify', Verify::class)
-        ->middleware('throttle:6,1')
-        ->name('verification.notice');
-
     Route::get('password/confirm', Confirm::class)
         ->name('password.confirm');
 
@@ -59,11 +58,31 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/maklumat-akaun', MaklumatAkaun::class)->name('maklumat-akaun');
     
-    Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
-        ->middleware('signed')
-        ->name('verification.verify');
-
     Route::post('logout', LogoutController::class)
         ->name('logout');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/change-password', ChangePassword::class)->name('change-password');
+
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect()->route('home')->with('status', 'Email verified successfully!');
+    })->middleware(['signed'])->name('verification.verify');
+
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('status', 'Verification link sent!');
+    })->middleware(['throttle:6,1'])->name('verification.send');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/home', Home::class)->name('home');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/maklumat-akaun', MaklumatAkaun::class)->name('maklumat-akaun');
 });
 

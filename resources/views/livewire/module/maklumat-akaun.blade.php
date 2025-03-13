@@ -43,7 +43,7 @@
         <header class="py-10">
             <div class="px-4 mx-auto w-11/12">
                 <h1 class="text-3xl font-bold leading-9 text-white">
-                    Maklumat Akaun
+                    Maklumat Profil
                 </h1>
             </div>
         </header>

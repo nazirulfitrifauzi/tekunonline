@@ -93,23 +93,23 @@
                         <button
                             id="tabs-2"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(2) }"
+                            :class="{ 'bg-red-500 text-white': tabButtonActive(2) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
-                            Maklumat Perniagaan 1
+                        Maklumat Perniagaan I
                         </button>
                         <button
                             id="tabs-3"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(3) }"
+                            :class="{ 'bg-red-500 text-white': tabButtonActive(3) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
-                            Maklumat Perniagaan 2
+                            Maklumat Perniagaan II
                         </button>
                         <button
                             id="tabs-7"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(7) }"
+                            :class="{ 'bg-fuchsia-500 text-white': tabButtonActive(7) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                             Maklumat Pinjaman
@@ -118,7 +118,7 @@
                         <button
                             id="tabs-4"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(4) }"
+                            :class="{ 'bg-fuchsia-500 text-white': tabButtonActive(4) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                         Pinjaman Teman Tekun    
@@ -127,7 +127,7 @@
                         <button
                             id="tabs-5"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(5) }"
+                            :class="{ 'bg-fuchsia-500 text-white': tabButtonActive(5) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                             Pinjaman Kontrak i
@@ -136,7 +136,7 @@
                         <button
                             id="tabs-6"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(6) }"
+                            :class="{ 'bg-green-500 text-white': tabButtonActive(6) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
                             Muat Naik Dokumen

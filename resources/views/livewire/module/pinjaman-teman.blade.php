@@ -14,11 +14,21 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="team_mbr_name1" class="block text-sm font-medium leading-5 text-gray-700">Nama Ahli Kumpulan 1<span class="text-red-700">*</span></label>
                                 <input id="team_mbr_name1" name="team_mbr_name1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="team_mbr_name1">                               
+                                @error('team_mbr_name1')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="team_mbr_icno1" class="block text-sm font-medium leading-5 text-gray-700">No KP Ahli Kumpulan 1<span class="text-red-700">*</span></label>
                                 <input id="team_mbr_icno1" name="team_mbr_icno1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="team_mbr_icno1">                               
+                                @error('team_mbr_icno1')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6">
@@ -27,11 +37,21 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="team_mbr_name2" class="block text-sm font-medium leading-5 text-gray-700">Nama Ahli Kumpulan 2<span class="text-red-700">*</span></label>
                                 <input id="team_mbr_name2" name="team_mbr_name2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="team_mbr_name2">                               
+                                @error('team_mbr_name2')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="team_mbr_icno2" class="block text-sm font-medium leading-5 text-gray-700">No KP Ahli Kumpulan 2<span class="text-red-700">*</span></label>
                                 <input id="team_mbr_icno2" name="team_mbr_icno2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="team_mbr_icno2">                               
+                                @error('team_mbr_icno2')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6">
@@ -40,11 +60,21 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="team_mbr_name3" class="block text-sm font-medium leading-5 text-gray-700">Nama Ahli Kumpulan 3<span class="text-red-700">*</span></label>
                                 <input id="team_mbr_name3" name="team_mbr_name3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="team_mbr_name3">                               
+                                @error('team_mbr_name3')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="team_mbr_icno3" class="block text-sm font-medium leading-5 text-gray-700">No KP Ahli Kumpulan 3<span class="text-red-700">*</span></label>
                                 <input id="team_mbr_icno3" name="team_mbr_icno3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="team_mbr_icno3">                               
+                                @error('team_mbr_icno3')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6">
@@ -53,11 +83,21 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="team_mbr_name4" class="block text-sm font-medium leading-5 text-gray-700">Nama Ahli Kumpulan 4<span class="text-red-700">*</span></label>
                                 <input id="team_mbr_name4" name="team_mbr_name4" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="team_mbr_name4">                               
+                                @error('team_mbr_name4')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="team_mbr_icno4" class="block text-sm font-medium leading-5 text-gray-700">No KP Ahli Kumpulan 4<span class="text-red-700">*</span></label>
                                 <input id="team_mbr_icno4" name="team_mbr_icno4" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="team_mbr_icno4">                               
+                                @error('team_mbr_icno4')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -72,6 +112,11 @@
                                     <option value="20-30 TAHUN">20-30 TAHUN</option>
                                     <option value="> 30 TAHUN">> 30 TAHUN</option>
                                 </select>
+                                @error('duration_intro_team')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -84,7 +129,7 @@
 
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="supported_fin_amount" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Disokong<span class="text-red-700">*</span></label>
+                                <label for="supported_fin_amount" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Disokong</label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -121,23 +166,23 @@
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 sm:col-span-4">
-                                <label for="grp_leader_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Ketua PSAT / Ketua Kumpulan<span class="text-red-700">*</span></label>
+                                <label for="grp_leader_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Ketua PSAT / Ketua Kumpulan</label>
                                 <input id="grp_leader_name" name="grp_leader_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="grp_leader_name">                               
                             </div>
 
                             <div class="col-span-6">
-                                <label for="group_leader_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat<span class="text-red-700">*</span></label>
+                                <label for="group_leader_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat</label>
                                 <input id="group_leader_addr1" name="group_leader_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="group_leader_addr1">                               
                                 <input id="group_leader_addr2" name="group_leader_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="group_leader_addr2">
                                 <input id="group_leader_addr3" name="group_leader_addr3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="group_leader_addr3">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="group_leader_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon<span class="text-red-700">*</span></label>
+                                <label for="group_leader_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon</label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
                                     <input id="group_leader_phone" name="group_leader_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="group_leader_phone">

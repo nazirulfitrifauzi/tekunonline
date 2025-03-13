@@ -44,7 +44,7 @@ class Register extends Component
                     $age = $currentYear - $birthYear;
 
                     if ($age < 18 || $age > 65) {
-                        $fail('Anda tidak layak memohon kerana syarat umur mesti berumur 18 tahun dan keatas dan tidak melebihi 60 tahun.');
+                        $fail('Anda tidak layak memohon kerana syarat umur mesti berumur 18 tahun dan keatas dan tidak melebihi 65 tahun.');
                     } elseif (substr($value, 2, 2) > 12) {
                         $fail('Sila semak bulan kelahiran di dalam no kad pengenalan anda.');
                     } elseif (substr($value, 4, 2) > 31) {
@@ -66,7 +66,7 @@ class Register extends Component
 
         Auth::login($user, true);
 
-        return redirect()->intended(route('home'));
+        return redirect()->route('verification.notice');
     }
 
     public function render()

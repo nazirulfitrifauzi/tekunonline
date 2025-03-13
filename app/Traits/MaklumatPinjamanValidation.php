@@ -40,7 +40,9 @@ trait MaklumatPinjamanValidation
     public $penamaan_relationship;
     public $penamaan_phone;
 
-    // protected $rules = [
+    protected $rules = [
+        'purchase_price' => 'required',
+        'pymt_duration' => 'required',
     //     'tekun_state' => 'required',
     //     'tekun_branch' => 'required',
         // 'business_status' => 'required',
@@ -49,9 +51,12 @@ trait MaklumatPinjamanValidation
         // 'bank1_acct' => 'required',
         // 'bank1_acc_type' => 'required',
    
-    // ];
+    ];
+    
 
-    // protected $messages = [
+    protected $messages = [
+        'purchase_price.required' => 'Sila Masukkan Jumlah Pembiayaan Yang Diperlukan',
+        'pymt_duration.required' => 'Sila Pilih Tempoh Bayaran',
     //     'tekun_state.required' => 'Sila Pilih Negeri',
     //     'tekun_branch.required' => 'Sila Pilih Cawangan',
         // 'business_status.required' => 'Sila Pilih Status Perniagaan',
@@ -59,5 +64,5 @@ trait MaklumatPinjamanValidation
         // 'bank1.required' => 'Sila Pilih Bank',
         // 'bank1_acct.required' => 'Sila Masukkan No Akaun Bank',
         // 'bank1_acc_type.required' => 'Sila Pilih Jenis Akaun Bank',
-    // ];
+    ];
 }

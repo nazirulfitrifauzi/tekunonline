@@ -19,7 +19,12 @@
                                             RM
                                         </span>
                                     </div>
-                                    <input id="purchase_price" name="purchase_price" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="purchase_price">
+                                    <input id="purchase_price" name="purchase_price" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.lazy="purchase_price" value="{{ $purchase_price }}">
+                                    @error('purchase_price')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
                             
@@ -43,6 +48,11 @@
                                     <option value="108">108</option>
                                     <option value="120">120</option>
                                 </select>
+                                @error('pymt_duration')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -137,7 +147,7 @@
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
                                     <input id="reference_phone" name="reference_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="reference_phone">
@@ -173,7 +183,7 @@
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
                                     <input id="reference2_phone" name="reference2_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="reference2_phone">
@@ -407,7 +417,7 @@
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
                                     <input id="penamaan_phone" name="penamaan_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="penamaan_phone">

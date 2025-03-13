@@ -12,9 +12,10 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6">
-                                <label for="document_ic_no" class="block text-sm font-medium leading-5 text-gray-700">Salinan Kad Pengenalan Pemohon<span class="text-red-700">*</span></label>
-                                <input type="file" wire:model="document_ic_no">
-                                    @error('document_ic_no') <span class="error">{{ $message }}</span> @enderror
+                                <label for="document_ic_no" class="block text-sm font-medium leading-5 text-gray-700">Salinan Kad Pengenalan Pemohon (PDF sahaja)<span class="text-red-700">*</span>
+                                </label>
+                                <input type="file" wire:model="document_ic_no" accept="application/pdf">
+                                @error('document_ic_no') <span class="error">{{ $message }}</span> @enderror
                                 @if($existingData && $existingData->document_ic_no)
                                     <div class="mt-2">
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_ic_no) }}" 
@@ -26,7 +27,7 @@
                                 @endif
                             </div>
                             <div class="col-span-6">
-                                <label for="document_icP_no" class="block text-sm font-medium leading-5 text-gray-700">Salinan Kad Pengenalan Pasangan<span class="text-red-700">*</span></label>
+                                <label for="document_icP_no" class="block text-sm font-medium leading-5 text-gray-700">Salinan Kad Pengenalan Pasangan (PDF sahaja)<span class="text-red-700">*</span></label>
                                 <input type="file" wire:model="document_icP_no">
                                     @error('document_icP_no') <span class="error">{{ $message }}</span> @enderror
                                 @if($existingData && $existingData->document_icP_no)

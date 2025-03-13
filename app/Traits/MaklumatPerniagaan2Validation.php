@@ -65,13 +65,125 @@ trait MaklumatPerniagaan2Validation
    
     // ];
 
-    // protected $messages = [
-    //     'tekun_state.required' => 'Sila Pilih Negeri',
-    //     'tekun_branch.required' => 'Sila Pilih Cawangan',
-        // 'business_status.required' => 'Sila Pilih Status Perniagaan',
-        // 'business_method.required' => 'Sila Pilih Kaedah Perniagaan',
-        // 'bank1.required' => 'Sila Pilih Bank',
-        // 'bank1_acct.required' => 'Sila Masukkan No Akaun Bank',
-        // 'bank1_acc_type.required' => 'Sila Pilih Jenis Akaun Bank',
-    // ];
+    public function rules()
+    {
+        $rules = [
+            'buss_branch_tot' => 'required|in:1,2,3',
+            'fin_details_flag' => 'required|in:0,1',
+        ];
+
+        // Add financing validation rules only if fin_details_flag is 1
+        if ($this->fin_details_flag == "1") {
+            $rules = array_merge($rules, [
+                'fin_mara_flag' => 'required',
+                'mara_tot_fin' => 'required_if:fin_mara_flag,1|numeric',
+                'mara_bal_fin' => 'required_if:fin_mara_flag,1|numeric',
+                'fin_aim_flag' => 'required',
+                'aim_tot_fin' => 'required_if:fin_aim_flag,1|numeric',
+                'aim_bal_fin' => 'required_if:fin_aim_flag,1|numeric',
+                'fin_others' => 'required',
+                'others_tot_fin' => 'required_with:fin_others|numeric',
+                'others_bal_fin' => 'required_with:fin_others|numeric',
+            ]);
+        }
+
+        // Cawangan 1 rules (always required if any branch is selected)
+        if ($this->buss_branch_tot >= 1) {
+            $rules = array_merge($rules, [
+                'buss1_branch_loc' => 'required',
+                'buss1_branch_status' => 'required',
+                'buss1_branch_tot_worker' => 'required',
+                'buss1_hours_start' => 'required',
+                'buss1_hours_end' => 'required',
+                'buss1_addr1' => 'required',
+                'buss1_postcode' => 'required|digits:5',
+                'buss1_city' => 'required',
+                'buss1_state' => 'required',
+                'buss1_phone' => 'required',
+                'buss1_fax' => 'required',
+            ]);
+        }
+
+        // Cawangan 2 rules
+        if ($this->buss_branch_tot >= 2) {
+            $rules = array_merge($rules, [
+                'buss2_branch_loc' => 'required',
+                'buss2_branch_status' => 'required',
+                'buss2_branch_tot_worker' => 'required',
+                'buss2_hours_start' => 'required',
+                'buss2_hours_end' => 'required',
+                'buss2_addr1' => 'required',
+                'buss2_postcode' => 'required|digits:5',
+                'buss2_city' => 'required',
+                'buss2_state' => 'required',
+                'buss2_phone' => 'required',
+                'buss2_fax' => 'required',
+            ]);
+        }
+
+        // Cawangan 3 rules
+        if ($this->buss_branch_tot >= 3) {
+            $rules = array_merge($rules, [
+                'buss3_branch_loc' => 'required',
+                'buss3_branch_status' => 'required',
+                'buss3_branch_tot_worker' => 'required',
+                'buss3_hours_start' => 'required',
+                'buss3_hours_end' => 'required',
+                'buss3_addr1' => 'required',
+                'buss3_postcode' => 'required|digits:5',
+                'buss3_city' => 'required',
+                'buss3_state' => 'required',
+                'buss3_phone' => 'required',
+                'buss3_fax' => 'required',
+            ]);
+        }
+
+        return $rules;
+    }
+
+    protected $messages = [
+        'buss_branch_tot.required' => 'Sila pilih bilangan cawangan.',
+        'buss_branch_tot.in' => 'Bilangan cawangan tidak sah.',
+        
+        // Cawangan 1 messages
+        'buss1_branch_loc.required' => 'Sila pilih lokasi cawangan 1.',
+        'buss1_branch_status.required' => 'Sila pilih status cawangan 1.',
+        'buss1_branch_tot_worker.required' => 'Sila pilih bilangan pekerja cawangan 1.',
+        'buss1_hours_start.required' => 'Sila masukkan masa mula berniaga cawangan 1.',
+        'buss1_hours_end.required' => 'Sila masukkan masa tutup berniaga cawangan 1.',
+        'buss1_addr1.required' => 'Sila masukkan alamat cawangan 1.',
+        'buss1_postcode.required' => 'Sila masukkan poskod cawangan 1.',
+        'buss1_postcode.digits' => 'Poskod cawangan 1 mestilah 5 digit.',
+        'buss1_city.required' => 'Sila masukkan bandar cawangan 1.',
+        'buss1_state.required' => 'Sila pilih negeri cawangan 1.',
+        'buss1_phone.required' => 'Sila masukkan nombor telefon cawangan 1.',
+        'buss1_fax.required' => 'Sila masukkan nombor fax cawangan 1.',
+        // Cawangan 2 messages
+        'buss2_branch_loc.required' => 'Sila pilih lokasi cawangan 2.',
+        'buss2_branch_status.required' => 'Sila pilih status cawangan 2.',
+        'buss2_branch_tot_worker.required' => 'Sila pilih bilangan pekerja cawangan 2.',
+        'buss2_hours_start.required' => 'Sila masukkan masa mula berniaga cawangan 2.',
+        'buss2_hours_end.required' => 'Sila masukkan masa tutup berniaga cawangan 2.',
+        'buss2_addr1.required' => 'Sila masukkan alamat cawangan 2.',
+        'buss2_postcode.required' => 'Sila masukkan poskod cawangan 2.',
+        'buss2_postcode.digits' => 'Poskod cawangan 2 mestilah 5 digit.',
+        'buss2_city.required' => 'Sila masukkan bandar cawangan 2.',
+        'buss2_state.required' => 'Sila pilih negeri cawangan 2.',
+        'buss2_phone.required' => 'Sila masukkan nombor telefon cawangan 2.',
+        'buss2_fax.required' => 'Sila masukkan nombor fax cawangan 2.',
+
+        // Cawangan 3 messages
+        'buss3_branch_loc.required' => 'Sila pilih lokasi cawangan 3.',
+        'buss3_branch_status.required' => 'Sila pilih status cawangan 3.',
+        'buss3_branch_tot_worker.required' => 'Sila pilih bilangan pekerja cawangan 3.',
+        'buss3_hours_start.required' => 'Sila masukkan masa mula berniaga cawangan 3.',
+        'buss3_hours_end.required' => 'Sila masukkan masa tutup berniaga cawangan 3.',
+        'buss3_addr1.required' => 'Sila masukkan alamat cawangan 3.',
+        'buss3_postcode.required' => 'Sila masukkan poskod cawangan 3.',
+        'buss3_postcode.digits' => 'Poskod cawangan 3 mestilah 5 digit.',
+        'buss3_city.required' => 'Sila masukkan bandar cawangan 3.',
+        'buss3_state.required' => 'Sila pilih negeri cawangan 3.',
+        'buss3_phone.required' => 'Sila masukkan nombor telefon cawangan 3.',
+        'buss3_fax.required' => 'Sila masukkan nombor fax cawangan 3.',
+    ];
 }

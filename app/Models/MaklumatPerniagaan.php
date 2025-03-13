@@ -14,4 +14,5 @@ class MaklumatPerniagaan extends Model
     {
         return $this->belongsTo(ApplnStatus::class, 'appln_id', 'id');
     }
+
 }

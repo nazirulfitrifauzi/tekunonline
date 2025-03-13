@@ -1,12 +1,4 @@
 <div>
-    <div id="top-message">
-        @if (session()->has('message'))
-            <div class="px-4 py-3 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
-                {{ session('message') }}
-            </div>
-        @endif
-    </div>
-
     <div class="">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
@@ -36,8 +28,7 @@
 
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="tekun_branch" class="block text-sm font-medium leading-5 text-gray-700">Cawangan Berhampiran
-                                    dengan Lokasi Perniagaan <span class="text-red-700">*</span></label>
+                                <label for="tekun_branch" class="block text-sm font-medium leading-5 text-gray-700">Cawangan Berhampiran dengan Lokasi Perniagaan <span class="text-red-700">*</span></label>
                                     <select id="tekun_branch" name="tekun_branch" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="tekun_branch">
                                     <option value="">SILA PILIH</option>
                                     @foreach ($cawanganSelection as $cawangans)
@@ -104,30 +95,58 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank 1<span class="text-red-700">*</span></label>
-                                <input id="bank1_acct" name="bank1_acct" value="" maxlength="17" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank1_acct">
+                                <input id="bank1_acct" 
+                                       name="bank1_acct" 
+                                       type="text" 
+                                       maxlength="17" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                       wire:model.live="bank1_acct"
+                                       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                       pattern="[0-9]*">
+                                @error('bank1_acct')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="bank1_acct_type" class="block text-sm font-medium leading-5 text-gray-700">Jenis Akaun
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="bank1_acct_type" class="block text-sm font-medium leading-5 text-gray-700">Jenis Akaun 1
                                     <span class="text-red-700">*</span></label>
                                 <select id="bank1_acct_type" name="bank1_acct_type" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="bank1_acct_type">
                                     <option value="">SILA PILIH</option>
                                     <option value="SIMPANAN">SIMPANAN</option>
                                     <option value="SEMASA">SEMASA</option>
                                 </select>
+                                @error('bank1_acct_type')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="bank1_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank<span class="text-red-700">*</span></label>
-                                <input id="bank1_register_bank_no" name="bank1_register_bank_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank1_register_bank_no">
+                            <div class="col-span-6 sm:col-span-4">
+                                <label for="bank1_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 1<span class="text-red-700">*</span></label>
+                                <input id="bank1_register_bank_no" 
+                                       name="bank1_register_bank_no" 
+                                       type="text" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                       wire:model.live="bank1_register_bank_no"
+                                       oninput="this.value = this.value.replace(/[^A-Za-z0-9]/g, '')"
+                                       pattern="[A-Za-z0-9]*">
+                                @error('bank1_register_bank_no')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="bank2" class="block text-sm font-medium leading-5 text-gray-700">Nama Bank Operasi Perniagaan 2<span class="text-red-700">*</span></label>
+                                <label for="bank2" class="block text-sm font-medium leading-5 text-gray-700">Nama Bank Operasi Perniagaan 2</label>
                                     <select id="bank2" name="bank2" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank2">
                                         <option value="">SILA PILIH</option>
                                         @foreach ($bank as $bankas)
@@ -137,15 +156,26 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="bank2_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank 2<span class="text-red-700">*</span></label>
-                                <input id="bank2_acct" name="bank2_acct" value="" maxlength="17" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank2_acct">
+                                <label for="bank2_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank 2</label>
+                                <input id="bank2_acct" 
+                                       name="bank2_acct" 
+                                       type="text" 
+                                       maxlength="17" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                       wire:model.live="bank2_acct"
+                                       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                       pattern="[0-9]*">
+                                @error('bank2_acct')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="bank2_acct_type" class="block text-sm font-medium leading-5 text-gray-700">Jenis Akaun
-                                    <span class="text-red-700">*</span></label>
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="bank2_acct_type" class="block text-sm font-medium leading-5 text-gray-700">Jenis Akaun 2</label>
                                 <select id="bank2_acct_type" name="bank2_acct_type" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="bank2_acct_type">
                                     <option value="">SILA PILIH</option>
                                     <option value="SIMPANAN">SIMPANAN</option>
@@ -153,8 +183,8 @@
                                 </select>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="bank2_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank<span class="text-red-700">*</span></label>
+                            <div class="col-span-6 sm:col-span-4">
+                                <label for="bank2_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 2</label>
                                 <input id="bank2_register_bank_no" name="bank2_register_bank_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank2_register_bank_no">
                             </div>
                         </div>
@@ -184,48 +214,100 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama
-                                    Pemohon <span class="text-red-700">*</span></label>
-                                <input id="name" name="name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="name">
+                                <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama Pemohon <span class="text-red-700">*</span></label>
+                                <input id="name" 
+                                       name="name" 
+                                       type="text" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                       wire:model.live="name"
+                                       oninput="this.value = this.value.replace(/[^A-Za-z\s'-.@]/g, '')"
+                                       pattern="[A-Za-z\s'-.@]*">
+                                @error('name')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP
-                                    (Baru) <span class="text-red-700">*</span></label>
-                                <input id="ic_no" name="ic_no" value="" maxlength="12" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="ic_no">
+                                <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP Baru (tanpa -)<span class="text-red-700">*</span></label>
+                                <input id="ic_no" 
+                                       name="ic_no" 
+                                       maxlength="12" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                       wire:model.live="ic_no"
+                                       oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                       pattern="[0-9]*">
+                                @error('ic_no')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="ic_old" class="block text-sm font-medium leading-5 text-gray-700">No. KP
-                                    (Lama)<span class="text-red-700">*</span></label>
-                                <input id="ic_old" name="ic_old" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="ic_old">
+                                <label for="ic_old" @class([
+                                    'block text-sm font-medium leading-5 text-gray-700',
+                                    'hidden' => !$showIcOld
+                                ])>No. KP (Lama)<span class="text-red-700">*</span></label>
+                                <input id="ic_old" 
+                                       name="ic_old" 
+                                       wire:model.live="ic_old"
+                                       @class([
+                                           'block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5',
+                                           'hidden' => !$showIcOld
+                                       ])>
+                                @error('ic_old')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="gender" class="block text-sm font-medium leading-5 text-gray-700">Jantina <span class="text-red-700">*</span></label>
-                                <select id="gender" name="gender" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="gender">
-                                    <option value="">SILA PILIH JANTINA</option>
-                                    <option value="LELAKI">LELAKI</option>
-                                    <option value="PEREMPUAN">PEREMPUAN</option>
-                                </select>
+                                <input id="gender" name="gender" disabled value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="gender">                                       
+                                @error('gender')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="birthdate" class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span class="text-red-700">*</span></label>
+                                <input id="birthdate" name="birthdate" disabled value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="birthdate">
+                                @error('birthdate')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Umur<span class="text-red-700">*</span></label>
+                                <input id="age" name="age" disabled value="" maxlength="3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="age">
+                                @error('age')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div> 
+
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="religion" class="block text-sm font-medium leading-5 text-gray-700">Agama <span class="text-red-700">*</span></label>
                                 <select id="religion" name="religion" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="religion">
                                     <option value="">SILA PILIH AGAMA</option>
                                     <option value="ISLAM">ISLAM</option>
                                     <option value="BUKAN ISLAM">BUKAN ISLAM</option>
                                 </select>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-6 gap-6 mt-6">
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="birthdate" class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span class="text-red-700">*</span></label>
-                                <input id="birthdate" name="birthdate" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="birthdate">
+                                @error('religion')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -236,44 +318,167 @@
                                     <option value="INDIA">INDIA</option>
                                     <option value="CINA">CINA</option>
                                     <option value="SIAM">SIAM</option>
-                                    <option value="ORANG ASLI">ORANG ASLI</option>
-                                    <option value="SEMENANJUNG">SEMENANJUNG</option>
+                                    <option value="ORANG ASLI (SEMENANJUNG)">ORANG ASLI (SEMENANJUNG)</option>
                                     <option value="BUMIPUTERA SABAH">BUMIPUTERA SABAH</option>
-                                    <option value="BUMIPUTERA">BUMIPUTERA</option>
-                                    <option value="SARAWAK">SARAWAK</option>
+                                    <option value="BUMIPUTERA SARAWAK">BUMIPUTERA SARAWAK</option>
                                     <option value="LAIN-LAIN">LAIN-LAIN</option>
                                 </select>
+                                @error('race')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                             
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="ethnic" class="block text-sm font-medium leading-5 text-gray-700">Bangsa <span class="text-red-700">*</span></label>
-                                <select id="ethnic" name="ethnic" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="ethnic">
-                                <option value="">SILA PILIH KAUM/ETNIK</option>
-                                    <option value="BAJAU">BAJAU</option>
-                                    <option value="MELAYU SARAWAK">MELAYU SARAWAK</option>
-                                    <option value="EURASIAN">EURASIAN</option>
+                                <label for="ethnic" @class([
+                                    'block text-sm font-medium leading-5 text-gray-700',
+                                    'hidden' => !in_array($race, ['BUMIPUTERA SABAH', 'BUMIPUTERA SARAWAK', 'LAIN-LAIN'])
+                                ])>Bangsa <span class="text-red-700">*</span></label>
+                                <select id="ethnic" 
+                                        name="ethnic" 
+                                        wire:model.live="ethnic"
+                                        @class([
+                                            'block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5',
+                                            'hidden' => !in_array($race, ['BUMIPUTERA SABAH', 'BUMIPUTERA SARAWAK', 'LAIN-LAIN'])
+                                        ])>
+                                    <option value="">SILA PILIH KAUM/ETNIK</option>
+                                    @if($race === 'BUMIPUTERA SABAH')
+                                        <option value="BAJAU">BAJAU</option>
+                                        <option value="DUSUN">DUSUN</option>
+                                        <option value="MURUT">MURUT</option>
+                                        <option value="SINO-NATIVE">SINO-NATIVE</option>
+                                        <option value="SULUK">SULUK</option>
+                                        <option value="BINADAN">BINADAN</option>
+                                        <option value="BISAYA">BISAYA</option>
+                                        <option value="BONGOL">BONGOL</option>
+                                        <option value="BRUNEI">BRUNEI</option>
+                                        <option value="DUMPAS">DUMPAS</option>
+                                        <option value="IRANUN">IRANUN</option>
+                                        <option value="IDAHAN">IDAHAN</option>
+                                        <option value="KWIJAU">KWIJAU</option>
+                                        <option value="KEDAYAN">KEDAYAN</option>
+                                        <option value="LINGKABAU">LINGKABAU</option>
+                                        <option value="LUNDAYEH">LUNDAYEH</option>
+                                        <option value="LASAU">LASAU</option>
+                                        <option value="MELANAU">MELANAU</option>
+                                        <option value="MANGKAAK">MANGKAAK</option>
+                                        <option value="MATAGANG">MATAGANG</option>
+                                        <option value="MINOKOK">MINOKOK</option>
+                                        <option value="MELAYU SABAH">MELAYU SABAH</option>
+                                        <option value="MOMOGUN">MOMOGUN</option>
+                                        <option value="PAITAN">PAITAN</option>
+                                        <option value="RUMANAU">RUMANAU</option>
+                                        <option value="RUNGUS">RUNGUS</option>
+                                        <option value="SUNGAI">SUNGAI</option>
+                                        <option value="SONSONGAN">SONSONGAN</option>
+                                        <option value="SINULIHAN">SINULIHAN</option>
+                                        <option value="TOMBONUO">TOMBONUO</option>
+                                        <option value="TAGAL">TAGAL</option>
+                                        <option value="TINAGAS">TINAGAS</option>
+                                        <option value="KADAZAN">KADAZAN</option>
+                                        <option value="KADAZAN-SINO">KADAZAN-SINO</option>
+                                    @elseif($race === 'BUMIPUTERA SARAWAK')
+                                        <option value="MELAYU SARAWAK">MELAYU SARAWAK</option>
+                                        <option value="MELANAU">MELANAU</option>
+                                        <option value="KEDAYAN">KEDAYAN</option>
+                                        <option value="IBAN">IBAN</option>
+                                        <option value="BIDAYUH">BIDAYUH</option>
+                                        <option value="KAYAN">KAYAN</option>
+                                        <option value="KENYAH">KENYAH</option>
+                                        <option value="MURUT">MURUT</option>
+                                        <option value="KELABIT">KELABIT</option>
+                                        <option value="PUNAN">PUNAN</option>
+                                        <option value="BISAYA">BISAYA</option>
+                                        <option value="BERAWAN">BERAWAN</option>
+                                        <option value="BELOT">BELOT</option>
+                                        <option value="BHUKET ATAU UKIT">BHUKET ATAU UKIT</option>
+                                        <option value="BALAU">BALAU</option>
+                                        <option value="BATANG AI">BATANG AI</option>
+                                        <option value="BATU ELAH">BATU ELAH</option>
+                                        <option value="BAKETAN">BAKETAN</option>
+                                        <option value="BINTULU">BINTULU</option>
+                                        <option value="BADENG">BADENG</option>
+                                        <option value="DUSUN">DUSUN</option>
+                                        <option value="JAGOI">JAGOI</option>
+                                        <option value="LAKIPUT">LAKIPUT</option>
+                                        <option value="KAJANG">KAJANG</option>
+                                        <option value="KEJAMAN">KEJAMAN</option>
+                                        <option value="KANOWIT">KANOWIT</option>
+                                        <option value="LIRONG">LIRONG</option>
+                                        <option value="LEMANAK">LEMANAK</option>
+                                        <option value="LAHANAN">LAHANAN</option>
+                                        <option value="LISUM">LISUM</option>
+                                        <option value="MATU">MATU</option>
+                                        <option value="MEMALOH">MEMALOH</option>
+                                        <option value="MELIKIN">MELIKIN</option>
+                                        <option value="MELAING">MELAING</option>
+                                        <option value="NGORIK">NGORIK</option>
+                                        <option value="MENONDO">MENONDO</option>
+                                        <option value="JAMOK">JAMOK</option>
+                                        <option value="SEBOP">SEBOP</option>
+                                        <option value="SEDUAN">SEDUAN</option>
+                                        <option value="SEKAPAN">SEKAPAN</option>
+                                        <option value="SEGALANG">SEGALANG</option>
+                                        <option value="SIHAN">SIHAN</option>
+                                        <option value="SEPING">SEPING</option>
+                                        <option value="SARIBAS">SARIBAS</option>
+                                        <option value="SEBUYAU">SEBUYAU</option>
+                                        <option value="SKRANG">SKRANG</option>
+                                        <option value="SABAN">SABAN</option>
+                                        <option value="SELAKAN">SELAKAN</option>
+                                        <option value="SELAKO">SELAKO</option>
+                                        <option value="TAGAL">TAGAL</option>
+                                        <option value="TABUN">TABUN</option>
+                                        <option value="TUTONG">TUTONG</option>
+                                        <option value="TANJONG">TANJONG</option>
+                                        <option value="TATAU">TATAU</option>
+                                        <option value="TAUP">TAUP</option>
+                                        <option value="UKIT">UKIT</option>
+                                        <option value="UNKOP">UNKOP</option>
+                                        <option value="ULU AI">ULU AI</option>                                    
+                                    @elseif($race === 'LAIN-LAIN')
+                                        <option value="EURASIAN">EURASIAN</option>
+                                    @endif
                                 </select>
+                                @error('ethnic')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Umur<span class="text-red-700">*</span></label>
-                                <input id="age" name="age" value="" maxlength="3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="age">
-                            </div> 
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="marital" class="block text-sm font-medium leading-5 text-gray-700">Taraf Perkahwinan <span class="text-red-700">*</span></label>
-                                <select id="marital" name="marital" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="marital">
-                                    <option value="">SILA PILIH TARAF PERKAHWINAN</option>
-                                    <option value="1">BUJANG</option>
-                                    <option value="2">BERKAHWIN</option>
-                                    <option value="3">DUDA</option>
-                                    <option value="4">IBU TUNGGAL</option>
+                                <label for="marital" class="block text-sm font-medium leading-5 text-gray-700">Taraf Perkahwinan<span class="text-red-700">*</span></label>
+                                <select id="marital" 
+                                        name="marital" 
+                                        wire:model.live="marital"
+                                        class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="BUJANG">BUJANG</option>
+                                    <option value="BERKAHWIN">BERKAHWIN</option>
+                                    @if($gender === 'LELAKI')
+                                        <option value="DUDA">DUDA</option>
+                                    @elseif($gender === 'PEREMPUAN')
+                                        <option value="IBU TUNGGAL">IBU TUNGGAL</option>
+                                    @endif
                                 </select>
+                                @error('marital')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="dependent" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Tanggungan<span class="text-red-700">*</span></label>
                                 <input id="dependent" name="dependent" type="number" min="0" value="2" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="dependent">
+                                @error('dependent')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -283,6 +488,11 @@
                                     <option value="1">YA</option>
                                     <option value="0">TIDAK</option>
                                 </select>
+                                @error('oku')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
 
@@ -293,10 +503,15 @@
                                     <option value="1">YA</option>
                                     <option value="0">TIDAK</option>
                                 </select>
+                                @error('stop_worktime_flag')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="asnaf_berdaftar_flag" class="block text-sm font-medium leading-5 text-gray-700">Asnaf Berdaftar Dibawah Majlis Agama Islam Negeri/Lembaga Zakat Negeri/Pusat Zakat Negeri<span class="text-red-700">*</span></label>
+                                <label for="asnaf_berdaftar_flag" class="block text-sm font-medium leading-5 text-gray-700">Asnaf Berdaftar Dibawah Majlis Agama Islam Negeri/Lembaga Zakat Negeri/Pusat Zakat Negeri</label>
                                 <select id="asnaf_berdaftar_flag" name="asnaf_berdaftar_flag" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="asnaf_berdaftar_flag">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
@@ -308,12 +523,17 @@
                                 <label for="education" class="block text-sm font-medium leading-5 text-gray-700">Taraf Pendidikan<span class="text-red-700">*</span></label>
                                 <select id="education" name="education" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="education">
                                     <option value="">Sila Pilih Taraf Pendidikan</option>
-                                    <option value="0">PMR/Setaraf</option>
-                                    <option value="1">SPM/Setaraf</option>
-                                    <option value="2">STPM/Setaraf/Sijil</option>
-                                    <option value="3" selected="">Diploma/STPM</option>
-                                    <option value="4">Ijazah</option>
+                                    <option value="0">PMR/SETARAF</option>
+                                    <option value="1">SPM/SETARAF</option>
+                                    <option value="2">STPM/SETARAF/SIJIL</option>
+                                    <option value="3">DIPLOMA/STPM</option>
+                                    <option value="4">IJAZAH</option>
                                 </select>
+                                @error('education')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
 
@@ -321,16 +541,31 @@
                                 <label for="address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Kediaman <span class="text-red-700">*</span></label>
                                 <input id="address1" name="address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="address1">                               
                                 <input id="address2" name="address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="address2">
+                                @error('address1')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                 <input id="postcode" name="postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="postcode">
+                                @error('postcode')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
                                 <input id="city" name="city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="city">
+                                @error('city')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -352,6 +587,11 @@
                                     <option value="TG">TERENGGANU</option>
                                     <option value="WP">WP KUALA LUMPUR</option>
                                 </select>
+                                @error('state')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -359,11 +599,16 @@
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
-                                    <input id="phone_home" name="phone_home" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="phone_home">
+                                    <input id="phone_home" name="phone_home" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  minlength="10" wire:model.live="phone_home">
                                 </div>
+                                @error('phone_home')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -371,11 +616,16 @@
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
-                                    <input id="phone_hp" name="phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="phone_hp">
+                                    <input id="phone_hp" name="phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  minlength="10" maxlength="11" wire:model.live="phone_hp">
                                 </div>
+                                @error('phone_hp')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                         </div>
 
@@ -384,6 +634,11 @@
                                 <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Emel
                                     <span class="text-red-700">*</span></label>
                                 <input id="email" name="email" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="email">
+                                @error('email')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -404,16 +659,31 @@
                                     <option value="SEWA">SEWA</option>
                                     <option value="KELUARGA">KELUARGA</option>
                                 </select>
+                                @error('status_home')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="profession" class="block text-sm font-medium leading-5 text-gray-700">Pekerjaan Sekarang
-                                    <span class="text-red-700">*</span></label>
-                                <input id="profession" name="profession" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="profession">
+                                <label for="profession" class="block text-sm font-medium leading-5 text-gray-700">Pekerjaan Sekarang<span class="text-red-700">*</span></label>
+                                <select id="profession" name="profession" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="profession">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="BERNIAGA">BERNIAGA</option>
+                                    <option value="KAKITANGAN KERAJAAN">KAKITANGAN KERAJAAN</option>
+                                    <option value="KAKITANGAN SWASTA">KAKITANGAN SWASTA</option>
+                                    <option value="TIDAK BEKERJA">TIDAK BEKERJA</option>
+                                </select>
+                                @error('profession')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan Bulanan <span class="text-red-700">*</span></label>
+                                <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan<span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -422,32 +692,65 @@
                                     </div>
                                     <input id="income" name="income" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="income">
                                 </div>
+                                @error('income')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6">
-                                <label for="employer_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Majikan</label>
-                                <input id="employer_name" name="employer_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_name">
+                            <div class="col-span-6" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                                <label for="employer_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Majikan<span class="text-red-700">*</span></label>
+                                <input id="employer_name" 
+                                       name="employer_name" 
+                                       wire:model.live="employer_name" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                @error('employer_name')
+                                <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6">
-                                <label for="employer_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan</label>
-                                <input id="employer_address1" name="employer_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_address1">                       
-                                <input id="employer_address2" name="employer_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_address2">
+                            <div class="col-span-6" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                                <label for="employer_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan<span class="text-red-700">*</span></label>
+                                <input id="employer_address1" 
+                                       name="employer_address1" 
+                                       wire:model.live="employer_address1" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                <input id="employer_address2" 
+                                       name="employer_address2" 
+                                       wire:model.live="employer_address2" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                @error('employer_address1')
+                                <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="employer_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                <input id="employer_postcode" name="employer_postcode" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="employer_postcode">
+                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                                <label for="employer_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod<span class="text-red-700">*</span></label>
+                                <input id="employer_postcode" 
+                                       name="employer_postcode" 
+                                       maxlength="5" 
+                                       wire:model.live="employer_postcode" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                @error('employer_postcode')
+                                <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="employer_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
-                                <input id="employer_city" name="employer_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_city">
+                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                                <label for="employer_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
+                                <input id="employer_city" 
+                                       name="employer_city" 
+                                       wire:model.live="employer_city" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                @error('employer_city')
+                                <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
+                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
                                 <label for="employer_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
-                                <select id="employer_state" name="employer_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_state">
+                                <select id="employer_state" name="employer_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="employer_state">
                                     <option value="">Sila Pilih</option>
                                     <option value="JH">JOHOR</option>
                                     <option value="KD">KEDAH</option>
@@ -460,24 +763,16 @@
                                     <option value="PP">PULAU PINANG</option>
                                     <option value="SB">SABAH</option>
                                     <option value="SW">SARAWAK</option>
-                                    <option value="SE">SELANGOR</option>
+                                    <option value="SE" selected="">SELANGOR</option>
                                     <option value="TG">TERENGGANU</option>
                                     <option value="WP">WP KUALA LUMPUR</option>
                                 </select>
+                                @error('employer_state')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="employer_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon Majikan</label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
-                                        </span>
-                                    </div>
-                                    <input id="employer_phone" name="employer_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="employer_phone">
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -491,7 +786,7 @@
         </div>
     </div>
 
-    <div class="mt-10 sm:mt-0">
+    <div class="mt-10 sm:mt-0" x-data x-show="$wire.marital === 'BERKAHWIN'">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
@@ -504,34 +799,14 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6 mt-1">
 
-                            <!-- <div class="col-span-6 sm:col-span-6">
-                                <fieldset>
-                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Hubungan <span class="text-red-700">*</span></legend>
-                                    
-                                    <div class="mt-4">
-                                        <div class="flex items-center">
-                                            <input id="spouse_type_husband" name="spouse_type" value="H" type="radio" class="w-4 h-4 text-indigo-600 transition duration-150 ease-in-out form-radio"    wire:model.live="spouse_type">
-                                            <label for="spouse_type_husband" class="ml-3">
-                                                <span class="block text-sm font-medium leading-5 text-gray-700">Suami</span>
-                                            </label>
-
-                                            <input id="spouse_type_wife" name="spouse_type" value="W" type="radio" class="ml-8 w-4 h-4 text-indigo-600 transition duration-150 ease-in-out form-radio"  wire:model.live="spouse_type">
-                                            <label for="spouse_type_wife" class="ml-3">
-                                                <span class="block text-sm font-medium leading-5 text-gray-700">Isteri</span>
-                                            </label>
-
-                                            <input id="spouse_type_beneficiary" name="spouse_type" value="B" type="radio" checked="" class="ml-8 w-4 h-4 text-indigo-600 transition duration-150 ease-in-out form-radio">
-                                            <label for="spouse_type_beneficiary" class="ml-3">
-                                                <span class="block text-sm font-medium leading-5 text-gray-700">Waris</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div> -->
-
                             <div class="col-span-6 sm:col-span-6">
                                 <label for="spouse_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Suami/Isteri<span class="text-red-700">*</span></label>
                                 <input id="spouse_name" name="spouse_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="spouse_name">
+                                @error('spouse_name')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -541,51 +816,125 @@
                                     <option value="1">Ya</option>
                                     <option value="0">Tidak</option>
                                 </select>
+                                @error('spouse_nationality')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
-                            <div class="block col-span-6 sm:col-span-2" id="spuose_ic_div">
+                            <div class="col-span-6 sm:col-span-2" id="spuose_ic_div" x-data x-show="$wire.spouse_nationality === '1'">
                                 <label for="spouse_ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
-                                <input id="spouse_ic_no" name="spouse_ic_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="spouse_ic_no">
+                                <input id="spouse_ic_no" 
+                                       name="spouse_ic_no" 
+                                       value="" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                       wire:model.live="spouse_ic_no">
+                                @error('spouse_ic_no')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.spouse_nationality === '0'">
+                                <label for="spouse_passport_no" class="block text-sm font-medium leading-5 text-gray-700">No. Passport <span class="text-red-700">*</span></label>
+                                <input id="spouse_passport_no" 
+                                       name="spouse_passport_no" 
+                                       value="" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                       wire:model.live="spouse_passport_no">
+                                @error('spouse_passport_no')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="spouse_passport_no" class="block text-sm font-medium leading-5 text-gray-700">No. Passport <span class="text-red-700">*</span></label>
-                                <input id="spouse_passport_no" name="spouse_passport_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="spouse_passport_no">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
                                 <label for="spouse_profession" class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang<span class="text-red-700">*</span></label>
                                 <input id="spouse_profession" name="spouse_profession" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_profession">
+                                @error('spouse_profession')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP)<span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
                                     <input id="spouse_phone" name="spouse_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_phone">
+                                    @error('spouse_phone')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="spouse_income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan<span class="text-red-700">*</span></label>
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input id="spouse_income" name="spouse_income" min="0" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_income">
+                                    @error('spouse_income')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </div>
 
+                            <div class="col-span-6 sm:col-span-3">
+                            </div>
 
                             <div class="col-span-6">
                                 <label for="spouse_employer_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan</label>
                                 <input id="spouse_employer_address1" name="spouse_employer_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="spouse_employer_address1">
-                                
                                 <input id="spouse_employer_address2" name="spouse_employer_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="spouse_employer_address2">
+                                @error('spouse_employer_address1')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_employer_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod</label>
-                                <input id="spouse_employer_postcode" name="spouse_employer_postcode" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_employer_postcode">
+                                <input id="spouse_employer_postcode" 
+                                       name="spouse_employer_postcode" 
+                                       maxlength="5" 
+                                       wire:model.live="spouse_employer_postcode" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                @error('spouse_employer_postcode')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_employer_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar</label>
-                                <input id="spouse_employer_city" name="spouse_employer_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_employer_city">
+                                <input id="spouse_employer_city" 
+                                       name="spouse_employer_city" 
+                                       wire:model.live="spouse_employer_city" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                @error('spouse_employer_city')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -607,31 +956,25 @@
                                     <option value="TG">TERENGGANU</option>
                                     <option value="WP">WP KUALA LUMPUR</option>
                                 </select>
+                                @error('spouse_employer_state')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="spouse_employer_no" class="block text-sm font-medium leading-5 text-gray-700">No. Telefon Majikan<span class="text-red-700">*</span></label>
+                                <label for="spouse_employer_no" class="block text-sm font-medium leading-5 text-gray-700">No Telefon Majikan<span class="text-red-700">*</span></label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
                                     <input id="spouse_employer_no" name="spouse_employer_no" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_employer_no">
                                 </div>
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="spouse_income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            RM
-                                        </span>
-                                    </div>
-                                    <input id="spouse_income" name="spouse_income" min="0" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_income">
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -650,11 +993,14 @@
         </span>
     </div>
 
+    @script
     <script>
-        document.addEventListener('livewire:initialized', () => {
-            Livewire.on('scrollToTop', () => {
-                document.getElementById('top-message').scrollIntoView({ behavior: 'smooth' });
+        Livewire.on('saved', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
     </script>
+    @endscript
 </div>

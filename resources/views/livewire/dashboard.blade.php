@@ -61,24 +61,18 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                    Tarikh Permohonan
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                     No. Permohonan
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                     Status
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                    Catatan
+                                    Tarikh Permohonan
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">01/01/2024</div>
-                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">APP001</div>
                                 </td>
@@ -87,8 +81,8 @@
                                         Dalam Proses
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap">
-                                    Takde catatan
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900">01/01/2024</div>
                                 </td>
                             </tr>
                         </tbody>
@@ -100,8 +94,11 @@
                 <div class="px-4 py-5 sm:px-6">
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Makluman Kepada Pemohon</h3>
                     <p class="mt-4 text-sm text-gray-500">
-                        Sebarang makluman yang berkaitan dengan permohonan anda akan dihantar kepada emel anda.
-                    </p>                    
+                        1. Sebarang makluman yang berkaitan dengan permohonan anda akan dihantar kepada emel anda.
+                    </p>
+                    <p class="mt-4 text-sm text-gray-500">
+                        2. Pemohon hanya boleh membuat satu permohonan sahaja. 
+                    </p>                                        
                 </div>
             </div>
 
@@ -120,7 +117,7 @@
                     </div>
                 </a>
 
-                <a href="#" class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out hover:shadow-lg hover:bg-gray-50">
+                <a href="{{ route('change-password') }}" class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out hover:shadow-lg hover:bg-gray-50">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-lg font-medium text-gray-900">Tukar Kata Laluan</h3>
@@ -136,7 +133,7 @@
                 <a href="{{ route('maklumat-akaun') }}" class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out hover:shadow-lg hover:bg-gray-50">
                     <div class="flex justify-between items-center">
                         <div>
-                            <h3 class="text-lg font-medium text-gray-900">Maklumat Akaun</h3>
+                            <h3 class="text-lg font-medium text-gray-900">Maklumat Profil</h3>
                         </div>
                         <div class="ml-4">
                             <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

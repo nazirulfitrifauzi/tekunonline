@@ -41,6 +41,12 @@
                     If you did not receive the email, <a wire:click="resend" class="text-indigo-700 cursor-pointer hover:text-indigo-600 focus:outline-none focus:underline transition ease-in-out duration-150">click here to request another</a>.
                 </p>
             </div>
+
+            <div class="mt-6">
+                <button wire:click="resend" type="button" class="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                    Resend Verification Email
+                </button>
+            </div>
         </div>
     </div>
 </div>

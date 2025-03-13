@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Module;
 
+use App\Models\ApplnStatus;
 use App\Models\MaklumatPinjaman;
 use App\Traits\MuatNaikDokumenValidation;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class MuatNaikDokumen extends Component
 {
@@ -16,9 +18,24 @@ class MuatNaikDokumen extends Component
     public $document;
     public $existingData;
 
+    // Rest of the mount method remains the same
     public function mount()
-    {
-        $this->existingData = MaklumatPinjaman::where('appln_id', Auth::id())->first();
+    {    
+        // Existing code remains the same
+        $existingData = null; // Initialize to avoid undefined variable issues
+
+        $applnStatus = ApplnStatus::where('user_id', Auth::id())->first();
+        if ($applnStatus) {
+            $existingData = MaklumatPinjaman::where('appln_id', $applnStatus->id)->first();
+        }        
+    
+        if ($existingData) {
+            foreach ($existingData->toArray() as $key => $value) {
+                if (property_exists($this, $key)) {
+                    $this->$key = $value;
+                }
+            }
+        }
     }
 
     public function submit()
@@ -58,8 +75,26 @@ class MuatNaikDokumen extends Component
         $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
         $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
 
-        // Dapatkan data sedia ada dalam database
-        $existingData = MaklumatPinjaman::where('appln_id', Auth::id())->first();
+        // Create a text file with links to all documents as a simple alternative
+        // until the PDF merging functionality is implemented
+        $mergedFileName = 'document_links_' . now()->format('Y-m-d') . '.txt';
+        $mergedFilePath = $folderName . '/' . $appln_id . '/' . $mergedFileName;
+        
+        $documentLinks = "Document Links:\n\n";
+        foreach ($documentPaths as $docKey => $docPath) {
+            $documentLinks .= ucfirst(str_replace('document_', '', $docKey)) . ': ' . asset('storage/' . $docPath) . "\n";
+        }
+        
+        Storage::disk('public')->put($mergedFilePath, $documentLinks);
+        
+        // Add the merged document to the fileNames array
+        $fileNames['merge_doc'] = $mergedFileName;
+
+        // Dapatkan appln_id yang baru atau sedia ada
+        $applnId = Auth::user()->applnStatus->id;
+
+        // Dapatkan data sedia ada dalam MaklumatPinjaman
+        $existingData = MaklumatPinjaman::where('appln_id', $applnId)->first();
 
         // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
         $existingDataArray = $existingData ? $existingData->toArray() : [];
@@ -68,16 +103,16 @@ class MuatNaikDokumen extends Component
         $updatedData = array_merge(
             $existingDataArray,
             $fileNames,  // Using fileNames instead of documentPaths to store only filenames
-            ['appln_id' => Auth::id()]
+            ['appln_id' => $applnId]
         );
 
         // Simpan data ke dalam database
         MaklumatPinjaman::updateOrCreate(
-            ['appln_id' => Auth::id()],
+            ['appln_id' => $applnId],
             $updatedData
         );
 
-        session()->flash('message', 'Documents uploaded successfully.');
+        session()->flash('message', 'Documents uploaded successfully. Document links have been created.');
         
         return redirect()->route('home');
     }

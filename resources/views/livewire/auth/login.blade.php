@@ -52,16 +52,9 @@
                         @enderror
                     </div>
 
-                    <div class="flex justify-between items-center mt-6">
-                        <div class="flex items-center">
-                            <input wire:model.lazy="remember" id="remember" type="checkbox" class="w-4 h-4 text-indigo-600 transition duration-150 ease-in-out form-checkbox" />
-                            <label for="remember" class="block ml-2 text-sm leading-5 text-gray-900">
-                                Remember
-                            </label>
-                        </div>
-
+                    <div class="flex items-center justify-between mt-6">
                         <div class="text-sm leading-5">
-                            <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:outline-none focus:underline">
+                            <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                                 Forgot your password?
                             </a>
                         </div>

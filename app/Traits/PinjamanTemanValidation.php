@@ -21,24 +21,52 @@ trait PinjamanTemanValidation
     public $group_leader_addr3;
     public $group_leader_phone;
 
-    // protected $rules = [
-    //     'tekun_state' => 'required',
-    //     'tekun_branch' => 'required',
-        // 'business_status' => 'required',
-        // 'business_method' => 'required',
-        // 'bank1' => 'required',
-        // 'bank1_acct' => 'required',
-        // 'bank1_acc_type' => 'required',
-   
-    // ];
+    protected function rules()
+    {
+        return [
+            'team_mbr_name1' => 'required|string|max:255',
+            'team_mbr_icno1' => 'required|string|size:12',
+            'team_mbr_name2' => 'required|string|max:255',
+            'team_mbr_icno2' => 'required|string|size:12',
+            'team_mbr_name3' => 'required|string|max:255',
+            'team_mbr_icno3' => 'required|string|size:12',
+            'team_mbr_name4' => 'required|string|max:255',
+            'team_mbr_icno4' => 'required|string|size:12',
+            'duration_intro_team' => 'required',
+            'discussion_date' => 'required|date',
+            'supported_fin_amount' => 'nullable|numeric',
+            'grp_leader_name' => 'nullable|string|max:255',
+            'group_leader_addr1' => 'nullable|string|max:255',
+            'group_leader_addr2' => 'nullable|string|max:255',
+            'group_leader_addr3' => 'nullable|string|max:255',
+            'group_leader_phone' => 'nullable|string|max:11',
+        ];
+    }
 
-    // protected $messages = [
-    //     'tekun_state.required' => 'Sila Pilih Negeri',
-    //     'tekun_branch.required' => 'Sila Pilih Cawangan',
-        // 'business_status.required' => 'Sila Pilih Status Perniagaan',
-        // 'business_method.required' => 'Sila Pilih Kaedah Perniagaan',
-        // 'bank1.required' => 'Sila Pilih Bank',
-        // 'bank1_acct.required' => 'Sila Masukkan No Akaun Bank',
-        // 'bank1_acc_type.required' => 'Sila Pilih Jenis Akaun Bank',
-    // ];
+    protected function messages()
+    {
+        return [
+            'team_mbr_name1.required' => 'Sila masukkan nama ahli kumpulan 1',
+            'team_mbr_icno1.required' => 'Sila masukkan no KP ahli kumpulan 1',
+            'team_mbr_icno1.size' => 'No KP ahli kumpulan 1 mestilah 12 digit',
+            
+            'team_mbr_name2.required' => 'Sila masukkan nama ahli kumpulan 2',
+            'team_mbr_icno2.required' => 'Sila masukkan no KP ahli kumpulan 2',
+            'team_mbr_icno2.size' => 'No KP ahli kumpulan 2 mestilah 12 digit',
+            
+            'team_mbr_name3.required' => 'Sila masukkan nama ahli kumpulan 3',
+            'team_mbr_icno3.required' => 'Sila masukkan no KP ahli kumpulan 3',
+            'team_mbr_icno3.size' => 'No KP ahli kumpulan 3 mestilah 12 digit',
+            
+            'team_mbr_name4.required' => 'Sila masukkan nama ahli kumpulan 4',
+            'team_mbr_icno4.required' => 'Sila masukkan no KP ahli kumpulan 4',
+            'team_mbr_icno4.size' => 'No KP ahli kumpulan 4 mestilah 12 digit',
+            
+            'duration_intro_team.required' => 'Sila pilih tempoh perkenalan',
+            'discussion_date.required' => 'Sila pilih tarikh perbincangan',
+            'discussion_date.date' => 'Tarikh perbincangan tidak sah',
+            'supported_fin_amount.numeric' => 'Jumlah pembiayaan mestilah dalam bentuk nombor',
+            'group_leader_phone.max' => 'No telefon tidak boleh melebihi 11 digit',
+        ];
+    }
 }
