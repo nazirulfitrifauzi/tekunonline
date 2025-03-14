@@ -125,7 +125,11 @@ class MaklumatPeribadi extends Component
         
         $applnStatus = ApplnStatus::updateOrCreate(
             ['user_id' => Auth::id()],
-            ['appln_status' => 'P']
+            ['appln_status' => 'P',
+            'cust_icno' => $this->ic_no,
+            'cust_name' => $this->name,
+            'branch_code' => $this->tekun_branch,
+            'state_code' => $this->tekun_state,]
         );
         
         $applnId = $applnStatus->id;
