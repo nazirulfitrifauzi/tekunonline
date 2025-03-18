@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\TestEmail;
+use App\Mail\EmelTerima;
+use App\Mail\EmelTolak;
 use App\Models\ApplnStatus;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,8 @@ class MonitorApplicationStatus extends Command
 
     public function handle()
     {
-        $applications = ApplnStatus::where('appln_status', 'F')
+        $applications = ApplnStatus::whereIn('appln_status_fas', ['10', '20']) // Hanya ambil status 10 & 20
+            ->whereNull('email_sent') // Pastikan hanya yang belum dihantar
             ->with('user')
             ->get();
 
@@ -23,12 +25,32 @@ class MonitorApplicationStatus extends Command
             try {
                 DB::beginTransaction();
 
-                // Send email notification
-                Mail::to($application->user->email)
-                    ->send(new TestEmail());
+                if ($application->appln_status_fas == '10') {
+                    // Data untuk e-mel berjaya
+                    $data = [
+                        'cust_name' => $application->cust_name,
+                        'cust_icno' => $application->cust_icno,
+                        'id' => $application->id,
+                    ];
 
-                // Update status to 'D' after successful email sending
-                $application->update(['appln_status' => 'D']);
+                    Mail::to($application->user->email)
+                        ->send(new EmelTerima($data));
+
+                } elseif ($application->appln_status_fas == '20') {
+                    // Data untuk e-mel gagal (dengan tambahan 'reason')
+                    $data = [
+                        'cust_name' => $application->cust_name,
+                        'cust_icno' => $application->cust_icno,
+                        'id' => $application->id,
+                        'appln_result1_rem' => $application->appln_result1_rem,
+                    ];
+
+                    Mail::to($application->user->email)
+                        ->send(new EmelTolak($data));
+                }
+
+                // Update status email_sent selepas berjaya hantar e-mel
+                $application->update(['email_sent' => '1']);
 
                 DB::commit();
                 $this->info("Notification sent and status updated for application ID: {$application->id}");

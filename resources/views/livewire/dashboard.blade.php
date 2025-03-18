@@ -43,7 +43,7 @@
         <header class="py-10">
             <div class="px-4 mx-auto w-11/12">
                 <h1 class="text-3xl font-bold leading-9 text-white">
-                    Sistem Online Permohonan Pembiayaan Tekun
+                    Sistem Permohonan Online TEKUN Nasional
                 </h1>
             </div>
         </header>
@@ -61,7 +61,7 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase text-center">
-                                No. Permohonan
+                                No. Rujukan
                             </th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase text-center">
                                 Status
@@ -80,19 +80,19 @@
                             <td class="px-6 py-4 whitespace-nowrap text-center">
                                 @if(is_null($status->appln_status_fas))
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                        Sudah Di Hantar
+                                        SUDAH DI HANTAR
                                     </span>                                
                                 @elseif($status->appln_status_fas == 1)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                        Dalam Proses
+                                        DALAM PROSES
                                     </span>  
                                 @elseif($status->appln_status_fas == 10)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                        Lulus
+                                        LULUS
                                     </span>                                                              
                                 @elseif($status->appln_status_fas == 20)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                        Gagal
+                                        GAGAL
                                     </span>                                                              
                                 @else
                                     {{ $status->appln_status_fas }}
@@ -128,7 +128,10 @@
 
             <!-- Summary Cards with Buttons -->
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <a href="{{ route('home') }}" class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out hover:shadow-lg hover:bg-gray-50">
+
+                <a href="{{ !$disableButton ? route('home') : '#' }}" 
+                class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out 
+                        {{ $disableButton ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'hover:shadow-lg hover:bg-gray-50' }}">
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-lg font-medium text-gray-900">Mohon Pembiayaan</h3>
@@ -140,6 +143,7 @@
                         </div>
                     </div>
                 </a>
+
 
                 <a href="{{ route('change-password') }}" class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out hover:shadow-lg hover:bg-gray-50">
                     <div class="flex justify-between items-center">

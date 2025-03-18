@@ -11,43 +11,128 @@
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
-
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="business_syariah" class="block text-sm font-medium leading-5 text-gray-700">Perniagaan Patuh Syariah<span class="text-red-700">*</span></label>
-                                <select id="business_syariah" name="business_syariah" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_syariah">
+                                <label for="business_syariah" class="block text-sm font-medium leading-5 text-gray-700">
+                                    Perniagaan Patuh Syariah<span class="text-red-700">*</span>
+                                </label>
+                                <select id="business_syariah" 
+                                        name="business_syariah" 
+                                        class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                        wire:model.live="business_syariah" >
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
                                     <option value="0">TIDAK</option>
                                 </select>
+                                @error('business_syariah')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
+
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="license_type" class="block text-sm font-medium leading-5 text-gray-700">Jenis Lesen<span class="text-red-700">*</span></label>
+                                <select id="license_type" name="license_type" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="license_type">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="NO. SSM">NO. SSM</option>
+                                    <option value="LESEN">LESEN</option>
+                                    <option value="ORDINAN">ORDINAN</option>
+                                    <option value="TIADA">TIADA</option>
+                                </select>
+                                @error('license_type')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            @if($license_type == 'NO. SSM')
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="business_no" class="block text-sm font-medium leading-5 text-gray-700">No. SSM<span class="text-red-700">*</span></label>
+                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_no">
+                                @error('business_no')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            @elseif($license_type == 'LESEN')
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="business_no" class="block text-sm font-medium leading-5 text-gray-700">No. Lesen<span class="text-red-700">*</span></label>
+                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_no">
+                                @error('business_no')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            @elseif($license_type == 'ORDINAN')
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="business_no" class="block text-sm font-medium leading-5 text-gray-700">No. Ordinan<span class="text-red-700">*</span></label>
+                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_no">
+                                @error('business_no')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            @endif
+
+                            @if($license_type == 'NO. SSM')
+                            <div class="col-span-6 sm:col-span-3">
+                                <x-datetime-picker 
+                                    label="Tarikh Didaftarkan" 
+                                    id="register_date"
+                                    placeholder="Tarikh Didaftarkan" 
+                                    without-time 
+                                    wire:model="register_date"
+                                />
+                                @error('register_date')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <x-datetime-picker 
+                                    label="Tarikh Tamat Lesen" 
+                                    id="license_expired_date"
+                                    placeholder="Tarikh Tamat Lesen" 
+                                    without-time 
+                                    wire:model="license_expired_date"
+                                />
+                                @error('license_expired_date')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            @endif
 
                             <div class="col-span-6 sm:col-span-6">
                                     <label for="business_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perniagaan / Syarikat<span class="text-red-700">*</span></label>
                                     <input id="business_name" name="business_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model="business_name">
+                                    @error('business_name')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="license_type" class="block text-sm font-medium leading-5 text-gray-700">Lesen<span class="text-red-700">*</span></label>
-                                <select id="license_type" name="license_type" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="license_type">
-                                    <option value="">SILA PILIH</option>
-                                    <option value="1">YA</option>
-                                    <option value="0">TIDAK</option>
-                                </select>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                    <label for="business no" class="block text-sm font-medium leading-5 text-gray-700">No. SSM / Lesen / Ordinan<span class="text-red-700">*</span></label>
-                                    <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_no">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="business_sector" class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan <span class="text-red-700">*</span></label>
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="business_sector" class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan<span class="text-red-700">*</span></label>
                                 <select id="business_sector" name="business_sector" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_sector">
                                     <option value="">SILA PILIH</option>
-                                    @foreach ($sektorSelection as $sektors)
-                                    <option value="{{ $sektors->idPerniagaan }}">{{ $sektors->jenisPerniagaan}}</option>
-                                    @endforeach 
+                                    @foreach ($sektorSelection as $sektor)
+                                        <option value="{{ $sektor->idPerniagaan }}">{{ $sektor->jenisPerniagaan }}</option>
+                                    @endforeach
                                 </select>
+                                @error('business_sector')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -58,6 +143,11 @@
                                     <option value="{{ $aktivitis->idAktiviti }}">{{ $aktivitis->Aktiviti}}</option>
                                     @endforeach 
                                 </select>
+                                @error('business_activity')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -71,27 +161,56 @@
                                     <option value="Kraf-Hasil Tanah<">Kraf-Hasil Tanah</option>
                                     <option value="Kraf-Aneka Kraf">Kraf-Aneka Kraf</option>
                                 </select>
+                                @error('sub_business_activity')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
+                            <div class="col-span-6 sm:col-span-3">
                                 <label for="business_duration" class="block text-sm font-medium leading-5 text-gray-700">Tempoh / Pengalaman Berniaga(Bulan)<span class="text-red-700">*</span></label>
-                                <input id="business_duration" name="business_duration" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_duration">
+                                <select id="business_duration" name="business_duration" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="business_duration">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="0 - 60 tahun">0 - 60 tahun</option>
+                                    <option value="0 - 11 bulan">0 - 11 bulan</option>
+                                </select>
+                                @error('business_duration')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6">
                                 <label for="business_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Perniagaan / Premis / Projek<span class="text-red-700">*</span></label>
                                 <input id="business_address1" name="business_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_address1">                               
                                 <input id="business_address2" name="business_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_address2">
+                                @error('business_address1')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                 <input id="business_postcode" name="business_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_postcode">
+                                @error('business_postcode')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
                                 <input id="business_city" name="business_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_city">
+                                @error('business_city')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -102,17 +221,27 @@
                                     <option value="{{ $negeris->kodnegeri }}">{{ $negeris->namanegeri}}</option>
                                     @endforeach 
                                 </select>
+                                @error('business_state')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="business_income" class="block text-sm font-medium leading-5 text-gray-700">Anggaran Pendapatan Kasar (Sebulan)<span class="text-red-700">*</span></label>
-                                <select id="business_income" name="business_income" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="business_income">
+                                <select id="business_income" name="business_income" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model="business_income">
                                     <option value="">SILA PILIH</option>
                                     <option value="< RM5,000">< RM5,000</option>
                                     <option value="RM5,000 - RM10,000">RM5,000 - RM10,000</option>
                                     <option value="> RM10,000 - RM50,000">> RM10,000 - RM50,000</option>
                                     <option value="> RM50,000">> RM50,000</option>
                                 </select>
+                                @error('business_income')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -120,23 +249,48 @@
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
-                                    <input id="business_phone" name="business_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_phone">
+                                    <input 
+                                        id="business_phone" 
+                                        type="text" 
+                                        wire:model="business_phone"
+                                        class="block px-3 py-2 pl-8 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                        minlength="10"
+                                    >
                                 </div>    
+                                @error('business_phone')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="business_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit Perniagaan<span class="text-red-700">*</span></label>
+                                <label for="business_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Bimbit Perniagaan<span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
+                                            +6
                                         </span>
                                     </div>
-                                    <input id="business_phone_hp" name="business_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_phone_hp">
+                                    <input 
+                                        id="business_phone_hp" 
+                                        type="text" 
+                                        wire:model.live="business_phone_hp"
+                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^6/, '')"
+                                        minlength="10"
+                                        maxlength="11"
+                                    >
                                 </div>
+                                @error('business_phone_hp')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -148,11 +302,28 @@
                                     <option value="KELUARGA">KELUARGA</option>
                                     <option value="LAIN-LAIN (SILA NYATAKAN)">LAIN-LAIN (SILA NYATAKAN)</option>
                                 </select>
+                                @error('business_premise')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_other_premise" class="block text-sm font-medium leading-5 text-gray-700">Status Premis / Projek (Lain-lain)<span class="text-red-700">*</span></label>
-                                <input id="business_other_premise" name="business_other_premise" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_other_premise">
+                                <input 
+                                    id="business_other_premise" 
+                                    name="business_other_premise" 
+                                    value="" 
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 {{ $business_premise != 'LAIN-LAIN (SILA NYATAKAN)' ? 'bg-gray-100' : '' }}" 
+                                    wire:model.live="business_other_premise"
+                                    @if($business_premise != 'LAIN-LAIN (SILA NYATAKAN)') disabled @endif
+                                >
+                                @error('business_other_premise')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -164,6 +335,36 @@
                                     <option value="4">PERKONGSIAN</option>
                                     <option value="5">SENDIRIAN BERHAD</option>
                                 </select>
+                                @error('business_ownership')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="shareholder" class="block text-sm font-medium leading-5 text-gray-700">
+                                    Adakah Pemohon Pemegang Saham (Share Holder)
+                                    @if($business_ownership === '5')
+                                        <span class="text-red-700">*</span>
+                                    @endif
+                                </label>
+                                <select 
+                                    id="shareholder" 
+                                    name="shareholder" 
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}"  
+                                    wire:model.live="shareholder"
+                                    @if($business_ownership != '5') disabled @endif
+                                >
+                                    <option value="">SILA PILIH</option>
+                                    <option value="1">YA</option>
+                                    <option value="0">TIDAK</option>
+                                </select>
+                                @error('shareholder')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -174,8 +375,22 @@
                                             RM
                                         </span>
                                     </div>
-                                    <input id="business_modal" name="business_modal" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_modal">
+                                    <input 
+                                        id="business_modal" 
+                                        name="business_modal" 
+                                        type="text"
+                                        wire:model.defer="business_modal"
+                                        x-data
+                                        x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : '' }}"
+                                        @if($business_ownership != '5') disabled @endif
+                                    >
                                 </div>
+                                @error('business_modal')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -200,6 +415,33 @@
                                     <option value="Pesisir Pantai">Pesisir Pantai</option>
                                     <option value="Lain-Lain (Nyatakan)">Lain-Lain (Nyatakan)</option>
                                 </select>
+                                @error('premise_loc_code')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="buss_other_loc_premise" class="block text-sm font-medium leading-5 text-gray-700">
+                                    Lokasi Premis (Lain-lain)
+                                    @if($premise_loc_code === 'Lain-Lain (Nyatakan)')
+                                        <span class="text-red-700">*</span>
+                                    @endif
+                                </label>
+                                <input 
+                                    id="buss_other_loc_premise" 
+                                    name="buss_other_loc_premise" 
+                                    value="" 
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $premise_loc_code != 'Lain-Lain (Nyatakan)' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}" 
+                                    wire:model.live="buss_other_loc_premise"
+                                    @if($premise_loc_code != 'Lain-Lain (Nyatakan)') disabled @endif
+                                >
+                                @error('buss_other_loc_premise')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -211,49 +453,48 @@
                                     <option value="7 - 10 ORANG">7 - 10 ORANG</option>
                                     <option value="> 10 ORANG">> 10 ORANG</option>
                                 </select>
+                                @error('total_employees')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
+
 
                             <div class="col-span-6 sm:col-span-3">
-                                <!-- <label for="register_date" class="block text-sm font-medium leading-5 text-gray-700">Tarikh Didaftarkan<span class="text-red-700">*</span></label>
-                                <input id="register_date" name="register_date" type="date" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="register_date"> -->
-                                <x-datetime-picker label="Tarikh Didaftarkan" id="register_date"
-                                    placeholder="Appointment Date" without-time wire:model="register_date"/>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <!-- <label for="license_expired_date" class="block text-sm font-medium leading-5 text-gray-700">Tarikh Tamat Lesen<span class="text-red-700">*</span></label>
-                                <input id="license_expired_date" name="license_expired_date" type="date" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="license_expired_date"> -->
-                                <x-datetime-picker label="Tarikh Tamat Lesen" id="license_expired_date"
-                                    placeholder="Appointment Date" without-time wire:model="license_expired_date"/>
-                            
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="shareholder" class="block text-sm font-medium leading-5 text-gray-700">Adakah Pemohon Pemegang Saham (Share Holder)<span class="text-red-700">*</span></label>
-                                <select id="shareholder" name="shareholder" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="shareholder">
-                                    <option value="">SILA PILIH</option>
-                                    <option value="1">YA</option>
-                                    <option value="0">TIDAK</option>
-                                </select>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-2">
                                 <label for="membership_status" class="block text-sm font-medium leading-5 text-gray-700">Keahlian Persatuan<span class="text-red-700">*</span></label>
                                 <select id="membership_status" name="membership_status" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="membership_status">
                                     <option value="">SILA PILIH</option>
                                     <option value="YA">YA</option>
                                     <option value="TIDAK">TIDAK</option>
                                 </select>
+                                @error('membership_status')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="membership_assoc" class="block text-sm font-medium leading-5 text-gray-700">Jenis Keahlian Persatuan<span class="text-red-700">*</span></label>
-                                <select id="membership_assoc" name="membership_assoc" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="membership_assoc">
+                            @if($membership_status == 'YA')
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="membership_assoc" class="block text-sm font-medium leading-5 text-gray-700">Jenis Keahlian Persatuan<span class="text-red-700">*</span></label>
+                                <select 
+                                    id="membership_assoc" 
+                                    name="membership_assoc" 
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}"  
+                                    wire:model.live="membership_assoc"
+                                >
                                     <option value="">SILA PILIH</option>
                                     <option value="DEWAN PERNIAGAAN">DEWAN PERNIAGAAN</option>
                                     <option value="PERSATUAN PENJAJA / PENIAGA">PERSATUAN PENJAJA / PENIAGA</option>
                                 </select>
+                                @error('membership_assoc')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
+                            @endif
 
                             <div class="col-span-6 sm:col-span-2">
                                 <x-time-picker
@@ -263,6 +504,11 @@
                                     without-seconds
                                     wire:model="business_open"
                                 />
+                                @error('business_open')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                              </div>
 
                              <div class="col-span-6 sm:col-span-2">
@@ -273,6 +519,11 @@
                                     without-seconds
                                     wire:model="business_closed"
                                 />
+                                @error('business_closed')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                              </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -282,32 +533,103 @@
                                     <option value="1">YA</option>
                                     <option value="0">TIDAK</option>
                                 </select>
+                                @error('cert_recognition_flag')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-1">
-                                <x-checkbox id="cert_recognition_myipo_flag" left-label="Pengiktirafan Sijil MYIPO" wire:model="cert_recognition_myipo_flag" value="1" />
+                            @if($cert_recognition_flag == '1')
+                            <div class="col-span-6 grid grid-cols-3 gap-4">
+                                <div>
+                                    <label class="inline-flex items-center">
+                                        <input 
+                                            type="checkbox" 
+                                            class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                                            wire:model.live="cert_recognition_myipo_flag"
+                                            value="1"
+                                            {{ $cert_recognition_myipo_flag == '1' ? 'checked' : '' }}
+                                        >
+                                        <span class="ml-2">Pengiktirafan Sijil MyIPO</span>
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <label class="inline-flex items-center">
+                                        <input 
+                                            type="checkbox" 
+                                            class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                                            wire:model.live="cert_recognition_gmp_flag"
+                                            value="1"
+                                            {{ $cert_recognition_gmp_flag == '1' ? 'checked' : '' }}
+                                        >
+                                        <span class="ml-2">Pengiktirafan Sijil GMP</span>
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <label class="inline-flex items-center">
+                                        <input 
+                                            type="checkbox" 
+                                            class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                                            wire:model.live="cert_recognition_mesti_flag"
+                                            value="1"
+                                            {{ $cert_recognition_mesti_flag == '1' ? 'checked' : '' }}
+                                        >
+                                        <span class="ml-2">Pengiktirafan Sijil MeSTI</span>
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <label class="inline-flex items-center">
+                                        <input 
+                                            type="checkbox" 
+                                            class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                                            wire:model.live="cert_recognition_haccp_flag"
+                                            value="1"
+                                            {{ $cert_recognition_haccp_flag == '1' ? 'checked' : '' }}
+                                        >
+                                        <span class="ml-2">Pengiktirafan Sijil HACCP</span>
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <label class="inline-flex items-center">
+                                        <input 
+                                            type="checkbox" 
+                                            class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                                            wire:model.live="cert_recognition_halal_flag"
+                                            value="1"
+                                            {{ $cert_recognition_halal_flag == '1' ? 'checked' : '' }}
+                                        >
+                                        <span class="ml-2">Pengiktirafan Sijil HALAL</span>
+                                    </label>
+                                </div>
+
+                                <div>
+                                    <label class="inline-flex items-center">
+                                        <input 
+                                            type="checkbox" 
+                                            class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                                            wire:model.live="cert_recognition_iso_flag"
+                                            value="1"
+                                            {{ $cert_recognition_iso_flag == '1' ? 'checked' : '' }}
+                                        >
+                                        <span class="ml-2">Pengiktirafan Sijil ISO</span>
+                                    </label>
+                                </div>
                             </div>
 
-                            <div class="col-span-1">
-                                <x-checkbox id="cert_recognition_gmp_flag" left-label="Pengiktirafan Sijil GMP" wire:model="cert_recognition_gmp_flag" value="1" />
-                            </div>
-
-                            <div class="col-span-1">
-                                <x-checkbox id="cert_recognition_mesti_flag" left-label="Pengiktirafan Sijil MESTI" wire:model="cert_recognition_mesti_flag" value="1" />
-                            </div>
-
-                            <div class="col-span-1">
-                                <x-checkbox id="cert_recognition_haccp_flag" left-label="Pengiktirafan Sijil HACCP" wire:model="cert_recognition_haccp_flag" value="1" />
-                            </div>
-
-                            <div class="col-span-1">
-                                <x-checkbox id="cert_recognition_halal_flag" left-label="Pengiktirafan Sijil HALAL" wire:model="cert_recognition_halal_flag" value="1" />
-                            </div>
-
-                            <div class="col-span-1">
-                                <x-checkbox id="cert_recognition_iso_flag" left-label="Pengiktirafan Sijil ISO" wire:model="cert_recognition_iso_flag" value="1" />
-                            </div>
-
+                            @error('cert_recognition_myipo_flag')
+                                <div class="col-span-6">
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                </div>
+                            @enderror
+                            @endif
+                            
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="business_asset_value" class="block text-sm font-medium leading-5 text-gray-700">Nilai Aset Perniagaan Sedia Ada<span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
@@ -316,46 +638,83 @@
                                             RM
                                         </span>
                                     </div>
-                                    <input id="business_asset_value" name="business_asset_value" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_asset_value">
+                                    <input 
+                                        id="business_asset_value" 
+                                        name="business_asset_value" 
+                                        type="text"
+                                        wire:model.defer="business_asset_value"
+                                        x-data
+                                        x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                    >
                                 </div>
+                                @error('business_asset_value')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="business_start_resources" class="block text-sm font-medium leading-5 text-gray-700">Sumber Modal Memulakan Perniagaan<span class="text-red-700">*</span></label>
+                                <label for="business_start_resources" class="block text-sm font-medium leading-5 text-gray-700">Modal Untuk Memulakan Perniagaan<span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
                                             RM
                                         </span>
                                     </div>
-                                    <input id="business_start_resources" name="business_start_resources" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_start_resources">
+                                    <input 
+                                        id="business_start_resources" 
+                                        name="business_start_resources" 
+                                        type="text"
+                                        wire:model.defer="business_start_resources"
+                                        x-data
+                                        x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                    >
                                 </div>
+                                @error('business_start_resources')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="course_name_attend" class="block text-sm font-medium leading-5 text-gray-700">Nama Kursus Yang Dihadiri Anjuran Agensi Di Bawah Kementerian Pembangunan Usahawan & Koperasi<span class="text-red-700">*</span></label>
-                                <input id="course_name_attend" name="course_name_attend" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="course_name_attend">
+                                <label for="course_name_attend" class="block text-sm font-medium leading-5 text-gray-700">Nama Kursus</label>
+                                <input 
+                                    id="course_name_attend" 
+                                    type="text" 
+                                    wire:model.live="course_name_attend"
+                                    class="block w-full mt-1 rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
+                                >
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="agency_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Agensi Penganjur<span class="text-red-700">*</span></label>
-                                <select id="agency_name" name="agency_name" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="agency_name">
+                                <label for="agency_name" class="block text-sm font-medium leading-5 text-gray-700">
+                                    Nama Agensi
+                                </label>
+                                <select 
+                                    id="agency_name" 
+                                    wire:model.live="agency_name"
+                                    class="block w-full mt-1 rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select sm:text-sm sm:leading-5"
+                                >
                                     <option value="">SILA PILIH</option>
+                                    <option value="TEKUN">TEKUN</option>
                                     <option value="INSKEN">INSKEN</option>
-                                    <option value="SME CORP">SME CORP</option>
-                                    <option value="CEDAR">CEDAR</option>
+                                    <option value="MARA">MARA</option>
                                     <option value="LAIN-LAIN">LAIN-LAIN</option>
                                 </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="course_name_attend2" class="block text-sm font-medium leading-5 text-gray-700">Kursus-Kursus Lain Yang Dihadiri (Jika Ada)<span class="text-red-700">*</span></label>
+                                <label for="course_name_attend2" class="block text-sm font-medium leading-5 text-gray-700">Kursus-Kursus Lain Yang Dihadiri (Jika Ada)</label>
                                 <input id="course_name_attend2" name="course_name_attend2" value="" placeholder="Kursus-Kursus Lain Yang Dihadiri 2" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="course_name_attend2">
                                 <input id="course_name_attend3" name="course_name_attend3" value="" placeholder="Kursus-Kursus Lain Yang Dihadiri 3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="course_name_attend3">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="previous_business" class="block text-sm font-medium leading-5 text-gray-700">Sila Nyatakan Perniagaan Terdahulu Sekiranya Bertukar Aktiviti Perniagaan<span class="text-red-700">*</span></label>
+                                <label for="previous_business" class="block text-sm font-medium leading-5 text-gray-700">Sila Nyatakan Perniagaan Terdahulu Sekiranya Bertukar Aktiviti Perniagaan</label>
                                 <input id="previous_business" name="previous_business" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="previous_business">
                             </div>
 
@@ -367,6 +726,7 @@
         </div>
     </div>
 
+    @if($business_ownership == '4' || $business_ownership == '5')
     <div class="hidden sm:block">
         <div class="py-5">
             <div class="border-t border-gray-200"></div>
@@ -377,95 +737,626 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Maklumat Pemilik Syarikat / Rakan Kongsi </h3>
-                    
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Maklumat Pemilik Syarikat / Rakan Kongsi</h3>
                 </div>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
+
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="partner_name" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
-                                <input id="partner_name" name="partner_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_name">
+                                <label for="tot_partner" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Rakan Kongsi<span class="text-red-700">*</span></label>
+                                <select id="tot_partner" wire:model.live="tot_partner" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                @error('tot_partner')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="partner_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
-                                <input id="partner_ic" name="partner_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_ic">
-                            </div>
-
+                            @if($tot_partner >= 1)
                             <div class="col-span-6">
-                                <label for="partner_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat<span class="text-red-700">*</span></label>
-                                <input id="partner_address1" name="partner_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_address1">                               
-                                <input id="partner_address2" name="partner_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_address2">
-                            </div>
+                            <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Rakan Kongsi 1</h4>
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="partner_name" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
+                                    <input id="partner_name" name="partner_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_name">
+                                    @error('partner_name')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="partner_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
-                                <input id="partner_postcode" name="partner_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_postcode">
-                            </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="partner_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
+                                    <input id="partner_ic" name="partner_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_ic">
+                                    @error('partner_ic')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="partner_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
-                                <input id="partner_city" name="partner_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_city">
-                            </div>
+                                <div class="col-span-6">
+                                    <label for="partner_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat<span class="text-red-700">*</span></label>
+                                    <input id="partner_address1" name="partner_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_address1">
+                                    <input id="partner_address2" name="partner_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_address2">
+                                    @error('partner_address1')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="partner_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
-                                <select id="partner_state" name="partner_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_state">
-                                    <option value="">SILA PILIH</option>
-                                    @foreach ($negeriSelection as $negeris)
-                                    <option value="{{ $negeris->kodnegeri }}">{{ $negeris->namanegeri}}</option>
-                                    @endforeach 
-                                </select>
-                            </div>
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
+                                    <input id="partner_postcode" name="partner_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_postcode">
+                                    @error('partner_postcode')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="partner_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Rumah<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
-                                        </span>
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
+                                    <input id="partner_city" name="partner_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_city">
+                                    @error('partner_city')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
+                                    <select id="partner_state" name="partner_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_state">
+                                        <option value="">SILA PILIH</option>
+                                        @foreach ($negeriSelection as $negeris)
+                                        <option value="{{ $negeris->kodnegeri }}">{{ $negeris->namanegeri}}</option>
+                                        @endforeach 
+                                    </select>
+                                    @error('partner_state')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Rumah<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner_phone" name="partner_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_phone">
                                     </div>
-                                    <input id="partner_phone" name="partner_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_phone">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner_phone_hp" name="partner_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_phone_hp">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
+                                        </div>
+                                        <input id="partner_total_shares" name="partner_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_total_shares">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner_roles" class="block text-sm font-medium leading-5 text-gray-700">Jawatan<span class="text-red-700">*</span></label>
+                                    <select id="partner_roles" name="partner_roles" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_roles">
+                                        <option value="">SILA PILIH</option>
+                                        <option value="1">RAKAN KONGSI</option>
+                                        <option value="2">PENGARAH</option>
+                                        <option value="3">RAKAN KONGSI & PENGARAH</option>
+                                    </select>
                                 </div>
                             </div>
+                            </div>
+                            @endif
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="partner_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            +60
-                                        </span>
+                            @if($tot_partner >= 2)
+                            <div class="col-span-6">
+                            <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Rakan Kongsi 2</h4>
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="partner2_name" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
+                                    <input id="partner2_name" name="partner2_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_name">
+                                    @error('partner2_name')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="partner2_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
+                                    <input id="partner2_ic" name="partner2_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_ic">
+                                    @error('partner2_ic')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="partner2_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat<span class="text-red-700">*</span></label>
+                                    <input id="partner2_address1" name="partner2_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_address1">
+                                    <input id="partner2_address2" name="partner2_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_address2">
+                                    @error('partner2_address1')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner2_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
+                                    <input id="partner2_postcode" name="partner2_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_postcode">
+                                    @error('partner2_postcode')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner2_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
+                                    <input id="partner2_city" name="partner2_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_city">
+                                    @error('partner2_city')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner2_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
+                                    <select id="partner2_state" name="partner2_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_state">
+                                        <option value="">SILA PILIH</option>
+                                        @foreach ($negeriSelection as $negeris)
+                                        <option value="{{ $negeris->kodnegeri }}">{{ $negeris->namanegeri}}</option>
+                                        @endforeach 
+                                    </select>
+                                    @error('partner2_state')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner2_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Rumah<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner2_phone" name="partner2_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_phone">
                                     </div>
-                                    <input id="partner_phone_hp" name="partner_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_phone_hp">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner2_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner2_phone_hp" name="partner2_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_phone_hp">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner2_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
+                                        </div>
+                                        <input id="partner2_total_shares" name="partner2_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_total_shares">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner2_roles" class="block text-sm font-medium leading-5 text-gray-700">Jawatan<span class="text-red-700">*</span></label>
+                                    <select id="partner2_roles" name="partner2_roles" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_roles">
+                                        <option value="">SILA PILIH</option>
+                                        <option value="1">RAKAN KONGSI</option>
+                                        <option value="2">PENGARAH</option>
+                                        <option value="3">RAKAN KONGSI & PENGARAH</option>
+                                    </select>
                                 </div>
                             </div>
+                            </div>
+                            @endif
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="partner_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            RM
-                                        </span>
+                            @if($tot_partner >= 3)
+                            <div class="col-span-6">
+                            <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Rakan Kongsi 3</h4>
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="partner3_name" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
+                                    <input id="partner3_name" name="partner3_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_name">
+                                    @error('partner3_name')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="partner3_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
+                                    <input id="partner3_ic" name="partner3_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_ic">
+                                    @error('partner3_ic')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="partner3_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat<span class="text-red-700">*</span></label>
+                                    <input id="partner3_address1" name="partner3_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_address1">
+                                    <input id="partner3_address2" name="partner3_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_address2">
+                                    @error('partner3_address1')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner3_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
+                                    <input id="partner3_postcode" name="partner3_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_postcode">
+                                    @error('partner3_postcode')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner3_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
+                                    <input id="partner3_city" name="partner3_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_city">
+                                    @error('partner3_city')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner3_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
+                                    <select id="partner3_state" name="partner3_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_state">
+                                        <option value="">SILA PILIH</option>
+                                        @foreach ($negeriSelection as $negeris)
+                                        <option value="{{ $negeris->kodnegeri }}">{{ $negeris->namanegeri}}</option>
+                                        @endforeach 
+                                    </select>
+                                    @error('partner3_state')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner3_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Rumah<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner3_phone" name="partner3_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_phone">
                                     </div>
-                                    <input id="partner_total_shares" name="partner_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_total_shares">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner3_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner3_phone_hp" name="partner3_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_phone_hp">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner3_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
+                                        </div>
+                                        <input id="partner3_total_shares" name="partner3_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_total_shares">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner3_roles" class="block text-sm font-medium leading-5 text-gray-700">Jawatan<span class="text-red-700">*</span></label>
+                                    <select id="partner3_roles" name="partner3_roles" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_roles">
+                                        <option value="">SILA PILIH</option>
+                                        <option value="1">RAKAN KONGSI</option>
+                                        <option value="2">PENGARAH</option>
+                                        <option value="3">RAKAN KONGSI & PENGARAH</option>
+                                    </select>
                                 </div>
                             </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="partner_roles" class="block text-sm font-medium leading-5 text-gray-700">Jawatan<span class="text-red-700">*</span></label>
-                                <select id="partner_roles" name="partner_roles" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_roles">
-                                    <option value="">SILA PILIH</option>
-                                    <option value="1">RAKAN KONGSI</option>
-                                    <option value="2">PENGARAH</option>
-                                    <option value="3">RAKAN KONGSI & PENGARAH</option>
-                                </select>
                             </div>
+                            @endif
+
+                            @if($tot_partner >= 4)
+                            <div class="col-span-6">
+                            <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Rakan Kongsi 4</h4>
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="partner4_name" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
+                                    <input id="partner4_name" name="partner4_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_name">
+                                    @error('partner4_name')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="partner4_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
+                                    <input id="partner4_ic" name="partner4_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_ic">
+                                    @error('partner4_ic')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="partner4_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat<span class="text-red-700">*</span></label>
+                                    <input id="partner4_address1" name="partner4_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_address1">
+                                    <input id="partner4_address2" name="partner4_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_address2">
+                                    @error('partner4_address1')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner4_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
+                                    <input id="partner4_postcode" name="partner4_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_postcode">
+                                    @error('partner4_postcode')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner4_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
+                                    <input id="partner4_city" name="partner4_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_city">
+                                    @error('partner4_city')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner4_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
+                                    <select id="partner4_state" name="partner4_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_state">
+                                        <option value="">SILA PILIH</option>
+                                        @foreach ($negeriSelection as $negeris)
+                                        <option value="{{ $negeris->kodnegeri }}">{{ $negeris->namanegeri}}</option>
+                                        @endforeach 
+                                    </select>
+                                    @error('partner4_state')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner4_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Rumah<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner4_phone" name="partner4_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_phone">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner4_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner4_phone_hp" name="partner4_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_phone_hp">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner4_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
+                                        </div>
+                                        <input id="partner4_total_shares" name="partner4_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_total_shares">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner4_roles" class="block text-sm font-medium leading-5 text-gray-700">Jawatan<span class="text-red-700">*</span></label>
+                                    <select id="partner4_roles" name="partner4_roles" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_roles">
+                                        <option value="">SILA PILIH</option>
+                                        <option value="1">RAKAN KONGSI</option>
+                                        <option value="2">PENGARAH</option>
+                                        <option value="3">RAKAN KONGSI & PENGARAH</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </div>
+                            @endif
+
+                            @if($tot_partner >= 5)
+                            <div class="col-span-6">
+                            <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Rakan Kongsi 5</h4>
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="partner5_name" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
+                                    <input id="partner5_name" name="partner5_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_name">
+                                    @error('partner5_name')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="partner5_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
+                                    <input id="partner5_ic" name="partner5_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_ic">
+                                    @error('partner5_ic')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="partner5_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat<span class="text-red-700">*</span></label>
+                                    <input id="partner5_address1" name="partner5_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_address1">
+                                    <input id="partner5_address2" name="partner5_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_address2">
+                                    @error('partner5_address1')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner5_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
+                                    <input id="partner5_postcode" name="partner5_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_postcode">
+                                    @error('partner5_postcode')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner5_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
+                                    <input id="partner5_city" name="partner5_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_city">
+                                    @error('partner5_city')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner5_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
+                                    <select id="partner5_state" name="partner5_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_state">
+                                        <option value="">SILA PILIH</option>
+                                        @foreach ($negeriSelection as $negeris)
+                                        <option value="{{ $negeris->kodnegeri }}">{{ $negeris->namanegeri}}</option>
+                                        @endforeach 
+                                    </select>
+                                    @error('partner5_state')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner5_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Rumah<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner5_phone" name="partner5_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_phone">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner5_phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Tel Bimbit<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                +6
+                                            </span>
+                                        </div>
+                                        <input id="partner5_phone_hp" name="partner5_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_phone_hp">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner5_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham<span class="text-red-700">*</span></label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
+                                        </div>
+                                        <input id="partner5_total_shares" name="partner5_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_total_shares">
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-2">
+                                    <label for="partner5_roles" class="block text-sm font-medium leading-5 text-gray-700">Jawatan<span class="text-red-700">*</span></label>
+                                    <select id="partner5_roles" name="partner5_roles" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_roles">
+                                        <option value="">SILA PILIH</option>
+                                        <option value="1">RAKAN KONGSI</option>
+                                        <option value="2">PENGARAH</option>
+                                        <option value="3">RAKAN KONGSI & PENGARAH</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </div>
+                            @endif
+
                         </div>
 
                     </div>
@@ -473,13 +1364,10 @@
             </div>
         </div>
     </div>
-
+    @endif
     <div class="flex justify-center mt-6">
         <span class="inline-flex rounded-md shadow-sm">
             <button wire:click="submit" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-green-600 rounded-md border border-transparent transition duration-150 ease-in-out hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700">
-                <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
                 Simpan
             </button>
         </span>

@@ -44,7 +44,7 @@
             <div class="px-4 mx-auto w-11/12">
                 <div class="flex">
                     <h1 class="text-3xl font-bold leading-9 text-white">
-                        Sistem Online Permohonan Pembiayaan Tekun
+                        Sistem Permohonan Online TEKUN Nasional
                     </h1>
                 </div>
             </div>
@@ -116,24 +116,6 @@
                         </button>
 
                         <button
-                            id="tabs-4"
-                            @click="tabButtonClicked($el)"
-                            :class="{ 'bg-fuchsia-500 text-white': tabButtonActive(4) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
-                        >
-                        Pinjaman Teman Tekun    
-                        </button>
-
-                        <button
-                            id="tabs-5"
-                            @click="tabButtonClicked($el)"
-                            :class="{ 'bg-fuchsia-500 text-white': tabButtonActive(5) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
-                        >
-                            Pinjaman Kontrak i
-                        </button>
-
-                        <button
                             id="tabs-6"
                             @click="tabButtonClicked($el)"
                             :class="{ 'bg-green-500 text-white': tabButtonActive(6) }"
@@ -169,16 +151,6 @@
                             <!-- Tab #3 -->
                             <div x-show="tabContentActive(3)" class="relative" x-cloak>
                                 @livewire('module.maklumat-perniagaan2')
-                            </div>
-
-                            <!-- Tab #4 -->
-                            <div x-show="tabContentActive(4)" class="relative" x-cloak>
-                                @livewire('module.pinjaman-teman')
-                            </div>
-
-                            <!-- Tab #5 -->
-                            <div x-show="tabContentActive(5)" class="relative" x-cloak>  
-                                @livewire('module.pinjaman-kontrak-i')
                             </div>
 
                             <!-- Tab #6 -->
