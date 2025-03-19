@@ -120,8 +120,15 @@ class MuatNaikDokumen extends Component
         );
 
         session()->flash('message', 'Documents uploaded successfully. Document links have been created.');
+        // $this->dialog()->show([
+        //     'icon' => 'success',
+        //     'title' => 'Berjaya!',
+        //     'description' => 'Maklumat berjaya disimpan.',
+        // ]);
+
+        // $this->dispatch('saved');
         
-        return redirect()->route('home');
+        //return redirect()->route('home');
     }
 
     public function submitPermohonan()

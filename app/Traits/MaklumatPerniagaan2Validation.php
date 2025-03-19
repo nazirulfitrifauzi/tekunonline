@@ -100,7 +100,7 @@ trait MaklumatPerniagaan2Validation
                 'buss1_city' => 'required',
                 'buss1_state' => 'required',
                 'buss1_phone' => 'required',
-                'buss1_fax' => 'required',
+                //'buss1_fax' => 'required',
             ]);
         }
 
@@ -157,7 +157,7 @@ trait MaklumatPerniagaan2Validation
         'buss1_city.required' => 'Sila masukkan bandar cawangan 1.',
         'buss1_state.required' => 'Sila pilih negeri cawangan 1.',
         'buss1_phone.required' => 'Sila masukkan nombor telefon cawangan 1.',
-        'buss1_fax.required' => 'Sila masukkan nombor fax cawangan 1.',
+        //'buss1_fax.required' => 'Sila masukkan nombor fax cawangan 1.',
         // Cawangan 2 messages
         'buss2_branch_loc.required' => 'Sila pilih lokasi cawangan 2.',
         'buss2_branch_status.required' => 'Sila pilih status cawangan 2.',

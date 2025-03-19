@@ -172,8 +172,8 @@
                                 <label for="business_duration" class="block text-sm font-medium leading-5 text-gray-700">Tempoh / Pengalaman Berniaga(Bulan)<span class="text-red-700">*</span></label>
                                 <select id="business_duration" name="business_duration" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="business_duration">
                                     <option value="">SILA PILIH</option>
-                                    <option value="0 - 60 tahun">0 - 60 tahun</option>
-                                    <option value="0 - 11 bulan">0 - 11 bulan</option>
+                                    <option value="1">0 - 60 tahun</option>
+                                    <option value="2">0 - 11 bulan</option>
                                 </select>
                                 @error('business_duration')
                                     <p class="text-red-500 text-xs italic mt-4">

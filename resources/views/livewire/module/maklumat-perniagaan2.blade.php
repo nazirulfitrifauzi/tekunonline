@@ -186,7 +186,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss1_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 1</label>
                                         <div class="relative mt-1 rounded-md shadow-sm">
                                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                                 <span class="text-gray-500 sm:text-sm sm:leading-5">
