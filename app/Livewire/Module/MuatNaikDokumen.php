@@ -45,7 +45,7 @@ class MuatNaikDokumen extends Component
         // Get user's IC number for folder name
         $user = Auth::user();
         $folderName = $user->ic_no;
-        $appln_id = $user->applnStatus->id;
+        //$appln_id = $user->applnStatus->id;
 
         // Get file extensions
         $ic_extension = $this->document_ic_no->getClientOriginalExtension();
@@ -64,9 +64,15 @@ class MuatNaikDokumen extends Component
         ];
 
         // Create full paths for storage
-        $documentPaths = array_map(function($fileName) use ($folderName, $appln_id) {
-            return $folderName . '/' . $appln_id . '/' . $fileName;
+        // $documentPaths = array_map(function($fileName) use ($folderName, $appln_id) {
+        //     return $folderName . '/' . $appln_id . '/' . $fileName;
+        // }, $fileNames);
+
+        // Create full paths for storage
+        $documentPaths = array_map(function($fileName) use ($folderName) {
+            return $folderName .'/' . $fileName;
         }, $fileNames);
+        
 
         // Store files with the new names
         $this->document_ic_no->storeAs('', $documentPaths['document_ic_no'], 'public');
@@ -78,7 +84,8 @@ class MuatNaikDokumen extends Component
         // Create a text file with links to all documents as a simple alternative
         // until the PDF merging functionality is implemented
         $mergedFileName = 'document_links_' . now()->format('Y-m-d') . '.txt';
-        $mergedFilePath = $folderName . '/' . $appln_id . '/' . $mergedFileName;
+        // $mergedFilePath = $folderName . '/' . $appln_id . '/' . $mergedFileName;
+        $mergedFilePath = $folderName . '/' . $mergedFileName;
         
         $documentLinks = "Document Links:\n\n";
         foreach ($documentPaths as $docKey => $docPath) {
@@ -116,6 +123,21 @@ class MuatNaikDokumen extends Component
         
         return redirect()->route('home');
     }
+
+    public function submitPermohonan()
+{
+    $applnStatus = ApplnStatus::where('user_id', Auth::id())->first();
+
+    if ($applnStatus) {
+        $applnStatus->update(['appln_status' => 'S','appln_date_submit'=>now()]);
+        session()->flash('message', 'Permohonan telah dihantar.');
+    } else {
+        session()->flash('error', 'Permohonan tidak wujud.');
+    }
+
+    return redirect()->route('dashboard');
+}
+
 
     public function render()
     {

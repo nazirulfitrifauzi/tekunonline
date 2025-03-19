@@ -214,14 +214,14 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama Pemohon <span class="text-red-700">*</span></label>
+                                <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Nama Pemohon(Seperti pada kad pengenalan) <span class="text-red-700">*</span></label>
                                 <input id="name" 
-                                       name="name" 
-                                       type="text" 
-                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
-                                       wire:model.live="name"
-                                       oninput="this.value = this.value.replace(/[^A-Za-z\s'-.@]/g, '')"
-                                       pattern="[A-Za-z\s'-.@]*">
+                                name="name" 
+                                type="text" 
+                                class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                wire:model.live="name"
+                                oninput="this.value = this.value.replace(/[^A-Za-z\s'-.@]/g, '').toUpperCase()"
+                                pattern="[A-Za-z\s'-.@]*">
                                 @error('name')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -787,7 +787,7 @@
     </div>
 
     <div class="mt-10 sm:mt-0" x-data x-show="$wire.marital === 'BERKAHWIN'">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Maklumat Pasangan Pemohon</h3>
@@ -985,9 +985,6 @@
     <div class="flex justify-center mt-6">
         <span class="inline-flex rounded-md shadow-sm">
             <button wire:click="submit" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-green-600 rounded-md border border-transparent transition duration-150 ease-in-out hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700">
-                <svg fill="currentColor" viewBox="0 0 20 20" class="w-8 h-8">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
                 Simpan
             </button>
         </span>
