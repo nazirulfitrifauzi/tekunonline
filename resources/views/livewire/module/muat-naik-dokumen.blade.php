@@ -43,7 +43,7 @@
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_ic_no) }}" 
                                            target="_blank" 
                                            class="text-blue-600 hover:text-blue-800">
-                                            View Uploaded IC Document
+                                            Lihat Dokumen IC
                                         </a>
                                     </div>
                                 @endif
@@ -58,7 +58,7 @@
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_icP_no) }}" 
                                            target="_blank" 
                                            class="text-blue-600 hover:text-blue-800">
-                                            View Uploaded IC Pasangan Document
+                                           Lihat Dokumen IC Pasangan
                                         </a>
                                     </div>
                                 @endif
@@ -73,7 +73,7 @@
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_ssm) }}" 
                                            target="_blank" 
                                            class="text-blue-600 hover:text-blue-800">
-                                            View Uploaded SSM Document
+                                           Lihat Dokumen SSM
                                         </a>
                                     </div>
                                 @endif
@@ -88,7 +88,7 @@
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_business_picture) }}" 
                                            target="_blank" 
                                            class="text-blue-600 hover:text-blue-800">
-                                            View Uploaded Business Picture
+                                           Lihat Dokumen Perniagaan
                                         </a>
                                     </div>
                                 @endif
@@ -103,7 +103,7 @@
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_bank_statements) }}" 
                                            target="_blank" 
                                            class="text-blue-600 hover:text-blue-800">
-                                            View Uploaded Bank Statements
+                                            Lihat Penyata Bank
                                         </a>
                                     </div>
                                 @endif

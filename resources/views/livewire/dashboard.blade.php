@@ -75,31 +75,29 @@
                         @forelse($applnStatuses as $status)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                {{ $status->id }} 
+                                {{ $status->id }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
-                                @if(is_null($status->appln_status_fas))
+                                @if($status->appln_status == 'S' && $status->appln_status_fas == null)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
                                         SUDAH DI HANTAR
                                     </span>                                
-                                @elseif($status->appln_status_fas == 1)
+                                @elseif($status->appln_status == 'P' && $status->appln_status_fas == null)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
                                         DALAM PROSES
                                     </span>  
-                                @elseif($status->appln_status_fas == 10)
+                                @elseif($status->appln_status == 'S' && $status->appln_status_fas == 10)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
                                         LULUS
                                     </span>                                                              
-                                @elseif($status->appln_status_fas == 20)
+                                @elseif($status->appln_status == 'S' && $status->appln_status_fas == 20)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
                                         GAGAL
-                                    </span>                                                              
-                                @else
-                                    {{ $status->appln_status_fas }}
+                                    </span>                                                             
                                 @endif                                
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                {{ date('d/m/Y', strtotime($status->appln_date_submit)) }}
+                                {{ $status->appln_date_submit ? date('d/m/Y', strtotime($status->appln_date_submit)) : ' '}}
                             </td>
                         </tr>
                         @empty

@@ -16,11 +16,12 @@ class Dashboard extends Component
         
         // Semak jika terdapat permohonan dengan appln_status_fas = 1 atau NULL
         $this->disableButton = ApplnStatus::where('user_id', $user->id)
-                            ->where(function ($query) {
-                                $query->where('appln_status_fas', 1)
-                                      ->orWhereNull('appln_status_fas');
-                            })
-                            ->exists();
+                            ->where('appln_status', 'S')
+                            // ->where(function ($query) {
+                            //     $query->where('appln_status', 'S')
+                            //           ->orWhereNull('appln_status_fas');
+                            // })
+                            ->first();
     }
 
     public function render()
