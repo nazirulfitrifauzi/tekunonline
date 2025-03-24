@@ -54,7 +54,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', Home::class)->name('home');
+    //Route::get('/home', Home::class)->name('home');
+    // Note the {appln_id?} – the question mark makes it optional in case you want to allow /home without a parameter
+    Route::get('/home/{appln_id}', Home::class)->name('home');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/maklumat-akaun', MaklumatAkaun::class)->name('maklumat-akaun');
     

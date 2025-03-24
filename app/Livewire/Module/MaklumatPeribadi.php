@@ -21,12 +21,15 @@ class MaklumatPeribadi extends Component
     public $cawanganSelection = [];
     public $bank = [];
     public $showIcOld = false;
+    public $appln_id;
+
+    protected $queryString = ['appln_id'];
 
     public function mount()
     {
-        $existingData = null; // Initialize to avoid undefined variable issues
+        $existingData = null;
 
-        $applnStatus = ApplnStatus::where('user_id', Auth::id())->first();
+        $applnStatus = ApplnStatus::where('id', $this->appln_id)->first();
         if ($applnStatus) {
             $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnStatus->id)->first();
         }        
@@ -122,17 +125,31 @@ class MaklumatPeribadi extends Component
     public function submit()
     {
         $this->validate();
+
+        // $p = ApplnStatus::where('user_id', Auth::id())
+        //     ->whereIn('appln_status', ['S','P'])
+        //     ->where(function ($query) {
+        //         // This will handle the "ISNULL(appln_status_fas, 0) IN (0, 1)" logic.
+        //         $query->whereNull('appln_status_fas')
+        //             ->orWhereIn('appln_status_fas', [0, 1]);
+        //     })
+        //     ->first();
+
+        // if($p == null){
+        //     //dd('permohonan baru');
+        //     $applnStatus = ApplnStatus::insert(
+        //         ['user_id' => Auth::id(),
+        //         'appln_status' => 'P',
+        //         'cust_icno' => $this->ic_no,
+        //         'cust_name' => $this->name,
+        //         'branch_code' => $this->tekun_branch,
+        //         'state_code' => $this->tekun_state,]
+        //     );
+        // }
+
         
-        $applnStatus = ApplnStatus::updateOrCreate(
-            ['user_id' => Auth::id()],
-            ['appln_status' => 'P',
-            'cust_icno' => $this->ic_no,
-            'cust_name' => $this->name,
-            'branch_code' => $this->tekun_branch,
-            'state_code' => $this->tekun_state,]
-        );
-        
-        $applnId = $applnStatus->id;
+        //$applnId = $applnStatus->id;
+        $applnId = ApplnStatus::where('user_id', Auth::id())->max('id');
 
         // Dapatkan data sedia ada dalam MaklumatPinjaman
         $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnId)->first();

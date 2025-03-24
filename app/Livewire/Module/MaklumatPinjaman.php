@@ -17,12 +17,15 @@ class MaklumatPinjaman extends Component
     public $negeriSelection = []; // Pastikan ia sentiasa array
     public $date_of_birth;
     public $age;
+    public $appln_id;
+
+    protected $queryString = ['appln_id'];
 
     public function mount()
     {
         $existingData = null; // Initialize to avoid undefined variable issues
 
-        $applnStatus = ApplnStatus::where('user_id', Auth::id())->first();
+        $applnStatus = ApplnStatus::where('id', $this->appln_id)->first();
         if ($applnStatus) {
             $existingData = ModelsMaklumatPinjaman::where('appln_id', $applnStatus->id)->first();
         }        
@@ -41,7 +44,7 @@ class MaklumatPinjaman extends Component
         $this->validate();
         
         // Dapatkan appln_id yang baru atau sedia ada
-        $applnId = Auth::user()->applnStatus->id;
+        $applnId = $this->appln_id;
 
         // Dapatkan data sedia ada dalam MaklumatPinjaman
         $existingData = ModelsMaklumatPinjaman::where('appln_id', $applnId)->first();

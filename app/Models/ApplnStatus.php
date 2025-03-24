@@ -30,4 +30,9 @@ class ApplnStatus extends Model
         return $this->hasOne(MaklumatPinjaman::class, 'appln_id', 'id');
     }
 
+    public function applicationPdf()
+    {
+        return $this->hasOne(Application_Pdf::class, 'appln_id');
+    }
+
 }

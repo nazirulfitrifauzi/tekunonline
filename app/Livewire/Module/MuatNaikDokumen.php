@@ -4,11 +4,13 @@ namespace App\Livewire\Module;
 
 use App\Models\ApplnStatus;
 use App\Models\MaklumatPinjaman;
+use App\Models\application_pdf;
 use App\Traits\MuatNaikDokumenValidation;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class MuatNaikDokumen extends Component
 {
@@ -17,6 +19,11 @@ class MuatNaikDokumen extends Component
 
     public $document;
     public $existingData;
+    public $appln_id;
+    public $show_hantar = false;
+    public $sp;
+
+    protected $queryString = ['appln_id'];
 
     // Rest of the mount method remains the same
     public function mount()
@@ -24,7 +31,7 @@ class MuatNaikDokumen extends Component
         // Existing code remains the same
         $existingData = null; // Initialize to avoid undefined variable issues
 
-        $applnStatus = ApplnStatus::where('user_id', Auth::id())->first();
+        $applnStatus = ApplnStatus::where('id', $this->appln_id)->first();
         if ($applnStatus) {
             $this->existingData = MaklumatPinjaman::where('appln_id', $applnStatus->id)->first();
         }        
@@ -95,7 +102,7 @@ class MuatNaikDokumen extends Component
     //     Storage::disk('public')->put($mergedFilePath, $documentLinks);
         
     //     // Add the merged document to the fileNames array
-    //     $fileNames['merge_doc'] = $mergedFileName;
+    //     $fileNames['document_merge'] = $mergedFileName;
 
     //     // Dapatkan appln_id yang baru atau sedia ada
     //     $applnId = Auth::user()->applnStatus->id;
@@ -132,6 +139,7 @@ class MuatNaikDokumen extends Component
 
     public function submit()
     {
+        //dd($this->appln_id);
         // Example validation rules (adjust as needed):
         $this->validate([
             'document_ic_no'             => 'required|mimes:pdf|max:10240',
@@ -190,10 +198,11 @@ class MuatNaikDokumen extends Component
         Storage::disk('public')->put($mergedFilePath, $documentLinks);
 
         // Also store that text filename in $fileNames if you like
-        $fileNames['merge_doc'] = $mergedFileName;
+        $fileNames['document_merge'] = $mergedFileName;
 
         // Find or create the MaklumatPinjaman record
-        $applnId      = $user->applnStatus->id ?? null;
+        $applnId      = $this->appln_id;
+        
         $existingData = MaklumatPinjaman::where('appln_id', $applnId)->first();
         $existingDataArr = $existingData ? $existingData->toArray() : [];
 
@@ -209,24 +218,200 @@ class MuatNaikDokumen extends Component
 
         // Show a success message
         //session()->flash('message', 'Documents uploaded successfully. Document links have been created.');
-        return redirect()->route('home');
+        // If $applnId already exists in your component
+        //return redirect()->route('home', ['appln_id' => $applnId]);
+        $this->show_hantar = true;
+
+
     }
 
+
+    // public function submitPermohonan()
+    // {
+    //     $applnStatus = ApplnStatus::where('user_id', Auth::id())->first();
+
+    //     if ($applnStatus) {
+    //         $applnStatus->update(['appln_status' => 'S','appln_date_submit'=>now()]);
+    //         session()->flash('message', 'Permohonan telah dihantar.');
+    //     } else {
+    //         session()->flash('error', 'Permohonan tidak wujud.');
+    //     }
+
+    //     return redirect()->route('dashboard');
+    // }
 
     public function submitPermohonan()
-{
-    $applnStatus = ApplnStatus::where('user_id', Auth::id())->first();
+    {
+        // $p = ApplnStatus::where('user_id', Auth::id())
+        // ->where('appln_status','p')
+        // ->first();
+        //dd($p->appln_status);
 
-    if ($applnStatus) {
-        $applnStatus->update(['appln_status' => 'S','appln_date_submit'=>now()]);
-        session()->flash('message', 'Permohonan telah dihantar.');
-    } else {
-        session()->flash('error', 'Permohonan tidak wujud.');
+        $applnStatus = ApplnStatus::where('id', $this->appln_id)->where('appln_status','p')->first();
+
+        if ($applnStatus) {
+            $applnStatus->update([
+                'appln_status'    => 'S',
+                'appln_date_submit' => now()
+            ]);
+
+            // a) Construct a unique PDF name
+            $pdfName = 'application_'.uniqid().'.pdf';
+
+            // b) Full storage path where we will save the PDF
+            $pdfFullPath = storage_path('/AppPdf/'.$pdfName);
+
+            // c) Get the path to your JPG images in the public folder
+            $jpgPath  = public_path('img/1.jpg');
+            $jpgPath2 = public_path('img/2.jpg');
+            $jpgPath3 = public_path('img/3.jpg');
+            $jpgPath4 = public_path('img/4.jpg');
+
+            // d) Generate HTML with page breaks between images
+            $html = '
+                <html>
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                        <style>
+                        @page {
+                            size: A4 portrait;
+                            margin: 20mm; /* Optional: adjust margins as needed */
+                        }
+                        body { 
+                            font-family: sans-serif; 
+                        }
+                        img { 
+                            width: 100%; 
+                            height: auto; 
+                        }
+                        .page-break { 
+                            page-break-after: always; 
+                        }
+                        </style>
+                    </head>
+                    <body>
+                        <div>
+                        <img src="'.$jpgPath.'"/>
+                        </div>
+                        <p style="position: absolute; top: 320px; left: 550px; height: 17px; width: 600px; background: white; font-size: 15px !important;">
+                        PAHANG
+                        </p>
+                    </body>
+                </html>
+            ';
+
+            // $html = '
+            // <html>
+            //     <head>
+            //         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+            //         <style>
+            //          body { 
+            //             font-family: sans-serif; 
+            //             margin: 170; 
+            //             padding: 20; 
+            //         }
+            //         /* Ensures each page breaks properly when generating PDF */
+            //         .page-break { 
+            //             page-break-after: always; 
+            //         }
+            //         /* Container for each page image (relative positioning for overlays) */
+            //         .page-container {
+            //             position: relative;
+            //             width: 50%;
+            //         }
+            //         /* Common style for overlay fields */
+            //         .field {
+            //             position: absolute;
+            //             font-size: 12px;
+            //             color: #000;
+            //             font-weight: normal;
+            //         }
+            //         /* Example field positions (adjust these) */
+            //         .page1-name {
+            //             top: 120px; 
+            //             left: 200px;
+            //         }
+            //         </style>
+            //     </head>
+            //         <body>
+            //             <!-- PAGE 1 -->
+            //             <div class="page-container">
+            //             <img src="'.$jpgPath.'" alt="Tekun Borang" style="width:50%; height:100%;" />
+            //             <!-- Overlays for Page 1 -->
+            //             <p style="position: absolute; top: 50px;left: 50px; height: 17px;width: 600px;background: white; font-size: 12px !important;">
+            //                 '.$applnStatus->state_code.'
+            //             </p>
+            //             <div class="field page1-name">'.$applnStatus->state_code.'</div>
+            //             <div class="field page1-ic">123456-78-9012</div>
+            //             </div>
+
+            //             <div class="page-break"></div>
+
+            //             <!-- PAGE 2 -->
+            //             <div class="page-container">
+            //             <img src="'.$jpgPath2.'" alt="Tekun Borang" style="width:100%; height:auto;" />
+            //             <!-- Overlays for Page 2 -->
+            //             <div class="field page2-address">No. 123, Jalan Example, 12345 Bandar ABC</div>
+            //             <div class="field page2-phone">012-3456789</div>
+            //             </div>
+
+            //             <div class="page-break"></div>
+
+            //             <!-- PAGE 3 -->
+            //             <div class="page-container">
+            //             <img src="'.$jpgPath3.'" alt="Tekun Borang" style="width:100%; height:auto;" />
+            //             <!-- Overlays for Page 3 -->
+            //             <div class="field" style="top:120px; left:200px;">Page 3 Dummy Field 1</div>
+            //             <div class="field" style="top:150px; left:200px;">Page 3 Dummy Field 2</div>
+            //             </div>
+
+            //             <div class="page-break"></div>
+
+            //             <!-- PAGE 4 -->
+            //             <div class="page-container">
+            //             <img src="'.$jpgPath4.'" alt="Tekun Borang" style="width:100%; height:auto;" />
+            //             <!-- Overlays for Page 4 -->
+            //             <div class="field" style="top:120px; left:200px;">Page 4 Dummy Field 1</div>
+            //             <div class="field" style="top:150px; left:200px;">Page 4 Dummy Field 2</div>
+            //             </div>
+
+            //         </body>
+            // </html>
+            // ';
+
+            // e) Generate PDF using DomPDF
+            //$pdf = PDF::loadHTML($html);
+
+            // f) Save the PDF to storage
+            //$pdf->save($pdfFullPath);
+
+            // 3) Store the PDF path in application_pdf table
+            // application_pdf::create([
+            //     'appln_id'   => $applnStatus->id,
+            //     'paths'      => 'storage/AppPdf/'.$pdfName,
+            //     'created_at' => now(),
+            //     'created_by' => Auth::id(),
+            //     'updated_at' => now(),
+            //     'updated_by' => Auth::id(),
+            // ]);
+            
+            // Flash the PDF URL to the session so the view can access it.
+            session()->flash('pdf_url', asset('storage/'.$pdfName));
+            session()->flash('message', 'Permohonan telah dihantar.');
+
+            //call stored precedure to update appln no
+            $this->sp = "dbo.up_upd_appln_ref_no ,'$this->appln_id'";
+        } else {
+            session()->flash('error', 'Permohonan tidak wujud.');
+        }
+
+        return redirect()->route('dashboard');
     }
+    
 
-    return redirect()->route('dashboard');
-}
-
+    // public function viewPDF(){
+    //     $pdf = PDF::loadView('PDFView')->setPaper('A4','portrait');
+    // }
 
     public function render()
     {

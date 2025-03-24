@@ -69,35 +69,55 @@
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase text-center">
                                 Tarikh Permohonan
                             </th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase text-center">
+                                Tindakan
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @forelse($applnStatuses as $status)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                {{ $status->id }}
+                                {{ $status->appln_ref_no }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
                                 @if($status->appln_status == 'S' && $status->appln_status_fas == null)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                        SUDAH DI HANTAR
+                                        PERMOHONAN TELAH DI HANTAR
                                     </span>                                
                                 @elseif($status->appln_status == 'P' && $status->appln_status_fas == null)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                        DALAM PROSES
+                                        SILA SAMBUNG PERMOHONAN
                                     </span>  
-                                @elseif($status->appln_status == 'S' && $status->appln_status_fas == 10)
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                        LULUS
-                                    </span>                                                              
                                 @elseif($status->appln_status == 'S' && $status->appln_status_fas == 20)
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                        PERMOHONAN DILULUS
+                                    </span>                                                              
+                                @elseif($status->appln_status == 'S' && $status->appln_status_fas == 10)
                                     <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                        GAGAL
-                                    </span>                                                             
+                                        PERMOHONAN DITOLAK
+                                    </span>
+                                @else
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
+                                        PERMOHONAN DALAM PROSES
+                                    </span>                                                       
                                 @endif                                
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                                 {{ $status->appln_date_submit ? date('d/m/Y', strtotime($status->appln_date_submit)) : ' '}}
+                            </td>
+
+                            
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                @if($status->appln_status_fas == null)
+                                    <a href="{{ route('home', ['appln_id' => $status->id]) }}"
+                                        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium
+                                               rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2
+                                               focus:ring-blue-500 transition ease-in-out duration-150">
+                                         <span class="ml-1">Teruskan Permohonan</span>
+                                     </a>
+                                     
+                                @endif
                             </td>
                         </tr>
                         @empty
@@ -126,10 +146,11 @@
 
             <!-- Summary Cards with Buttons -->
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-
-                <a href="{{ !$disableButton ? route('home') : '#' }}" 
-                class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out 
-                        {{ $disableButton ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'hover:shadow-lg hover:bg-gray-50' }}">
+                <a href="{{ route('home',['appln_id' => $status->id]) }}"
+                    wire:click.prevent="{{ !$disableButton ? 'save' : '' }}"
+                    class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out
+                        {{ $disableButton ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'hover:shadow-lg hover:bg-gray-50' }}"
+                >
                     <div class="flex justify-between items-center">
                         <div>
                             <h3 class="text-lg font-medium text-gray-900">Mohon Pembiayaan</h3>

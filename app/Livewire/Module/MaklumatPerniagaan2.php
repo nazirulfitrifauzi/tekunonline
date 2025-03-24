@@ -15,6 +15,10 @@ class MaklumatPerniagaan2 extends Component
     use MaklumatPerniagaan2Validation, WireUiActions;
 
     // Add other properties as needed
+
+    public $appln_id;
+
+    protected $queryString = ['appln_id'];
     
     public $negeriSelection = [];
 
@@ -22,7 +26,7 @@ class MaklumatPerniagaan2 extends Component
     {
         $existingData = null; // Initialize to avoid undefined variable issues
 
-        $applnStatus = ApplnStatus::where('user_id', Auth::id())->first();
+        $applnStatus = ApplnStatus::where('id', $this->appln_id)->first();
         if ($applnStatus) {
             $existingData = MaklumatPerniagaan::where('appln_id', $applnStatus->id)->first();
         }        
@@ -38,10 +42,12 @@ class MaklumatPerniagaan2 extends Component
 
     public function submit()
     {
+        //dd($this->appln_id);
         $this->validate();
 
         // Dapatkan appln_id yang baru atau sedia ada
-        $applnId = Auth::user()->applnStatus->id;
+        $applnId = $this->appln_id;
+        
 
         // Dapatkan data sedia ada dalam MaklumatPinjaman
         $existingData = MaklumatPerniagaan::where('appln_id', $applnId)->first();
