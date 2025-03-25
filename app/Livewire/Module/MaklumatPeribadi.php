@@ -154,12 +154,6 @@ class MaklumatPeribadi extends Component
         //$applnId = $applnStatus->id;
         $applnId = ApplnStatus::where('user_id', Auth::id())->max('id');
 
-        ApplnStatus::updateOrCreate(
-            ['user_id' => Auth::id(),
-            'branch_code' => $this->tekun_branch,
-            'state_code' => $this->tekun_state,]
-            );
-
         // Dapatkan data sedia ada dalam MaklumatPinjaman
         $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnId)->first();
 
@@ -168,11 +162,15 @@ class MaklumatPeribadi extends Component
 
         // Gabungkan data lama dengan data baru, pastikan nilai baru tidak menimpa dengan `null`
         $updatedData = array_merge($existingDataArray, array_filter($this->getFormData($applnId), fn($value) => !is_null($value)));
-
         // Simpan data ke dalam MaklumatPinjaman
         ModelsMaklumatPeribadi::updateOrCreate(
             ['appln_id' => $applnId],
             $updatedData
+        );
+
+        ApplnStatus::where('id',$this->appln_id)->update(
+            ['branch_code' => $updatedData['tekun_branch'],
+            'state_code' => $updatedData['tekun_state']],
         );
 
         $this->dialog()->show([
