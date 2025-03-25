@@ -76,61 +76,80 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         @forelse($applnStatuses as $status)
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                {{ $status->appln_ref_no }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center">
-                                @if($status->appln_status == 'S' && $status->appln_status_fas == null)
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                        PERMOHONAN TELAH DI HANTAR
-                                    </span>                                
-                                @elseif($status->appln_status == 'P' && $status->appln_status_fas == null)
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
-                                        SILA SAMBUNG PERMOHONAN
-                                    </span>  
-                                @elseif($status->appln_status == 'S' && $status->appln_status_fas == 20)
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                        PERMOHONAN DILULUS
-                                    </span>                                                              
-                                @elseif($status->appln_status == 'S' && $status->appln_status_fas == 10)
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                        PERMOHONAN DITOLAK
-                                    </span>
-                                @else
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                        PERMOHONAN DALAM PROSES
-                                    </span>                                                       
-                                @endif                                
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                {{ $status->appln_date_submit ? date('d/m/Y', strtotime($status->appln_date_submit)) : ' '}}
-                            </td>
+                            <tr>
+                                <!-- Application Reference Number -->
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                    {{ $status->appln_ref_no ?? 'N/A' }}
+                                </td>
 
-                            
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                                @if($status->appln_status_fas == null)
-                                    <a href="{{ route('home', ['appln_id' => $status->id]) }}"
+                                <!-- Application Status -->
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    @if($status->appln_status == 'S' && is_null($status->appln_status_fas))
+                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
+                                            PERMOHONAN TELAH DI HANTAR
+                                        </span>                                
+                                    @elseif($status->appln_status == 'P' && is_null($status->appln_status_fas))
+                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
+                                            SILA SAMBUNG PERMOHONAN
+                                        </span>  
+                                    @elseif($status->appln_status == 'S' && $status->appln_status_fas == 20)
+                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                            PERMOHONAN DILULUS
+                                        </span>                                                              
+                                    @elseif($status->appln_status == 'S' && $status->appln_status_fas == 10)
+                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
+                                            PERMOHONAN DITOLAK
+                                        </span>
+                                    @else
+                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
+                                            PERMOHONAN DALAM PROSES
+                                        </span>                                                       
+                                    @endif                                
+                                </td>
+
+                                <!-- Date of Submission -->
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                    {{ $status->appln_date_submit ? date('d/m/Y', strtotime($status->appln_date_submit)) : 'N/A' }}
+                                </td>
+
+                                <!-- Action Button -->
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                                    @if($status->appln_status == 'P' && is_null($status->appln_status_fas) && !is_null($status->id))
+                                        <a href="{{ route('home', ['appln_id' => $status->id ?? null]) }}"
                                         class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium
-                                               rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                                               focus:ring-blue-500 transition ease-in-out duration-150">
-                                         <span class="ml-1">Teruskan Permohonan</span>
-                                     </a>
-                                     
-                                @endif
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="3" class="text-center text-gray-500 py-6">
-                                Tiada rekod permohonan.
-                            </td>
-                        </tr>
+                                                rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2
+                                                focus:ring-blue-500 transition ease-in-out duration-150">
+                                            <span class="ml-1">Teruskan Permohonan</span>
+                                        </a>
+                                    @else
+                                        <!-- Disabled button when conditions are not met -->
+                                        <a href="javascript:void(0)"
+                                        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium
+                                                rounded-md opacity-50 pointer-events-none focus:outline-none
+                                                transition ease-in-out duration-150">
+                                            <span class="ml-1">Selesai Mohon</span>
+                                        </a>
+                                    @endif
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <!-- Ensure the empty row spans all 4 columns -->
+                                <td colspan="4" class="text-center text-gray-500 py-6">
+                                    Tiada rekod permohonan.
+                                </td>
+                            </tr>
                         @endforelse
+
                     </tbody>
                 </table>
                 </div>
+                <!-- Pagination Links -->
+                <div class="mt-4 px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
+                    {{ $applnStatuses->links('pagination::tailwind') }}
+                </div>
             </div>
+           
 
             <div class="mb-8 overflow-hidden bg-white shadow sm:rounded-lg">
                 <div class="px-4 py-5 sm:px-6">
@@ -146,7 +165,7 @@
 
             <!-- Summary Cards with Buttons -->
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <a href="{{ route('home',['appln_id' => $status->id]) }}"
+                <a href="{{ route('home',['appln_id' => $status->id ?? null]) }}"
                     wire:click.prevent="{{ !$disableButton ? 'save' : '' }}"
                     class="block p-5 bg-white rounded-lg shadow transition duration-150 ease-in-out
                         {{ $disableButton ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'hover:shadow-lg hover:bg-gray-50' }}"

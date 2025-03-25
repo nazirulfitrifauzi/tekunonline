@@ -7,7 +7,7 @@
         </a>
 
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
-            Reset password
+            Tukar Kata Laluan
         </h2>
     </div>
 
@@ -18,7 +18,7 @@
 
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
-                        Email address
+                        E-mel
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -32,7 +32,7 @@
 
                 <div class="mt-6">
                     <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
-                        Password
+                        Kata Laluan
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">

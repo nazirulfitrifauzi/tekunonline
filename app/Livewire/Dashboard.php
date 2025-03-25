@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Traits\MaklumatPeribadiValidation;
 use Carbon\Carbon;
 use WireUi\Traits\WireUiActions;
+use Livewire\WithPagination;
 
 class Dashboard extends Component
 {
+    use WithPagination;
     use MaklumatPeribadiValidation, WireUiActions;
 
     public $disableButton = false;
@@ -23,8 +25,7 @@ class Dashboard extends Component
     public function mount()
     {
         //dd($this->tekun_branch,$this->tekun_state);
-        $this->user = Auth::user();
-        
+        $this->user = Auth::user();        
        
         // Semak jika terdapat permohonan dengan appln_status_fas = 1 atau NULL
         $this->disableButton = ApplnStatus::where('user_id', $this->user->id)
@@ -72,7 +73,10 @@ class Dashboard extends Component
     public function render()
     {
         $user = Auth::user();
-        $applnStatuses = ApplnStatus::where('user_id', $user->id)->get();
+        $applnStatuses = ApplnStatus::where('user_id', $user->id)->orderBy('appln_ref_no','desc')->paginate(5);
+        if ($applnStatuses == null) {
+            $applnStatuses = new ApplnStatus;
+        }
 
         return view('livewire.dashboard', [
             'user' => $user,

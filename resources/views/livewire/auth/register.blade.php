@@ -17,13 +17,13 @@
                 </a>
 
                 <h2 class="mt-6 text-3xl font-extrabold leading-9 text-center text-gray-900">
-                    Create a new account
+                    Buat akaun baharu
                 </h2>
 
                 <p class="mt-2 text-sm leading-5 text-center text-gray-600 max-w">
-                    Or
+                    Atau
                     <a href="{{ route('login') }}" class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:outline-none focus:underline">
-                        sign in to your account
+                        Log masuk ke akaun anda
                     </a>
                 </p>
             </div>
@@ -33,11 +33,11 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
-                                Full Name
+                                Nama Penuh
                             </label>
 
                             <div class="mt-1 rounded-md shadow-sm">
-                                <input wire:model.lazy="name" id="name" type="text" required autofocus class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                                <input wire:model.lazy="name" id="name" type="text" required autofocus onkeyup="this.value = this.value.toUpperCase();" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
                             </div>
 
                             @error('name')
@@ -47,7 +47,7 @@
 
                         <div>
                             <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
-                                Email
+                                Emel
                             </label>
 
                             <div class="mt-1 rounded-md shadow-sm">
@@ -61,7 +61,7 @@
 
                         <div>
                             <label for="phoneNo" class="block text-sm font-medium leading-5 text-gray-700">
-                                Mobile Number
+                                No. Telefon
                             </label>
                             <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -78,7 +78,7 @@
 
                         <div>
                             <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">
-                                IC Number (without -)
+                                No Kad Pengenalan (tanpa -)
                             </label>
 
                             <div class="mt-1 rounded-md shadow-sm">
@@ -92,7 +92,7 @@
 
                         <div x-data="{ showPassword: false }">
                             <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
-                                Password
+                                Kata Laluan
                             </label>
                             <div class="relative mt-1 rounded-md shadow-sm">
                                 <input wire:model.lazy="password" 
@@ -122,7 +122,7 @@
 
                         <div x-data="{ showConfirmPassword: false }">
                             <label for="passwordConfirmation" class="block text-sm font-medium leading-5 text-gray-700">
-                                Confirm Password
+                                Pastikan Kata Laluan
                             </label>
                             <div class="relative mt-1 rounded-md shadow-sm">
                                 <input wire:model.lazy="passwordConfirmation" 
@@ -151,7 +151,7 @@
                     <div class="mt-6">
                         <span class="block w-full rounded-md shadow-sm">
                             <button type="submit" class="flex justify-center px-4 py-2 w-full text-sm font-medium text-white bg-red-600 rounded-md border border-transparent transition duration-150 ease-in-out hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring-red active:bg-red-700">
-                                Register
+                                Daftar
                             </button>
                         </span>
                     </div>

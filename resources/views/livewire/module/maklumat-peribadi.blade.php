@@ -46,8 +46,7 @@
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="business_status" class="block text-sm font-medium leading-5 text-gray-700">Status Perniagaan
-                                    <span class="text-red-700">*</span></label>
+                                <label for="business_status" class="block text-sm font-medium leading-5 text-gray-700">Status Perniagaan <span class="text-red-700">*</span></label>
                                 <select id="business_status" name="business_status" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_status">
                                     <option value="">SILA PILIH</option>
                                     <option value="SEDANG BERNIAGA">SEDANG BERNIAGA</option>
@@ -61,8 +60,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="business_method" class="block text-sm font-medium leading-5 text-gray-700">Kaedah Perniagaan
-                                    <span class="text-red-700">*</span></label>
+                                <label for="business_method" class="block text-sm font-medium leading-5 text-gray-700">Kaedah Perniagaan <span class="text-red-700">*</span></label>
                                 <select id="business_method" name="business_method" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_method">
                                     <option value="">SILA PILIH</option>
                                     <option value="0">OFFLINE</option>
@@ -79,7 +77,7 @@
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="bank1" class="block text-sm font-medium leading-5 text-gray-700">Nama Bank Operasi Perniagaan 1<span class="text-red-700">*</span></label>
+                                <label for="bank1" class="block text-sm font-medium leading-5 text-gray-700">Nama Bank Operasi Perniagaan 1 <span class="text-red-700">*</span></label>
                                     <select id="bank1" name="bank1" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank1">
                                         <option value="">SILA PILIH</option>
                                         @foreach ($bank as $bankas)
@@ -94,7 +92,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank 1<span class="text-red-700">*</span></label>
+                                <label for="bank1_acct" class="block text-sm font-medium leading-5 text-gray-700">No Akaun Bank 1 <span class="text-red-700">*</span></label>
                                 <input id="bank1_acct" 
                                        name="bank1_acct" 
                                        type="text" 
@@ -113,8 +111,7 @@
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="bank1_acct_type" class="block text-sm font-medium leading-5 text-gray-700">Jenis Akaun 1
-                                    <span class="text-red-700">*</span></label>
+                                <label for="bank1_acct_type" class="block text-sm font-medium leading-5 text-gray-700">Jenis Akaun 1 <span class="text-red-700">*</span></label>
                                 <select id="bank1_acct_type" name="bank1_acct_type" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="bank1_acct_type">
                                     <option value="">SILA PILIH</option>
                                     <option value="SIMPANAN">SIMPANAN</option>
@@ -128,7 +125,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-4">
-                                <label for="bank1_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 1<span class="text-red-700">*</span></label>
+                                <label for="bank1_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 1 <span class="text-red-700">*</span></label>
                                 <input id="bank1_register_bank_no" 
                                        name="bank1_register_bank_no" 
                                        type="text" 
@@ -165,11 +162,6 @@
                                        wire:model.live="bank2_acct"
                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                        pattern="[0-9]*">
-                                @error('bank2_acct')
-                                <p class="text-red-500 text-xs italic mt-4">
-                                    {{ $message }}
-                                </p>
-                                @enderror
                             </div>
                         </div>
 
@@ -230,7 +222,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP Baru (tanpa -)<span class="text-red-700">*</span></label>
+                                <label for="ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. KP Baru (tanpa -) <span class="text-red-700">*</span></label>
                                 <input id="ic_no" 
                                        name="ic_no" 
                                        maxlength="12" 
@@ -249,7 +241,7 @@
                                 <label for="ic_old" @class([
                                     'block text-sm font-medium leading-5 text-gray-700',
                                     'hidden' => !$showIcOld
-                                ])>No. KP (Lama)<span class="text-red-700">*</span></label>
+                                ])>No. KP (Lama) <span class="text-red-700">*</span></label>
                                 <input id="ic_old" 
                                        name="ic_old" 
                                        wire:model.live="ic_old"
@@ -287,7 +279,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Umur<span class="text-red-700">*</span></label>
+                                <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Umur <span class="text-red-700">*</span></label>
                                 <input id="age" name="age" disabled value="" maxlength="3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="age">
                                 @error('age')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -450,7 +442,7 @@
 
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="marital" class="block text-sm font-medium leading-5 text-gray-700">Taraf Perkahwinan<span class="text-red-700">*</span></label>
+                                <label for="marital" class="block text-sm font-medium leading-5 text-gray-700">Taraf Perkahwinan <span class="text-red-700">*</span></label>
                                 <select id="marital" 
                                         name="marital" 
                                         wire:model.live="marital"
@@ -472,7 +464,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="dependent" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Tanggungan<span class="text-red-700">*</span></label>
+                                <label for="dependent" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Tanggungan <span class="text-red-700">*</span></label>
                                 <input id="dependent" name="dependent" type="number" min="0" value="2" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="dependent">
                                 @error('dependent')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -482,7 +474,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="oku" class="block text-sm font-medium leading-5 text-gray-700">Orang Kelainan Upaya<span class="text-red-700">*</span></label>
+                                <label for="oku" class="block text-sm font-medium leading-5 text-gray-700">Orang Kelainan Upaya <span class="text-red-700">*</span></label>
                                 <select id="oku" name="oku" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="oku">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
@@ -497,7 +489,7 @@
 
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="stop_worktime_flag" class="block text-sm font-medium leading-5 text-gray-700">DIBERHENTIKAN KERJA SEMASA PANDEMIK<span class="text-red-700">*</span></label>
+                                <label for="stop_worktime_flag" class="block text-sm font-medium leading-5 text-gray-700">DIBERHENTIKAN KERJA SEMASA PANDEMIK <span class="text-red-700">*</span></label>
                                 <select id="stop_worktime_flag" name="stop_worktime_flag" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="stop_worktime_flag">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
@@ -520,14 +512,14 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="education" class="block text-sm font-medium leading-5 text-gray-700">Taraf Pendidikan<span class="text-red-700">*</span></label>
+                                <label for="education" class="block text-sm font-medium leading-5 text-gray-700">Taraf Pendidikan <span class="text-red-700">*</span></label>
                                 <select id="education" name="education" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="education">
                                     <option value="">Sila Pilih Taraf Pendidikan</option>
+                                    <option value="4">PHD/IJAZAH SARJANA</option>
+                                    <option value="3">IJAZAH SARJANA MUDA</option>
+                                    <option value="2">DIPLOMA/STPM</option>
+                                    <option value="1">SPM/SIJIL/SETARAF</option>
                                     <option value="0">PMR/SETARAF</option>
-                                    <option value="1">SPM/SETARAF</option>
-                                    <option value="2">STPM/SETARAF/SIJIL</option>
-                                    <option value="3">DIPLOMA/STPM</option>
-                                    <option value="4">IJAZAH</option>
                                 </select>
                                 @error('education')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -559,7 +551,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
+                                <label for="city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
                                 <input id="city" name="city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="city">
                                 @error('city')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -569,7 +561,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="state" class="block text-sm font-medium leading-5 text-gray-700">Negeri<span class="text-red-700">*</span></label>
+                                <label for="state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
                                 <select id="state" name="state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="state">
                                     <option value="">SILA PILIH</option>
                                     <option value="JH">JOHOR</option>
@@ -595,14 +587,14 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="phone_home" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (Rumah)<span class="text-red-700">*</span></label>
+                                <label for="phone_home" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (Rumah)</label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
                                             +6
                                         </span>
                                     </div>
-                                    <input id="phone_home" name="phone_home" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  minlength="10" wire:model.live="phone_home">
+                                    <input id="phone_home" name="phone_home" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  minlength="10" maxlength="11" wire:model.live="phone_home">
                                 </div>
                                 @error('phone_home')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -612,7 +604,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP)<span class="text-red-700">*</span></label>
+                                <label for="phone_hp" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -631,8 +623,7 @@
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Emel
-                                    <span class="text-red-700">*</span></label>
+                                <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Emel <span class="text-red-700">*</span></label>
                                 <input id="email" name="email" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="email">
                                 @error('email')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -652,7 +643,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="status_home" class="block text-sm font-medium leading-5 text-gray-700">Status Kediaman<span class="text-red-700">*</span></label>
+                                <label for="status_home" class="block text-sm font-medium leading-5 text-gray-700">Status Kediaman <span class="text-red-700">*</span></label>
                                 <select id="status_home" name="status_home" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="status_home">
                                     <option value="">SILA PILIH STATUS KEDIAMAN</option>
                                     <option value="SENDIRI">SENDIRI</option>
@@ -667,7 +658,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="profession" class="block text-sm font-medium leading-5 text-gray-700">Pekerjaan Sekarang<span class="text-red-700">*</span></label>
+                                <label for="profession" class="block text-sm font-medium leading-5 text-gray-700">Pekerjaan Sekarang <span class="text-red-700">*</span></label>
                                 <select id="profession" name="profession" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="profession">
                                     <option value="">SILA PILIH</option>
                                     <option value="BERNIAGA">BERNIAGA</option>
@@ -683,7 +674,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan<span class="text-red-700">*</span></label>
+                                <label for="income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -700,7 +691,7 @@
                             </div>
 
                             <div class="col-span-6" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
-                                <label for="employer_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Majikan<span class="text-red-700">*</span></label>
+                                <label for="employer_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Majikan <span class="text-red-700">*</span></label>
                                 <input id="employer_name" 
                                        name="employer_name" 
                                        wire:model.live="employer_name" 
@@ -711,7 +702,7 @@
                             </div>
 
                             <div class="col-span-6" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
-                                <label for="employer_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan<span class="text-red-700">*</span></label>
+                                <label for="employer_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan <span class="text-red-700">*</span></label>
                                 <input id="employer_address1" 
                                        name="employer_address1" 
                                        wire:model.live="employer_address1" 
@@ -726,7 +717,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
-                                <label for="employer_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod<span class="text-red-700">*</span></label>
+                                <label for="employer_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                 <input id="employer_postcode" 
                                        name="employer_postcode" 
                                        maxlength="5" 
@@ -738,7 +729,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
-                                <label for="employer_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar<span class="text-red-700">*</span></label>
+                                <label for="employer_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
                                 <input id="employer_city" 
                                        name="employer_city" 
                                        wire:model.live="employer_city" 
@@ -800,7 +791,7 @@
                         <div class="grid grid-cols-6 gap-6 mt-1">
 
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="spouse_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Suami/Isteri<span class="text-red-700">*</span></label>
+                                <label for="spouse_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Suami/Isteri <span class="text-red-700">*</span></label>
                                 <input id="spouse_name" name="spouse_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="spouse_name">
                                 @error('spouse_name')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -810,7 +801,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="spouse_nationality" class="block text-sm font-medium leading-5 text-gray-700">Warganegara Malaysia</label>
+                                <label for="spouse_nationality" class="block text-sm font-medium leading-5 text-gray-700">Warganegara Malaysia <span class="text-red-700">*</span></label>
                                 <select id="spouse_nationality" name="spouse_nationality" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_nationality">
                                     <option value="">Sila Pilih</option>
                                     <option value="1">Ya</option>
@@ -824,7 +815,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2" id="spuose_ic_div" x-data x-show="$wire.spouse_nationality === '1'">
-                                <label for="spouse_ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
+                                <label for="spouse_ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan <span class="text-red-700">*</span></label>
                                 <input id="spouse_ic_no" 
                                        name="spouse_ic_no" 
                                        value="" 
@@ -852,7 +843,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="spouse_profession" class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang<span class="text-red-700">*</span></label>
+                                <label for="spouse_profession" class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang <span class="text-red-700">*</span></label>
                                 <input id="spouse_profession" name="spouse_profession" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_profession">
                                 @error('spouse_profession')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -862,14 +853,14 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="spouse_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP)<span class="text-red-700">*</span></label>
+                                <label for="spouse_phone" class="block text-sm font-medium leading-5 text-gray-700">No Telefon (HP) <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
                                             +6
                                         </span>
                                     </div>
-                                    <input id="spouse_phone" name="spouse_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_phone">
+                                    <input id="spouse_phone" name="spouse_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" minlength="10" maxlength="11"  wire:model.live="spouse_phone">
                                     @error('spouse_phone')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -880,7 +871,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="spouse_income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan<span class="text-red-700">*</span></label>
+                                <label for="spouse_income" class="block text-sm font-medium leading-5 text-gray-700">Pendapatan <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -964,14 +955,14 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="spouse_employer_no" class="block text-sm font-medium leading-5 text-gray-700">No Telefon Majikan<span class="text-red-700">*</span></label>
+                                <label for="spouse_employer_no" class="block text-sm font-medium leading-5 text-gray-700">No Telefon Majikan</label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
                                             +6
                                         </span>
                                     </div>
-                                    <input id="spouse_employer_no" name="spouse_employer_no" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_employer_no">
+                                    <input id="spouse_employer_no" name="spouse_employer_no" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" minlength="10" maxlength="11"  wire:model.live="spouse_employer_no">
                                 </div>
                             </div>
 

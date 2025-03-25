@@ -9,14 +9,14 @@
                 </a>
 
                 <h2 class="mt-6 text-3xl font-extrabold leading-9 text-center text-gray-900">
-                    Sign in to your account
+                    Log masuk ke akaun anda
                 </h2>
 
                 @if (Route::has('register'))
                     <p class="mt-2 text-sm leading-5 text-center text-gray-600 max-w">
-                        Or
+                        Atau
                         <a href="{{ route('register') }}" class="font-medium text-indigo-600 transition duration-150 ease-in-out hover:text-indigo-500 focus:outline-none focus:underline">
-                            create a new account
+                            Buat akaun baharu
                         </a>
                     </p>
                 @endif
@@ -26,7 +26,7 @@
                 <form wire:submit.prevent="authenticate">
                     <div>
                         <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
-                            Email
+                            Emel
                         </label>
 
                         <div class="mt-1 rounded-md shadow-sm">
@@ -40,7 +40,7 @@
 
                     <div class="mt-6">
                         <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
-                            Password
+                            Kata Laluan
                         </label>
 
                         <div class="mt-1 rounded-md shadow-sm">
@@ -55,7 +55,7 @@
                     <div class="flex items-center justify-between mt-6">
                         <div class="text-sm leading-5">
                             <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                                Forgot your password?
+                                Lupa kata laluan anda?
                             </a>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                     <div class="mt-6">
                         <span class="block w-full rounded-md shadow-sm">
                             <button type="submit" class="flex justify-center px-4 py-2 w-full text-sm font-medium text-white bg-red-600 rounded-md border border-transparent transition duration-150 ease-in-out hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring-red active:bg-red-700">
-                                Sign in
+                                Log masuk
                             </button>
                         </span>
                     </div>

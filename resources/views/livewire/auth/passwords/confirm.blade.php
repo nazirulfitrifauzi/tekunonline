@@ -7,10 +7,10 @@
         </a>
 
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
-            Confirm your password
+            Sahkan kata laluan anda
         </h2>
         <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
-            Please confirm your password before continuing
+            Sila sahkan kata laluan anda sebelum meneruskan
         </p>
     </div>
 
@@ -19,7 +19,7 @@
             <form wire:submit.prevent="confirm">
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
-                        Password
+                        Kata Laluan
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -34,7 +34,7 @@
                 <div class="flex items-center justify-end mt-6">
                     <div class="text-sm leading-5">
                         <a href="{{ route('password.request') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                            Forgot your password?
+                            Lupa Kata Laluan?
                         </a>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="mt-6">
                     <span class="block w-full rounded-md shadow-sm">
                         <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                            Confirm password
+                            Sahkan kata laluan 
                         </button>
                     </span>
                 </div>

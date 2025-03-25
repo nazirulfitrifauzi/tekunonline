@@ -22,11 +22,14 @@ class MaklumatPeribadi extends Component
     public $bank = [];
     public $showIcOld = false;
     public $appln_id;
+    public $ic_no;
 
     protected $queryString = ['appln_id'];
 
     public function mount()
     {
+        $this->ic_no = Auth::user()->ic_no;
+
         $existingData = null;
 
         $applnStatus = ApplnStatus::where('id', $this->appln_id)->first();
@@ -150,6 +153,12 @@ class MaklumatPeribadi extends Component
         
         //$applnId = $applnStatus->id;
         $applnId = ApplnStatus::where('user_id', Auth::id())->max('id');
+
+        ApplnStatus::updateOrCreate(
+            ['user_id' => Auth::id(),
+            'branch_code' => $this->tekun_branch,
+            'state_code' => $this->tekun_state,]
+            );
 
         // Dapatkan data sedia ada dalam MaklumatPinjaman
         $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnId)->first();

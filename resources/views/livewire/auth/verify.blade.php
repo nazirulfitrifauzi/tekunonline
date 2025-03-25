@@ -7,7 +7,7 @@
         </a>
 
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
-            Verify your email address
+            Sahkan alamat e-mel anda
         </h2>
 
         <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
@@ -30,21 +30,21 @@
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                     </svg>
 
-                    <p>A fresh verification link has been sent to your email address.</p>
+                    <p>Pautan pengesahan baharu telah dihantar ke alamat e-mel anda.</p>
                 </div>
             @endif
 
             <div class="text-sm text-gray-700">
-                <p>Before proceeding, please check your email for a verification link.</p>
+                <p>Sebelum meneruskan, sila semak e-mel anda untuk pautan pengesahan.</p>
 
                 <p class="mt-3">
-                    If you did not receive the email, <a wire:click="resend" class="text-indigo-700 cursor-pointer hover:text-indigo-600 focus:outline-none focus:underline transition ease-in-out duration-150">click here to request another</a>.
+                    Jika anda tidak menerima e-mel tersebut, <a wire:click="resend" class="text-indigo-700 cursor-pointer hover:text-indigo-600 focus:outline-none focus:underline transition ease-in-out duration-150">klik di sini untuk meminta yang baharu</a>.
                 </p>
             </div>
 
             <div class="mt-6">
                 <button wire:click="resend" type="button" class="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                    Resend Verification Email
+                    Hantar Semula E-mel Pengesahan
                 </button>
             </div>
         </div>

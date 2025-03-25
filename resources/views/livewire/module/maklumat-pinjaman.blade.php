@@ -59,9 +59,9 @@
                                 <label for="pymt_frequency" class="block text-sm font-medium leading-5 text-gray-700">Kekerapan Bayaran<span class="text-red-700">*</span></label>
                                 <select id="pymt_frequency" name="pymt_frequency" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="pymt_frequency">
                                     <option value="">SILA PILIH</option>
-                                    <option value="MINGGUAN">MINGGUAN</option>
+                                    <!-- <option value="MINGGUAN">MINGGUAN</option> -->
                                     <option value="BULANAN">BULANAN</option>
-                                    <option value="MENGIKUT TEMPOH KONTRAK KERJA/INDEN">MENGIKUT TEMPOH KONTRAK KERJA/INDEN</option>
+                                    <!-- <option value="MENGIKUT TEMPOH KONTRAK KERJA/INDEN">MENGIKUT TEMPOH KONTRAK KERJA/INDEN</option> -->
                                 </select>
                             </div>
 
@@ -73,7 +73,7 @@
                                     <option value="PEJABAT TEKUN">PEJABAT TEKUN</option>
                                     <option value="BSN/BANK RAKYAT/POS MALAYSIA">BSN/BANK RAKYAT/POS MALAYSIA</option>
                                     <option value="CEK TARIKH TERTUNDA">CEK TARIKH TERTUNDA</option>
-                                    <option value="PSAT">PSAT</option>
+                                    <!-- <option value="PSAT">PSAT</option> -->
                                 </select>
                             </div>                        
                     </div>
@@ -139,7 +139,16 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="reference_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 1 Dengan Pemohon<span class="text-red-700">*</span></label>
-                                <input id="reference_relation" name="reference_relation" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_relation">
+                                <select id="reference_relation" name="reference_relation" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_relation">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="1">PASANGAN</option>
+                                    <option value="2">IBU</option>
+                                    <option value="3">BAPA</option>
+                                    <option value="4">ANAK</option>
+                                    <option value="5">ADIK-BERADIK</option>
+                                    <option value="6">SEPUPU</option>
+                                    <option value="7">LAIN-LAIN</option>
+                                </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -175,7 +184,16 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="reference2_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 2 Dengan Pemohon<span class="text-red-700">*</span></label>
-                                <input id="reference2_relation" name="reference2_relation" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_relation">
+                                <select id="reference2_relation" name="reference2_relation" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_relation">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="1">PASANGAN</option>
+                                    <option value="2">IBU</option>
+                                    <option value="3">BAPA</option>
+                                    <option value="4">ANAK</option>
+                                    <option value="5">ADIK-BERADIK</option>
+                                    <option value="6">SEPUPU</option>
+                                    <option value="7">LAIN-LAIN</option>
+                                </select>
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">

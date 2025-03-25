@@ -7,7 +7,7 @@
         </a>
 
         <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
-            Reset password
+            Tukar Kata Laluan
         </h2>
     </div>
 
@@ -34,7 +34,7 @@
             <form wire:submit.prevent="sendResetPasswordLink">
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
-                        Email address
+                        E-mel
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
@@ -49,7 +49,7 @@
                 <div class="mt-6">
                     <span class="block w-full rounded-md shadow-sm">
                         <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                            Send password reset link
+                            Hantar pautan tetapan semula kata laluan
                         </button>
                     </span>
                 </div>

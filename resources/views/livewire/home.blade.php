@@ -112,7 +112,7 @@
                             :class="{ 'bg-fuchsia-500 text-white': tabButtonActive(7) }"
                             class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
                         >
-                            Maklumat Pinjaman
+                            Maklumat Pembiayaan
                         </button>
 
                         <button

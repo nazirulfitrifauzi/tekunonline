@@ -151,7 +151,8 @@ class MuatNaikDokumen extends Component
 
         // Get user's IC number for folder name
         $user       = Auth::user();
-        $folderName = $user->ic_no;
+        $folderName = $user->ic_no . '/' . $this->appln_id; // Tambah folder appln_id
+        
 
         // Map each file input property to a filename prefix
         $filesMap = [
