@@ -147,6 +147,7 @@ class MuatNaikDokumen extends Component
             'document_ssm'               => 'required|mimes:pdf|max:10240',
             'document_business_picture'  => 'required|mimes:pdf|max:10240',
             'document_bank_statements'   => 'required|mimes:pdf|max:10240',
+            'document_perkeso'           =>'required|mimes:pdf|max:10240',
         ]);
 
         // Get user's IC number for folder name
@@ -161,6 +162,7 @@ class MuatNaikDokumen extends Component
             'document_ssm'               => 'ssm_',
             'document_business_picture'  => 'business_',
             'document_bank_statements'   => 'bank_',
+            'document_perkeso'           => 'perkeso_',
         ];
 
         // This will hold the final filenames (for DB) and help build the .txt link file

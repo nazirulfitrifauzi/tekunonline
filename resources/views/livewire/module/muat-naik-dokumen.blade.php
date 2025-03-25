@@ -108,6 +108,21 @@
                                     </div>
                                 @endif
                             </div>
+                            <div class="col-span-6">
+                                <label for="document_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Salinan Nota Perlindungan Perkeso <span class="text-red-700">*</span></label>
+                                <input type="file" wire:model="document_perkeso" accept="application/pdf">
+                                <p class="mt-1 text-xs text-gray-500">Saiz fail tidak melebihi 10MB.</p>
+                                    @error('document_perkeso') <span class="error">{{ $message }}</span> @enderror
+                                @if($existingData && $existingData->document_perkeso)
+                                    <div class="mt-2">
+                                        <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_perkeso) }}" 
+                                           target="_blank" 
+                                           class="text-blue-600 hover:text-blue-800">
+                                            Lihat Nota Perlindungan Perkeso
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

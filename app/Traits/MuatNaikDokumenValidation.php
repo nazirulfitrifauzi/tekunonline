@@ -9,6 +9,7 @@ trait MuatNaikDokumenValidation
     public $document_ssm;
     public $document_business_picture;
     public $document_bank_statements;
+    public $document_perkeso;
 
     protected $rules = [
         'document_ic_no' => 'required|file|mimes:pdf|max:10240',
@@ -16,6 +17,7 @@ trait MuatNaikDokumenValidation
         'document_ssm' => 'required|file|mimes:pdf|max:10240',
         'document_business_picture' => 'required|file|mimes:pdf|max:10240',
         'document_bank_statements' => 'required|file|mimes:pdf|max:10240',   
+        'document_perkeso' =>'required|file|mimes:pdf|max:10240'
     ];
 
     protected $messages = [
@@ -29,5 +31,7 @@ trait MuatNaikDokumenValidation
         'document_business_picture.mimes' => 'Sila muat naik fail dalam format PDF sahaja',
         'document_bank_statements.required' => 'Sila muat naik Penyata Bank',
         'document_bank_statements.mimes' => 'Sila muat naik fail dalam format PDF sahaja',
+        'document_perkeso.required' => 'Sila muat naik salinan Perkeso',
+        'document_perkeso.mimes' => 'Sila muat naik fail dalam format PDF sahaja'
     ];
 }
