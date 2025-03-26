@@ -110,6 +110,73 @@
                             </div>
                             @endif
 
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="business_ownership" class="block text-sm font-medium leading-5 text-gray-700">Pemilikan Perniagaan<span class="text-red-700">*</span></label>
+                                <select id="business_ownership" name="business_ownership" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_ownership">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="2">INDIVIDU</option>
+                                    <option value="3">PEMILIKAN TUNGGAL</option>
+                                    <option value="4">PERKONGSIAN</option>
+                                    <option value="5">SENDIRIAN BERHAD</option>
+                                </select>
+                                @error('business_ownership')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="shareholder" class="block text-sm font-medium leading-5 text-gray-700">
+                                    Adakah Pemohon Pemegang Saham (Share Holder)
+                                    @if($business_ownership === '5')
+                                        <span class="text-red-700">*</span>
+                                    @endif
+                                </label>
+                                <select 
+                                    id="shareholder" 
+                                    name="shareholder" 
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}"  
+                                    wire:model.live="shareholder"
+                                    @if($business_ownership != '5') disabled @endif
+                                >
+                                    <option value="">SILA PILIH</option>
+                                    <option value="1">YA</option>
+                                    <option value="0">TIDAK</option>
+                                </select>
+                                @error('shareholder')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="business_modal" class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar (Sendirian Berhad)<span class="text-red-700">*</span></label>
+                                <div class="relative mt-1 rounded-md shadow-sm">
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                            RM
+                                        </span>
+                                    </div>
+                                    <input 
+                                        id="business_modal" 
+                                        name="business_modal" 
+                                        type="text"
+                                        wire:model.defer="business_modal"
+                                        x-data
+                                        x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : '' }}"
+                                        @if($business_ownership != '5') disabled @endif
+                                    >
+                                </div>
+                                @error('business_modal')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
                             <div class="col-span-6 sm:col-span-6">
                                     <label for="business_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perniagaan / Syarikat<span class="text-red-700">*</span></label>
                                     <input id="business_name" name="business_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model="business_name">
@@ -120,6 +187,7 @@
                                     @enderror
                             </div>
 
+                        @if($business_syariah == '1')
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="business_sector" class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan<span class="text-red-700">*</span></label>
                                 <select id="business_sector" name="business_sector" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_sector">
@@ -167,6 +235,48 @@
                                     </p>
                                 @enderror
                             </div>
+                        @endif
+
+                        @if($business_syariah == '0')
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="business_sector" class="block text-sm font-medium leading-5 text-gray-700">Sektor Perniagaan<span class="text-red-700">*</span></label>
+                                <select id="business_sector" name="business_sector" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_sector">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="26">PERTANIAN DAN PERUSAHAAN ASAS TANI</option>
+                                    <option value="9">PERUNCITAN</option>
+                                    <option value="3">PERHIDMATAN</option>
+                                </select>
+                                @error('business_sector')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="business_activity" class="block text-sm font-medium leading-5 text-gray-700">Aktiviti Perniagaan<span class="text-red-700">*</span></label>
+                                <select id="business_activity" name="business_activity" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_activity">
+                                    <option value="">SILA PILIH</option>
+                                    @if($business_sector == '26')
+                                        <option value="100511">PERNIAGAAN YANG MELIBATKAN KHINZIR</option>
+                                    @elseif($business_sector == '9')
+                                        <option value="100512">KEAGAMAAN / PERAYAAN SELAIN DARI ISLAM</option>
+                                        <option value="100513">PERNIAGAAN YANG MELIBATKAN KHINZIR</option>                                       
+                                    @elseif($business_sector == '3')
+                                        <option value="100514">PERNIAGAAN YANG MELIBATKAN KHINZIR</option>                                       
+                                        <option value="100515">PERNIAGAAN YANG MELIBATKAN ANJING</option>
+                                        <option value="100516">SALUN UNISEX / SPA UNISEX / KEDAI GUNTING RAMBUT UNISEX</option>
+                                        <option value="100517">PROSEDUR / RAWATAN KOSMETIK</option>
+                                        <option value="100518">KEAGAMAAN / PERAYAAN SELAIN DARI ISLAM</option>
+                                    @endif
+                                </select>
+                                @error('business_activity')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+                            @endif
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="business_duration" class="block text-sm font-medium leading-5 text-gray-700">Tempoh / Pengalaman Berniaga(Bulan)<span class="text-red-700">*</span></label>
@@ -259,6 +369,7 @@
                                         class="block px-3 py-2 pl-8 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
                                         oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                         minlength="10"
+                                        maxlength="10"
                                     >
                                 </div>    
                                 @error('business_phone')
@@ -327,73 +438,6 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="business_ownership" class="block text-sm font-medium leading-5 text-gray-700">Pemilikan Perniagaan<span class="text-red-700">*</span></label>
-                                <select id="business_ownership" name="business_ownership" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_ownership">
-                                    <option value="">SILA PILIH</option>
-                                    <option value="2">INDIVIDU</option>
-                                    <option value="3">PEMILIKAN TUNGGAL</option>
-                                    <option value="4">PERKONGSIAN</option>
-                                    <option value="5">SENDIRIAN BERHAD</option>
-                                </select>
-                                @error('business_ownership')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
-                                @enderror
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="shareholder" class="block text-sm font-medium leading-5 text-gray-700">
-                                    Adakah Pemohon Pemegang Saham (Share Holder)
-                                    @if($business_ownership === '5')
-                                        <span class="text-red-700">*</span>
-                                    @endif
-                                </label>
-                                <select 
-                                    id="shareholder" 
-                                    name="shareholder" 
-                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}"  
-                                    wire:model.live="shareholder"
-                                    @if($business_ownership != '5') disabled @endif
-                                >
-                                    <option value="">SILA PILIH</option>
-                                    <option value="1">YA</option>
-                                    <option value="0">TIDAK</option>
-                                </select>
-                                @error('shareholder')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
-                                @enderror
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="business_modal" class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar (Sendirian Berhad)<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            RM
-                                        </span>
-                                    </div>
-                                    <input 
-                                        id="business_modal" 
-                                        name="business_modal" 
-                                        type="text"
-                                        wire:model.defer="business_modal"
-                                        x-data
-                                        x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
-                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : '' }}"
-                                        @if($business_ownership != '5') disabled @endif
-                                    >
-                                </div>
-                                @error('business_modal')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
-                                @enderror
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
                                 <label for="premise_loc_code" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Premis<span class="text-red-700">*</span></label>
                                 <select id="premise_loc_code" name="premise_loc_code" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="premise_loc_code">
                                     <option value="">SILA PILIH</option>
@@ -448,10 +492,10 @@
                                 <label for="total_employees" class="block text-sm font-medium leading-5 text-gray-700">Bil Pekerja<span class="text-red-700">*</span></label>
                                 <select id="total_employees" name="total_employees" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="total_employees">
                                     <option value="">SILA PILIH</option>
-                                    <option value="1 - 3 ORANG">1 - 3 ORANG</option>
-                                    <option value="4 - 6 ORANG">4 - 6 ORANG</option>
-                                    <option value="7 - 10 ORANG">7 - 10 ORANG</option>
-                                    <option value="> 10 ORANG">> 10 ORANG</option>
+                                    <option value="<= 2 ORANG"><= 2 ORANG</option>
+                                    <option value="3 - 5 ORANG">3 - 5 ORANG</option>
+                                    <option value="6 - 7 ORANG">6 - 7 ORANG</option>
+                                    <option value="> 7 ORANG">> 7 ORANG</option>
                                 </select>
                                 @error('total_employees')
                                     <p class="text-red-500 text-xs italic mt-4">

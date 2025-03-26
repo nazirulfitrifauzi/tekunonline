@@ -308,7 +308,9 @@
                                     <option value="">SILA PILIH BANGSA</option>
                                     <option value="MELAYU">MELAYU</option>
                                     <option value="INDIA">INDIA</option>
+                                    @if($religion == 'ISLAM')
                                     <option value="CINA">CINA</option>
+                                    @endif
                                     <option value="SIAM">SIAM</option>
                                     <option value="ORANG ASLI (SEMENANJUNG)">ORANG ASLI (SEMENANJUNG)</option>
                                     <option value="BUMIPUTERA SABAH">BUMIPUTERA SABAH</option>

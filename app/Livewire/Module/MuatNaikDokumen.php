@@ -6,11 +6,13 @@ use App\Models\ApplnStatus;
 use App\Models\MaklumatPinjaman;
 use App\Models\application_pdf;
 use App\Traits\MuatNaikDokumenValidation;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
-use PDF;
+use Webklex\PDFMerger\Facades\PDFMergerFacade;
 
 class MuatNaikDokumen extends Component
 {
@@ -21,7 +23,7 @@ class MuatNaikDokumen extends Component
     public $existingData;
     public $appln_id;
     public $show_hantar = false;
-    public $sp;
+    //public $sp;
 
     protected $queryString = ['appln_id'];
 
@@ -45,183 +47,87 @@ class MuatNaikDokumen extends Component
         }
     }
 
-    // public function submit()
-    // {
-    //     $this->validate();
-
-    //     // Get user's IC number for folder name
-    //     $user = Auth::user();
-    //     $folderName = $user->ic_no;
-    //     //$appln_id = $user->applnStatus->id;
-
-    //     // Get file extensions
-    //     $ic_extension = $this->document_ic_no->getClientOriginalExtension();
-    //     $icP_extension = $this->document_icP_no->getClientOriginalExtension();
-    //     $ssm_extension = $this->document_ssm->getClientOriginalExtension();
-    //     $business_extension = $this->document_business_picture->getClientOriginalExtension();
-    //     $bank_extension = $this->document_bank_statements->getClientOriginalExtension();
-
-    //     // Create filenames without folder path
-    //     $fileNames = [
-    //         'document_ic_no' => 'ic_' . now()->format('Y-m-d') . '.' . $ic_extension,
-    //         'document_icP_no' => 'icP_' . now()->format('Y-m-d') . '.' . $icP_extension,
-    //         'document_ssm' => 'ssm_' . now()->format('Y-m-d') . '.' . $ssm_extension,
-    //         'document_business_picture' => 'business_' . now()->format('Y-m-d') . '.' . $business_extension,
-    //         'document_bank_statements' => 'bank_' . now()->format('Y-m-d') . '.' . $bank_extension
-    //     ];
-
-    //     // Create full paths for storage
-    //     // $documentPaths = array_map(function($fileName) use ($folderName, $appln_id) {
-    //     //     return $folderName . '/' . $appln_id . '/' . $fileName;
-    //     // }, $fileNames);
-
-    //     // Create full paths for storage
-    //     $documentPaths = array_map(function($fileName) use ($folderName) {
-    //         return $folderName .'/' . $fileName;
-    //     }, $fileNames);
-        
-
-    //     // Store files with the new names
-    //     $this->document_ic_no->storeAs('', $documentPaths['document_ic_no'], 'public');
-    //     $this->document_icP_no->storeAs('', $documentPaths['document_icP_no'], 'public');
-    //     $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
-    //     $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
-    //     $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
-
-    //     // Create a text file with links to all documents as a simple alternative
-    //     // until the PDF merging functionality is implemented
-    //     $mergedFileName = 'document_links_' . now()->format('Y-m-d') . '.txt';
-    //     // $mergedFilePath = $folderName . '/' . $appln_id . '/' . $mergedFileName;
-    //     $mergedFilePath = $folderName . '/' . $mergedFileName;
-        
-    //     $documentLinks = "Document Links:\n\n";
-    //     foreach ($documentPaths as $docKey => $docPath) {
-    //         $documentLinks .= ucfirst(str_replace('document_', '', $docKey)) . ': ' . asset('storage/' . $docPath) . "\n";
-    //     }
-        
-    //     Storage::disk('public')->put($mergedFilePath, $documentLinks);
-        
-    //     // Add the merged document to the fileNames array
-    //     $fileNames['document_merge'] = $mergedFileName;
-
-    //     // Dapatkan appln_id yang baru atau sedia ada
-    //     $applnId = Auth::user()->applnStatus->id;
-
-    //     // Dapatkan data sedia ada dalam MaklumatPinjaman
-    //     $existingData = MaklumatPinjaman::where('appln_id', $applnId)->first();
-
-    //     // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
-    //     $existingDataArray = $existingData ? $existingData->toArray() : [];
-
-    //     // Gabungkan data lama dengan data baru
-    //     $updatedData = array_merge(
-    //         $existingDataArray,
-    //         $fileNames,  // Using fileNames instead of documentPaths to store only filenames
-    //         ['appln_id' => $applnId]
-    //     );
-
-    //     // Simpan data ke dalam database
-    //     MaklumatPinjaman::updateOrCreate(
-    //         ['appln_id' => $applnId],
-    //         $updatedData
-    //     );
-
-    //     // $this->dialog()->show([
-    //     //     'icon' => 'success',
-    //     //     'title' => 'Berjaya!',
-    //     //     'description' => 'Maklumat berjaya disimpan.',
-    //     // ]);
-
-    //     // $this->dispatch('saved');
-        
-    //     return redirect()->route('home');
-    // }
-
     public function submit()
     {
-        //dd($this->appln_id);
-        // Example validation rules (adjust as needed):
-        $this->validate([
-            'document_ic_no'             => 'required|mimes:pdf|max:10240',
-            'document_icP_no'            => 'required|mimes:pdf|max:10240',
-            'document_ssm'               => 'required|mimes:pdf|max:10240',
-            'document_business_picture'  => 'required|mimes:pdf|max:10240',
-            'document_bank_statements'   => 'required|mimes:pdf|max:10240',
-            'document_perkeso'           =>'required|mimes:pdf|max:10240',
-        ]);
+        $this->validate();
 
         // Get user's IC number for folder name
-        $user       = Auth::user();
-        $folderName = $user->ic_no . '/' . $this->appln_id; // Tambah folder appln_id
-        
+        $user = Auth::user();
+        $folderName = $user->ic_no;
+        //$appln_id = $user->applnStatus->id;
 
-        // Map each file input property to a filename prefix
-        $filesMap = [
-            'document_ic_no'             => 'ic_',
-            'document_icP_no'            => 'icP_',
-            'document_ssm'               => 'ssm_',
-            'document_business_picture'  => 'business_',
-            'document_bank_statements'   => 'bank_',
-            'document_perkeso'           => 'perkeso_',
+        // Get file extensions
+        $ic_extension = $this->document_ic_no->getClientOriginalExtension();
+        $icP_extension = $this->document_icP_no->getClientOriginalExtension();
+        $ssm_extension = $this->document_ssm->getClientOriginalExtension();
+        $business_extension = $this->document_business_picture->getClientOriginalExtension();
+        $bank_extension = $this->document_bank_statements->getClientOriginalExtension();
+        $perkeso_extension = $this->document_perkeso->getClientOriginalExtension();
+
+        // Create filenames without folder path
+        $fileNames = [
+            'document_ic_no' => 'ic_' . now()->format('Y-m-d') . '.' . $ic_extension,
+            'document_icP_no' => 'icP_' . now()->format('Y-m-d') . '.' . $icP_extension,
+            'document_ssm' => 'ssm_' . now()->format('Y-m-d') . '.' . $ssm_extension,
+            'document_business_picture' => 'business_' . now()->format('Y-m-d') . '.' . $business_extension,
+            'document_bank_statements' => 'bank_' . now()->format('Y-m-d') . '.' . $bank_extension,
+            'document_perkeso' => 'perkeso_'. now()->format('Y-m-d'). '.'. $perkeso_extension,
         ];
 
-        // This will hold the final filenames (for DB) and help build the .txt link file
-        $fileNames = [];
+        // Create full paths for storage
+        $documentPaths = array_map(function($fileName) use ($folderName) {
+            //return $folderName . '/' . $appln_id . '/' . $fileName;
+            return $folderName . '/' . $fileName;
+        }, $fileNames);
+
+        // Store files with the new names
+        $this->document_ic_no->storeAs('', $documentPaths['document_ic_no'], 'public');
+        $this->document_icP_no->storeAs('', $documentPaths['document_icP_no'], 'public');
+        $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
+        $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
+        $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
+        $this->document_perkeso->storeAs('', $documentPaths['document_perkeso'], 'public');
+
+        // Create a text file with links to all documents as a simple alternative
+        // until the PDF merging functionality is implemented
+        $mergedFileName = 'document_links_' . now()->format('Y-m-d') . '.txt';
+        //$mergedFilePath = $folderName . '/' . $appln_id . '/' . $mergedFileName;
+        $mergedFilePath = $folderName. '/'. $mergedFileName;      
+
         $documentLinks = "Document Links:\n\n";
-
-        // Loop over each file input, store it, and record the new filename
-        foreach ($filesMap as $property => $prefix) {
-            if (!$this->$property) {
-                // Skip if file not provided (you can decide whether skipping is valid or not)
-                continue;
-            }
-
-            // Get extension and build a new filename
-            $extension   = $this->$property->getClientOriginalExtension();
-            $newFilename = $prefix . now()->format('Y-m-d') . '.' . $extension;
-
-            // Store the file in storage/app/public/<IC_NUMBER>
-            // storeAs(<directory>, <filename>, <disk>)
-            $path = $this->$property->storeAs($folderName, $newFilename, 'public');
-
-            // Save just the filename in our array (for the DB)
-            $fileNames[$property] = $newFilename;
-
-            // Build a link line for the .txt file
-            // e.g. "Ic no: https://yoursite.com/storage/123456-12-5678/ic_2025-03-20.pdf"
-            $documentLinks .= ucfirst(str_replace('document_', '', $property)) 
-                            . ': ' 
-                            . asset('storage/' . $path) 
-                            . "\n";
+        foreach ($documentPaths as $docKey => $docPath) {
+            $documentLinks .= ucfirst(str_replace('document_', '', $docKey)) . ': ' . asset('storage/' . $docPath) . "\n";
         }
-
-        // Create a text file with all the links
-        $mergedFileName = 'document_links_' . now()->format('Y-m-d') . '.pdf';
-        $mergedFilePath = $folderName . '/' . $mergedFileName;
+        
         Storage::disk('public')->put($mergedFilePath, $documentLinks);
-
-        // Also store that text filename in $fileNames if you like
+        
+        // Add the merged document to the fileNames array
         $fileNames['document_merge'] = $mergedFileName;
 
-        // Find or create the MaklumatPinjaman record
-        $applnId      = $this->appln_id;
-        
-        $existingData = MaklumatPinjaman::where('appln_id', $applnId)->first();
-        $existingDataArr = $existingData ? $existingData->toArray() : [];
+        // Dapatkan appln_id yang baru atau sedia ada
+        $applnId = Auth::user()->applnStatus->id;
 
-        // Merge new file data with existing data (so we don't overwrite other columns)
+        // Dapatkan data sedia ada dalam MaklumatPinjaman
+        $existingData = MaklumatPinjaman::where('appln_id', $applnId)->first();
+
+        // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
+        $existingDataArray = $existingData ? $existingData->toArray() : [];
+
+        // Gabungkan data lama dengan data baru
         $updatedData = array_merge(
-            $existingDataArr,
-            $fileNames,
+            $existingDataArray,
+            $fileNames,  // Using fileNames instead of documentPaths to store only filenames
             ['appln_id' => $applnId]
         );
 
-        // Insert or update the DB record
-        MaklumatPinjaman::updateOrCreate(['appln_id' => $applnId], $updatedData);
+        // Simpan data ke dalam database
+        MaklumatPinjaman::updateOrCreate(
+            ['appln_id' => $applnId],
+            $updatedData
+        );
 
-        // Show a success message
-        //session()->flash('message', 'Documents uploaded successfully. Document links have been created.');
-        // If $applnId already exists in your component
+        session()->flash('message', 'Documents uploaded successfully. Document links have been created.');
+        
         //return redirect()->route('home', ['appln_id' => $applnId]);
         $this->show_hantar = true;
 
@@ -243,26 +149,32 @@ class MuatNaikDokumen extends Component
     //     return redirect()->route('dashboard');
     // }
 
+    //merge all file
     public function submitPermohonan()
     {
-        // $p = ApplnStatus::where('user_id', Auth::id())
-        // ->where('appln_status','p')
-        // ->first();
-        //dd($p->appln_status);
+        $user = Auth::user();
+        $folderName = $user->ic_no;
+        $appln_id = $user->applnStatus->id;
 
-        $applnStatus = ApplnStatus::where('id', $this->appln_id)->where('appln_status','p')->first();
+        $applnStatus = ApplnStatus::where('id', $appln_id)->first();
 
         if ($applnStatus) {
             $applnStatus->update([
-                'appln_status'    => 'S',
+                'appln_status'      => 'S',
                 'appln_date_submit' => now()
             ]);
 
-            // a) Construct a unique PDF name
-            $pdfName = 'application_'.uniqid().'.pdf';
+            // a) Construct a unique PDF name for the first PDF (bpc01)
+            $pdfName = 'bpc01_' . now()->format('Y-m-d') . '.pdf';
 
-            // b) Full storage path where we will save the PDF
-            $pdfFullPath = storage_path('/AppPdf/'.$pdfName);
+            // b) Full storage path where we will save the bpc01 PDF
+            $pdfFullPath = storage_path($folderName . '/' . $pdfName);
+
+            // Create the directory if it doesn't exist
+            $directory = dirname($pdfFullPath);
+            if (!file_exists($directory)) {
+                mkdir($directory, 0755, true);
+            }
 
             // c) Get the path to your JPG images in the public folder
             $jpgPath  = public_path('img/1.jpg');
@@ -270,7 +182,7 @@ class MuatNaikDokumen extends Component
             $jpgPath3 = public_path('img/3.jpg');
             $jpgPath4 = public_path('img/4.jpg');
 
-            // d) Generate HTML with page breaks between images
+            // d) Generate HTML with page breaks between images (adjust as needed)
             $html = '
                 <html>
                     <head>
@@ -278,7 +190,7 @@ class MuatNaikDokumen extends Component
                         <style>
                         @page {
                             size: A4 portrait;
-                            margin: 20mm; /* Optional: adjust margins as needed */
+                            margin: 20mm;
                         }
                         body { 
                             font-family: sans-serif; 
@@ -294,127 +206,133 @@ class MuatNaikDokumen extends Component
                     </head>
                     <body>
                         <div>
-                        <img src="'.$jpgPath.'"/>
+                            <img src="' . $jpgPath . '"/>
                         </div>
                         <p style="position: absolute; top: 320px; left: 550px; height: 17px; width: 600px; background: white; font-size: 15px !important;">
-                        PAHANG
+                            PAHANG
                         </p>
                     </body>
                 </html>
             ';
 
-            // $html = '
-            // <html>
-            //     <head>
-            //         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-            //         <style>
-            //          body { 
-            //             font-family: sans-serif; 
-            //             margin: 170; 
-            //             padding: 20; 
-            //         }
-            //         /* Ensures each page breaks properly when generating PDF */
-            //         .page-break { 
-            //             page-break-after: always; 
-            //         }
-            //         /* Container for each page image (relative positioning for overlays) */
-            //         .page-container {
-            //             position: relative;
-            //             width: 50%;
-            //         }
-            //         /* Common style for overlay fields */
-            //         .field {
-            //             position: absolute;
-            //             font-size: 12px;
-            //             color: #000;
-            //             font-weight: normal;
-            //         }
-            //         /* Example field positions (adjust these) */
-            //         .page1-name {
-            //             top: 120px; 
-            //             left: 200px;
-            //         }
-            //         </style>
-            //     </head>
-            //         <body>
-            //             <!-- PAGE 1 -->
-            //             <div class="page-container">
-            //             <img src="'.$jpgPath.'" alt="Tekun Borang" style="width:50%; height:100%;" />
-            //             <!-- Overlays for Page 1 -->
-            //             <p style="position: absolute; top: 50px;left: 50px; height: 17px;width: 600px;background: white; font-size: 12px !important;">
-            //                 '.$applnStatus->state_code.'
-            //             </p>
-            //             <div class="field page1-name">'.$applnStatus->state_code.'</div>
-            //             <div class="field page1-ic">123456-78-9012</div>
-            //             </div>
-
-            //             <div class="page-break"></div>
-
-            //             <!-- PAGE 2 -->
-            //             <div class="page-container">
-            //             <img src="'.$jpgPath2.'" alt="Tekun Borang" style="width:100%; height:auto;" />
-            //             <!-- Overlays for Page 2 -->
-            //             <div class="field page2-address">No. 123, Jalan Example, 12345 Bandar ABC</div>
-            //             <div class="field page2-phone">012-3456789</div>
-            //             </div>
-
-            //             <div class="page-break"></div>
-
-            //             <!-- PAGE 3 -->
-            //             <div class="page-container">
-            //             <img src="'.$jpgPath3.'" alt="Tekun Borang" style="width:100%; height:auto;" />
-            //             <!-- Overlays for Page 3 -->
-            //             <div class="field" style="top:120px; left:200px;">Page 3 Dummy Field 1</div>
-            //             <div class="field" style="top:150px; left:200px;">Page 3 Dummy Field 2</div>
-            //             </div>
-
-            //             <div class="page-break"></div>
-
-            //             <!-- PAGE 4 -->
-            //             <div class="page-container">
-            //             <img src="'.$jpgPath4.'" alt="Tekun Borang" style="width:100%; height:auto;" />
-            //             <!-- Overlays for Page 4 -->
-            //             <div class="field" style="top:120px; left:200px;">Page 4 Dummy Field 1</div>
-            //             <div class="field" style="top:150px; left:200px;">Page 4 Dummy Field 2</div>
-            //             </div>
-
-            //         </body>
-            // </html>
-            // ';
-
             // e) Generate PDF using DomPDF
-            //$pdf = PDF::loadHTML($html);
+            $pdf = FacadePdf::loadHTML($html);
 
             // f) Save the PDF to storage
-            //$pdf->save($pdfFullPath);
+            $pdf->save($pdfFullPath);
 
             // 3) Store the PDF path in application_pdf table
-            // application_pdf::create([
-            //     'appln_id'   => $applnStatus->id,
-            //     'paths'      => 'storage/AppPdf/'.$pdfName,
-            //     'created_at' => now(),
-            //     'created_by' => Auth::id(),
-            //     'updated_at' => now(),
-            //     'updated_by' => Auth::id(),
-            // ]);
+            application_pdf::create([
+                'appln_id'   => $applnStatus->id,
+                'paths'      => $pdfFullPath,
+                'created_at' => now(),
+                'created_by' => Auth::id(),
+                'updated_at' => now(),
+                'updated_by' => Auth::id(),
+            ]);
             
             // Flash the PDF URL to the session so the view can access it.
-            session()->flash('pdf_url', asset('storage/'.$pdfName));
+            session()->flash('pdf_url', asset('storage/' . $pdfName));
             session()->flash('message', 'Permohonan telah dihantar.');
 
-            //call stored precedure to update appln no
-            $this->sp = "dbo.up_upd_appln_ref_no ,'$this->appln_id'";
+            // --- MERGE PDF SECTION ---
+
+            // Initialize PDFMerger
+            $oMerger = PDFMergerFacade::init();
+
+            // 1) Add the first PDF (bpc01) using all pages
+            $oMerger->addPDF('file:///' . $pdfFullPath, 'all');
+
+            // 2) IC Bank PDF
+            $bankPdfName = 'ic_' . now()->format('Y-m-d') . '.pdf';
+            $bankPdfPath = storage_path('app/public/' . $folderName . '/' . $bankPdfName);
+
+            if (!file_exists($bankPdfPath)) {
+                Log::error("ic PDF not found at: " . $bankPdfPath);
+                session()->flash('error', 'ic PDF file not found.');
+                return redirect()->back();
+            }
+            $oMerger->addPDF('file:///' . $bankPdfPath, 'all');
+
+            // 3) Add icP PDF
+            $businessPdfName = 'icP_' . now()->format('Y-m-d') . '.pdf';
+            $businessPdfPath = storage_path('app/public/' . $folderName . '/' . $businessPdfName);
+
+            if (!file_exists($businessPdfPath)) {
+                Log::error("icP PDF not found at: " . $businessPdfPath);
+                session()->flash('error', 'icP PDF file not found.');
+                return redirect()->back();
+            }
+            $oMerger->addPDF('file:///' . $businessPdfPath, 'all');
+
+            // 4) Add ssm PDF
+            $iicPdfName = 'ssm_' . now()->format('Y-m-d') . '.pdf';
+            //$iicPdfPath = storage_path('app/public/' . $folderName . '/' . $appln_id . '/' . $iicPdfName);
+            $iicPdfPath = storage_path('app/public/' . $folderName . '/' . $iicPdfName);
+
+            if (!file_exists($iicPdfPath)) {
+                Log::error("ssm PDF not found at: " . $iicPdfPath);
+                session()->flash('error', 'ssm PDF file not found.');
+                return redirect()->back();
+            }
+            $oMerger->addPDF('file:///' . $iicPdfPath, 'all');
+
+            // 5) Add business PDF
+            $iic2PdfName = 'business_' . now()->format('Y-m-d') . '.pdf';
+            $iic2PdfPath = storage_path('app/public/' . $folderName . '/' . $iic2PdfName);
+
+            if (!file_exists($iic2PdfPath)) {
+                Log::error("business PDF not found at: " . $iic2PdfPath);
+                session()->flash('error', 'business PDF file not found.');
+                return redirect()->back();
+            }
+            $oMerger->addPDF('file:///' . $iic2PdfPath, 'all');
+
+            // 6) Add ssm PDF
+            $ssmPdfName = 'bank_' . now()->format('Y-m-d') . '.pdf';
+            $ssmPdfPath = storage_path('app/public/' . $folderName . '/' . $ssmPdfName);
+
+            if (!file_exists($ssmPdfPath)) {
+                Log::error("Bank PDF not found at: " . $ssmPdfPath);
+                session()->flash('error', 'Bank PDF file not found.');
+                return redirect()->back();
+            }
+            $oMerger->addPDF('file:///' . $ssmPdfPath, 'all');
+
+            // 7) Add ssm PDF
+            $perkesoPdfName = 'perkeso_' . now()->format('Y-m-d') . '.pdf';
+            $perkesoPdfPath = storage_path('app/public/' . $folderName . '/' . $perkesoPdfName);
+
+            if (!file_exists($perkesoPdfPath)) {
+                Log::error("Perkeso PDF not found at: " . $perkesoPdfPath);
+                session()->flash('error', 'Perkeso PDF file not found.');
+                return redirect()->back();
+            }
+            $oMerger->addPDF('file:///' . $perkesoPdfPath, 'all');
+            
+
+            // 8) Merge everything into a single PDF
+            $mergedPdfName = 'appln_' . now()->format('Y-m-d') . '.pdf';
+            $mergedPdfFullPath = storage_path($folderName . '/' . $mergedPdfName);
+
+            $oMerger->merge();
+            $oMerger->save($mergedPdfFullPath);
+
+            // Execute stored procedure to update application reference number
+            $run = DB::update('SET NOCOUNT ON;EXEC dbo.up_upd_appln_ref_no ?', [$appln_id]);
+            
         } else {
             session()->flash('error', 'Permohonan tidak wujud.');
         }
 
         return redirect()->route('dashboard');
     }
-    
 
-    // public function viewPDF(){
-    //     $pdf = PDF::loadView('PDFView')->setPaper('A4','portrait');
-    // }
+
+    public function viewPDF(){
+        $pdf = PDF::loadView('PDFView')->setPaper('A4','portrait');
+    }
+
 
     public function render()
     {
