@@ -7,7 +7,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use DateTime;
 
 class Register extends Component
 {
@@ -25,6 +27,8 @@ class Register extends Component
 
     /** @var string */
     public $passwordConfirmation = '';
+
+    public $check_password;
 
     public function register()
     {
@@ -52,7 +56,27 @@ class Register extends Component
                     }
                 }
             ],
-            'password' => ['required', 'min:8', 'same:passwordConfirmation'],
+            // 'password' => ['required', 'min:8', 'same:passwordConfirmation'],
+            'password' => ['required', 
+                            'min:8',  // Minimum length check
+                            'same:passwordConfirmation',
+                            function ($attribute, $value, $fail) {
+                                // Check for alphabets (lowercase and uppercase)
+                                if (!preg_match('/[a-zA-Z]/', $value)) {
+                                    $fail('Password must contain at least one alphabetic character.');
+                                }
+                                
+                                // Check for numbers
+                                if (!preg_match('/[0-9]/', $value)) {
+                                    $fail('Password must contain at least one numeric character.');
+                                }
+                                
+                                // Check for special symbols (non-alphanumeric)
+                                if (!preg_match('/[^a-zA-Z0-9]/', $value)) {
+                                    $fail('Password must contain at least one special character.');
+                                }
+                            }
+                        ],
         ]);
 
         $user = User::create([
@@ -60,6 +84,7 @@ class Register extends Component
             'name' => $this->name,
             'ic_no' => $this->ic_no,
             'password' => Hash::make($this->password),
+            'last_pwd_changed' => new DateTime('now')
         ]);
 
         event(new Registered($user));

@@ -30,12 +30,68 @@ class Reset extends Component
         $this->token = $token;
     }
 
+    // public function resetPassword()
+    // {
+    //     $this->validate([
+    //         'token' => 'required',
+    //         'email' => 'required|email',
+    //         'password' => 'required|min:8|same:passwordConfirmation',
+    //     ]);
+
+    //     $response = $this->broker()->reset(
+    //         [
+    //             'token' => $this->token,
+    //             'email' => $this->email,
+    //             'password' => $this->password
+    //         ],
+    //         function ($user, $password) {
+    //             $user->password = Hash::make($password);
+
+    //             $user->setRememberToken(Str::random(60));
+
+    //             $user->save();
+
+    //             event(new PasswordReset($user));
+
+    //             $this->guard()->login($user);
+    //         }
+    //     );
+
+    //     if ($response == Password::PASSWORD_RESET) {
+    //         session()->flash(trans($response));
+
+    //         return redirect(route('home'));
+    //     }
+
+    //     $this->addError('email', trans($response));
+    // }
+
     public function resetPassword()
     {
         $this->validate([
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8|same:passwordConfirmation',
+            'password' => [
+                'required',
+                'min:8',
+                'same:passwordConfirmation',
+                function ($attribute, $value, $fail) {
+                    // Check for alphabets (lowercase and uppercase)
+                    if (!preg_match('/[a-zA-Z]/', $value)) {
+                        $fail('Password must contain at least one alphabetic character.');
+                    }
+
+                    // Check for numbers
+                    if (!preg_match('/[0-9]/', $value)) {
+                        $fail('Password must contain at least one numeric character.');
+                    }
+
+                    // Check for special symbols (non-alphanumeric)
+                    if (!preg_match('/[^a-zA-Z0-9]/', $value)) {
+                        $fail('Password must contain at least one special character.');
+                    }
+                },
+            ],
         ]);
 
         $response = $this->broker()->reset(
@@ -60,11 +116,12 @@ class Reset extends Component
         if ($response == Password::PASSWORD_RESET) {
             session()->flash(trans($response));
 
-            return redirect(route('home'));
+            return redirect(route('dashboard'));
         }
 
         $this->addError('email', trans($response));
     }
+
 
     /**
      * Get the broker to be used during password reset.
