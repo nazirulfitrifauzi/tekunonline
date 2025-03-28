@@ -28,6 +28,7 @@ class MaklumatPeribadi extends Component
 
     public function mount()
     {
+       
         $this->ic_no = Auth::user()->ic_no;
 
         $existingData = null;
