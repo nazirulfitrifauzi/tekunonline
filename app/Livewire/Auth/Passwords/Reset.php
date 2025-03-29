@@ -105,6 +105,8 @@ class Reset extends Component
 
                 $user->setRememberToken(Str::random(60));
 
+                $user->last_pwd_changed = now()->addDays(30);
+
                 $user->save();
 
                 event(new PasswordReset($user));
