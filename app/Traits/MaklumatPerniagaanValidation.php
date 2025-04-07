@@ -129,7 +129,7 @@ trait MaklumatPerniagaanValidation
             // 'business_premise' => 'required',
             // 'business_other_premise' => 'required_if:business_premise,LAIN-LAIN (SILA NYATAKAN)',
             //'business_ownership' => 'required',
-            // 'business_modal' => 'required_if:business_ownership,5|nullable|numeric',
+             'business_modal' => 'required_if:business_ownership,5|nullable|lte:300000|numeric',
             // 'premise_loc_code' => 'required',
             // 'total_employees' => 'required',
             'register_date' => 'required_if:license_type,NO. SSM|nullable|date',
@@ -190,6 +190,10 @@ trait MaklumatPerniagaanValidation
             // 'partner5_roles' =>'required_if:tot_partner,5',
         ];
 
+        // if($this->business_ownership == 5){
+        //     $rules['business_modal'] = 'required|lte:300000|numeric';
+        // }
+
         return $rules;
     }
 
@@ -213,7 +217,8 @@ trait MaklumatPerniagaanValidation
         //'business_premise.required' => 'Sila pilih status premis', // tiada input dalam blade
         //'business_other_premise.required_if' => 'Sila nyatakan status premis lain', // tiada input dalam blade
         //'business_ownership.required' => 'Sila pilih pemilikan perniagaan', // tiada input dalam blade
-        //'business_modal.required_if' => 'Sila masukkan modal berbayar', // tiada input dalam blade
+        'business_modal.required_if' => 'Sila masukkan modal berbayar', // tiada input dalam blade
+        'business_modal.lte' => 'Modal berbayar mestilah tidak melebihi had 300,0000',
         //'premise_loc_code.required' => 'Sila pilih lokasi premis', // tiada input dalam blade
         //'total_employees.required' => 'Sila masukkan jumlah pekerja', // tiada input dalam blade
         'register_date.required_if' => 'Sila masukkan tarikh pendaftaran',
