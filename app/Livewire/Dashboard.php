@@ -147,6 +147,7 @@ class Dashboard extends Component
         $maklumatPeribadi = ModelsMaklumatPeribadi::updateOrCreate(
             ['appln_id' => $applnStatus->id],
             [
+                'name' => $this->user->name,
                 'ic_no' => $this->user->ic_no,
                 'gender' => $gender,
                 'birthdate' => $formattedBirthdate,

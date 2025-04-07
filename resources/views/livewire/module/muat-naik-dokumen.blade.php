@@ -109,7 +109,7 @@
                                 @endif
                             </div>
 
-                            @if($safety->skim_safety == 1)
+                            @if($existingData->skim_safety == 1)
                                 <div class="col-span-6">
                                     <label for="document_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Salinan Nota Perlindungan Perkeso <span class="text-red-700">*</span></label>
                                     <input type="file" wire:model="document_perkeso" accept="application/pdf">
