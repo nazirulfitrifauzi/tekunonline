@@ -24,13 +24,14 @@ class MuatNaikDokumen extends Component
     public $appln_id;
     public $show_hantar = false;
     public $pdfData;
+    public $safety;
     //public $sp;
 
     protected $queryString = ['appln_id'];
 
     // Rest of the mount method remains the same
     public function mount()
-    {    
+    {  
         // Existing code remains the same
         $existingData = null; // Initialize to avoid undefined variable issues
 
@@ -63,7 +64,9 @@ class MuatNaikDokumen extends Component
         $ssm_extension = $this->document_ssm->getClientOriginalExtension();
         $business_extension = $this->document_business_picture->getClientOriginalExtension();
         $bank_extension = $this->document_bank_statements->getClientOriginalExtension();
-        $perkeso_extension = $this->document_perkeso->getClientOriginalExtension();
+        if($this->existingData->skim_safety == 1 && is_object($this->document_perkeso)){
+            $perkeso_extension = $this->document_perkeso->getClientOriginalExtension();
+        }
 
         // Create filenames without folder path
         $fileNames = [
@@ -72,8 +75,12 @@ class MuatNaikDokumen extends Component
             'document_ssm' => 'ssm_' . now()->format('Y-m-d') . '.' . $ssm_extension,
             'document_business_picture' => 'business_' . now()->format('Y-m-d') . '.' . $business_extension,
             'document_bank_statements' => 'bank_' . now()->format('Y-m-d') . '.' . $bank_extension,
-            'document_perkeso' => 'perkeso_'. now()->format('Y-m-d'). '.'. $perkeso_extension,
+            //'document_perkeso' => 'perkeso_'. now()->format('Y-m-d'). '.'. $perkeso_extension,
         ];
+
+        if ($this->existingData->skim_safety == 1) {
+            $fileNames['document_perkeso'] = 'perkeso_' . now()->format('Y-m-d') . '.' . $perkeso_extension;
+        }
 
         // Create full paths for storage
         $documentPaths = array_map(function($fileName) use ($folderName) {
@@ -87,7 +94,9 @@ class MuatNaikDokumen extends Component
         $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
         $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
         $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
-        $this->document_perkeso->storeAs('', $documentPaths['document_perkeso'], 'public');
+        if($this->existingData->skim_safety == 1 && is_object($this->document_perkeso)){
+            $this->document_perkeso->storeAs('', $documentPaths['document_perkeso'], 'public');
+        }
 
         // Create a text file with links to all documents as a simple alternative
         // until the PDF merging functionality is implemented

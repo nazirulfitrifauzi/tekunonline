@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Livewire\Admin\AdminMain;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Passwords\Confirm;
 use App\Livewire\Auth\Passwords\Email;
@@ -86,5 +87,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', Home::class)->name('home');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/maklumat-akaun', MaklumatAkaun::class)->name('maklumat-akaun');
+    Route::get('Admin/admin-main', AdminMain::class)->name('admin-main');
 });
 

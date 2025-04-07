@@ -63,17 +63,17 @@ class Register extends Component
                             function ($attribute, $value, $fail) {
                                 // Check for alphabets (lowercase and uppercase)
                                 if (!preg_match('/[a-zA-Z]/', $value)) {
-                                    $fail('Password must contain at least one alphabetic character.');
+                                    $fail('Kata laluan mesti mengandungi sekurang-kurangnya satu aksara abjad.');
                                 }
                                 
                                 // Check for numbers
                                 if (!preg_match('/[0-9]/', $value)) {
-                                    $fail('Password must contain at least one numeric character.');
+                                    $fail('Kata laluan mesti mengandungi sekurang-kurangnya satu aksara nombor.');
                                 }
                                 
                                 // Check for special symbols (non-alphanumeric)
                                 if (!preg_match('/[^a-zA-Z0-9]/', $value)) {
-                                    $fail('Password must contain at least one special character.');
+                                    $fail('Kata laluan mesti mengandungi sekurang-kurangnya satu aksara khas.');
                                 }
                             }
                         ],
