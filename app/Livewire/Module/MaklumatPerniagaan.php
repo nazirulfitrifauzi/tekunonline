@@ -43,11 +43,6 @@ class MaklumatPerniagaan extends Component
                 }
             }
         }
-
-        // // Format business_modal if it exists
-        // if ($this->business_modal) {
-        //     $this->business_modal = number_format((float)$this->business_modal, 0, '.', ',');
-        // }
     }
 
     protected function isMuslim()

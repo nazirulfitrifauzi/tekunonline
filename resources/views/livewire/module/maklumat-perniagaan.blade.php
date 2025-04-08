@@ -218,16 +218,85 @@
                                 @enderror
                             </div>
 
+                            @if($business_activity == '100505' || $business_activity == '100506'|| $business_activity == '100507'
+                            || $business_activity == '100508'|| $business_activity == '100509'|| $business_activity == '100500'
+                            || $business_activity == '100501'|| $business_activity == '100502'|| $business_activity == '100503'|| $business_activity == '100504')
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="sub_business_activity" class="block text-sm font-medium leading-5 text-gray-700">Sub Aktiviti Perniagaan
                                     <span class="text-red-700">*</span></label>
                                 <select id="sub_business_activity" name="sub_business_activity" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="sub_business_activity">
                                     <option value="">SILA PILIH</option>
-                                    <option value="Kraf-Tekstil">Kraf-Tekstil</option>
-                                    <option value="Kraf-Hasil Rimba">Kraf-Hasil Rimba</option>
-                                    <option value="Kraf-Hasil Logam<">Kraf-Hasil Logam</option>
-                                    <option value="Kraf-Hasil Tanah<">Kraf-Hasil Tanah</option>
-                                    <option value="Kraf-Aneka Kraf">Kraf-Aneka Kraf</option>
+                                    @if($business_activity == '100505')
+                                    <option value="1">BATIK</option>
+                                    <option value="2">SONGKET</option>
+                                    <option value="3">TENUNAN</option>
+                                    <option value="4">SULAMAN</option>
+                                    <option value="5">TEKATAN</option>
+                                    <option value="6">JAHITAN</option>
+                                    @elseif($business_activity == '100506')
+                                    <option value="13">KAYU</option>
+                                    <option value="14">BULUH</option>
+                                    <option value="15">ROTAN</option>
+                                    <option value="16">BEMBAN</option>
+                                    <option value="17">MENGKUANG</option>
+                                    <option value="18">DAUN GETAH</option>
+                                    <option value="19">DAUN NIPAH</option>
+                                    <option value="20">RUMBIA</option>
+                                    <option value="21">BUNGA KERING</option>
+                                    <option value="22">TEMPURUNG</option>
+                                    @elseif($business_activity == '100507')
+                                    <option value="33">PERAK</option>
+                                    <option value="34">TEMBAGA</option>
+                                    <option value="35">PIUTER</option>
+                                    <option value="36">BESI</option>
+                                    <option value="37">EMAS</option>
+                                    <option value="38">ALUMINIUM</option>
+                                    @elseif($business_activity == '100508')
+                                    <option value="45">SERAMIK</option>
+                                    <option value="46">BATU</option>
+                                    <option value="47">KRISTAL</option>
+                                    <option value="48">KACA</option>
+                                    @elseif($business_activity == '100509')
+                                    <option value="53">MANIK</option>
+                                    <option value="54">MUTIARA</option>
+                                    <option value="55">CENGKERANG</option>
+                                    <option value="56">KULIT</option>
+                                    @elseif($business_activity == '100500')
+                                    <option value="7">BATIK</option>
+                                    <option value="8">SONGKET</option>
+                                    <option value="9">TENUNAN</option>
+                                    <option value="10">SULAMAN</option>
+                                    <option value="11">TEKATAN</option>
+                                    <option value="12">JAHITAN</option>
+                                    @elseif($business_activity == '100501')
+                                    <option value="23">KAYU</option>
+                                    <option value="24">BULUH</option>
+                                    <option value="25">ROTAN</option>
+                                    <option value="26">BEMBAN</option>
+                                    <option value="27">MENGKUANG</option>
+                                    <option value="28">DAUN GETAH</option>
+                                    <option value="29">DAUN NIPAH</option>
+                                    <option value="30">RUMBIA</option>
+                                    <option value="31">BUNGA KERING</option>
+                                    <option value="32">TEMPURUNG</option>
+                                    @elseif($business_activity == '100502')
+                                    <option value="39">PERAK</option>
+                                    <option value="40">TEMBAGA</option>
+                                    <option value="41">PIUTER</option>
+                                    <option value="42">BESI</option>
+                                    <option value="43">EMAS</option>
+                                    <option value="44">ALUMINIUM</option>
+                                    @elseif($business_activity == '100503')
+                                    <option value="49">SERAMIK</option>
+                                    <option value="50">BATU</option>
+                                    <option value="51">KRISTAL</option>
+                                    <option value="52">KACA</option>
+                                    @elseif($business_activity == '100504')
+                                    <option value="57">MANIK</option>
+                                    <option value="58">MUTIARA</option>
+                                    <option value="59">CENGKERANG</option>
+                                    <option value="60">KULIT</option>
+                                    @endif
                                 </select>
                                 @error('sub_business_activity')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -235,6 +304,7 @@
                                     </p>
                                 @enderror
                             </div>
+                            @endif
                         @endif
 
                         @if($business_syariah == '0')
@@ -278,14 +348,51 @@
                             </div>
                             @endif
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="business_duration" class="block text-sm font-medium leading-5 text-gray-700">Tempoh / Pengalaman Berniaga(Bulan)<span class="text-red-700">*</span></label>
-                                <select id="business_duration" name="business_duration" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="business_duration">
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="business_duration_year" class="block text-sm font-medium leading-5 text-gray-700">Tempoh / Pengalaman Berniaga(Tahun)<span class="text-red-700">*</span></label>
+                                <select id="business_duration_year" name="business_duration_year" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="business_duration_year">
                                     <option value="">SILA PILIH</option>
-                                    <option value="1">0 - 60 tahun</option>
-                                    <option value="2">0 - 11 bulan</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
                                 </select>
-                                @error('business_duration')
+                                @error('business_duration_year')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="business_duration_month" class="block text-sm font-medium leading-5 text-gray-700">Tempoh / Pengalaman Berniaga(Bulan)<span class="text-red-700">*</span></label>
+                                <select id="business_duration_month" name="business_duration_month" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="business_duration_month">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                @error('business_duration_month')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
                                     </p>
@@ -822,7 +929,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="partner_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
-                                    <input id="partner_ic" name="partner_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_ic">
+                                    <input id="partner_ic" name="partner_ic" maxlength="12" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_ic">
                                     @error('partner_ic')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -941,7 +1048,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="partner2_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
-                                    <input id="partner2_ic" name="partner2_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_ic">
+                                    <input id="partner2_ic" name="partner2_ic" maxlength="12"  value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_ic">
                                     @error('partner2_ic')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1060,7 +1167,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="partner3_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
-                                    <input id="partner3_ic" name="partner3_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_ic">
+                                    <input id="partner3_ic" name="partner3_ic" maxlength="12"  value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_ic">
                                     @error('partner3_ic')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1179,7 +1286,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="partner4_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
-                                    <input id="partner4_ic" name="partner4_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_ic">
+                                    <input id="partner4_ic" name="partner4_ic" maxlength="12"  value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_ic">
                                     @error('partner4_ic')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1298,7 +1405,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="partner5_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
-                                    <input id="partner5_ic" name="partner5_ic" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_ic">
+                                    <input id="partner5_ic" name="partner5_ic" maxlength="12"  value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_ic">
                                     @error('partner5_ic')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
