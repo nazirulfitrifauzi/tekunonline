@@ -12,7 +12,7 @@
     <div class="flex flex-col flex-1 justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div class="mx-auto w-full max-w-sm lg:w-96">
             <div class="sm:mx-auto sm:w-full sm:max-w-md">
-                <a href="{{ route('home') }}">
+                <a href="{{ route('dashboard') }}">
                     <x-logo class="mx-auto w-auto h-16 text-indigo-600" />
                 </a>
 

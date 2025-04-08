@@ -8,11 +8,13 @@ use Livewire\Component;
 
 class Verify extends Component
 {
+
     public function resend()
     {
         if (Auth::user()->hasVerifiedEmail()) {
-            redirect(route('home'));
+            redirect(route('dashboard'));
         }
+        
 
         Auth::user()->sendEmailVerificationNotification();
 
