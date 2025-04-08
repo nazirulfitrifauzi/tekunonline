@@ -43,15 +43,19 @@ trait MaklumatPerniagaan2Validation
     public $buss3_phone;
     public $buss3_fax;
     public $fin_details_flag;
-    public $fin_mara_flag;
-    public $mara_tot_fin;
-    public $mara_bal_fin;
-    public $fin_aim_flag;
-    public $aim_tot_fin;
-    public $aim_bal_fin;
-    public $fin_others;
-    public $others_tot_fin;
-    public $others_bal_fin;
+    public $num_exist_busi_fin;
+    public $fin1_flag;
+    public $fin1_other_name;
+    public $fin1_tot;
+    public $fin1_bal;
+    public $fin2_flag;
+    public $fin2_other_name;
+    public $fin2_tot;
+    public $fin2_bal;
+    public $fin3_flag;
+    public $fin3_other_name;
+    public $fin3_tot;
+    public $fin3_bal;
 
 
         // protected $rules = [
@@ -70,22 +74,38 @@ trait MaklumatPerniagaan2Validation
         $rules = [
             'buss_branch_tot' => 'required|in:1,2,3',
             'fin_details_flag' => 'required|in:0,1',
+            'num_exist_busi_fin' =>'required_if:fin_details_flag,1',
         ];
 
         // Add financing validation rules only if fin_details_flag is 1
-        if ($this->fin_details_flag == "1") {
+        if ($this->num_exist_busi_fin >= 1) {
             $rules = array_merge($rules, [
-                'fin_mara_flag' => 'required',
-                'mara_tot_fin' => 'required_if:fin_mara_flag,1|numeric',
-                'mara_bal_fin' => 'required_if:fin_mara_flag,1|numeric',
-                'fin_aim_flag' => 'required',
-                'aim_tot_fin' => 'required_if:fin_aim_flag,1|numeric',
-                'aim_bal_fin' => 'required_if:fin_aim_flag,1|numeric',
-                'fin_others' => 'required',
-                'others_tot_fin' => 'required_with:fin_others|numeric',
-                'others_bal_fin' => 'required_with:fin_others|numeric',
+                'fin1_flag' => 'required',
+                'fin1_other_name' => 'required_if:fin1_flag,LAIN-LAIN',
+                'fin1_tot' => 'required',
+                'fin1_bal' => 'required',
             ]);
         }
+
+        if ($this->num_exist_busi_fin >= 2) {
+            $rules = array_merge($rules, [
+                'fin2_flag' =>'required',
+                'fin2_other_name' =>'required_if:fin2_flag,LAIN-LAIN',
+                'fin2_tot' =>'required',
+                'fin2_bal' =>'required',
+            ]);
+        }
+
+        if ($this->num_exist_busi_fin >= 3) {
+            $rules = array_merge($rules, [
+                'fin3_flag' =>'required',
+                'fin3_other_name' =>'required_if:fin3_flag,LAIN-LAIN',
+                'fin3_tot' =>'required',
+                'fin3_bal' =>'required',
+            ]);
+        }
+        
+        
 
         // Cawangan 1 rules (always required if any branch is selected)
         if ($this->buss_branch_tot >= 1) {
@@ -185,5 +205,15 @@ trait MaklumatPerniagaan2Validation
         'buss3_state.required' => 'Sila pilih negeri cawangan 3.',
         'buss3_phone.required' => 'Sila masukkan nombor telefon cawangan 3.',
         'buss3_fax.required' => 'Sila masukkan nombor fax cawangan 3.',
+
+        //Financing
+        'fin_details_flag.required' => 'Sila pilih maklumat pembiayaan perniagaan sedia ada.',
+        'num_exist_busi_fin.required_if' => 'Sila masukkan jumlah pembiayaan perniagaan sedia ada.',
+
+        //Financing 1
+        'fin1_flag.required' => 'Sila pilih jenis pembiayaan.',
+        'fin1_other_name.required_if' => 'Sila masukkan nama pembiayaan.',
+        'fin1_tot.required' => 'Sila masukkan jumlah pembiayaan.',
+        'fin1_bal.required' => 'Sila masukkan sisa pembiayaan.',
     ];
 }

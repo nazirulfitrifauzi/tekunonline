@@ -176,7 +176,7 @@
                                                     +6
                                                 </span>
                                             </div>
-                                            <input id="buss1_phone" name="buss1_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_phone">
+                                            <input id="buss1_phone" name="buss1_phone"  maxlength="11" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_phone">
                                             @error('buss1_phone')
                                                 <p class="text-red-500 text-xs italic mt-4">
                                                     {{ $message }}
@@ -193,7 +193,7 @@
                                                     +6
                                                 </span>
                                             </div>
-                                            <input id="buss1_fax" name="buss1_fax" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_fax">
+                                            <input id="buss1_fax" name="buss1_fax" maxlength="10" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_fax">
                                         </div>
                                         @error('buss1_fax')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -356,7 +356,7 @@
                                                     +6
                                                 </span>
                                             </div>
-                                            <input id="buss2_phone" name="buss2_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_phone">
+                                            <input id="buss2_phone" name="buss2_phone" maxlength="11" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_phone">
                                         </div>
                                         @error('buss2_phone')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -373,7 +373,7 @@
                                                     +6
                                                 </span>
                                             </div>
-                                            <input id="buss2_fax" name="buss2_fax" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_fax">
+                                            <input id="buss2_fax" name="buss2_fax" maxlength="10" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_fax">
                                         </div>
                                         @error('buss2_fax')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -536,7 +536,7 @@
                                                     +6
                                                 </span>
                                             </div>
-                                            <input id="buss3_phone" name="buss3_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_phone">
+                                            <input id="buss3_phone" name="buss3_phone" maxlength="11" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_phone">
                                         </div>
                                         @error('buss3_phone')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -553,7 +553,7 @@
                                                     +6
                                                 </span>
                                             </div>
-                                            <input id="buss3_fax" name="buss3_fax" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_fax">
+                                            <input id="buss3_fax" name="buss3_fax" maxlength="10" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_fax">
                                         </div>
                                         @error('buss3_fax')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -596,103 +596,219 @@
                                     <option value="1">ADA</option>
                                     <option value="0">TIADA</option>
                                 </select>
+                                @error('fin_details_flag')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
                             </div>
 
+                            <!-- NNTI NAK BUAT DIA PUNYA DATA TYPE -->
                             @if($fin_details_flag == "1")
-                            <div class="col-span-6 sm:col-span-2">
-                                <fieldset>
-                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Institusi Pembiayaan MARA<span class="text-red-700">*</span></legend>
-                                    <div class="mt-3">
-                                        <div class="flex items-center">
-                                            <input id="fin_mara_flag" name="fin_mara_flag" value="1" type="radio" class="w-4 h-4 text-indigo-600 transition duration-150 ease-in-out form-radio" wire:model.live="fin_mara_flag">
-                                            <label for="fin_mara_flag" class="ml-3">
-                                                <span class="block text-sm font-medium leading-5 text-gray-700">Ya</span>
-                                            </label>
+                                <div class="col-span-6 sm:col-span-3">
+                                <label for="num_exist_busi_fin" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Pembiayaan Perniagaan Sedia Ada</label>
+                                    <select id="num_exist_busi_fin" wire:model.live="num_exist_busi_fin" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                        <option value="">SILA PILIH</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    @error('num_exist_busi_fin')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-6">
+                                </div>
+
+
+                                @if($num_exist_busi_fin >= "1")
+                                <div class="col-span-6 sm:col-span-3">
+                                <label for="fin1_flag" class="block text-sm font-medium leading-5 text-gray-700">Senarai Pembiayaan Sedia Ada 1</label>
+                                    <select id="fin1_flag" wire:model.live="fin1_flag" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                        <option value="">SILA PILIH</option>
+                                        <option value="MARA">MARA</option>
+                                        <option value="AIM">AIM</option>
+                                        <option value="LAIN-LAIN">LAIN-LAIN</option>
+                                    </select>
+                                    @error('fin1_flag')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                                    @if($fin1_flag == "LAIN-LAIN")
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="fin1_other_name" class="block text-sm font-medium leading-5 text-gray-700">Sila nyatakan Lain-lain Agensi 1</label>
+                                        <input id="fin1_other_name" wire:model.live="fin1_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin1_other_name')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                    @endif
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="fin1_tot" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan 1</label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
                                         </div>
+                                        <input id="fin1_tot" wire:model.live="fin1_tot" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin1_tot')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
-                                </fieldset>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="mara_tot_fin" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan MARA<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
-                                    </div>
-                                    <input id="mara_tot_fin" wire:model.live="mara_tot_fin" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
-                            </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="mara_bal_fin" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan MARA<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
-                                    </div>
-                                    <input id="mara_bal_fin" wire:model.live="mara_bal_fin" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                </div>
-                            </div>
-
-                            <!-- AIM Section -->
-                            <div class="col-span-6 sm:col-span-2">
-                                <fieldset>
-                                    <legend class="block text-sm font-medium leading-5 text-gray-700">Institusi Pembiayaan AIM<span class="text-red-700">*</span></legend>
-                                    <div class="mt-3">
-                                        <div class="flex items-center">
-                                            <input id="fin_aim_flag" name="fin_aim_flag" value="1" type="radio" class="w-4 h-4 text-indigo-600 transition duration-150 ease-in-out form-radio" wire:model.live="fin_aim_flag">
-                                            <label for="fin_aim_flag" class="ml-3">
-                                                <span class="block text-sm font-medium leading-5 text-gray-700">Ya</span>
-                                            </label>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="fin1_bal" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan 1</label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
                                         </div>
+                                        <input id="fin1_bal" wire:model.live="fin1_bal" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin1_bal')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>    
+                                        @enderror
                                     </div>
-                                </fieldset>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="aim_tot_fin" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan AIM<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
-                                    </div>
-                                    <input id="aim_tot_fin" wire:model.live="aim_tot_fin" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="aim_bal_fin" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan AIM<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
-                                    </div>
-                                    <input id="aim_bal_fin" wire:model.live="aim_bal_fin" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                @endif
+                                
+                                <div class="col-span-6 sm:col-span-6">
                                 </div>
-                            </div>
 
-                            <!-- Others Section -->
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="fin_others" class="block text-sm font-medium leading-5 text-gray-700">Institusi Pembiayaan LAIN-LAIN AGENSI KERAJAAN<span class="text-red-700">*</span></label>
-                                <input id="fin_others" wire:model.live="fin_others" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="others_tot_fin" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan LAIN-LAIN<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
-                                    </div>
-                                    <input id="others_tot_fin" wire:model.live="others_tot_fin" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                @if($num_exist_busi_fin >= "2")
+                                <!-- AIM Section -->
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="fin2_flag" class="block text-sm font-medium leading-5 text-gray-700">Senarai Pembiayaan Sedia Ada 2</label>
+                                        <select id="fin2_flag" wire:model.live="fin2_flag" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                            <option value="">SILA PILIH</option>
+                                            <option value="MARA">MARA</option>
+                                            <option value="AIM">AIM</option>
+                                            <option value="LAIN-LAIN">LAIN-LAIN</option>
+                                        </select>
+                                        @error('fin2_flag')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                 </div>
-                            </div>
 
-                            <div class="col-span-6 sm:col-span-2">
-                                <label for="others_bal_fin" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan LAIN-LAIN<span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                    @if($fin2_flag == "LAIN-LAIN")
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="fin2_other_name" class="block text-sm font-medium leading-5 text-gray-700">Sila nyatakan Lain-lain Agensi 2</label>
+                                        <input id="fin2_other_name" wire:model.live="fin2_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin2_other_name')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
                                     </div>
-                                    <input id="others_bal_fin" wire:model.live="others_bal_fin" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    @endif
+
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="fin2_tot" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan 2</label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                        </div>
+                                        <input id="fin2_tot" wire:model.live="fin2_tot" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin2_tot')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="fin2_bal" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan 2</label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                        </div>
+                                        <input id="fin2_bal" wire:model.live="fin2_bal" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin2_bal')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @endif
+
+                                <div class="col-span-6 sm:col-span-6">
+                                </div>
+
+                                @if($num_exist_busi_fin >= "3")
+                                <!-- Others Section -->
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="fin3_flag" class="block text-sm font-medium leading-5 text-gray-700">Senarai Pembiayaan Sedia Ada 3</label>
+                                        <select id="fin3_flag" wire:model.live="fin3_flag" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                            <option value="">SILA PILIH</option>
+                                            <option value="MARA">MARA</option>
+                                            <option value="AIM">AIM</option>
+                                            <option value="LAIN-LAIN">LAIN-LAIN</option>
+                                        </select>
+                                        @error('fin3_flag')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                </div>
+
+                                    @if($fin3_flag == "LAIN-LAIN")
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="fin3_other_name" class="block text-sm font-medium leading-5 text-gray-700">Sila nyatakan Lain-lain Agensi 3</label>
+                                        <input id="fin3_other_name" wire:model.live="fin3_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin3_other_name')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                    @endif
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="fin3_tot" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan 3</label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                        </div>
+                                        <input id="fin3_tot" wire:model.live="fin3_tot" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin3_tot')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="fin3_bal" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan 3</label>
+                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                        </div>
+                                        <input id="fin3_bal" wire:model.live="fin3_bal" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        @error('fin3_bal')
+                                            <p class="text-red-500 text-xs italic mt-4">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                @endif
                             @endif
                         </div>
                     </div>
