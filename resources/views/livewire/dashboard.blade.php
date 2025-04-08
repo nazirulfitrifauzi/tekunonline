@@ -92,16 +92,16 @@
                                         <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">
                                             SILA SAMBUNG PERMOHONAN
                                         </span>  
-                                    @elseif($status->appln_status == 'S' && $status->appln_status_fas == 20)
-                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                            PERMOHONAN DILULUS
-                                        </span>                                                              
                                     @elseif($status->appln_status == 'S' && $status->appln_status_fas == 10)
+                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                            PERMOHONAN DILULUSKAN
+                                        </span>                                                              
+                                    @elseif($status->appln_status == 'S' && $status->appln_status_fas == 20)
                                         <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
                                             PERMOHONAN DITOLAK
                                         </span>
                                     @else
-                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
+                                        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yelllow-800 bg-yellow-100 rounded-full">
                                             PERMOHONAN DALAM PROSES
                                         </span>                                                       
                                     @endif                                
