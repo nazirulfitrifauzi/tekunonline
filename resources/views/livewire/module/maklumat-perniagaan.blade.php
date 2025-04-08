@@ -853,6 +853,7 @@
                                     <option value="">SILA PILIH</option>
                                     <option value="TEKUN">TEKUN</option>
                                     <option value="INSKEN">INSKEN</option>
+                                    <option value="CEDAR">CEDAR</option>
                                     <option value="MARA">MARA</option>
                                     <option value="LAIN-LAIN">LAIN-LAIN</option>
                                 </select>

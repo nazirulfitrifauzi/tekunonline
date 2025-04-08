@@ -37,7 +37,11 @@
                                 </label>
                                 <input type="file" wire:model="document_ic_no" accept="application/pdf">
                                 <p class="mt-1 text-xs text-gray-500">Saiz fail tidak melebihi 10MB.</p>
-                                @error('document_ic_no') <span class="error">{{ $message }}</span> @enderror
+                                @error('document_ic_no')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                                 @if($existingData && $existingData->document_ic_no)
                                     <div class="mt-2">
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_ic_no) }}" 
@@ -52,7 +56,11 @@
                                 <label for="document_icP_no" class="block text-sm font-medium leading-5 text-gray-700">Salinan Kad Pengenalan Pasangan (PDF sahaja)<span class="text-red-700">*</span></label>
                                 <input type="file" wire:model="document_icP_no" accept="application/pdf">
                                 <p class="mt-1 text-xs text-gray-500">Saiz fail tidak melebihi 10MB.</p>
-                                    @error('document_icP_no') <span class="error">{{ $message }}</span> @enderror
+                                @error('document_icP_no')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                                 @if($existingData && $existingData->document_icP_no)
                                     <div class="mt-2">
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_icP_no) }}" 
@@ -67,7 +75,11 @@
                                 <label for="document_ssm" class="block text-sm font-medium leading-5 text-gray-700">Salinan Lesen/Permit/Daftar Perniagaan (SSM)/Sijil Perakuan Amalan (Program Profesional Muda)<span class="text-red-700">*</span></label>
                                 <input type="file" wire:model="document_ssm" accept="application/pdf">
                                 <p class="mt-1 text-xs text-gray-500">Saiz fail tidak melebihi 10MB.</p>
-                                    @error('document_ssm') <span class="error">{{ $message }}</span> @enderror
+                                @error('document_ssm')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                                 @if($existingData && $existingData->document_ssm)
                                     <div class="mt-2">
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_ssm) }}" 
@@ -82,7 +94,11 @@
                                 <label for="document_business_picture" class="block text-sm font-medium leading-5 text-gray-700">Gambar perniagaan pemohon yang menunjukkan aktiviti perniagaan yang sedang dijalankan<span class="text-red-700">*</span></label>
                                 <input type="file" wire:model="document_business_picture" accept="application/pdf">
                                     <p class="mt-1 text-xs text-gray-500">Saiz fail tidak melebihi 10MB.</p>
-                                    @error('document_business_picture') <span class="error">{{ $message }}</span> @enderror
+                                    @error('document_business_picture')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                                 @if($existingData && $existingData->document_business_picture)
                                     <div class="mt-2">
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_business_picture) }}" 
@@ -97,7 +113,11 @@
                                 <label for="document_bank_statements" class="block text-sm font-medium leading-5 text-gray-700">Salinan Penyata Bank akaun Simpanan/akaun Semasa  yang mengandungi nama/syarikat pemohon, nombor akaun bank dan nama bank serta 3 bulan transaksi terkini yang aktif<span class="text-red-700">*</span></label>
                                 <input type="file" wire:model="document_bank_statements" accept="application/pdf">
                                 <p class="mt-1 text-xs text-gray-500">Saiz fail tidak melebihi 10MB.</p>
-                                    @error('document_bank_statements') <span class="error">{{ $message }}</span> @enderror
+                                @error('document_bank_statements')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                                 @if($existingData && $existingData->document_bank_statements)
                                     <div class="mt-2">
                                         <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_bank_statements) }}" 
@@ -114,7 +134,11 @@
                                     <label for="document_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Salinan Nota Perlindungan Perkeso <span class="text-red-700">*</span></label>
                                     <input type="file" wire:model="document_perkeso" accept="application/pdf">
                                     <p class="mt-1 text-xs text-gray-500">Saiz fail tidak melebihi 10MB.</p>
-                                        @error('document_perkeso') <span class="error">{{ $message }}</span> @enderror
+                                    @error('document_perkeso')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                     @if($existingData && $existingData->document_perkeso)
                                         <div class="mt-2">
                                             <a href="{{ asset('storage/' . Auth::user()->ic_no . '/' . $existingData->document_perkeso) }}" 
