@@ -398,15 +398,15 @@ class MuatNaikDokumen extends Component
 
                             <!-- checkbox kaedah perniagaan (online)  -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 365px;
-                            left: 195px; font-size: 11pt;" '.($this->pdfData[0]->business_status == 1 ? 'checked' : '').'>
+                            left: 195px; font-size: 11pt;" '.($this->pdfData[0]->business_method == 1 ? 'checked' : '').'>
 
                             <!-- checkbox kaedah perniagaan (offline) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 365px;
-                            left: 293px; font-size: 11pt;" '.($this->pdfData[0]->business_status == 0 ? 'checked' : '').'>
+                            left: 293px; font-size: 11pt;" '.($this->pdfData[0]->business_method == 0 ? 'checked' : '').'>
 
                             <!-- checkbox kaedah perniagaan (offline & online)  -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 365px;
-                            left: 350px; font-size: 11pt;" '.($this->pdfData[0]->business_status == 2 ? 'checked' : '').'>
+                            left: 350px; font-size: 11pt;" '.($this->pdfData[0]->business_method == 2 ? 'checked' : '').'>
 
                             <!-- checkbox pertanian & perusahaan asas tani  -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 354px;
@@ -553,23 +553,23 @@ class MuatNaikDokumen extends Component
 
                             <!-- checkbox taraf pendidikan (PHD / Sarjana Muda) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 587px;
-                            left: 168px; font-size: 11pt;" '.($this->pdfData[0]->education == 4 ? 'checked' : '').'>
+                            left: 168px; font-size: 11pt;" '.($this->pdfData[0]->education == 5 ? 'checked' : '').'>
 
                             <!-- checkbox taraf pendidikan (Diploma / Stpm) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 587px;
-                            left: 292px; font-size: 11pt;" '.($this->pdfData[0]->education == 2 ? 'checked' : '').'>
+                            left: 292px; font-size: 11pt;" '.($this->pdfData[0]->education == 3 ? 'checked' : '').'>
 
                             <!-- checkbox taraf pendidikan (PMR / Setaraf) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 587px;
-                            left: 377px; font-size: 11pt;" '.($this->pdfData[0]->education == 0 ? 'checked' : '').'>
+                            left: 377px; font-size: 11pt;" '.($this->pdfData[0]->education == 1 ? 'checked' : '').'>
 
                             <!-- checkbox taraf pendidikan (Sarjana Muda) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 599px;
-                            left: 168px; font-size: 11pt;" '.($this->pdfData[0]->education == 3 ? 'checked' : '').'>
+                            left: 168px; font-size: 11pt;" '.($this->pdfData[0]->education == 4 ? 'checked' : '').'>
 
                             <!-- checkbox taraf pendidikan (SPM/Sijil/Setaraf) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 599px;
-                            left: 292px; font-size: 11pt;" '.($this->pdfData[0]->education == 1 ? 'checked' : '').'>
+                            left: 292px; font-size: 11pt;" '.($this->pdfData[0]->education == 2 ? 'checked' : '').'>
 
                             <!-- Alamat kediaman 1 -->
                             <p
@@ -627,15 +627,15 @@ class MuatNaikDokumen extends Component
 
                             <!-- checkbox Status Kediaman (Sendiri) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 679px;
-                            left: 168px; font-size: 11pt;" '.($this->pdfData[0]->education == 'SENDIRI' ? 'checked' : '').'>
+                            left: 168px; font-size: 11pt;" '.($this->pdfData[0]->status_home == 'SENDIRI' ? 'checked' : '').'>
 
                             <!-- checkbox Status Kediaman (Sewa) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 679px;
-                            left: 295px; font-size: 11pt;" '.($this->pdfData[0]->education == 'SEWA' ? 'checked' : '').'>
+                            left: 295px; font-size: 11pt;" '.($this->pdfData[0]->status_home == 'SEWA' ? 'checked' : '').'>
 
                             <!-- checkbox Status Kediaman (Keluarga) -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 679px;
-                            left: 379px; font-size: 11pt;" '.($this->pdfData[0]->education == 'KELUARGA' ? 'checked' : '').'>
+                            left: 379px; font-size: 11pt;" '.($this->pdfData[0]->status_home == 'KELUARGA' ? 'checked' : '').'>
 
                             <!-- Pekerjaan sekarang -->
                             <p
@@ -777,7 +777,7 @@ class MuatNaikDokumen extends Component
                             <!-- Tempoh Pengalaman Berniaga -->
                             <p
                                 style="position: absolute;top: 95px;left: 540px;height: 17px;width: 250px;background: transparent;font-size: 10px !important;">
-                                '.($this->pdfData[0]->business_duration ? : 'n/a').'
+                                '.($this->pdfData[0]->business_duration_year ? : 'n/a').'
                             </p>
 
                             <!-- Alamat Perniagaan / permis / projek  1 -->
@@ -852,7 +852,7 @@ class MuatNaikDokumen extends Component
                             <!-- Sila Nyatakan -->
                             <p
                             style="position: absolute;top: 221px;left: 561px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                
+                            '.($this->pdfData[0]->business_other_premise ? : 'n/a').'
                             </p>
 
 
@@ -1058,12 +1058,12 @@ class MuatNaikDokumen extends Component
                             <!-- Jumlah Pembiayaan yang diperlukan -->
                             <p
                             style="position: absolute;top: 724px;left: 521px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                
+                            '.($this->pdfData[0]->purchase_price ? : 'n/a').'
                             </p>
 
                             <!-- Tempoh Bayaran -->
                             <p style="position: absolute;top: 747px;left: 183px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                
+                             '.($this->pdfData[0]->pymt_duration ? : 'n/a').'                               
                             </p>
 
                             <!-- checkbox Kekerapan Bayaran (Mingguan) -->
@@ -1233,19 +1233,19 @@ class MuatNaikDokumen extends Component
 
                                 <!-- 3) pakej 1  -->
                                 <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 742px;
-                                left: 218px; font-size: 11pt;" '.($this->pdfData[0]->skim_safety == 0 ? 'checked' : '').'>
+                                left: 218px; font-size: 11pt;" '.($this->pdfData[0]->pakej_skim_safety == 1 ? 'checked' : '').'>
 
                                 <!-- 3) pakej 2  -->
                                 <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 754px;
-                                left: 218px; font-size: 11pt;" >
+                                left: 218px; font-size: 11pt;" '.($this->pdfData[0]->pakej_skim_safety == 2 ? 'checked' : '').' >
 
                                 <!-- 3) pakej 3  -->
                                 <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 742px;
-                                left: 354px; font-size: 11pt;" >
+                                left: 354px; font-size: 11pt;" '.($this->pdfData[0]->pakej_skim_safety == 3 ? 'checked' : '').'>
 
                                 <!-- 3) pakej 4  -->
                                 <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 754px;
-                                left: 354px; font-size: 11pt;" >
+                                left: 354px; font-size: 11pt;" '.($this->pdfData[0]->pakej_skim_safety == 4 ? 'checked' : '').'>
 
                                 <!-- Sektor -->
                                 <p
@@ -1261,7 +1261,7 @@ class MuatNaikDokumen extends Component
 
                                 <!-- Tidak -->
                                 <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 815px;
-                                left: 95px; font-size: 11pt;" checked>
+                                left: 95px; font-size: 11pt;" '.($this->pdfData[0]->skim_safety == 0 ? 'checked' : '').'>
                             </div>
                         </div>
 
@@ -1311,7 +1311,7 @@ class MuatNaikDokumen extends Component
 
                             <!-- Tidak -->
                             <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 154px;
-                            left: 80px; font-size: 11pt;" checked>
+                            left: 80px; font-size: 11pt;" '.($this->pdfData[0]->will_registration == 0 ? 'checked' : '').'>
 
                             </div>
 
