@@ -517,11 +517,11 @@
                                 <label for="education" class="block text-sm font-medium leading-5 text-gray-700">Taraf Pendidikan <span class="text-red-700">*</span></label>
                                 <select id="education" name="education" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="education">
                                     <option value="">Sila Pilih Taraf Pendidikan</option>
-                                    <option value="4">PHD/IJAZAH SARJANA</option>
-                                    <option value="3">IJAZAH SARJANA MUDA</option>
-                                    <option value="2">DIPLOMA/STPM</option>
-                                    <option value="1">SPM/SIJIL/SETARAF</option>
-                                    <option value="0">PMR/SETARAF</option>
+                                    <option value="5">PHD/IJAZAH SARJANA</option>
+                                    <option value="4">IJAZAH SARJANA MUDA</option>
+                                    <option value="3">DIPLOMA/STPM</option>
+                                    <option value="2">SPM/SIJIL/SETARAF</option>
+                                    <option value="1">PMR/SETARAF</option>
                                 </select>
                                 @error('education')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -764,6 +764,17 @@
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
                                 </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                                <label for="employer_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Majikan <span class="text-red-700">*</span></label>
+                                <input id="employer_phone" 
+                                       name="employer_phone" 
+                                       wire:model.live="employer_phone" 
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                @error('employer_phone')
+                                <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
