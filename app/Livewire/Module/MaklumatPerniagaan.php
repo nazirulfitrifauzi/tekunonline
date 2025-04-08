@@ -127,6 +127,8 @@ class MaklumatPerniagaan extends Component
                     'business_activity'          => $this->business_activity,
                     'sub_business_activity'      => $this->sub_business_activity,
                     'business_duration'          => $this->business_duration,
+                    'business_duration_year'     => $this->business_duration_year,
+                    'business_duration_month'    => $this->business_duration_month,
                     'business_address1'          => $this->business_address1,
                     'business_address2'          => $this->business_address2,
                     'business_postcode'          => $this->business_postcode,
@@ -229,6 +231,11 @@ class MaklumatPerniagaan extends Component
                     'created_at'                 => now(),
                 ]
             );
+
+        // Tambah logik untuk ssm/pbt
+        $data['ssm_pbt'] = ($this->license_type === 'NO. SSM') ? 1 : 0;
+
+        ApplnStatus::where('id', $this->appln_id)->update($data);
         
 
         //session()->flash('message', 'Maklumat perniagaan berjaya disimpan.');
