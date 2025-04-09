@@ -11,6 +11,7 @@ use App\Models\JenisPerniagaan;
 use App\Models\MaklumatPerniagaan as ModelsMaklumatPerniagaan;
 use App\Traits\MaklumatPerniagaanValidation;
 use WireUi\Traits\WireUiActions;
+use Livewire\Attributes\On; 
 
 class MaklumatPerniagaan extends Component
 {
@@ -90,28 +91,27 @@ class MaklumatPerniagaan extends Component
         $this->business_time = $this->business_open . ' hingga ' . $this->business_closed;
     }
 
+    protected $listeners = ['run-validation' => 'validateSelf'];
 
-    public function submit()
+    public function validateSelf()
     {
         $this->validate();
-        
-        // $applnStatus = ApplnStatus::where('user_id', Auth::id())
-        //     ->whereIn('appln_status', ['S','P'])
-        //     ->where(function ($query) {
-        //         // This will handle the "ISNULL(appln_status_fas, 0) IN (0, 1)" logic.
-        //         $query->whereNull('appln_status_fas')
-        //             ->orWhereIn('appln_status_fas', [0, 1]);
-        //     })
-        //     ->first();
+    }
 
 
-        // $applnId = $applnStatus->id;
+    // #[On('tab-mp')]
+    #[On('run-validation')] 
+    public function submit()
+    {
+        try {
+                $this->validateSelf();
+                //add if error on validate
 
-        $formData = collect($this->all())
-            ->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection'])
-            ->toArray();
+                $formData = collect($this->all())
+                    ->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection'])
+                    ->toArray();
 
-        $formData['appln_id'] = $this->appln_id;
+                $formData['appln_id'] = $this->appln_id;
 
         
             $business_asset_value_num = floatval(str_replace(',', '', $this->business_asset_value));
@@ -238,14 +238,33 @@ class MaklumatPerniagaan extends Component
         ApplnStatus::where('id', $this->appln_id)->update($data);
         
 
-        //session()->flash('message', 'Maklumat perniagaan berjaya disimpan.');
-        $this->dialog()->show([
-            'icon' => 'success',
-            'title' => 'Berjaya!',
-            'description' => 'Maklumat berjaya disimpan.',
-        ]);
+                //session()->flash('message', 'Maklumat perniagaan berjaya disimpan.');
+                $this->dialog()->show([
+                    'icon' => 'success',
+                    'title' => 'Berjaya!',
+                    'description' => 'Maklumat berjaya disimpan.',
+                ]);
 
-        $this->dispatch('saved');
+                $this->dispatch('saved');
+
+                ApplnStatus::where('id', $this->appln_id)->update([
+                    'tab2_maklumat_perniagaan' => 1,
+                    'tab3_maklumat_perniagaan_2' => 0,
+                ]);
+
+                return redirect()->route('home', ['appln_id' => $this->appln_id]);
+                
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                $this->dialog()->show([
+                    'icon' => 'error',
+                    'title' => 'Sila Lengkapkan Dokumen!',
+                    'description' => collect($e->validator->errors()->all())
+                                    ->map(fn($msg, $i) => ($i + 1) . '. ' . $msg)
+                                    ->implode("<br>"),
+                ]);
+
+                $this->validateSelf();
+            }
     }
     
     protected function getFormData($applnId)

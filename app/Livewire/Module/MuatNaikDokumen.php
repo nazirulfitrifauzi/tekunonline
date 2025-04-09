@@ -3,7 +3,7 @@
 namespace App\Livewire\Module;
 
 use App\Models\ApplnStatus;
-use App\Models\MaklumatPinjaman;
+use App\Models\MaklumatPinjaman as ModelsMaklumatPinjaman;
 use App\Models\application_pdf;
 use App\Traits\MuatNaikDokumenValidation;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
@@ -13,11 +13,20 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 use Webklex\PDFMerger\Facades\PDFMergerFacade;
+use WireUi\Traits\WireUiActions;
+use Livewire\Attributes\On;
+
+use App\Livewire\Module\MaklumatPeribadi;
+use App\Livewire\Module\MaklumatPerniagaan;
+use App\Livewire\Module\MaklumatPerniagaan2;
+use App\Livewire\Module\MaklumatPinjaman;
+
+
 
 class MuatNaikDokumen extends Component
 {
     use WithFileUploads;
-    use MuatNaikDokumenValidation;
+    use MuatNaikDokumenValidation,WireUiActions;
 
     public $document;
     public $existingData;
@@ -32,14 +41,14 @@ class MuatNaikDokumen extends Component
     // Rest of the mount method remains the same
     public function mount()
     {  
-        //$this->safety = MaklumatPinjaman::where('appln_id',$this->appln_id)->first();
+        //$this->safety = ModelsMaklumatPinjaman::where('appln_id',$this->appln_id)->first();
 
         // Existing code remains the same
         $existingData = null; // Initialize to avoid undefined variable issues
 
         $applnStatus = ApplnStatus::where('id', $this->appln_id)->first();
         if ($applnStatus) {
-            $this->existingData = MaklumatPinjaman::where('appln_id', $applnStatus->id)->first();
+            $this->existingData = ModelsMaklumatPinjaman::where('appln_id', $applnStatus->id)->first();
         }        
     
         if ($this->existingData) {
@@ -51,99 +60,122 @@ class MuatNaikDokumen extends Component
         }
     }
 
-    public function submit()
+    protected $listeners = ['run-validation' => 'validateSelf'];
+
+    public function validateSelf()
     {
         $this->validate();
+    }
 
-        // Get user's IC number for folder name
-        $user = Auth::user();
-        $folderName = $user->ic_no;
-        $appln_id = $this->appln_id;//$user->applnStatus->id;
+    #[On('run-validation')] 
+    public function submit()
+    {
+        try {
+                $this->validateSelf();
 
-        // Get file extensions
-        $ic_extension = $this->document_ic_no->getClientOriginalExtension();
-        $icP_extension = $this->document_icP_no->getClientOriginalExtension();
-        $ssm_extension = $this->document_ssm->getClientOriginalExtension();
-        $business_extension = $this->document_business_picture->getClientOriginalExtension();
-        $bank_extension = $this->document_bank_statements->getClientOriginalExtension();
-        if($this->existingData->skim_safety == 1 && is_object($this->document_perkeso)){
-            $perkeso_extension = $this->document_perkeso->getClientOriginalExtension();
-        }
+                // Get user's IC number for folder name
+                $user = Auth::user();
+                $folderName = $user->ic_no;
+                $appln_id = $this->appln_id;//$user->applnStatus->id;
 
-        // Create filenames without folder path
-        $fileNames = [
-            'document_ic_no' => 'ic_' . now()->format('Y-m-d') . '.' . $ic_extension,
-            'document_icP_no' => 'icP_' . now()->format('Y-m-d') . '.' . $icP_extension,
-            'document_ssm' => 'ssm_' . now()->format('Y-m-d') . '.' . $ssm_extension,
-            'document_business_picture' => 'business_' . now()->format('Y-m-d') . '.' . $business_extension,
-            'document_bank_statements' => 'bank_' . now()->format('Y-m-d') . '.' . $bank_extension,
-            //'document_perkeso' => 'perkeso_'. now()->format('Y-m-d'). '.'. $perkeso_extension,
-        ];
+                // Get file extensions
+                $ic_extension = $this->document_ic_no->getClientOriginalExtension();
+                $icP_extension = $this->document_icP_no->getClientOriginalExtension();
+                $ssm_extension = $this->document_ssm->getClientOriginalExtension();
+                $business_extension = $this->document_business_picture->getClientOriginalExtension();
+                $bank_extension = $this->document_bank_statements->getClientOriginalExtension();
+                if($this->existingData->skim_safety == 0 && is_object($this->document_perkeso)){
+                    $perkeso_extension = $this->document_perkeso->getClientOriginalExtension();
+                }
 
-        if ($this->existingData->skim_safety == 1) {
-            $fileNames['document_perkeso'] = 'perkeso_' . now()->format('Y-m-d') . '.' . $perkeso_extension;
-        }
+                // Create filenames without folder path
+                $fileNames = [
+                    'document_ic_no' => 'ic_' . now()->format('Y-m-d') . '.' . $ic_extension,
+                    'document_icP_no' => 'icP_' . now()->format('Y-m-d') . '.' . $icP_extension,
+                    'document_ssm' => 'ssm_' . now()->format('Y-m-d') . '.' . $ssm_extension,
+                    'document_business_picture' => 'business_' . now()->format('Y-m-d') . '.' . $business_extension,
+                    'document_bank_statements' => 'bank_' . now()->format('Y-m-d') . '.' . $bank_extension,
+                    //'document_perkeso' => 'perkeso_'. now()->format('Y-m-d'). '.'. $perkeso_extension,
+                ];
 
-        // Create full paths for storage
-        $documentPaths = array_map(function($fileName) use ($folderName) {
-            //return $folderName . '/' . $appln_id . '/' . $fileName;
-            return $folderName . '/' . $fileName;
-        }, $fileNames);
+                if ($this->existingData->skim_safety == 0) {
+                    $fileNames['document_perkeso'] = 'perkeso_' . now()->format('Y-m-d') . '.' . $perkeso_extension;
+                }
 
-        // Store files with the new names
-        $this->document_ic_no->storeAs('', $documentPaths['document_ic_no'], 'public');
-        $this->document_icP_no->storeAs('', $documentPaths['document_icP_no'], 'public');
-        $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
-        $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
-        $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
-        if($this->existingData->skim_safety == 1 && is_object($this->document_perkeso)){
-            $this->document_perkeso->storeAs('', $documentPaths['document_perkeso'], 'public');
-        }
+                // Create full paths for storage
+                $documentPaths = array_map(function($fileName) use ($folderName) {
+                    //return $folderName . '/' . $appln_id . '/' . $fileName;
+                    return $folderName . '/' . $fileName;
+                }, $fileNames);
 
-        // Create a text file with links to all documents as a simple alternative
-        // until the PDF merging functionality is implemented
-        $mergedFileName = 'appln_' . now()->format('Y-m-d') . '.txt';
-        //$mergedFilePath = $folderName . '/' . $appln_id . '/' . $mergedFileName;
-        $mergedFilePath = $folderName. '/'. $mergedFileName;      
+                // Store files with the new names
+                $this->document_ic_no->storeAs('', $documentPaths['document_ic_no'], 'public');
+                $this->document_icP_no->storeAs('', $documentPaths['document_icP_no'], 'public');
+                $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
+                $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
+                $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
+                if($this->existingData->skim_safety == 0 && is_object($this->document_perkeso)){
+                    $this->document_perkeso->storeAs('', $documentPaths['document_perkeso'], 'public');
+                }
 
-        $documentLinks = "Document Links:\n\n";
-        foreach ($documentPaths as $docKey => $docPath) {
-            $documentLinks .= ucfirst(str_replace('document_', '', $docKey)) . ': ' . asset('storage/' . $docPath) . "\n";
-        }
-        
-        Storage::disk('public')->put($mergedFilePath, $documentLinks);
-        
-        // Add the merged document to the fileNames array
-        $fileNames['document_merge'] = $mergedFileName;
+                // Create a text file with links to all documents as a simple alternative
+                // until the PDF merging functionality is implemented
+                $mergedFileName = 'appln_' . now()->format('Y-m-d') . '.txt';
+                //$mergedFilePath = $folderName . '/' . $appln_id . '/' . $mergedFileName;
+                $mergedFilePath = $folderName. '/'. $mergedFileName;      
 
-        // Dapatkan appln_id yang baru atau sedia ada
-        $applnId = $appln_id;//Auth::user()->applnStatus->id;
+                $documentLinks = "Document Links:\n\n";
+                foreach ($documentPaths as $docKey => $docPath) {
+                    $documentLinks .= ucfirst(str_replace('document_', '', $docKey)) . ': ' . asset('storage/' . $docPath) . "\n";
+                }
+                
+                Storage::disk('public')->put($mergedFilePath, $documentLinks);
+                
+                // Add the merged document to the fileNames array
+                $fileNames['document_merge'] = $mergedFileName;
 
-        // Dapatkan data sedia ada dalam MaklumatPinjaman
-        $existingData = MaklumatPinjaman::where('appln_id', $applnId)->first();
+                // Dapatkan appln_id yang baru atau sedia ada
+                $applnId = $appln_id;//Auth::user()->applnStatus->id;
 
-        // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
-        $existingDataArray = $existingData ? $existingData->toArray() : [];
+                // Dapatkan data sedia ada dalam MaklumatPinjaman
+                $existingData = ModelsMaklumatPinjaman::where('appln_id', $applnId)->first();
 
-        // Gabungkan data lama dengan data baru
-        $updatedData = array_merge(
-            $existingDataArray,
-            $fileNames,  // Using fileNames instead of documentPaths to store only filenames
-            ['appln_id' => $applnId]
-        );
+                // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
+                $existingDataArray = $existingData ? $existingData->toArray() : [];
 
-        // Simpan data ke dalam database
-        MaklumatPinjaman::updateOrCreate(
-            ['appln_id' => $applnId],
-            $updatedData
-        );
+                // Gabungkan data lama dengan data baru
+                $updatedData = array_merge(
+                    $existingDataArray,
+                    $fileNames,  // Using fileNames instead of documentPaths to store only filenames
+                    ['appln_id' => $applnId]
+                );
 
-        session()->flash('message', 'Documents uploaded successfully. Document links have been created.');
-        
-        //return redirect()->route('home', ['appln_id' => $applnId]);
-        $this->show_hantar = true;
+                // Simpan data ke dalam database
+                ModelsMaklumatPinjaman::updateOrCreate(
+                    ['appln_id' => $applnId],
+                    $updatedData
+                );
 
+                ApplnStatus::where('id', $this->appln_id)->update([
+                    'tab5_muat_naik_dokumen' => 1,
+                ]);
 
+                session()->flash('message', 'Documents uploaded successfully. Document links have been created.');
+                
+                //return redirect()->route('home', ['appln_id' => $applnId]);
+                $this->show_hantar = true;
+
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                $this->dialog()->show([
+                    'icon' => 'error',
+                    'title' => 'Sila Lengkapkan Dokumen!',
+                    'description' => collect($e->validator->errors()->all())
+                                    ->map(fn($msg, $i) => ($i + 1) . '. ' . $msg)
+                                    ->implode("<br>"),
+                ]);
+
+                $this->validateSelf();
+            }
     }
 
 
@@ -161,9 +193,24 @@ class MuatNaikDokumen extends Component
     //     return redirect()->route('dashboard');
     // }
 
+    private function validateAll()
+    {
+        $this->dispatch('run-validation')->to([
+            MaklumatPeribadi::class,
+            MaklumatPerniagaan::class,
+            MaklumatPerniagaan2::class,
+            MaklumatPinjaman::class,
+            MuatNaikDokumen::class,
+        ]);
+    }
+
+
     //merge all file
     public function submitPermohonan()
     {
+
+        //$this->validateAll();
+
         $user = Auth::user();
         $folderName = $user->ic_no;
         $appln_id = $this->appln_id;
@@ -1510,6 +1557,7 @@ class MuatNaikDokumen extends Component
         } else {
             session()->flash('error', 'Permohonan tidak wujud.');
         }
+        
 
         return redirect()->route('dashboard');
     }

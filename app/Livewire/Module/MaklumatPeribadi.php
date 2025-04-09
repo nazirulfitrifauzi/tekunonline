@@ -12,10 +12,11 @@ use App\Models\MaklumatPeribadi as ModelsMaklumatPeribadi;
 use App\Traits\MaklumatPeribadiValidation;
 use Carbon\Carbon;
 use WireUi\Traits\WireUiActions;
+use Livewire\Attributes\On; 
 
 class MaklumatPeribadi extends Component
 {
-    use MaklumatPeribadiValidation, WireUiActions;
+    use MaklumatPeribadiValidation,WireUiActions;
 
     public $negeriSelection = []; // Pastikan ia sentiasa array
     public $cawanganSelection = [];
@@ -28,7 +29,6 @@ class MaklumatPeribadi extends Component
 
     public function mount()
     {
-       
         $this->ic_no = Auth::user()->ic_no;
 
         $existingData = null;
@@ -126,62 +126,122 @@ class MaklumatPeribadi extends Component
         }
     }
 
-    public function submit()
-    {
-        $this->validate();
+    //ori submit
+    // public function submit()
+    // {
+    //     $this->validate();
 
-        // $p = ApplnStatus::where('user_id', Auth::id())
-        //     ->whereIn('appln_status', ['S','P'])
-        //     ->where(function ($query) {
-        //         // This will handle the "ISNULL(appln_status_fas, 0) IN (0, 1)" logic.
-        //         $query->whereNull('appln_status_fas')
-        //             ->orWhereIn('appln_status_fas', [0, 1]);
-        //     })
-        //     ->first();
+    //     // $p = ApplnStatus::where('user_id', Auth::id())
+    //     //     ->whereIn('appln_status', ['S','P'])
+    //     //     ->where(function ($query) {
+    //     //         // This will handle the "ISNULL(appln_status_fas, 0) IN (0, 1)" logic.
+    //     //         $query->whereNull('appln_status_fas')
+    //     //             ->orWhereIn('appln_status_fas', [0, 1]);
+    //     //     })
+    //     //     ->first();
 
-        // if($p == null){
-        //     //dd('permohonan baru');
-        //     $applnStatus = ApplnStatus::insert(
-        //         ['user_id' => Auth::id(),
-        //         'appln_status' => 'P',
-        //         'cust_icno' => $this->ic_no,
-        //         'cust_name' => $this->name,
-        //         'branch_code' => $this->tekun_branch,
-        //         'state_code' => $this->tekun_state,]
-        //     );
-        // }
+    //     // if($p == null){
+    //     //     //dd('permohonan baru');
+    //     //     $applnStatus = ApplnStatus::insert(
+    //     //         ['user_id' => Auth::id(),
+    //     //         'appln_status' => 'P',
+    //     //         'cust_icno' => $this->ic_no,
+    //     //         'cust_name' => $this->name,
+    //     //         'branch_code' => $this->tekun_branch,
+    //     //         'state_code' => $this->tekun_state,]
+    //     //     );
+    //     // }
 
         
-        //$applnId = $applnStatus->id;
-        $applnId = ApplnStatus::where('user_id', Auth::id())->max('id');
+    //     //$applnId = $applnStatus->id;
+    //     $applnId = ApplnStatus::where('user_id', Auth::id())->max('id');
 
-        // Dapatkan data sedia ada dalam MaklumatPinjaman
-        $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnId)->first();
+    //     // Dapatkan data sedia ada dalam MaklumatPinjaman
+    //     $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnId)->first();
 
-        // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
-        $existingDataArray = $existingData ? $existingData->toArray() : [];
+    //     // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
+    //     $existingDataArray = $existingData ? $existingData->toArray() : [];
 
-        // Gabungkan data lama dengan data baru, pastikan nilai baru tidak menimpa dengan `null`
-        $updatedData = array_merge($existingDataArray, array_filter($this->getFormData($applnId), fn($value) => !is_null($value)));
-        // Simpan data ke dalam MaklumatPinjaman
-        ModelsMaklumatPeribadi::updateOrCreate(
-            ['appln_id' => $applnId],
-            $updatedData
-        );
+    //     // Gabungkan data lama dengan data baru, pastikan nilai baru tidak menimpa dengan `null`
+    //     $updatedData = array_merge($existingDataArray, array_filter($this->getFormData($applnId), fn($value) => !is_null($value)));
+    //     // Simpan data ke dalam MaklumatPinjaman
+    //     ModelsMaklumatPeribadi::updateOrCreate(
+    //         ['appln_id' => $applnId],
+    //         $updatedData
+    //     );
 
-        ApplnStatus::where('id',$this->appln_id)->update(
-            ['branch_code' => $updatedData['tekun_branch'],
-            'state_code' => $updatedData['tekun_state']],
-        );
+    //     ApplnStatus::where('id',$this->appln_id)->update(
+    //         ['branch_code' => $updatedData['tekun_branch'],
+    //         'state_code' => $updatedData['tekun_state']],
+    //     );
 
-        $this->dialog()->show([
-            'icon' => 'success',
-            'title' => 'Berjaya!',
-            'description' => 'Maklumat berjaya disimpan.',
-        ]);
+    //     $this->dialog()->show([
+    //         'icon' => 'success',
+    //         'title' => 'Berjaya!',
+    //         'description' => 'Maklumat berjaya disimpan.',
+    //     ]);
 
-        $this->dispatch('saved');
+    //     $this->dispatch('saved');
+    // }
+
+    // sumit with show modal validation
+    protected $listeners = ['run-validation' => 'validateSelf'];
+
+    public function validateSelf()
+    {
+        $this->validate();
     }
+
+    #[On('run-validation')] 
+    public function submit()
+    {
+        try {
+            $this->validateSelf();
+
+            $applnId = ApplnStatus::where('user_id', Auth::id())->max('id');
+
+            $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnId)->first();
+            $existingDataArray = $existingData ? $existingData->toArray() : [];
+
+            $updatedData = array_merge(
+                $existingDataArray,
+                array_filter($this->getFormData($applnId), fn($value) => !is_null($value))
+            );
+
+            ModelsMaklumatPeribadi::updateOrCreate(
+                ['appln_id' => $applnId],
+                $updatedData
+            );
+
+            ApplnStatus::where('id', $this->appln_id)->update([
+                'branch_code' => $updatedData['tekun_branch'],
+                'state_code' => $updatedData['tekun_state'],
+                'tab1_maklumat_peribadi' => 1,
+                'tab2_maklumat_perniagaan' => 0,
+            ]);
+
+            $this->dialog()->show([
+                'icon' => 'success',
+                'title' => 'Berjaya!',
+                'description' => 'Maklumat berjaya disimpan.',
+            ]);
+
+            $this->dispatch('saved');
+            return redirect()->route('home', ['appln_id' => $this->appln_id]);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+           
+            $this->dialog()->show([
+                'icon' => 'error',
+                'title' => 'Sila Lengkapkan Dokumen!',
+                'description' => collect($e->validator->errors()->all())
+                                ->map(fn($msg, $i) => ($i + 1) . '. ' . $msg)
+                                ->implode("<br>"),
+            ]);
+            $this->validateSelf();
+        }
+    }
+
 
     protected function getFormData($applnId)
     {

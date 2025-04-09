@@ -9,6 +9,7 @@ use App\Traits\MaklumatPerniagaan2Validation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use WireUi\Traits\WireUiActions;
+use Livewire\Attributes\On; 
 
 class MaklumatPerniagaan2 extends Component
 {
@@ -40,37 +41,64 @@ class MaklumatPerniagaan2 extends Component
         }
     }
 
+    protected $listeners = ['run-validation' => 'validateSelf'];
+
+    public function validateSelf()
+    {
+        $this->validate();
+    }
+
+    #[On('run-validation')] 
     public function submit()
     {
-        //dd($this->appln_id);
-        $this->validate();
+        try {
+                $this->validateSelf();
 
-        // Dapatkan appln_id yang baru atau sedia ada
-        $applnId = $this->appln_id;
-        
+                // Dapatkan appln_id yang baru atau sedia ada
+                $applnId = $this->appln_id;
+                
 
-        // Dapatkan data sedia ada dalam MaklumatPinjaman
-        $existingData = MaklumatPerniagaan::where('appln_id', $applnId)->first();
+                // Dapatkan data sedia ada dalam MaklumatPinjaman
+                $existingData = MaklumatPerniagaan::where('appln_id', $applnId)->first();
 
-        // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
-        $existingDataArray = $existingData ? $existingData->toArray() : [];
+                // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
+                $existingDataArray = $existingData ? $existingData->toArray() : [];
 
-        // Gabungkan data lama dengan data baru, pastikan nilai baru tidak menimpa dengan `null`
-        $updatedData = array_merge($existingDataArray, array_filter($this->getFormData($applnId), fn($value) => !is_null($value)));
+                // Gabungkan data lama dengan data baru, pastikan nilai baru tidak menimpa dengan `null`
+                $updatedData = array_merge($existingDataArray, array_filter($this->getFormData($applnId), fn($value) => !is_null($value)));
 
-        // Simpan data ke dalam MaklumatPinjaman
-        MaklumatPerniagaan::updateOrCreate(
-            ['appln_id' => $applnId],
-            $updatedData
-        );
+                // Simpan data ke dalam MaklumatPinjaman
+                MaklumatPerniagaan::updateOrCreate(
+                    ['appln_id' => $applnId],
+                    $updatedData
+                );
 
-        $this->dialog()->show([
-            'icon' => 'success',
-            'title' => 'Berjaya!',
-            'description' => 'Maklumat berjaya disimpan.',
-        ]);
+                $this->dialog()->show([
+                    'icon' => 'success',
+                    'title' => 'Berjaya!',
+                    'description' => 'Maklumat berjaya disimpan.',
+                ]);
 
-        $this->dispatch('saved');
+                $this->dispatch('saved');
+
+                ApplnStatus::where('id', $this->appln_id)->update([
+                    'tab3_maklumat_perniagaan_2' => 1,
+                    'tab4_maklumat_pembiayaan' => 0,
+                ]);
+
+                return redirect()->route('home', ['appln_id' => $this->appln_id]);
+
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                $this->dialog()->show([
+                    'icon' => 'error',
+                    'title' => 'Sila Lengkapkan Dokumen!',
+                    'description' => collect($e->validator->errors()->all())
+                                    ->map(fn($msg, $i) => ($i + 1) . '. ' . $msg)
+                                    ->implode("<br>"),
+                ]);
+
+                $this->validateSelf();
+            }
     }
 
     protected function getFormData($applnId)
