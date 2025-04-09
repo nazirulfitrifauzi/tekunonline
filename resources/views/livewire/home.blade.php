@@ -51,75 +51,101 @@
         </header>
     </div>
 
-    <main class="-mt-32">
+    {{-- <main class="-mt-32">
         <div class="px-4 pb-12 mx-auto w-11/12">
             <div class="px-5 py-6 bg-gray-100 rounded-lg shadow sm:px-6">
                 <div
-                    x-data="{
-                        tabSelected: 1,
-                        tabId: $id('tabs'),
-                        tabButtonClicked(tabButton) {
-                            this.tabSelected = parseInt(tabButton.id.split('-').pop());
-                            this.tabRepositionMarker(tabButton);
-                        },
-                        tabRepositionMarker(tabButton) {
-                            this.$refs.tabMarker.style.width = tabButton.offsetWidth + 'px';
-                            this.$refs.tabMarker.style.height = tabButton.offsetHeight + 'px';
-                            this.$refs.tabMarker.style.left = tabButton.offsetLeft + 'px';
-                        },
-                        tabContentActive(tabIndex) {
-                            return this.tabSelected === tabIndex;
-                        },
-                        tabButtonActive(tabIndex) {
-                            return this.tabSelected === tabIndex;
+                x-data="{
+                    tabSelected: 1,
+                    tabId: $id('tabs'),
+                    tabButtonClicked(tabButton) {
+                        this.tabSelected = parseInt(tabButton.id.split('-').pop());
+                        this.tabRepositionMarker(tabButton);
+                    },
+                    tabRepositionMarker(tabButton) {
+                        this.$refs.tabMarker.style.width = tabButton.offsetWidth + 'px';
+                        this.$refs.tabMarker.style.height = tabButton.offsetHeight + 'px';
+                        this.$refs.tabMarker.style.left = tabButton.offsetLeft + 'px';
+                    },
+                    tabContentActive(tabIndex) {
+                        return this.tabSelected === tabIndex;
+                    },
+                    tabButtonActive(tabIndex) {
+                        return this.tabSelected === tabIndex;
+                    }
+                }"
+                x-init="
+                    tabRepositionMarker($refs.tabButtons.children[0]);
+
+                    Livewire.on('redirectToTab', tab => {
+                        const btn = document.querySelector(`#tabs-${tab}`);
+                        if (btn) {
+                            setTimeout(() => {
+                                if (!btn.disabled) {
+                                    tabButtonClicked(btn);
+                                    tabRepositionMarker(btn);
+                                }
+                            }, 50);
                         }
-                    }"
-                    x-init="tabRepositionMarker($refs.tabButtons.children[0]);"
-                    class="flex relative flex-col flex-1 w-full min-h-0"
-                >
+                    });
+                "
+                class="flex relative flex-col flex-1 w-full min-h-0"
+            >
                     <!-- 2a) Tab Buttons (fixed height, no scroll) -->
                     <div
                         x-ref="tabButtons"
                         class="inline-grid relative grid-cols-7 justify-center items-center p-1 w-full h-10 bg-gray-100 rounded-lg select-none dark:bg-gray-800 dark:border-gray-700"
                     >
+                        <!-- Tab 1: Maklumat Peribadi -->
                         <button
                             id="tabs-1"
                             @click="tabButtonClicked($el)"
                             :class="{ 'bg-indigo-500 text-white': tabButtonActive(1) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium whitespace-nowrap rounded-md transition-all dark:text-gray-300"
                         >
                             Maklumat Peribadi
                         </button>
+
+                        <!-- Tab 2: Maklumat Perniagaan I -->
+                       
                         <button
                             id="tabs-2"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-red-500 text-white': tabButtonActive(2) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(2) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium whitespace-nowrap rounded-md transition-all dark:text-gray-300"
                         >
-                        Maklumat Perniagaan I
+                            Maklumat Perniagaan I
                         </button>
+
+                        <!-- Tab 3: Maklumat Perniagaan II -->
+                       
                         <button
                             id="tabs-3"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-red-500 text-white': tabButtonActive(3) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(3) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium whitespace-nowrap rounded-md transition-all dark:text-gray-300"
                         >
                             Maklumat Perniagaan II
                         </button>
+
+                        <!-- Tab 7: Maklumat Pembiayaan -->
+                        
                         <button
                             id="tabs-7"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-fuchsia-500 text-white': tabButtonActive(7) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(7) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium whitespace-nowrap rounded-md transition-all dark:text-gray-300"
                         >
                             Maklumat Pembiayaan
                         </button>
 
+                        <!-- Tab 6: Muat Naik Dokumen -->
+                        
                         <button
                             id="tabs-6"
                             @click="tabButtonClicked($el)"
-                            :class="{ 'bg-green-500 text-white': tabButtonActive(6) }"
-                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium text-gray-400 whitespace-nowrap rounded-md transition-all cursor-pointer dark:text-gray-300"
+                            :class="{ 'bg-indigo-500 text-white': tabButtonActive(6) }"
+                            class="inline-flex relative z-20 justify-center items-center px-3 w-full h-8 text-sm font-medium whitespace-nowrap rounded-md transition-all dark:text-gray-300"
                         >
                             Muat Naik Dokumen
                         </button>
@@ -168,5 +194,91 @@
                 </div>
             </div>
         </div>
+    </main> --}}
+
+    <main class="-mt-32">
+        <div class="w-11/12 px-4 pb-12 mx-auto">
+            <div class="px-5 py-6 bg-gray-100 rounded-lg shadow sm:px-6">
+    
+                <div
+                    x-data="{
+                        /* two‑way bind with Livewire */
+                        tabSelected: @entangle('activeTab').live,
+    
+                        /* tabs & labels */
+                        tabs: [
+                            { id: 1, label: 'Maklumat Peribadi' },
+                            { id: 2, label: 'Maklumat Perniagaan I' },
+                            { id: 3, label: 'Maklumat Perniagaan II' },
+                            { id: 7, label: 'Maklumat Pembiayaan' },
+                            { id: 6, label: 'Muat Naik Dokumen' },
+                        ],
+    
+                        /* move the purple marker */
+                        reposition(btn) {
+                            this.$refs.tabMarker.style.width  = btn.offsetWidth  + 'px';
+                            this.$refs.tabMarker.style.left   = btn.offsetLeft   + 'px';
+                        },
+    
+                        init() {
+                            /* place marker on first paint */
+                            this.$nextTick(() =>
+                                this.reposition(this.$refs.tabButtons.children[
+                                    this.tabs.findIndex(t => t.id === this.tabSelected)
+                                ])
+                            );
+    
+                            /* whenever Alpine or Livewire changes the tab */
+                            this.$watch('tabSelected', v => {
+                                const btn = document.querySelector(`#tabs-${v}`);
+                                if (btn) this.reposition(btn);
+                            });
+    
+                            /* still honour any external Livewire event */
+                            Livewire.on('redirectToTab', v => this.tabSelected = v);
+                        },
+    
+                        isActive(i) { return this.tabSelected === i },
+                        show(i)     { return this.tabSelected === i }
+                    }"
+                    class="relative flex flex-col flex-1 w-full min-h-0"
+                >
+    
+                    {{-- buttons --}}
+                    <div x-ref="tabButtons"
+                         class="relative inline-grid w-full h-10 grid-cols-7 p-1 bg-gray-100 rounded-lg select-none dark:bg-gray-800 dark:border-gray-700">
+    
+                        <template x-for="t in tabs" :key="t.id">
+                            <button
+                                :id="`tabs-${t.id}`"
+                                @click="tabSelected = t.id"
+                                :class="isActive(t.id) ? 'text-black' : 'text-gray-800 hover:text-indigo-600'"
+                                class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium whitespace-nowrap rounded-md transition-all">
+                                <span x-text="t.label"></span>
+                            </button>
+                        </template>
+    
+                        {{-- purple sliding marker --}}
+                        {{-- <div x-ref="tabMarker" class="absolute left-0 top-0 z-10 h-full duration-300 ease-out">
+                            <div class="w-full h-full bg-indigo-600 rounded-md"></div>
+                        </div> --}}
+                    </div>
+    
+                    {{-- panels --}}
+                    <div class="relative flex flex-col flex-1 w-full min-h-0 mt-4">
+                        <div class="flex-1 min-w-0 min-h-0 p-6 overflow-y-auto transition-all duration-300 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                            <div x-show="show(1)">@livewire('module.maklumat-peribadi')</div>
+                            <div x-show="show(2)" x-cloak>@livewire('module.maklumat-perniagaan')</div>
+                            <div x-show="show(3)" x-cloak>@livewire('module.maklumat-perniagaan2')</div>
+                            <div x-show="show(6)" x-cloak>@livewire('module.muat-naik-dokumen')</div>
+                            <div x-show="show(7)" x-cloak>@livewire('module.maklumat-pinjaman')</div>
+                        </div>
+                    </div>
+                </div> {{-- /Alpine --}}
+            </div>
+        </div>
     </main>
+    
+    
+    
 </div>

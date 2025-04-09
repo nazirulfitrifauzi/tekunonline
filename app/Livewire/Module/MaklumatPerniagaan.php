@@ -100,7 +100,7 @@ class MaklumatPerniagaan extends Component
 
 
     // #[On('tab-mp')]
-    #[On('run-validation')] 
+    #[On('run-validation2')] 
     public function submit()
     {
         try {
@@ -252,7 +252,9 @@ class MaklumatPerniagaan extends Component
                     'tab3_maklumat_perniagaan_2' => 0,
                 ]);
 
-                return redirect()->route('home', ['appln_id' => $this->appln_id]);
+                //return redirect()->route('home', ['appln_id' => $this->appln_id]);
+                //return redirect()->refresh();
+                //$this->dispatch('redirectToTab', 2);
                 
             } catch (\Illuminate\Validation\ValidationException $e) {
                 $this->dialog()->show([

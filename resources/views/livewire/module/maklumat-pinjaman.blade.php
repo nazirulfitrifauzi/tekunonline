@@ -321,7 +321,7 @@
                                     </p>
                                 @enderror
                             </div>
-
+                            
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="skim_safety" class="block text-sm font-medium leading-5 text-gray-700">Skim Keselamatan Sosial Pekerjaan Sendiri PERKESO <span class="text-red-700">*</span></label>
                                 <select id="skim_safety" name="skim_safety" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="skim_safety">

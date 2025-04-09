@@ -26,6 +26,7 @@ class MaklumatPeribadi extends Component
     public $ic_no;
 
     protected $queryString = ['appln_id'];
+    protected $listeners = ['validate-maklumat-peribadi' => 'validateAndNotify'];
 
     public function mount()
     {
@@ -185,14 +186,13 @@ class MaklumatPeribadi extends Component
     // }
 
     // sumit with show modal validation
-    protected $listeners = ['run-validation' => 'validateSelf'];
 
     public function validateSelf()
     {
         $this->validate();
     }
 
-    #[On('run-validation')] 
+    #[On('run-validation1')]
     public function submit()
     {
         try {
@@ -227,7 +227,10 @@ class MaklumatPeribadi extends Component
             ]);
 
             $this->dispatch('saved');
-            return redirect()->route('home', ['appln_id' => $this->appln_id]);
+            
+           //return redirect()->route('home', ['appln_id' => $this->appln_id]);
+           return redirect()->refresh();
+           //    $this->dispatch('redirectToTab', 1);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
            
@@ -242,6 +245,24 @@ class MaklumatPeribadi extends Component
         }
     }
 
+    /**
+     * Validate the form and notify the parent component
+     */
+    public function validateAndNotify()
+    {
+        try {
+            $this->validate();
+            // If validation passes, dispatch an event to notify MuatNaikDokumen
+            $this->dispatch('validation-complete', ['component' => 'maklumat-peribadi', 'status' => 'success']);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // If validation fails, dispatch an event with the errors
+            $this->dispatch('validation-complete', [
+                'component' => 'maklumat-peribadi', 
+                'status' => 'error',
+                'errors' => $e->validator->errors()->all()
+            ]);
+        }
+    }
 
     protected function getFormData($applnId)
     {

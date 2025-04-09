@@ -47,7 +47,7 @@ class MaklumatPinjaman extends Component
         $this->validate();
     }
 
-    #[On('run-validation')] 
+    #[On('run-validation4')] 
     public function submit()
     {
         try {
@@ -84,7 +84,10 @@ class MaklumatPinjaman extends Component
                     'tab5_muat_naik_dokumen' => 0,
                 ]);
 
-                return redirect()->route('home', ['appln_id' => $this->appln_id]);
+                //return redirect()->route('home', ['appln_id' => $this->appln_id]);
+
+                //$this->dispatch('redirectToTab', 6);
+                //$this->dispatch('enableAndSwitchTab', 5);
 
             } catch (\Illuminate\Validation\ValidationException $e) {
                 $this->dialog()->show([
