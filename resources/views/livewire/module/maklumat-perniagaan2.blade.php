@@ -11,7 +11,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="buss_branch_tot" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Cawangan<span class="text-red-700">*</span></label>
+                                <label for="buss_branch_tot" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Cawangan <span class="text-red-700">*</span></label>
                                 <select id="buss_branch_tot" wire:model.live="buss_branch_tot" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">1</option>
@@ -31,7 +31,7 @@
                                 <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Cawangan 1</h4>
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-6">
-                                        <label for="buss1_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 1 <span class="text-red-700">*</span></label>
                                         <select id="buss1_branch_loc" name="buss1_branch_loc" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_branch_loc">
                                             <option value="">SILA PILIH</option>
                                             <option value="Bengkel - Besi">Bengkel - Besi</option>
@@ -60,7 +60,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss1_branch_status" class="block text-sm font-medium leading-5 text-gray-700">Status Cawangan 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_branch_status" class="block text-sm font-medium leading-5 text-gray-700">Status Cawangan 1 <span class="text-red-700">*</span></label>
                                         <select id="buss1_branch_status" name="buss1_branch_status" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_branch_status">
                                             <option value="">SILA PILIH</option>
                                             <option value="SENDIRI">SENDIRI</option>
@@ -76,7 +76,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss1_branch_tot_worker" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Pekerja 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_branch_tot_worker" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Pekerja 1 <span class="text-red-700">*</span></label>
                                         <select id="buss1_branch_tot_worker" name="buss1_branch_tot_worker" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_branch_tot_worker">
                                             <option value="">SILA PILIH</option>
                                             <option value="TIADA">TIADA</option>
@@ -123,7 +123,7 @@
                                      </div>
 
                                      <div class="col-span-6">
-                                        <label for="buss1_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 1 <span class="text-red-700">*</span></label>
                                         <input id="buss1_addr1" name="buss1_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_addr1">                               
                                         <input id="buss1_addr2" name="buss1_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_addr2">
                                         @error('buss1_addr1')
@@ -134,7 +134,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss1_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 1 <span class="text-red-700">*</span></label>
                                         <input id="buss1_postcode" name="buss1_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_postcode">
                                         @error('buss1_postcode')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -144,7 +144,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss1_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 1 <span class="text-red-700">*</span></label>
                                         <input id="buss1_city" name="buss1_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_city">
                                         @error('buss1_city')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -154,7 +154,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss1_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri 1 <span class="text-red-700">*</span></label>
                                         <select id="buss1_state" name="buss1_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_state">
                                             <option value="">SILA PILIH</option>
                                             @foreach ($negeriSelection as $negeris)
@@ -169,7 +169,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss1_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 1<span class="text-red-700">*</span></label>
+                                        <label for="buss1_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 1 <span class="text-red-700">*</span></label>
                                         <div class="relative mt-1 rounded-md shadow-sm">
                                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                                 <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -211,7 +211,7 @@
                                 <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Cawangan 2</h4>
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-6">
-                                        <label for="buss2_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 2 <span class="text-red-700">*</span></label>
                                         <select id="buss2_branch_loc" name="buss2_branch_loc" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_branch_loc">
                                             <option value="">SILA PILIH</option>
                                             <option value="Bengkel - Besi">Bengkel - Besi</option>
@@ -240,7 +240,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss2_branch_status" class="block text-sm font-medium leading-5 text-gray-700">Status Cawangan 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_branch_status" class="block text-sm font-medium leading-5 text-gray-700">Status Cawangan 2 <span class="text-red-700">*</span></label>
                                         <select id="buss2_branch_status" name="buss2_branch_status" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_branch_status">
                                             <option value="">SILA PILIH</option>
                                             <option value="SENDIRI">SENDIRI</option>
@@ -256,7 +256,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss2_branch_tot_worker" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Pekerja 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_branch_tot_worker" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Pekerja 2 <span class="text-red-700">*</span></label>
                                         <select id="buss2_branch_tot_worker" name="buss2_branch_tot_worker" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_branch_tot_worker">
                                             <option value="">SILA PILIH</option>
                                             <option value="TIADA">TIADA</option>
@@ -303,7 +303,7 @@
                                      </div>
 
                                      <div class="col-span-6">
-                                        <label for="buss2_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 2 <span class="text-red-700">*</span></label>
                                         <input id="buss2_addr1" name="buss2_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_addr1">                               
                                         <input id="buss2_addr2" name="buss2_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_addr2">
                                         @error('buss2_addr1')
@@ -314,7 +314,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss2_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 2 <span class="text-red-700">*</span></label>
                                         <input id="buss2_postcode" name="buss2_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_postcode">
                                         @error('buss2_postcode')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -324,7 +324,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss2_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 2 <span class="text-red-700">*</span></label>
                                         <input id="buss2_city" name="buss2_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_city">
                                         @error('buss2_city')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -334,7 +334,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss2_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri 2 <span class="text-red-700">*</span></label>
                                         <select id="buss2_state" name="buss2_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_state">
                                             <option value="">SILA PILIH</option>
                                             @foreach ($negeriSelection as $negeris)
@@ -349,7 +349,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss2_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 2 <span class="text-red-700">*</span></label>
                                         <div class="relative mt-1 rounded-md shadow-sm">
                                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                                 <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -366,7 +366,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss2_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 2<span class="text-red-700">*</span></label>
+                                        <label for="buss2_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 2 <span class="text-red-700">*</span></label>
                                         <div class="relative mt-1 rounded-md shadow-sm">
                                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                                 <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -391,7 +391,7 @@
                                 <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Cawangan 3</h4>
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-6">
-                                        <label for="buss3_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 3 <span class="text-red-700">*</span></label>
                                         <select id="buss3_branch_loc" name="buss3_branch_loc" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_branch_loc">
                                             <option value="">SILA PILIH</option>
                                             <option value="Bengkel - Besi">Bengkel - Besi</option>
@@ -420,7 +420,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss3_branch_status" class="block text-sm font-medium leading-5 text-gray-700">Status Cawangan 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_branch_status" class="block text-sm font-medium leading-5 text-gray-700">Status Cawangan 3 <span class="text-red-700">*</span></label>
                                         <select id="buss3_branch_status" name="buss3_branch_status" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_branch_status">
                                             <option value="">SILA PILIH</option>
                                             <option value="SENDIRI">SENDIRI</option>
@@ -436,7 +436,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss3_branch_tot_worker" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Pekerja 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_branch_tot_worker" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Pekerja 3 <span class="text-red-700">*</span></label>
                                         <select id="buss3_branch_tot_worker" name="buss3_branch_tot_worker" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_branch_tot_worker">
                                             <option value="">SILA PILIH</option>
                                             <option value="TIADA">TIADA</option>
@@ -483,7 +483,7 @@
                                      </div>
 
                                      <div class="col-span-6">
-                                        <label for="buss3_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 3 <span class="text-red-700">*</span></label>
                                         <input id="buss3_addr1" name="buss3_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_addr1">                               
                                         <input id="buss3_addr2" name="buss3_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_addr2">
                                         @error('buss3_addr1')
@@ -494,7 +494,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss3_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 3 <span class="text-red-700">*</span></label>
                                         <input id="buss3_postcode" name="buss3_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_postcode">
                                         @error('buss3_postcode')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -504,7 +504,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss3_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 3 <span class="text-red-700">*</span></label>
                                         <input id="buss3_city" name="buss3_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_city">
                                         @error('buss3_city')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -514,7 +514,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss3_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri 3 <span class="text-red-700">*</span></label>
                                         <select id="buss3_state" name="buss3_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_state">
                                             <option value="">SILA PILIH</option>
                                             @foreach ($negeriSelection as $negeris)
@@ -529,7 +529,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss3_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Tel Cawangan 3 <span class="text-red-700">*</span></label>
                                         <div class="relative mt-1 rounded-md shadow-sm">
                                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                                 <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -546,7 +546,7 @@
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
-                                        <label for="buss3_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 3<span class="text-red-700">*</span></label>
+                                        <label for="buss3_fax" class="block text-sm font-medium leading-5 text-gray-700">No. Faks Cawangan 3 <span class="text-red-700">*</span></label>
                                         <div class="relative mt-1 rounded-md shadow-sm">
                                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                                 <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -590,7 +590,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-6">
-                                <label for="fin_details_flag" class="block text-sm font-medium leading-5 text-gray-700">MAKLUMAT PEMBIAYAAN PERNIAGAAN SEDIA ADA<span class="text-red-700">*</span></label>
+                                <label for="fin_details_flag" class="block text-sm font-medium leading-5 text-gray-700">MAKLUMAT PEMBIAYAAN PERNIAGAAN SEDIA ADA <span class="text-red-700">*</span></label>
                                 <select id="fin_details_flag" wire:model.live="fin_details_flag" class="block w-full mt-1 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">ADA</option>

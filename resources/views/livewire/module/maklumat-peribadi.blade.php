@@ -772,6 +772,7 @@
                                 <input id="employer_phone" 
                                        name="employer_phone" 
                                        wire:model.live="employer_phone" 
+                                       maxlength="11"
                                        class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
                                 @error('employer_phone')
                                 <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>

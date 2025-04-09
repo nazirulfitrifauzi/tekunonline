@@ -12,7 +12,7 @@
                         <div class="grid grid-cols-6 gap-6">
 
                         <div class="col-span-6 sm:col-span-3">
-                                <label for="purchase_price" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Diperlukan<span class="text-red-700">*</span></label>
+                                <label for="purchase_price" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Diperlukan <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -29,7 +29,7 @@
                             </div>
                             
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="pymt_duration" class="block text-sm font-medium leading-5 text-gray-700">Tempoh Bayaran (Bulan)<span class="text-red-700">*</span></label>
+                                <label for="pymt_duration" class="block text-sm font-medium leading-5 text-gray-700">Tempoh Bayaran (Bulan) <span class="text-red-700">*</span></label>
                                 <select id="pymt_duration" name="pymt_duration" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="pymt_duration">
                                     <option value="">SILA PILIH</option>
                                     <option value="6">6</option>
@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="pymt_frequency" class="block text-sm font-medium leading-5 text-gray-700">Kekerapan Bayaran<span class="text-red-700">*</span></label>
+                                <label for="pymt_frequency" class="block text-sm font-medium leading-5 text-gray-700">Kekerapan Bayaran <span class="text-red-700">*</span></label>
                                 <select id="pymt_frequency" name="pymt_frequency" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="pymt_frequency">
                                     <option value="">SILA PILIH</option>
                                     <!-- <option value="MINGGUAN">MINGGUAN</option> -->
@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="pymt_method" class="block text-sm font-medium leading-5 text-gray-700">Cara Bayaran<span class="text-red-700">*</span></label>
+                                <label for="pymt_method" class="block text-sm font-medium leading-5 text-gray-700">Cara Bayaran <span class="text-red-700">*</span></label>
                                 <select id="pymt_method" name="pymt_method" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="pymt_method">
                                     <option value="">SILA PILIH</option>
                                     <option value="E-MANDATE">E-MANDATE</option>
@@ -112,7 +112,7 @@
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="reference_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perujuk 1<span class="text-red-700">*</span></label>
+                                <label for="reference_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perujuk 1 <span class="text-red-700">*</span></label>
                                 <input id="reference_name" name="reference_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_name">                               
                                 @error('reference_name')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -122,7 +122,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="reference_icno" class="block text-sm font-medium leading-5 text-gray-700">No KP Perujuk 1<span class="text-red-700">*</span></label>
+                                <label for="reference_icno" class="block text-sm font-medium leading-5 text-gray-700">No KP Perujuk 1 <span class="text-red-700">*</span></label>
                                 <input id="reference_icno" name="reference_icno"  maxlength="12" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_icno">                               
                                 @error('reference_icno')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -132,7 +132,7 @@
                             </div>
 
                             <div class="col-span-6">
-                                <label for="reference_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Perujuk 1<span class="text-red-700">*</span></label>
+                                <label for="reference_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Perujuk 1 <span class="text-red-700">*</span></label>
                                 <input id="reference_address1" name="reference_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_address1">                               
                                 <input id="reference_address2" name="reference_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_address2">
                                 @error('reference_address1')
@@ -143,7 +143,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="reference_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 1<span class="text-red-700">*</span></label>
+                                <label for="reference_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 1 <span class="text-red-700">*</span></label>
                                 <input id="reference_postcode" name="reference_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_postcode">
                                 @error('reference_postcode')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -153,7 +153,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="reference_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 1<span class="text-red-700">*</span></label>
+                                <label for="reference_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 1 <span class="text-red-700">*</span></label>
                                 <input id="reference_city" name="reference_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_city">
                                 @error('reference_city')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -163,7 +163,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="reference_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri 1<span class="text-red-700">*</span></label>
+                                <label for="reference_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri 1 <span class="text-red-700">*</span></label>
                                 <select id="reference_state" name="reference_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_state">
                                     <option value="">SILA PILIH</option>
                                     @foreach ($negeriSelection as $negeris)
@@ -178,7 +178,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="reference_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 1 Dengan Pemohon<span class="text-red-700">*</span></label>
+                                <label for="reference_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 1 Dengan Pemohon <span class="text-red-700">*</span></label>
                                 <select id="reference_relation" name="reference_relation" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference_relation">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">PASANGAN</option>
@@ -197,7 +197,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="reference_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Perujuk 1<span class="text-red-700">*</span></label>
+                                <label for="reference_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Perujuk 1 <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -217,7 +217,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="reference2_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perujuk 2<span class="text-red-700">*</span></label>
+                                <label for="reference2_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perujuk 2 <span class="text-red-700">*</span></label>
                                 <input id="reference2_name" name="reference2_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_name">                               
                                 @error('reference2_name')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -227,7 +227,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="reference2_icno" class="block text-sm font-medium leading-5 text-gray-700">No KP Perujuk 2<span class="text-red-700">*</span></label>
+                                <label for="reference2_icno" class="block text-sm font-medium leading-5 text-gray-700">No KP Perujuk 2 <span class="text-red-700">*</span></label>
                                 <input id="reference2_icno" name="reference2_icno" value=""  maxlength="12" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_icno">                               
                                 @error('reference2_icno')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -237,7 +237,7 @@
                             </div>
 
                             <div class="col-span-6">
-                                <label for="reference2_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Perujuk 2<span class="text-red-700">*</span></label>
+                                <label for="reference2_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Perujuk 2 <span class="text-red-700">*</span></label>
                                 <input id="reference2_address1" name="reference2_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_address1">                               
                                 <input id="reference2_address2" name="reference2_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_address2">
                                 @error('reference2_address1')
@@ -248,7 +248,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="reference2_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 2 Dengan Pemohon<span class="text-red-700">*</span></label>
+                                <label for="reference2_relation" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Perujuk 2 Dengan Pemohon <span class="text-red-700">*</span></label>
                                 <select id="reference2_relation" name="reference2_relation" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="reference2_relation">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">PASANGAN</option>
@@ -267,7 +267,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="reference2_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Perujuk 2<span class="text-red-700">*</span></label>
+                                <label for="reference2_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Perujuk 2 <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -309,7 +309,7 @@
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="takaful_incident" class="block text-sm font-medium leading-5 text-gray-700">Takaful Kemalangan Peribadi Berkelompok<span class="text-red-700">*</span></label>
+                                <label for="takaful_incident" class="block text-sm font-medium leading-5 text-gray-700">Takaful Kemalangan Peribadi Berkelompok <span class="text-red-700">*</span></label>
                                 <select id="takaful_incident" name="takaful_incident" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="takaful_incident">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
@@ -323,7 +323,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="skim_safety" class="block text-sm font-medium leading-5 text-gray-700">Skim Keselamatan Sosial Pekerjaan Sendiri PERKESO<span class="text-red-700">*</span></label>
+                                <label for="skim_safety" class="block text-sm font-medium leading-5 text-gray-700">Skim Keselamatan Sosial Pekerjaan Sendiri PERKESO <span class="text-red-700">*</span></label>
                                 <select id="skim_safety" name="skim_safety" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="skim_safety">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
@@ -337,7 +337,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="pakej_skim_safety" class="block text-sm font-medium leading-5 text-gray-700">Skim Keselamatan Sosial Pekerjaan Sendiri PERKESO<span class="text-red-700">*</span></label>
+                                <label for="pakej_skim_safety" class="block text-sm font-medium leading-5 text-gray-700">Skim Keselamatan Sosial Pekerjaan Sendiri PERKESO <span class="text-red-700">*</span></label>
                                 <select id="pakej_skim_safety" name="pakej_skim_safety" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="pakej_skim_safety">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">Pakej 1 - RM 157.20 setahun</option>
@@ -379,7 +379,7 @@
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="will_registration" class="block text-sm font-medium leading-5 text-gray-700">Pendaftaran Wasiat<span class="text-red-700">*</span></label>
+                                <label for="will_registration" class="block text-sm font-medium leading-5 text-gray-700">Pendaftaran Wasiat <span class="text-red-700">*</span></label>
                                 <select id="will_registration" name="will_registration" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="will_registration">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
@@ -394,7 +394,7 @@
 
                             @if ($will_registration == 1)
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="will_comp_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Syarikat<span class="text-red-700">*</span></label>
+                                <label for="will_comp_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Syarikat <span class="text-red-700">*</span></label>
                                 <select id="will_comp_name" name="will_comp_name" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="will_comp_name">
                                     <option value="">SILA PILIH</option>
                                     <option value="W001">MAAB</option>
@@ -408,7 +408,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="will_fi" class="block text-sm font-medium leading-5 text-gray-700">Fi Wasiat<span class="text-red-700">*</span></label>
+                                <label for="will_fi" class="block text-sm font-medium leading-5 text-gray-700">Fi Wasiat <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
@@ -451,7 +451,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">Kebenaran Penzahiran Maklumat Kredit Individu<span class="text-red-700">*</span></legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700">Kebenaran Penzahiran Maklumat Kredit Individu <span class="text-red-700">*</span></legend>
                             </div>
                             <div class="col-span-6">
                                 <legend class="block text-sm font-medium leading-5 text-gray-700">Pemohon dengan ini membenarkan (*TEKUN Nasional atau pegawainya untuk menggunakan, mendedahkan, memberitahu apa-apa maklumat berhubung dengan akaun pembiayaan TEKUN / untuk tujuan atau berhubung dengan apa-apa tindakan atau prosiding diambil bagi tujuan penilaian kredit atau bayaran di bawah Terma dan Syarat ini;</legend>
@@ -560,7 +560,7 @@
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6">
-                                <label for="name_penamaan" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
+                                <label for="name_penamaan" class="block text-sm font-medium leading-5 text-gray-700">Nama <span class="text-red-700">*</span></label>
                                 <input id="name_penamaan" name="name_penamaan" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="name_penamaan">                               
                                 @error('name_penamaan')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -570,7 +570,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="nationality_penamaan" class="block text-sm font-medium leading-5 text-gray-700">Warganegara Malaysia<span class="text-red-700">*</span></label>
+                                <label for="nationality_penamaan" class="block text-sm font-medium leading-5 text-gray-700">Warganegara Malaysia <span class="text-red-700">*</span></label>
                                 <select id="nationality_penamaan" name="nationality_penamaan" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="nationality_penamaan">
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
@@ -585,7 +585,7 @@
 
                             @if($nationality_penamaan == 1)
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="icno_penamaan" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan<span class="text-red-700">*</span></label>
+                                <label for="icno_penamaan" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan <span class="text-red-700">*</span></label>
                                 <input id="icno_penamaan" name="icno_penamaan" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="icno_penamaan">                               
                                 @error('icno_penamaan')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -597,7 +597,7 @@
 
                             @if($nationality_penamaan == 0)
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="passportno_penamaan" class="block text-sm font-medium leading-5 text-gray-700">No. Passport<span class="text-red-700">*</span></label>
+                                <label for="passportno_penamaan" class="block text-sm font-medium leading-5 text-gray-700">No. Passport <span class="text-red-700">*</span></label>
                                 <input id="passportno_penamaan" name="passportno_penamaan" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="passportno_penamaan">                               
                                 @error('passportno_penamaan')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -608,7 +608,7 @@
                             @endif
 
                             <div class="col-span-6">
-                                <label for="penamaan_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat<span class="text-red-700">*</span></label>
+                                <label for="penamaan_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
                                 <input id="penamaan_addr1" name="penamaan_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="penamaan_addr1">                               
                                 <input id="penamaan_addr2" name="penamaan_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="penamaan_addr2">
                                 @error('penamaan_addr1')
@@ -619,7 +619,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="penamaan_relationship" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan Pemohon<span class="text-red-700">*</span></label>
+                                <label for="penamaan_relationship" class="block text-sm font-medium leading-5 text-gray-700">Hubungan Dengan Pemohon <span class="text-red-700">*</span></label>
                                 <input id="penamaan_relationship" name="penamaan_relationship" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="penamaan_relationship">
                                 @error('penamaan_relationship')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -629,7 +629,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="penamaan_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Telefon<span class="text-red-700">*</span></label>
+                                <label for="penamaan_phone" class="block text-sm font-medium leading-5 text-gray-700">No. Telefon <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
