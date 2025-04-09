@@ -193,15 +193,37 @@ class MuatNaikDokumen extends Component
     //     return redirect()->route('dashboard');
     // }
 
-    private function validateAll()
+    public function validateTap1()
     {
-        $this->dispatch('run-validation')->to([
-            MaklumatPeribadi::class,
-            MaklumatPerniagaan::class,
-            MaklumatPerniagaan2::class,
-            MaklumatPinjaman::class,
-            MuatNaikDokumen::class,
-        ]);
+        $this->dispatch('run-validation')->to(MaklumatPeribadi::class);
+
+        $this->validateTap2();
+    }
+
+    public function validateTap2()
+    {
+        $this->dispatch('run-validation')->to(MaklumatPerniagaan::class);
+
+        $this->validateTap3();
+    }
+
+    public function validateTap3()
+    {
+        $this->dispatch('run-validation')->to(MaklumatPerniagaan2::class);
+
+        $this->validateTap4();
+    }
+
+    public function validateTap4()
+    {
+        $this->dispatch('run-validation')->to(MaklumatPinjaman::class);
+
+        $this->validateTap5();
+    }
+
+    public function validateTap5()
+    {
+        $this->dispatch('run-validation')->to(MuatNaikDokumen::class);
     }
 
 
@@ -209,7 +231,7 @@ class MuatNaikDokumen extends Component
     public function submitPermohonan()
     {
 
-        //$this->validateAll();
+        $this->validateTap1();
 
         $user = Auth::user();
         $folderName = $user->ic_no;
