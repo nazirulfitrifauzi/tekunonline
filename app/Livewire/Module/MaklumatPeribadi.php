@@ -228,8 +228,8 @@ class MaklumatPeribadi extends Component
 
             $this->dispatch('saved');
             
-           //return redirect()->route('home', ['appln_id' => $this->appln_id]);
-           return redirect()->refresh();
+           return redirect()->route('home', ['appln_id' => $this->appln_id]);
+           //return redirect()->refresh();
            //    $this->dispatch('redirectToTab', 1);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
