@@ -85,7 +85,7 @@ class MuatNaikDokumen extends Component
                 $ssm_extension = $this->document_ssm->getClientOriginalExtension();
                 $business_extension = $this->document_business_picture->getClientOriginalExtension();
                 $bank_extension = $this->document_bank_statements->getClientOriginalExtension();
-                if($this->existingData->skim_safety == 0 && is_object($this->document_perkeso)){
+                if(optional($this->existingData)->skim_safety == 0 && is_object($this->document_perkeso)){
                     $perkeso_extension = $this->document_perkeso->getClientOriginalExtension();
                 }
 
@@ -99,7 +99,7 @@ class MuatNaikDokumen extends Component
                     //'document_perkeso' => 'perkeso_'. now()->format('Y-m-d'). '.'. $perkeso_extension,
                 ];
 
-                if ($this->existingData->skim_safety == 0) {
+                if (optional($this->existingData)->skim_safety == 0) {
                     $fileNames['document_perkeso'] = 'perkeso_' . now()->format('Y-m-d') . '.' . $perkeso_extension;
                 }
 
@@ -115,7 +115,7 @@ class MuatNaikDokumen extends Component
                 $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
                 $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
                 $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
-                if($this->existingData->skim_safety == 0 && is_object($this->document_perkeso)){
+                if(optional($this->existingData)->skim_safety == 0 && is_object($this->document_perkeso)){
                     $this->document_perkeso->storeAs('', $documentPaths['document_perkeso'], 'public');
                 }
 
@@ -1562,16 +1562,26 @@ class MuatNaikDokumen extends Component
                 $oMerger->addPDF('file:///' . $ssmPdfPath, 'all');
 
                 // 7) Add ssm PDF
-                $perkesoPdfName = 'perkeso_' . now()->format('Y-m-d') . '.pdf';
-                $perkesoPdfPath = storage_path('app/public/' . $folderName . '/' . $perkesoPdfName);
+                // $perkesoPdfName = 'perkeso_' . now()->format('Y-m-d') . '.pdf';
+                // $perkesoPdfPath = storage_path('app/public/' . $folderName . '/' . $perkesoPdfName);
 
-                if (!file_exists($perkesoPdfPath)) {
-                    Log::error("Perkeso PDF not found at: " . $perkesoPdfPath);
-                    session()->flash('error', 'Perkeso PDF file not found.');
-                    return redirect()->back();
+                // if (!file_exists($perkesoPdfPath)) {
+                //     Log::error("Perkeso PDF not found at: " . $perkesoPdfPath);
+                //     session()->flash('error', 'Perkeso PDF file not found.');
+                //     return redirect()->back();
+                // }
+                // $oMerger->addPDF('file:///' . $perkesoPdfPath, 'all');
+
+                // Merge perkeso only if it was actually uploaded
+                if ($this->pdfData[0]->skim_safety == 0) {
+                    $perkesoPdfName = 'perkeso_' . now()->format('Y-m-d') . '.pdf';
+                    $perkesoPdfPath = storage_path('app/public/' . $folderName . '/' . $perkesoPdfName);
+
+                    if (file_exists($perkesoPdfPath)) {
+                        $oMerger->addPDF('file:///' . $perkesoPdfPath, 'all');
+                    }
                 }
-                $oMerger->addPDF('file:///' . $perkesoPdfPath, 'all');
-                
+
 
                 // 8) Merge everything into a single PDF
                 $mergedPdfName = 'appln_' . now()->format('Y-m-d') . '.pdf';
