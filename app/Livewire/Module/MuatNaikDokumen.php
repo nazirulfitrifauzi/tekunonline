@@ -42,7 +42,7 @@ class MuatNaikDokumen extends Component
     // Rest of the mount method remains the same
     public function mount()
     {  
-        //$this->safety = ModelsMaklumatPinjaman::where('appln_id',$this->appln_id)->first();
+        $this->safety = ModelsMaklumatPinjaman::where('appln_id',$this->appln_id)->first();
 
         // Existing code remains the same
         $existingData = null; // Initialize to avoid undefined variable issues
