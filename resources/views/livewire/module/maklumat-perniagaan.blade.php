@@ -78,39 +78,7 @@
                             </div>
                             @endif
 
-                            @if($license_type == 'NO. SSM')
-                            <div class="col-span-6 sm:col-span-3">
-                                <x-datetime-picker 
-                                    label="Tarikh Didaftarkan" 
-                                    id="register_date"
-                                    placeholder="Tarikh Didaftarkan" 
-                                    without-time 
-                                    wire:model="register_date"
-                                />
-                                {{-- @error('register_date')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
-                                @enderror --}}
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <x-datetime-picker 
-                                    label="Tarikh Tamat Lesen" 
-                                    id="license_expired_date"
-                                    placeholder="Tarikh Tamat Lesen" 
-                                    without-time 
-                                    wire:model="license_expired_date"
-                                />
-                                {{-- @error('license_expired_date')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
-                                @enderror --}}
-                            </div>
-                            @endif
-
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="business_ownership" class="block text-sm font-medium leading-5 text-gray-700">Pemilikan Perniagaan <span class="text-red-700">*</span></label>
                                 <select id="business_ownership" name="business_ownership" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_ownership">
                                     <option value="">SILA PILIH</option>
@@ -126,7 +94,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="shareholder" class="block text-sm font-medium leading-5 text-gray-700">
                                     Adakah Pemohon Pemegang Saham (Share Holder)
                                     @if($business_ownership === '5')
@@ -151,7 +119,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="business_modal" class="block text-sm font-medium leading-5 text-gray-700">Modal Berbayar (Sendirian Berhad) <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -176,6 +144,41 @@
                                     </p>
                                 @enderror
                             </div>
+
+
+                            @if($license_type == 'NO. SSM')
+                            <div class="col-span-6 sm:col-span-3">
+                                <x-datetime-picker 
+                                    label="Tarikh Didaftarkan" 
+                                    id="register_date"
+                                    placeholder="Tarikh Didaftarkan" 
+                                    without-time 
+                                    wire:model="register_date"
+                                    display-format="DD/MM/YYYY"
+                                />
+                                {{-- @error('register_date')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror --}}
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <x-datetime-picker 
+                                    label="Tarikh Tamat Lesen" 
+                                    id="license_expired_date"
+                                    placeholder="Tarikh Tamat Lesen" 
+                                    without-time 
+                                    wire:model="license_expired_date"
+                                    display-format="DD/MM/YYYY"
+                                />
+                                {{-- @error('license_expired_date')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror --}}
+                            </div>
+                            @endif
 
                             <div class="col-span-6 sm:col-span-6">
                                     <label for="business_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perniagaan / Syarikat <span class="text-red-700">*</span></label>
@@ -366,6 +369,21 @@
                                     <option value="13">13</option>
                                     <option value="14">14</option>
                                     <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
                                 </select>
                                 @error('business_duration_year')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -389,7 +407,6 @@
                                     <option value="9">9</option>
                                     <option value="10">10</option>
                                     <option value="11">11</option>
-                                    <option value="12">12</option>
                                 </select>
                                 @error('business_duration_month')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -654,11 +671,6 @@
                                     without-seconds
                                     wire:model="business_open"
                                 />
-                                @error('business_open')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
-                                @enderror
                              </div>
 
                              <div class="col-span-6 sm:col-span-2">
@@ -669,11 +681,6 @@
                                     without-seconds
                                     wire:model="business_closed"
                                 />
-                                @error('business_closed')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
-                                @enderror
                              </div>
 
                             <div class="col-span-6 sm:col-span-2">
