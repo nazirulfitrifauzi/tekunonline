@@ -202,77 +202,74 @@
     
                 <div
                     x-data="{
-                        /* two‑way bind with Livewire */
-                        tabSelected: @entangle('activeTab').live,
-    
-                        /* tabs & labels */
-                        tabs: [
-                            { id: 1, label: 'Maklumat Peribadi', enabled: @js($tab1_enabled) },
-                            { id: 2, label: 'Maklumat Perniagaan I', enabled: @js($tab2_enabled) },
-                            { id: 3, label: 'Maklumat Perniagaan II', enabled: @js($tab3_enabled) },
-                            { id: 4, label: 'Maklumat Pembiayaan', enabled: @js($tab4_enabled) },
-                            { id: 5, label: 'Muat Naik Dokumen', enabled: @js($tab5_enabled) },
-                        ],
-    
-                        /* move the purple marker */
-                        reposition(btn) {
-                            this.$refs.tabMarker.style.width  = btn.offsetWidth  + 'px';
-                            this.$refs.tabMarker.style.left   = btn.offsetLeft   + 'px';
-                        },
-    
-                        init() {
-                            /* place marker on first paint */
-                            this.$nextTick(() =>
-                                this.reposition(this.$refs.tabButtons.children[
-                                    this.tabs.findIndex(t => t.id === this.tabSelected)
-                                ])
-                            );
-    
-                            /* whenever Alpine or Livewire changes the tab */
-                            this.$watch('tabSelected', v => {
-                                const btn = document.querySelector(`#tabs-${v}`);
-                                if (btn) this.reposition(btn);
-                            });
-    
-                            /* still honour any external Livewire event */
-                            Livewire.on('redirectToTab', v => this.tabSelected = v);
-                        },
-    
-                        isActive(i) { return this.tabSelected === i },
-                        show(i)     { return this.tabSelected === i }
-                    }"
+                                tabSelected: @entangle('activeTab').live,
+                                tabs: [
+                                    { id: 1, label: 'Maklumat Peribadi', enabled: @js($tab1_enabled) },
+                                    { id: 2, label: 'Maklumat Perniagaan I', enabled: @js($tab2_enabled) },
+                                    { id: 3, label: 'Maklumat Perniagaan II', enabled: @js($tab3_enabled) },
+                                    { id: 4, label: 'Maklumat Pembiayaan', enabled: @js($tab4_enabled) },
+                                    { id: 5, label: 'Muat Naik Dokumen', enabled: @js($tab5_enabled) },
+                                ],
+                                reposition(btn) {
+                                    this.$refs.tabMarker.style.width = btn.offsetWidth + 'px';
+                                    this.$refs.tabMarker.style.left = btn.offsetLeft + 'px';
+                                },
+                                init() {
+                                    this.$nextTick(() => {
+                                        const btn = this.$refs.tabButtons.children[
+                                            this.tabs.findIndex(t => t.id === this.tabSelected)
+                                        ];
+                                        if (btn) this.reposition(btn);
+                                    });
+
+                                    this.$watch('tabSelected', v => {
+                                        const btn = document.querySelector(`#tabs-${v}`);
+                                        if (btn) this.reposition(btn);
+                                    });
+
+                                    Livewire.on('redirectToTab', v => this.tabSelected = v);
+                                },
+                                isActive(i) { return this.tabSelected === i },
+                                show(i)     { return this.tabSelected === i }
+                            }"
                     class="relative flex flex-col flex-1 w-full min-h-0"
                 >
     
                     {{-- buttons --}}
                     <div x-ref="tabButtons"
-                         class="relative inline-grid w-full h-10 grid-cols-7 p-1 bg-gray-100 rounded-lg select-none dark:bg-gray-800 dark:border-gray-700">
+                         class="relative inline-grid w-full h-10 grid-cols-5 p-1 bg-gray-100 rounded-lg select-none dark:bg-gray-800 dark:border-gray-700">
     
-                        <template x-for="t in tabs" :key="t.id">
+                         <template x-for="t in tabs" :key="t.id">
                             <button
                                 :id="`tabs-${t.id}`"
                                 :disabled="!t.enabled"
                                 @click="if (t.enabled) tabSelected = t.id"
                                 :class="[
-                                    isActive(t.id) ? 'text-black' : 'text-gray-800 hover:text-indigo-600',
+                                    isActive(t.id)
+                                        ? 'bg-indigo-500 text-white'
+                                        : 'text-gray-800 hover:text-indigo-600',
                                     !t.enabled ? 'opacity-50 cursor-not-allowed' : ''
                                 ]"
-                                class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium whitespace-nowrap rounded-md transition-all">
+                                class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium whitespace-nowrap rounded-md transition-all duration-300">
                                 <span x-text="t.label"></span>
                             </button>
-
                         </template>
-    
+                    
                         {{-- purple sliding marker --}}
-                        {{-- <div x-ref="tabMarker" class="absolute left-0 top-0 z-10 h-full duration-300 ease-out">
+                        {{-- <div x-ref="tabMarker"
+                            class="absolute top-0 left-0 z-10 h-full transition-all duration-300 ease-out"
+                            style="width: 0px; left: 0px;">
                             <div class="w-full h-full bg-indigo-600 rounded-md"></div>
                         </div> --}}
+
+
+
                     </div>
     
                     {{-- panels --}}
                     <div class="relative flex flex-col flex-1 w-full min-h-0 mt-4">
                         <div class="flex-1 min-w-0 min-h-0 p-6 overflow-y-auto transition-all duration-300 rounded-lg dark:bg-gray-800 dark:border-gray-700">
-                            <div x-show="show(1)">@livewire('module.maklumat-peribadi')</div>
+                            <div x-show="show(1)" x-cloak>@livewire('module.maklumat-peribadi')</div>
                             <div x-show="show(2)" x-cloak>@livewire('module.maklumat-perniagaan')</div>
                             <div x-show="show(3)" x-cloak>@livewire('module.maklumat-perniagaan2')</div>
                             <div x-show="show(5)" x-cloak>@livewire('module.muat-naik-dokumen')</div>

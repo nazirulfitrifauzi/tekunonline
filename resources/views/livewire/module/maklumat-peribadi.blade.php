@@ -11,6 +11,7 @@
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
+
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="tekun_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
                                 <select id="tekun_state" name="tekun_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="tekun_state">
@@ -26,8 +27,7 @@
                                 @enderror
                             </div>
 
-
-                            <div class="col-span-6 sm:col-span-3">
+                            {{-- <div class="col-span-6 sm:col-span-3">
                                 <label for="tekun_branch" class="block text-sm font-medium leading-5 text-gray-700">Cawangan Berhampiran dengan Lokasi Perniagaan <span class="text-red-700">*</span></label>
                                     <select id="tekun_branch" name="tekun_branch" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="tekun_branch">
                                     <option value="">SILA PILIH</option>
@@ -40,8 +40,23 @@
                                     {{ $message }}
                                 </p>
                                 @enderror
+                            </div> --}}
 
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="tekun_branch" class="block text-sm font-medium leading-5 text-gray-700">Cawangan Berhampiran dengan Lokasi Perniagaan <span class="text-red-700">*</span></label>
+                                <select id="tekun_branch" name="tekun_branch" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="tekun_branch">
+                                    <option value="">SILA PILIH</option>
+                                    @foreach ($cawanganSelection as $cawangan)
+                                    <option value="{{ $cawangan->kodcawangan }}">{{ $cawangan->namacawangan}}</option>
+                                    @endforeach 
+                                </select>
+                                @error('tekun_branch')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
+
                         </div>
 
                         <div class="grid grid-cols-6 gap-6 mt-6">
@@ -99,6 +114,7 @@
                                        maxlength="17" 
                                        class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
                                        wire:model.live="bank1_acct"
+                                       wire:dirty.class="border-red-500"
                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                        pattern="[0-9]*">
                                 @error('bank1_acct')
@@ -742,8 +758,8 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
-                                <label for="employer_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
-                                <select id="employer_state" name="employer_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="employer_state">
+                                <label for="tekun_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
+                                <select id="tekun_state" name="tekun_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="tekun_state">
                                     <option value="">Sila Pilih</option>
                                     <option value="JH">JOHOR</option>
                                     <option value="KD">KEDAH</option>
@@ -760,7 +776,7 @@
                                     <option value="TG">TERENGGANU</option>
                                     <option value="WP">WP KUALA LUMPUR</option>
                                 </select>
-                                @error('employer_state')
+                                @error('tekun_state')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
                                 </p>

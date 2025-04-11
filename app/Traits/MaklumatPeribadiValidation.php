@@ -50,7 +50,6 @@ trait MaklumatPeribadiValidation
     public $employer_address2;
     public $employer_postcode;
     public $employer_city;
-    public $employer_state;
     public $employer_phone;
     public $spouse_name;
     public $spouse_nationality;
@@ -129,7 +128,7 @@ trait MaklumatPeribadiValidation
             $rules['employer_address1'] = 'required|string';
             $rules['employer_postcode'] = 'required|digits:5';
             $rules['employer_city'] = 'required|string';
-            $rules['employer_state'] = 'required|in:JH,KD,KL,MK,NS,PH,PK,RC,PP,SB,SW,SE,TG,WP';
+            $rules['tekun_state'] = 'required|in:JH,KD,KL,MK,NS,PH,PK,RC,PP,SB,SW,SE,TG,WP';
             $rules['employer_phone'] = 'required';
         }
 
@@ -216,8 +215,8 @@ trait MaklumatPeribadiValidation
         'employer_postcode.required' => 'Sila masukkan poskod',
         'employer_postcode.digits' => 'Poskod mestilah 5 digit',
         'employer_city.required' => 'Sila masukkan bandar',
-        'employer_state.required' => 'Sila pilih negeri',
-        'employer_state.in' => 'Negeri tidak sah',
+        'tekun_state.required' => 'Sila pilih negeri',
+        'tekun_state.in' => 'Negeri tidak sah',
         'employer_phone.required' => 'Sila masukkan no telefon majikan',
         'spouse_name.required' => 'Sila masukkan nama suami/isteri',
         'spouse_nationality.required' => 'Sila pilih kewarganegaraan',

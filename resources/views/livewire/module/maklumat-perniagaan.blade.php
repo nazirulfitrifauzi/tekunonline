@@ -87,11 +87,11 @@
                                     without-time 
                                     wire:model="register_date"
                                 />
-                                @error('register_date')
+                                {{-- @error('register_date')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
                                     </p>
-                                @enderror
+                                @enderror --}}
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
@@ -102,11 +102,11 @@
                                     without-time 
                                     wire:model="license_expired_date"
                                 />
-                                @error('license_expired_date')
+                                {{-- @error('license_expired_date')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
                                     </p>
-                                @enderror
+                                @enderror --}}
                             </div>
                             @endif
 

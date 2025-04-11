@@ -122,7 +122,8 @@ class MaklumatPeribadi extends Component
             $this->employer_address2 = null;
             $this->employer_postcode = null;
             $this->employer_city = null;
-            $this->employer_state = null;
+            $this->tekun_state = null;
+            $this->tekun_branch = null;
             // $this->employer_phone = null;
         }
     }
@@ -288,16 +289,18 @@ class MaklumatPeribadi extends Component
 
         // Ambil senarai negeri
         $this->negeriSelection = Negeri::select(['kodnegeri', 'namanegeri'])
-            ->where('kod', '!=', '1')
+            ->where('kod', '<>', '1')
             ->orderBy('namanegeri', 'ASC')
             ->get();
 
-        $this->cawanganSelection = Cawangan::where('kodnegeri', $this->tekun_state)
-            ->where('batal', '!=', '1')
-            ->where('kodcawangan', '!=', '1412')
-            ->orderBy('namacawangan', 'ASC')
-            ->get();
 
+            $this->cawanganSelection = Cawangan::select(['kodcawangan', 'namacawangan'])
+                ->where('kodnegeri', $this->tekun_state)
+                ->where('batal', '<>', '1')
+                ->where('kodcawangan', '<>', '1412')
+                ->orderBy('namacawangan', 'ASC')
+                ->get();
+    
         $this->bank = Bank::select(['id', 'nama_bank'])
         ->where('res', '0')
         ->orderby('nama_bank', 'ASC')
