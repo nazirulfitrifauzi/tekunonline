@@ -91,6 +91,13 @@ class MaklumatPerniagaan2 extends Component
                 //$this->dispatch('redirectToTab', 7);
                 //$this->dispatch('enableAndSwitchTab', 4);
 
+                $this->dispatch('enableTab', 4)->to('home');
+                $this->dispatch('redirectToTab', 4)->to('home');
+                return redirect()->route('home', [
+                    'appln_id' => $this->appln_id,
+                    'activeTab' => 4,
+                ]);
+
             } catch (\Illuminate\Validation\ValidationException $e) {
                 $this->dialog()->show([
                     'icon' => 'error',

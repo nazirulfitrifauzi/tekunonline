@@ -89,6 +89,13 @@ class MaklumatPinjaman extends Component
                 //$this->dispatch('redirectToTab', 6);
                 //$this->dispatch('enableAndSwitchTab', 5);
 
+                $this->dispatch('enableTab', 5)->to('home');
+                $this->dispatch('redirectToTab', 5)->to('home');
+                return redirect()->route('home', [
+                    'appln_id' => $this->appln_id,
+                    'activeTab' => 5,
+                ]);
+
             } catch (\Illuminate\Validation\ValidationException $e) {
                 $this->dialog()->show([
                     'icon' => 'error',

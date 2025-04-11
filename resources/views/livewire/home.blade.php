@@ -207,11 +207,11 @@
     
                         /* tabs & labels */
                         tabs: [
-                            { id: 1, label: 'Maklumat Peribadi' },
-                            { id: 2, label: 'Maklumat Perniagaan I' },
-                            { id: 3, label: 'Maklumat Perniagaan II' },
-                            { id: 7, label: 'Maklumat Pembiayaan' },
-                            { id: 6, label: 'Muat Naik Dokumen' },
+                            { id: 1, label: 'Maklumat Peribadi', enabled: @js($tab1_enabled) },
+                            { id: 2, label: 'Maklumat Perniagaan I', enabled: @js($tab2_enabled) },
+                            { id: 3, label: 'Maklumat Perniagaan II', enabled: @js($tab3_enabled) },
+                            { id: 4, label: 'Maklumat Pembiayaan', enabled: @js($tab4_enabled) },
+                            { id: 5, label: 'Muat Naik Dokumen', enabled: @js($tab5_enabled) },
                         ],
     
                         /* move the purple marker */
@@ -251,11 +251,16 @@
                         <template x-for="t in tabs" :key="t.id">
                             <button
                                 :id="`tabs-${t.id}`"
-                                @click="tabSelected = t.id"
-                                :class="isActive(t.id) ? 'text-black' : 'text-gray-800 hover:text-indigo-600'"
+                                :disabled="!t.enabled"
+                                @click="if (t.enabled) tabSelected = t.id"
+                                :class="[
+                                    isActive(t.id) ? 'text-black' : 'text-gray-800 hover:text-indigo-600',
+                                    !t.enabled ? 'opacity-50 cursor-not-allowed' : ''
+                                ]"
                                 class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium whitespace-nowrap rounded-md transition-all">
                                 <span x-text="t.label"></span>
                             </button>
+
                         </template>
     
                         {{-- purple sliding marker --}}
@@ -270,8 +275,8 @@
                             <div x-show="show(1)">@livewire('module.maklumat-peribadi')</div>
                             <div x-show="show(2)" x-cloak>@livewire('module.maklumat-perniagaan')</div>
                             <div x-show="show(3)" x-cloak>@livewire('module.maklumat-perniagaan2')</div>
-                            <div x-show="show(6)" x-cloak>@livewire('module.muat-naik-dokumen')</div>
-                            <div x-show="show(7)" x-cloak>@livewire('module.maklumat-pinjaman')</div>
+                            <div x-show="show(5)" x-cloak>@livewire('module.muat-naik-dokumen')</div>
+                            <div x-show="show(4)" x-cloak>@livewire('module.maklumat-pinjaman')</div>
                         </div>
                     </div>
                 </div> {{-- /Alpine --}}

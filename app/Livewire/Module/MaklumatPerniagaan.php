@@ -255,6 +255,14 @@ class MaklumatPerniagaan extends Component
                 //return redirect()->route('home', ['appln_id' => $this->appln_id]);
                 //return redirect()->refresh();
                 //$this->dispatch('redirectToTab', 2);
+
+                $this->dispatch('enableTab', 3)->to('home');
+                $this->dispatch('redirectToTab', 3)->to('home');
+                return redirect()->route('home', [
+                    'appln_id' => $this->appln_id,
+                    'activeTab' => 3,
+                ]);
+                
                 
             } catch (\Illuminate\Validation\ValidationException $e) {
                 $this->dialog()->show([

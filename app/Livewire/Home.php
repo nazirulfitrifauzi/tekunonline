@@ -33,15 +33,15 @@ class Home extends Component
 
     public function mount(): void
     {
-        // $this->appln = ApplnStatus::find($this->appln_id);
+        $this->appln = ApplnStatus::find($this->appln_id);
 
-        // if ($this->appln) {
-        //     $this->tab1_enabled = (bool) $this->appln->tab1_maklumat_peribadi;
-        //     $this->tab2_enabled = (bool) $this->appln->tab2_maklumat_perniagaan;
-        //     $this->tab3_enabled = (bool) $this->appln->tab3_maklumat_perniagaan_2;
-        //     $this->tab4_enabled = (bool) $this->appln->tab4_maklumat_pembiayaan;
-        //     $this->tab5_enabled = (bool) $this->appln->tab5_muat_naik_dokumen;
-        // }
+        if ($this->appln) {
+            $this->tab1_enabled =  $this->appln->tab1_maklumat_peribadi != null;
+            $this->tab2_enabled =  $this->appln->tab2_maklumat_perniagaan != null;
+            $this->tab3_enabled =  $this->appln->tab3_maklumat_perniagaan_2 != null;
+            $this->tab4_enabled =  $this->appln->tab4_maklumat_pembiayaan != null;
+            $this->tab5_enabled =  $this->appln->tab5_muat_naik_dokumen != null;
+        }
     }
 
     public function enableTab(int $tab): void

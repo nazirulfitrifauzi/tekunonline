@@ -226,11 +226,19 @@ class MaklumatPeribadi extends Component
                 'description' => 'Maklumat berjaya disimpan.',
             ]);
 
+            $this->dispatch('enableTab', 2)->to('home');
+            $this->dispatch('redirectToTab', 2)->to('home');
+            return redirect()->route('home', [
+                'appln_id' => $this->appln_id,
+                'activeTab' => 2,
+            ]);
+            
+
             $this->dispatch('saved');
             
-           return redirect()->route('home', ['appln_id' => $this->appln_id]);
+           //return redirect()->route('home', ['appln_id' => $this->appln_id]);
            //return redirect()->refresh();
-           //    $this->dispatch('redirectToTab', 1);
+           //$this->dispatch('redirectToTab', 1);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
            
