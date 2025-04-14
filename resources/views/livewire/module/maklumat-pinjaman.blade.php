@@ -411,14 +411,10 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="will_fi" class="block text-sm font-medium leading-5 text-gray-700">Fi Wasiat <span class="text-red-700">*</span></label>
-                                <div class="relative mt-1 rounded-md shadow-sm">
-                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                        <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                            RM
-                                        </span>
-                                    </div>
-                                    <input id="will_fi" name="will_fi" placeholder="200" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="will_fi" disabled>
-                                </div>
+                                <select id="will_fi" name="will_fi" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="will_fi">
+                                    <option value="">SILA PILIH</option>
+                                    <option value="200">RM 200</option>
+                                </select>
                                 @error('will_fi')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -464,22 +460,24 @@
                             <div class="col-span-6">
                                 <legend class="block text-sm font-medium leading-5 text-gray-700">Pemohon dengan ini memberi kebenaran kepada Experian dan / atau CTOS bagi mendedahkan maklumat kredit, termasuk maklumat kredit perbankan kepada (*TEKUN Nasional atau pegawainya bagi maksud seperti berikut selepas dinyatakan di bawah seksyen 24, menurut Akta Pelaporan Kredit 2010. Persetujuan hendaklah kekal terpakai selagi pemohon mengekalkan akaun / pembiayaan / kredit / apa-apa transaksi dengan organisasi.)</legend>
                             </div>
-                            <div class="col-span-6">
-                                <label class="inline-flex items-center">
-                                    <input 
-                                        type="checkbox" 
-                                        class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
-                                        wire:model.live="auth_disc_info_flag"
-                                        value="1"
-                                    >
-                                    <span class="ml-2">Ya</span>
-                                </label>
-                                @error('auth_disc_info_flag')
+
+                            <div>
+                                    <label class="inline-flex items-center">
+                                        <input 
+                                            type="checkbox" 
+                                            class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
+                                            wire:model.live="auth_disc_info_flag"
+                                            value="1"
+                                            {{ $auth_disc_info_flag == '1' ? 'checked' : '' }}
+                                        >
+                                        <span class="ml-2">Ya</span>
+                                    </label>
+                                    @error('auth_disc_info_flag')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
                                     </p>
-                                @enderror
-                            </div>
+                                    @enderror
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -535,20 +533,22 @@
                             <div class="col-span-6">
                                 <legend class="block text-sm font-medium leading-5 text-gray-700">8. Saya mengakui tidak pernah melantik /menggunakan khidmat ejen(orang tengah) bagi memproses permohonan ini.Borang dan proses permohonan ini juga tidak dikenakan sebarang bayaran oleh mana-mana pihak.</legend>
                             </div>
-                            <div class="col-span-6">
+
+                            <div>
                                 <label class="inline-flex items-center">
                                     <input 
                                         type="checkbox" 
                                         class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out"
                                         wire:model.live="appl_stmt_flag"
                                         value="1"
+                                        {{ $appl_stmt_flag == '1' ? 'checked' : '' }}
                                     >
                                     <span class="ml-2">Ya</span>
                                 </label>
                                 @error('appl_stmt_flag')
-                                    <p class="text-red-500 text-xs italic mt-4">
-                                        {{ $message }}
-                                    </p>
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
                                 @enderror
                             </div>
                         </div>
