@@ -16,6 +16,7 @@ use Webklex\PDFMerger\Facades\PDFMergerFacade;
 use WireUi\Traits\WireUiActions;
 use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 use App\Livewire\Module\MaklumatPeribadi;
 use App\Livewire\Module\MaklumatPerniagaan;
@@ -221,12 +222,12 @@ class MuatNaikDokumen extends Component
             }
 
             // Build full paths => subfolder is the IC number
+            // e.g. "920905066115/ic_2025-04-14.pdf"
             $documentPaths = array_map(function($fileName) use ($folderName) {
-                // This returns something like "920905066115/ic_2025-04-14.pdf"
                 return $folderName . '/' . $fileName;
             }, $fileNames);
 
-            // Store each file in the 'public' disk at that path
+            // 1) Store each file in 'storage/app/public/{IC}/...'
             $this->document_ic_no->storeAs('', $documentPaths['document_ic_no'], 'public');
             $this->document_icP_no->storeAs('', $documentPaths['document_icP_no'], 'public');
             $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
@@ -237,36 +238,57 @@ class MuatNaikDokumen extends Component
                 $this->document_perkeso->storeAs('', $documentPaths['document_perkeso'], 'public');
             }
 
+            // 2) COPY each file to "public/storage/{IC}/..." as well
+            foreach ($documentPaths as $docPath) {
+                // The physical path to the file in storage/app/public
+                $sourcePath = Storage::disk('public')->path($docPath);
+
+                // The path we want to copy to, i.e. public/storage/{IC}/filename
+                $destinationPath = public_path('storage/' . $docPath);
+
+                // Make sure the destination folder exists first
+                if (!File::isDirectory(dirname($destinationPath))) {
+                    File::makeDirectory(dirname($destinationPath), 0755, true);
+                }
+
+                // Copy the file from source to destination
+                File::copy($sourcePath, $destinationPath);
+            }
+
             // Create a text file that lists all the document URLs
             $mergedFileName = 'appln_' . now()->format('Y-m-d') . '.txt';
             $mergedFilePath = $folderName . '/' . $mergedFileName;
 
             $documentLinks = "Document Links:\n\n";
             foreach ($documentPaths as $docKey => $docPath) {
-                // e.g., "Ic no: https://mysite.com/storage/920905066115/ic_2025-04-14.pdf"
                 $label = ucfirst(str_replace('document_', '', $docKey));
                 $documentLinks .= $label . ': ' . asset('storage/' . $docPath) . "\n";
             }
 
-            // Store the text file into the same folder
+            // Store the text file into 'storage/app/public/{IC}/'
             Storage::disk('public')->put($mergedFilePath, $documentLinks);
             $fileNames['document_merge'] = $mergedFileName;
 
+            // (Optional) Also copy the text file to public/storage/
+            $sourceTxt = Storage::disk('public')->path($mergedFilePath);
+            $destinationTxt = public_path('storage/'.$mergedFilePath);
+
+            if (!File::isDirectory(dirname($destinationTxt))) {
+                File::makeDirectory(dirname($destinationTxt), 0755, true);
+            }
+            File::copy($sourceTxt, $destinationTxt);
+
             // Now store info into DB (MaklumatPinjaman, ApplnStatus, etc.)
             $applnId = $appln_id;
-
-            // Check for existing data
             $existingData = ModelsMaklumatPinjaman::where('appln_id', $applnId)->first();
             $existingDataArray = $existingData ? $existingData->toArray() : [];
 
-            // Merge new file names with existing data
             $updatedData = array_merge(
                 $existingDataArray,
                 $fileNames,  // store the filenames in DB, not the full path
                 ['appln_id' => $applnId]
             );
 
-            // Write to DB
             ModelsMaklumatPinjaman::updateOrCreate(
                 ['appln_id' => $applnId],
                 $updatedData
@@ -289,7 +311,6 @@ class MuatNaikDokumen extends Component
                     ->implode("<br>"),
             ]);
 
-            // Re-run validation if needed
             $this->validateSelf();
         }
     }
