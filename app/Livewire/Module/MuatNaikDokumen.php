@@ -1729,6 +1729,24 @@ class MuatNaikDokumen extends Component
             } else {
                 session()->flash('error', 'Permohonan tidak wujud.');
             }
+
+            // 1) The source is in storage/app/public/{IC_Number}
+            // 2) The destination is public/storage/{IC_Number}
+            $sourceDir = storage_path("app/public/{$folderName}");
+            $destinationDir = public_path("storage/{$folderName}");
+
+            // Make sure the destination folder exists
+            if (!File::isDirectory($destinationDir)) {
+                File::makeDirectory($destinationDir, 0755, true);
+            }
+
+            // Copy every file from source folder to destination
+            $files = File::allFiles($sourceDir);
+
+            foreach ($files as $file) {
+                $destPath = $destinationDir . DIRECTORY_SEPARATOR . $file->getFilename();
+                File::copy($file->getRealPath(), $destPath);
+            }
         
             return redirect()->route('dashboard');
     }
