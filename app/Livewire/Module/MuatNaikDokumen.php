@@ -244,7 +244,7 @@ class MuatNaikDokumen extends Component
                 $sourcePath = Storage::disk('public')->path($docPath);
 
                 // The path we want to copy to, i.e. public/storage/{IC}/filename
-                $destinationPath = public_path('app/public/' . $docPath);
+                $destinationPath = public_path('storage/' . $docPath);
 
                 // Make sure the destination folder exists first
                 if (!File::isDirectory(dirname($destinationPath))) {
@@ -262,7 +262,7 @@ class MuatNaikDokumen extends Component
             $documentLinks = "Document Links:\n\n";
             foreach ($documentPaths as $docKey => $docPath) {
                 $label = ucfirst(str_replace('document_', '', $docKey));
-                $documentLinks .= $label . ': ' . asset('app/public/' . $docPath) . "\n";
+                $documentLinks .= $label . ': ' . asset('storage/' . $docPath) . "\n";
             }
 
             // Store the text file into 'storage/app/public/{IC}/'
