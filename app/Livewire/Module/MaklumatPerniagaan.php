@@ -115,6 +115,10 @@ class MaklumatPerniagaan extends Component
 
         
             $business_asset_value_num = floatval(str_replace(',', '', $this->business_asset_value));
+            $business_start_resources_num = floatval(str_replace(',', '', $this->business_start_resources));
+
+
+
             ModelsMaklumatPerniagaan::where('appln_id',$this->appln_id)->updateOrCreate(
                 ['appln_id' => $this->appln_id],
                 //$formData
@@ -161,7 +165,7 @@ class MaklumatPerniagaan extends Component
                     'cert_recognition_halal_flag'=> $this->cert_recognition_halal_flag,
                     'cert_recognition_iso_flag'  => $this->cert_recognition_iso_flag,
                     'business_asset_value'       => $business_asset_value_num,
-                    'business_start_resources'   => $this->business_start_resources,
+                    'business_start_resources'   => $business_start_resources_num,
                     'course_name_attend'         => $this->course_name_attend,
                     'agency_name'                => $this->agency_name,
                     'course_name_attend2'        => $this->course_name_attend2,

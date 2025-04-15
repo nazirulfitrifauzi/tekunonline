@@ -244,7 +244,7 @@ class MuatNaikDokumen extends Component
                 $sourcePath = Storage::disk('public')->path($docPath);
 
                 // The path we want to copy to, i.e. public/storage/{IC}/filename
-                $destinationPath = public_path('storage/' . $docPath);
+                $destinationPath = public_path('app/public/' . $docPath);
 
                 // Make sure the destination folder exists first
                 if (!File::isDirectory(dirname($destinationPath))) {
@@ -262,7 +262,7 @@ class MuatNaikDokumen extends Component
             $documentLinks = "Document Links:\n\n";
             foreach ($documentPaths as $docKey => $docPath) {
                 $label = ucfirst(str_replace('document_', '', $docKey));
-                $documentLinks .= $label . ': ' . asset('storage/' . $docPath) . "\n";
+                $documentLinks .= $label . ': ' . asset('app/public/' . $docPath) . "\n";
             }
 
             // Store the text file into 'storage/app/public/{IC}/'
@@ -367,15 +367,16 @@ class MuatNaikDokumen extends Component
     //merge all file
     public function submitPermohonan()
     {
-            $user = Auth::user();
-            $folderName = $user->ic_no;
-            $appln_id = $this->appln_id;
+        $user = Auth::user();
+        $folderName = $user->ic_no;
+        $appln_id = $this->appln_id;
 
-            // Execute stored procedure to update application reference number
-            $run = DB::statement('SET NOCOUNT ON;EXEC dbo.up_upd_appln_ref_no ?', [$appln_id]);
-            $this->pdfData = DB::select('EXEC dbo.up_list_individual_apply ?', array($appln_id));
 
-            $applnStatus = ApplnStatus::where('id', $appln_id)->first();
+        // Execute stored procedure to update application reference number
+        $run = DB::statement('SET NOCOUNT ON;EXEC dbo.up_upd_appln_ref_no ?', [$appln_id]);
+        $this->pdfData = DB::select('EXEC dbo.up_list_individual_apply ?', array($appln_id));
+
+        $applnStatus = ApplnStatus::where('id', $appln_id)->first();
 
             if ($applnStatus) {
                 $applnStatus->update([
@@ -385,9 +386,10 @@ class MuatNaikDokumen extends Component
 
                 // a) Construct a unique PDF name for the first PDF (bpc01)
                 $pdfName = 'bpc01_' . now()->format('Y-m-d') . '.pdf';
+                $pdfFullPath = storage_path('app/public/' . $folderName . '/' . $pdfName);
 
-                // b) Full storage path where we will save the bpc01 PDF
-                $pdfFullPath = storage_path($folderName . '/' . $pdfName);
+                // // b) Full storage path where we will save the bpc01 PDF
+                // $pdfFullPath = storage_path($folderName . '/' . $pdfName);
 
                 // Create the directory if it doesn't exist
                 $directory = dirname($pdfFullPath);
@@ -1623,8 +1625,12 @@ class MuatNaikDokumen extends Component
                     'updated_by' => Auth::id(),
                 ]);
                 
-                // Flash the PDF URL to the session so the view can access it.
-                session()->flash('pdf_url', asset('storage/' . $pdfName));
+                // // Flash the PDF URL to the session so the view can access it.
+                // session()->flash('pdf_url', asset('app/public/' . $pdfName));
+                // session()->flash('message', 'Permohonan telah dihantar.');
+
+                // Store and flash the PDF URL
+                session()->flash('pdf_url', asset('app/public/' . $folderName . '/' . $pdfName));
                 session()->flash('message', 'Permohonan telah dihantar.');
 
                 // --- MERGE PDF SECTION ---
@@ -1715,7 +1721,7 @@ class MuatNaikDokumen extends Component
 
                 // 8) Merge everything into a single PDF
                 $mergedPdfName = 'appln_' . now()->format('Y-m-d') . '.pdf';
-                $mergedPdfFullPath = storage_path($folderName . '/' . $mergedPdfName);
+                $mergedPdfFullPath = storage_path('app/public/' . $folderName . '/' . $mergedPdfName);
 
                 $oMerger->merge();
                 $oMerger->save($mergedPdfFullPath);
