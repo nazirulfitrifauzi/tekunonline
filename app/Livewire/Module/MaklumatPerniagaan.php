@@ -116,6 +116,7 @@ class MaklumatPerniagaan extends Component
         
             $business_asset_value_num = floatval(str_replace(',', '', $this->business_asset_value));
             $business_start_resources_num = floatval(str_replace(',', '', $this->business_start_resources));
+            $business_modal_num = floatval(str_replace(',', '', $this->business_modal));
 
 
 
@@ -145,7 +146,7 @@ class MaklumatPerniagaan extends Component
                     'business_other_premise'     => $this->business_other_premise,
                     'business_ownership'         => $this->business_ownership,
                     'shareholder'                => $this->shareholder,
-                    'business_modal'             => $this->business_modal,
+                    'business_modal'             => $business_modal_num,
                     'premise_loc_code'           => $this->premise_loc_code,
                     'buss_other_loc_premise'     => $this->buss_other_loc_premise,
                     'total_employees'            => $this->total_employees,
