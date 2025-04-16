@@ -267,7 +267,7 @@ class MuatNaikDokumen extends Component
 
             // Store the text file into 'storage/app/public/{IC}/'
             Storage::disk('public')->put($mergedFilePath, $documentLinks);
-            $fileNames['document_merge'] = $mergedFileName;
+            //$fileNames['document_merge'] = $mergedFileName;
 
             // (Optional) Also copy the text file to public/storage/
             $sourceTxt = Storage::disk('public')->path($mergedFilePath);
@@ -387,6 +387,9 @@ class MuatNaikDokumen extends Component
                 // a) Construct a unique PDF name for the first PDF (bpc01)
                 $pdfName = 'bpc01_' . now()->format('Y-m-d') . '.pdf';
                 $pdfFullPath = storage_path('app/public/' . $folderName . '/' . $pdfName);
+
+                $fileNames['document_bpc01'] = $pdfName;
+
 
                 // // b) Full storage path where we will save the bpc01 PDF
                 // $pdfFullPath = storage_path($folderName . '/' . $pdfName);
@@ -1892,8 +1895,22 @@ class MuatNaikDokumen extends Component
                 $mergedPdfName = 'appln_' . now()->format('Y-m-d') . '.pdf';
                 $mergedPdfFullPath = storage_path('app/public/' . $folderName . '/' . $mergedPdfName);
 
+                $fileNames['document_merge'] = $mergedPdfName;
+
                 $oMerger->merge();
                 $oMerger->save($mergedPdfFullPath);
+
+                
+                $applnId = $appln_id;
+    
+                $updatedData = array_merge(
+                    $fileNames,  // store the filenames in DB, not the full path
+                    ['appln_id' => $applnId]
+                );
+    
+                ModelsMaklumatPinjaman::where('appln_id', $applnId)->update($updatedData);
+
+                
                 
             } else {
                 session()->flash('error', 'Permohonan tidak wujud.');
