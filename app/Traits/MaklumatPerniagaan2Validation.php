@@ -178,6 +178,7 @@ trait MaklumatPerniagaan2Validation
         'buss1_state.required' => 'Sila pilih negeri cawangan 1.',
         'buss1_phone.required' => 'Sila masukkan nombor telefon cawangan 1.',
         //'buss1_fax.required' => 'Sila masukkan nombor fax cawangan 1.',
+
         // Cawangan 2 messages
         'buss2_branch_loc.required' => 'Sila pilih lokasi cawangan 2.',
         'buss2_branch_status.required' => 'Sila pilih status cawangan 2.',
@@ -214,6 +215,18 @@ trait MaklumatPerniagaan2Validation
         'fin1_flag.required' => 'Sila pilih jenis pembiayaan.',
         'fin1_other_name.required_if' => 'Sila masukkan nama pembiayaan.',
         'fin1_tot.required' => 'Sila masukkan jumlah pembiayaan.',
-        'fin1_bal.required' => 'Sila masukkan sisa pembiayaan.',
+        'fin1_bal.required' => 'Sila masukkan baki pembiayaan.',
+
+        //Financing 2
+        'fin2_flag.required' => 'Sila pilih jenis pembiayaan.',
+        'fin2_other_name.required_if' => 'Sila masukkan nama pembiayaan.',
+        'fin2_tot.required' => 'Sila masukkan jumlah pembiayaan.',
+        'fin2_bal.required' => 'Sila masukkan baki pembiayaan.',    
+
+        //Financing 3
+        'fin3_flag.required' => 'Sila pilih jenis pembiayaan.',
+        'fin3_other_name.required_if' => 'Sila masukkan nama pembiayaan.',
+        'fin3_tot.required' => 'Sila masukkan jumlah pembiayaan.',
+        'fin3_bal.required' => 'Sila masukkan baki pembiayaan.',    
     ];
 }
