@@ -708,7 +708,8 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                            @if($profession == 'KAKITANGAN KERAJAAN'||$profession == 'KAKITANGAN SWASTA')
+                            <div class="col-span-6" >
                                 <label for="employer_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Majikan <span class="text-red-700">*</span></label>
                                 <input id="employer_name" 
                                        name="employer_name" 
@@ -719,7 +720,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                            <div class="col-span-6" >
                                 <label for="employer_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan <span class="text-red-700">*</span></label>
                                 <input id="employer_address1" 
                                        name="employer_address1" 
@@ -734,7 +735,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                            <div class="col-span-6 sm:col-span-2" >
                                 <label for="employer_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
                                 <input id="employer_postcode" 
                                        name="employer_postcode" 
@@ -746,7 +747,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                            <div class="col-span-6 sm:col-span-2" >
                                 <label for="employer_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
                                 <input id="employer_city" 
                                        name="employer_city" 
@@ -757,7 +758,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                            <div class="col-span-6 sm:col-span-2" >
                                 <label for="tekun_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
                                 <select id="tekun_state" name="tekun_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="tekun_state">
                                     <option value="">Sila Pilih</option>
@@ -772,7 +773,7 @@
                                     <option value="PP">PULAU PINANG</option>
                                     <option value="SB">SABAH</option>
                                     <option value="SW">SARAWAK</option>
-                                    <option value="SE" selected="">SELANGOR</option>
+                                    <option value="SE" >SELANGOR</option>
                                     <option value="TG">TERENGGANU</option>
                                     <option value="WP">WP KUALA LUMPUR</option>
                                 </select>
@@ -783,7 +784,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.profession === 'KAKITANGAN KERAJAAN' || $wire.profession === 'KAKITANGAN SWASTA'">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="employer_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Majikan <span class="text-red-700">*</span></label>
                                 <input id="employer_phone" 
                                        name="employer_phone" 
@@ -794,6 +795,7 @@
                                 <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
                                 @enderror
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
