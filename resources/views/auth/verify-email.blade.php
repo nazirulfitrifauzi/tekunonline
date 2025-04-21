@@ -17,11 +17,11 @@
             </button>
         </form>
 
-        <form method="POST" action="{{ route('logout') }}">
+        <!-- <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900">
                 {{ __('Log Keluar') }}
             </button>
-        </form>
+        </form> -->
     </div>
 </x-guest-layout> 

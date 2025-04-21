@@ -49,7 +49,7 @@
                             @if($license_type == 'NO. SSM')
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_no" class="block text-sm font-medium leading-5 text-gray-700">No. SSM <span class="text-red-700">*</span></label>
-                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_no">
+                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="business_no">
                                 @error('business_no')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -59,7 +59,7 @@
                             @elseif($license_type == 'LESEN')
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_no" class="block text-sm font-medium leading-5 text-gray-700">No. Lesen <span class="text-red-700">*</span></label>
-                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_no">
+                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="business_no">
                                 @error('business_no')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -69,7 +69,7 @@
                             @elseif($license_type == 'ORDINAN')
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_no" class="block text-sm font-medium leading-5 text-gray-700">No. Ordinan <span class="text-red-700">*</span></label>
-                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="business_no">
+                                <input id="business_no" name="business_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="business_no">
                                 @error('business_no')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -96,7 +96,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="shareholder" class="block text-sm font-medium leading-5 text-gray-700">
-                                    Adakah Pemohon Pemegang Saham (Share Holder)
+                                    Adakah Pemohon Pemegang Saham
                                     @if($business_ownership === '5')
                                         <span class="text-red-700">*</span>
                                     @endif
@@ -110,7 +110,6 @@
                                 >
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
-                                    <option value="0">TIDAK</option>
                                 </select>
                                 @error('shareholder')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -171,6 +170,7 @@
                                     without-time 
                                     wire:model="license_expired_date"
                                     display-format="DD/MM/YYYY"
+                                    :disabled="$business_ownership == 5"
                                 />
                                 {{-- @error('license_expired_date')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -182,7 +182,7 @@
 
                             <div class="col-span-6 sm:col-span-6">
                                     <label for="business_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Perniagaan / Syarikat <span class="text-red-700">*</span></label>
-                                    <input id="business_name" name="business_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model="business_name">
+                                    <input id="business_name" name="business_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model="business_name">
                                     @error('business_name')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -417,8 +417,8 @@
 
                             <div class="col-span-6">
                                 <label for="business_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Perniagaan / Premis / Projek <span class="text-red-700">*</span></label>
-                                <input id="business_address1" name="business_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_address1">                               
-                                <input id="business_address2" name="business_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_address2">
+                                <input id="business_address1" name="business_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="business_address1">                               
+                                <input id="business_address2" name="business_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="business_address2">
                                 @error('business_address1')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -428,7 +428,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
-                                <input id="business_postcode" name="business_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_postcode">
+                                <input id="business_postcode" name="business_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="business_postcode">
                                 @error('business_postcode')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -438,7 +438,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="business_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
-                                <input id="business_city" name="business_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="business_city">
+                                <input id="business_city" name="business_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="business_city">
                                 @error('business_city')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -549,7 +549,7 @@
                                     id="business_other_premise" 
                                     name="business_other_premise" 
                                     value="" 
-                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 {{ $business_premise != 'LAIN-LAIN (SILA NYATAKAN)' ? 'bg-gray-100' : '' }}" 
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase {{ $business_premise != 'LAIN-LAIN (SILA NYATAKAN)' ? 'bg-gray-100' : ''  }}" 
                                     wire:model.live="business_other_premise"
                                     @if($business_premise != 'LAIN-LAIN (SILA NYATAKAN)') disabled @endif
                                 >
@@ -600,7 +600,7 @@
                                     id="buss_other_loc_premise" 
                                     name="buss_other_loc_premise" 
                                     value="" 
-                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $premise_loc_code != 'Lain-Lain (Nyatakan)' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}" 
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase disabled:bg-gray-100 {{ $premise_loc_code != 'Lain-Lain (Nyatakan)' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}" 
                                     wire:model.live="buss_other_loc_premise"
                                     @if($premise_loc_code != 'Lain-Lain (Nyatakan)') disabled @endif
                                 >
@@ -843,7 +843,7 @@
                                     id="course_name_attend" 
                                     type="text" 
                                     wire:model.live="course_name_attend"
-                                    class="block w-full mt-1 rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
+                                    class="block w-full mt-1 rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 uppercase"
                                 >
                             </div>
 
@@ -867,13 +867,13 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="course_name_attend2" class="block text-sm font-medium leading-5 text-gray-700">Kursus-Kursus Lain Yang Dihadiri (Jika Ada)</label>
-                                <input id="course_name_attend2" name="course_name_attend2" value="" placeholder="Kursus-Kursus Lain Yang Dihadiri 2" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="course_name_attend2">
-                                <input id="course_name_attend3" name="course_name_attend3" value="" placeholder="Kursus-Kursus Lain Yang Dihadiri 3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="course_name_attend3">
+                                <input id="course_name_attend2" name="course_name_attend2" value="" placeholder="Kursus-Kursus Lain Yang Dihadiri 2" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="course_name_attend2">
+                                <input id="course_name_attend3" name="course_name_attend3" value="" placeholder="Kursus-Kursus Lain Yang Dihadiri 3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="course_name_attend3">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="previous_business" class="block text-sm font-medium leading-5 text-gray-700">Sila Nyatakan Perniagaan Terdahulu Sekiranya Bertukar Aktiviti Perniagaan</label>
-                                <input id="previous_business" name="previous_business" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="previous_business">
+                                <input id="previous_business" name="previous_business" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="previous_business">
                             </div>
 
                         </div>
@@ -926,7 +926,7 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="partner_name" class="block text-sm font-medium leading-5 text-gray-700">Nama <span class="text-red-700">*</span></label>
-                                    <input id="partner_name" name="partner_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_name">
+                                    <input id="partner_name" name="partner_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner_name">
                                     @error('partner_name')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -936,7 +936,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="partner_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan <span class="text-red-700">*</span></label>
-                                    <input id="partner_ic" name="partner_ic" maxlength="12" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_ic">
+                                    <input id="partner_ic" name="partner_ic" maxlength="12" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner_ic">
                                     @error('partner_ic')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -946,8 +946,8 @@
 
                                 <div class="col-span-6">
                                     <label for="partner_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
-                                    <input id="partner_address1" name="partner_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_address1">
-                                    <input id="partner_address2" name="partner_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_address2">
+                                    <input id="partner_address1" name="partner_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner_address1">
+                                    <input id="partner_address2" name="partner_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner_address2">
                                     @error('partner_address1')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -967,7 +967,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
-                                    <input id="partner_city" name="partner_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_city">
+                                    <input id="partner_city" name="partner_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner_city">
                                     @error('partner_city')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -998,7 +998,7 @@
                                                 +6
                                             </span>
                                         </div>
-                                        <input id="partner_phone" name="partner_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_phone">
+                                        <input id="partner_phone" name="partner_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner_phone">
                                     </div>
                                 </div>
 
@@ -1010,19 +1010,14 @@
                                                 +6
                                             </span>
                                         </div>
-                                        <input id="partner_phone_hp" name="partner_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_phone_hp">
+                                        <input id="partner_phone_hp" name="partner_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner_phone_hp">
                                     </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="partner_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham <span class="text-red-700">*</span></label>
+                                    <label for="partner_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham(%) <span class="text-red-700">*</span></label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
-                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                                RM
-                                            </span>
-                                        </div>
-                                        <input id="partner_total_shares" name="partner_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner_total_shares">
+                                        <input id="partner_total_shares" name="partner_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_total_shares">
                                     </div>
                                 </div>
 
@@ -1045,7 +1040,7 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="partner2_name" class="block text-sm font-medium leading-5 text-gray-700">Nama <span class="text-red-700">*</span></label>
-                                    <input id="partner2_name" name="partner2_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_name">
+                                    <input id="partner2_name" name="partner2_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner2_name">
                                     @error('partner2_name')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1065,8 +1060,8 @@
 
                                 <div class="col-span-6">
                                     <label for="partner2_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
-                                    <input id="partner2_address1" name="partner2_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_address1">
-                                    <input id="partner2_address2" name="partner2_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_address2">
+                                    <input id="partner2_address1" name="partner2_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner2_address1">
+                                    <input id="partner2_address2" name="partner2_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner2_address2">
                                     @error('partner2_address1')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1086,7 +1081,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner2_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
-                                    <input id="partner2_city" name="partner2_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_city">
+                                    <input id="partner2_city" name="partner2_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner2_city">
                                     @error('partner2_city')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1134,14 +1129,9 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="partner2_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham <span class="text-red-700">*</span></label>
+                                    <label for="partner2_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham(%) <span class="text-red-700">*</span></label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
-                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                                RM
-                                            </span>
-                                        </div>
-                                        <input id="partner2_total_shares" name="partner2_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_total_shares">
+                                        <input id="partner2_total_shares" name="partner2_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_total_shares">
                                     </div>
                                 </div>
 
@@ -1164,7 +1154,7 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="partner3_name" class="block text-sm font-medium leading-5 text-gray-700">Nama<span class="text-red-700">*</span></label>
-                                    <input id="partner3_name" name="partner3_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_name">
+                                    <input id="partner3_name" name="partner3_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner3_name">
                                     @error('partner3_name')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1184,8 +1174,8 @@
 
                                 <div class="col-span-6">
                                     <label for="partner3_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
-                                    <input id="partner3_address1" name="partner3_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_address1">
-                                    <input id="partner3_address2" name="partner3_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_address2">
+                                    <input id="partner3_address1" name="partner3_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner3_address1">
+                                    <input id="partner3_address2" name="partner3_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner3_address2">
                                     @error('partner3_address1')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1205,7 +1195,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner3_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
-                                    <input id="partner3_city" name="partner3_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_city">
+                                    <input id="partner3_city" name="partner3_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner3_city">
                                     @error('partner3_city')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1253,14 +1243,9 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="partner3_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham <span class="text-red-700">*</span></label>
+                                    <label for="partner3_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham(%) <span class="text-red-700">*</span></label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
-                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                                RM
-                                            </span>
-                                        </div>
-                                        <input id="partner3_total_shares" name="partner3_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_total_shares">
+                                        <input id="partner3_total_shares" name="partner3_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_total_shares">
                                     </div>
                                 </div>
 
@@ -1283,7 +1268,7 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="partner4_name" class="block text-sm font-medium leading-5 text-gray-700">Nama <span class="text-red-700">*</span></label>
-                                    <input id="partner4_name" name="partner4_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_name">
+                                    <input id="partner4_name" name="partner4_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner4_name">
                                     @error('partner4_name')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1303,8 +1288,8 @@
 
                                 <div class="col-span-6">
                                     <label for="partner4_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
-                                    <input id="partner4_address1" name="partner4_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_address1">
-                                    <input id="partner4_address2" name="partner4_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_address2">
+                                    <input id="partner4_address1" name="partner4_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner4_address1">
+                                    <input id="partner4_address2" name="partner4_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner4_address2">
                                     @error('partner4_address1')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1314,7 +1299,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner4_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
-                                    <input id="partner4_postcode" name="partner4_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_postcode">
+                                    <input id="partner4_postcode" name="partner4_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner4_postcode">
                                     @error('partner4_postcode')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1324,7 +1309,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner4_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
-                                    <input id="partner4_city" name="partner4_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_city">
+                                    <input id="partner4_city" name="partner4_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner4_city">
                                     @error('partner4_city')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1355,7 +1340,7 @@
                                                 +6
                                             </span>
                                         </div>
-                                        <input id="partner4_phone" name="partner4_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_phone">
+                                        <input id="partner4_phone" name="partner4_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner4_phone">
                                     </div>
                                 </div>
 
@@ -1367,19 +1352,14 @@
                                                 +6
                                             </span>
                                         </div>
-                                        <input id="partner4_phone_hp" name="partner4_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_phone_hp">
+                                        <input id="partner4_phone_hp" name="partner4_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner4_phone_hp">
                                     </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="partner4_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham <span class="text-red-700">*</span></label>
+                                    <label for="partner4_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham(%) <span class="text-red-700">*</span></label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
-                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                                RM
-                                            </span>
-                                        </div>
-                                        <input id="partner4_total_shares" name="partner4_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner4_total_shares">
+                                        <input id="partner4_total_shares" name="partner4_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_total_shares">
                                     </div>
                                 </div>
 
@@ -1402,7 +1382,7 @@
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="partner5_name" class="block text-sm font-medium leading-5 text-gray-700">Nama <span class="text-red-700">*</span></label>
-                                    <input id="partner5_name" name="partner5_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_name">
+                                    <input id="partner5_name" name="partner5_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner5_name">
                                     @error('partner5_name')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1422,8 +1402,8 @@
 
                                 <div class="col-span-6">
                                     <label for="partner5_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
-                                    <input id="partner5_address1" name="partner5_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_address1">
-                                    <input id="partner5_address2" name="partner5_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_address2">
+                                    <input id="partner5_address1" name="partner5_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner5_address1">
+                                    <input id="partner5_address2" name="partner5_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner5_address2">
                                     @error('partner5_address1')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1443,7 +1423,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner5_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
-                                    <input id="partner5_city" name="partner5_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_city">
+                                    <input id="partner5_city" name="partner5_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner5_city">
                                     @error('partner5_city')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -1474,7 +1454,7 @@
                                                 +6
                                             </span>
                                         </div>
-                                        <input id="partner5_phone" name="partner5_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_phone">
+                                        <input id="partner5_phone" name="partner5_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner5_phone">
                                     </div>
                                 </div>
 
@@ -1486,19 +1466,14 @@
                                                 +6
                                             </span>
                                         </div>
-                                        <input id="partner5_phone_hp" name="partner5_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_phone_hp">
+                                        <input id="partner5_phone_hp" name="partner5_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner5_phone_hp">
                                     </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="partner5_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham <span class="text-red-700">*</span></label>
+                                    <label for="partner5_total_shares" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Saham(%) <span class="text-red-700">*</span></label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
-                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
-                                                RM
-                                            </span>
-                                        </div>
-                                        <input id="partner5_total_shares" name="partner5_total_shares" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner5_total_shares">
+                                        <input id="partner5_total_shares" name="partner5_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_total_shares">
                                     </div>
                                 </div>
 

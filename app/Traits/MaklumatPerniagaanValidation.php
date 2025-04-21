@@ -231,9 +231,10 @@ trait MaklumatPerniagaanValidation
             ]);
         }
 
-        // if($this->business_ownership == 5){
-        //     $rules['business_modal'] = 'required|lte:300000|numeric';
-        // }
+        if($this->business_ownership == 5){
+            $this->business_modal = str_replace(',', '', $this->business_modal);
+            $rules['business_modal'] = 'required|lte:300000|numeric';
+        }
 
         return $rules;
     }
@@ -273,7 +274,9 @@ trait MaklumatPerniagaanValidation
         'cert_recognition_flag.required' => 'Sila pilih maklumat pembiayaan perniagaan sedia ada.',
         'business_asset_value.required' => 'Sila masukkan nilai aset perniagaan.',
         'business_start_resources.required' => 'Sila masukkan sumber daya perniagaan.',
-        'tot_partner.required' => 'Sila masukkan jumlah perniagaan.',
+        'tot_partner.required' => 'Sila masukkan jumlah rakan kongsi.',
+        'tot_partner.required_if' => 'Sila masukkan jumlah rakan kongsi.',
+
 
         //partner 1
         'partner_name.required' => 'Sila masukkan nama pemegang.',

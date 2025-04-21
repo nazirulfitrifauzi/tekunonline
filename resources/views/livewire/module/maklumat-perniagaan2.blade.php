@@ -124,8 +124,8 @@
 
                                      <div class="col-span-6">
                                         <label for="buss1_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 1 <span class="text-red-700">*</span></label>
-                                        <input id="buss1_addr1" name="buss1_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_addr1">                               
-                                        <input id="buss1_addr2" name="buss1_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_addr2">
+                                        <input id="buss1_addr1" name="buss1_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss1_addr1">
+                                        <input id="buss1_addr2" name="buss1_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss1_addr2">
                                         @error('buss1_addr1')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -145,7 +145,7 @@
 
                                     <div class="col-span-6 sm:col-span-2">
                                         <label for="buss1_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 1 <span class="text-red-700">*</span></label>
-                                        <input id="buss1_city" name="buss1_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss1_city">
+                                        <input id="buss1_city" name="buss1_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss1_city">
                                         @error('buss1_city')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -176,7 +176,7 @@
                                                     +6
                                                 </span>
                                             </div>
-                                            <input id="buss1_phone" name="buss1_phone"  maxlength="11" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_phone">
+                                            <input id="buss1_phone" name="buss1_phone"  maxlength="11" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="buss1_phone">
                                             @error('buss1_phone')
                                                 <p class="text-red-500 text-xs italic mt-4">
                                                     {{ $message }}
@@ -193,7 +193,7 @@
                                                     +6
                                                 </span>
                                             </div>
-                                            <input id="buss1_fax" name="buss1_fax" maxlength="10" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_fax">
+                                            <input id="buss1_fax" name="buss1_fax" maxlength="10" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="buss1_fax">
                                         </div>
                                         @error('buss1_fax')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -304,8 +304,8 @@
 
                                      <div class="col-span-6">
                                         <label for="buss2_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 2 <span class="text-red-700">*</span></label>
-                                        <input id="buss2_addr1" name="buss2_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_addr1">                               
-                                        <input id="buss2_addr2" name="buss2_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_addr2">
+                                        <input id="buss2_addr1" name="buss2_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss2_addr1">                               
+                                        <input id="buss2_addr2" name="buss2_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss2_addr2">
                                         @error('buss2_addr1')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -325,7 +325,7 @@
 
                                     <div class="col-span-6 sm:col-span-2">
                                         <label for="buss2_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 2 <span class="text-red-700">*</span></label>
-                                        <input id="buss2_city" name="buss2_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss2_city">
+                                        <input id="buss2_city" name="buss2_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss2_city">
                                         @error('buss2_city')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -484,8 +484,8 @@
 
                                      <div class="col-span-6">
                                         <label for="buss3_addr1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Cawangan 3 <span class="text-red-700">*</span></label>
-                                        <input id="buss3_addr1" name="buss3_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_addr1">                               
-                                        <input id="buss3_addr2" name="buss3_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_addr2">
+                                        <input id="buss3_addr1" name="buss3_addr1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss3_addr1">                               
+                                        <input id="buss3_addr2" name="buss3_addr2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss3_addr2">
                                         @error('buss3_addr1')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -495,7 +495,7 @@
 
                                     <div class="col-span-6 sm:col-span-2">
                                         <label for="buss3_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod 3 <span class="text-red-700">*</span></label>
-                                        <input id="buss3_postcode" name="buss3_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_postcode">
+                                        <input id="buss3_postcode" name="buss3_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss3_postcode">
                                         @error('buss3_postcode')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -505,7 +505,7 @@
 
                                     <div class="col-span-6 sm:col-span-2">
                                         <label for="buss3_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar 3 <span class="text-red-700">*</span></label>
-                                        <input id="buss3_city" name="buss3_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="buss3_city">
+                                        <input id="buss3_city" name="buss3_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="buss3_city">
                                         @error('buss3_city')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -643,7 +643,7 @@
                                     @if($fin1_flag == "LAIN-LAIN")
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="fin1_other_name" class="block text-sm font-medium leading-5 text-gray-700">Sila nyatakan Lain-lain Agensi 1</label>
-                                        <input id="fin1_other_name" wire:model.live="fin1_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input id="fin1_other_name" wire:model.live="fin1_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm uppercase">
                                         @error('fin1_other_name')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -706,7 +706,7 @@
                                     @if($fin2_flag == "LAIN-LAIN")
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="fin2_other_name" class="block text-sm font-medium leading-5 text-gray-700">Sila nyatakan Lain-lain Agensi 2</label>
-                                        <input id="fin2_other_name" wire:model.live="fin2_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input id="fin2_other_name" wire:model.live="fin2_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm uppercase">
                                         @error('fin2_other_name')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -770,7 +770,7 @@
                                     @if($fin3_flag == "LAIN-LAIN")
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="fin3_other_name" class="block text-sm font-medium leading-5 text-gray-700">Sila nyatakan Lain-lain Agensi 3</label>
-                                        <input id="fin3_other_name" wire:model.live="fin3_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input id="fin3_other_name" wire:model.live="fin3_other_name" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm uppercase">
                                         @error('fin3_other_name')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}

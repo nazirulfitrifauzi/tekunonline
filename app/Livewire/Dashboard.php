@@ -149,6 +149,7 @@ class Dashboard extends Component
             [
                 'name' => $this->user->name,
                 'ic_no' => $this->user->ic_no,
+                'email' => $this->user->email,
                 'gender' => $gender,
                 'birthdate' => $formattedBirthdate,
                 'age' => $age,
