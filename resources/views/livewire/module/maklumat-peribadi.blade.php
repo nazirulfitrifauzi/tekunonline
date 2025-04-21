@@ -193,7 +193,7 @@
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="bank2_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 2</label>
-                                <input id="bank2_register_bank_no" name="bank2_register_bank_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="bank2_register_bank_no">
+                                <input id="bank2_register_bank_no" name="bank2_register_bank_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="bank2_register_bank_no">
                             </div>
                         </div>
                         
@@ -226,7 +226,7 @@
                                 <input id="name" 
                                 name="name" 
                                 type="text" 
-                                class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
+                                class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" 
                                 wire:model.live="name"
                                 oninput="this.value = this.value.replace(/[^A-Za-z\s'-.@]/g, '').toUpperCase()"
                                 pattern="[A-Za-z\s'-.@]*">
@@ -276,7 +276,7 @@
                         <div class="grid grid-cols-6 gap-6 mt-6">
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="gender" class="block text-sm font-medium leading-5 text-gray-700">Jantina <span class="text-red-700">*</span></label>
-                                <input id="gender" name="gender" disabled value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="gender">                                       
+                                <input id="gender" name="gender" disabled value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="gender">                                       
                                 @error('gender')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -286,7 +286,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="birthdate" class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span class="text-red-700">*</span></label>
-                                <input id="birthdate" name="birthdate" disabled value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="birthdate">
+                                <input id="birthdate" name="birthdate" disabled value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="birthdate">
                                 @error('birthdate')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -296,7 +296,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Umur <span class="text-red-700">*</span></label>
-                                <input id="age" name="age" disabled value="" maxlength="3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="age">
+                                <input id="age" name="age" disabled value="" maxlength="3" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="age">
                                 @error('age')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -483,7 +483,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="dependent" class="block text-sm font-medium leading-5 text-gray-700">Bilangan Tanggungan <span class="text-red-700">*</span></label>
-                                <input id="dependent" name="dependent" type="number" min="0" value="2" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="dependent">
+                                <input id="dependent" name="dependent" type="number" min="0" value="2" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"    wire:model.live="dependent">
                                 @error('dependent')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -549,8 +549,8 @@
 
                             <div class="col-span-6">
                                 <label for="address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Kediaman <span class="text-red-700">*</span></label>
-                                <input id="address1" name="address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="address1">                               
-                                <input id="address2" name="address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="address2">
+                                <input id="address1" name="address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="address1">                               
+                                <input id="address2" name="address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="address2">
                                 @error('address1')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -570,7 +570,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
-                                <input id="city" name="city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="city">
+                                <input id="city" name="city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="city">
                                 @error('city')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -652,12 +652,12 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="facebook" class="block text-sm font-medium leading-5 text-gray-700">Facebook</label>
-                                <input id="facebook" name="facebook" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="facebook">
+                                <input id="facebook" name="facebook" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="facebook">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="instagram" class="block text-sm font-medium leading-5 text-gray-700">Instagram</label>
-                                <input id="instagram" name="instagram" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="instagram">
+                                <input id="instagram" name="instagram" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="instagram">
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
@@ -714,7 +714,7 @@
                                 <input id="employer_name" 
                                        name="employer_name" 
                                        wire:model.live="employer_name" 
-                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase">
                                 @error('employer_name')
                                 <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
                                 @enderror
@@ -725,11 +725,11 @@
                                 <input id="employer_address1" 
                                        name="employer_address1" 
                                        wire:model.live="employer_address1" 
-                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase">
                                 <input id="employer_address2" 
                                        name="employer_address2" 
                                        wire:model.live="employer_address2" 
-                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase">
                                 @error('employer_address1')
                                 <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
                                 @enderror
@@ -752,7 +752,7 @@
                                 <input id="employer_city" 
                                        name="employer_city" 
                                        wire:model.live="employer_city" 
-                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase">
                                 @error('employer_city')
                                 <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
                                 @enderror
@@ -824,7 +824,7 @@
 
                             <div class="col-span-6 sm:col-span-6">
                                 <label for="spouse_name" class="block text-sm font-medium leading-5 text-gray-700">Nama Suami/Isteri <span class="text-red-700">*</span></label>
-                                <input id="spouse_name" name="spouse_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="spouse_name">
+                                <input id="spouse_name" name="spouse_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="spouse_name">
                                 @error('spouse_name')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -846,7 +846,8 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-2" id="spuose_ic_div" x-data x-show="$wire.spouse_nationality === '1'">
+                            @if($spouse_nationality == 1)
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_ic_no" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan <span class="text-red-700">*</span></label>
                                 <input id="spouse_ic_no" 
                                        name="spouse_ic_no" 
@@ -859,8 +860,10 @@
                                 </p>
                                 @enderror
                             </div>
+                            @endif
 
-                            <div class="col-span-6 sm:col-span-2" x-data x-show="$wire.spouse_nationality === '0'">
+                            @if($spouse_nationality == 0)
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_passport_no" class="block text-sm font-medium leading-5 text-gray-700">No. Passport <span class="text-red-700">*</span></label>
                                 <input id="spouse_passport_no" 
                                        name="spouse_passport_no" 
@@ -873,10 +876,11 @@
                                 </p>
                                 @enderror
                             </div>
+                            @endif
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_profession" class="block text-sm font-medium leading-5 text-gray-700">Perkerjaan Sekarang <span class="text-red-700">*</span></label>
-                                <input id="spouse_profession" name="spouse_profession" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_profession">
+                                <input id="spouse_profession" name="spouse_profession" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="spouse_profession">
                                 @error('spouse_profession')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -924,8 +928,8 @@
 
                             <div class="col-span-6">
                                 <label for="spouse_employer_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat Majikan</label>
-                                <input id="spouse_employer_address1" name="spouse_employer_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="spouse_employer_address1">
-                                <input id="spouse_employer_address2" name="spouse_employer_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"    wire:model.live="spouse_employer_address2">
+                                <input id="spouse_employer_address1" name="spouse_employer_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"    wire:model.live="spouse_employer_address1">
+                                <input id="spouse_employer_address2" name="spouse_employer_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"    wire:model.live="spouse_employer_address2">
                                 @error('spouse_employer_address1')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -952,7 +956,7 @@
                                 <input id="spouse_employer_city" 
                                        name="spouse_employer_city" 
                                        wire:model.live="spouse_employer_city" 
-                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase">
                                 @error('spouse_employer_city')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
@@ -1012,15 +1016,4 @@
             </button>
         </span>
     </div>
-
-    @script
-    <script>
-        Livewire.on('saved', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
-    @endscript
 </div>
