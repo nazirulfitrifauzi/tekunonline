@@ -11,7 +11,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <div class="grid grid-cols-6 gap-6">
 
-                        <div class="col-span-6 sm:col-span-3">
+                        <div class="col-span-6 sm:col-span-2">
                                 <label for="purchase_price" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan Yang Diperlukan <span class="text-red-700">*</span></label>
                                 <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -19,7 +19,15 @@
                                             RM
                                         </span>
                                     </div>
-                                    <input id="purchase_price" name="purchase_price" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.lazy="purchase_price" value="{{ $purchase_price }}">
+                                    <input 
+                                        id="purchase_price" 
+                                        name="purchase_price" 
+                                        type="text"
+                                        wire:model.defer="purchase_price"
+                                        x-data
+                                        x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                    >
                                     @error('purchase_price')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -452,13 +460,13 @@
                                 <legend class="block text-sm font-medium leading-5 text-gray-700">Kebenaran Penzahiran Maklumat Kredit Individu <span class="text-red-700">*</span></legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">Pemohon dengan ini membenarkan (*TEKUN Nasional atau pegawainya untuk menggunakan, mendedahkan, memberitahu apa-apa maklumat berhubung dengan akaun pembiayaan TEKUN / untuk tujuan atau berhubung dengan apa-apa tindakan atau prosiding diambil bagi tujuan penilaian kredit atau bayaran di bawah Terma dan Syarat ini;</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">Pemohon dengan ini membenarkan (*TEKUN Nasional atau pegawainya untuk menggunakan, mendedahkan, memberitahu apa-apa maklumat berhubung dengan akaun pembiayaan TEKUN / untuk tujuan atau berhubung dengan apa-apa tindakan atau prosiding diambil bagi tujuan penilaian kredit atau bayaran di bawah Terma dan Syarat ini;</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">Pemohon dengan ini membenarkan (*TEKUN Nasional atau pegawainya untuk penzahiran apa-apa maklumat kredit individu yang berkaitan dengan kedudukan kredit, kemudahan kredit yang diberi kepada pemohon kepada Experian Information Services (Malaysia) Sdn Bhd (dahulu dikenali sebagai RAMCI) ('Experian') dan / atau Credit Tip Off Service Sdn Bhd ('CTOS') serta pelanggan Experian / CTOS termasuk Bank, Institusi kewangan atau mana-mana agensi pelaporan kredit yang berkuat kuasa di Malaysia.</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">Pemohon dengan ini membenarkan (*TEKUN Nasional atau pegawainya untuk penzahiran apa-apa maklumat kredit individu yang berkaitan dengan kedudukan kredit, kemudahan kredit yang diberi kepada pemohon kepada Experian Information Services (Malaysia) Sdn Bhd (dahulu dikenali sebagai RAMCI) ('Experian') dan / atau Credit Tip Off Service Sdn Bhd ('CTOS') serta pelanggan Experian / CTOS termasuk Bank, Institusi kewangan atau mana-mana agensi pelaporan kredit yang berkuat kuasa di Malaysia.</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">Pemohon dengan ini memberi kebenaran kepada Experian dan / atau CTOS bagi mendedahkan maklumat kredit, termasuk maklumat kredit perbankan kepada (*TEKUN Nasional atau pegawainya bagi maksud seperti berikut selepas dinyatakan di bawah seksyen 24, menurut Akta Pelaporan Kredit 2010. Persetujuan hendaklah kekal terpakai selagi pemohon mengekalkan akaun / pembiayaan / kredit / apa-apa transaksi dengan organisasi.)</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">Pemohon dengan ini memberi kebenaran kepada Experian dan / atau CTOS bagi mendedahkan maklumat kredit, termasuk maklumat kredit perbankan kepada (*TEKUN Nasional atau pegawainya bagi maksud seperti berikut selepas dinyatakan di bawah seksyen 24, menurut Akta Pelaporan Kredit 2010. Persetujuan hendaklah kekal terpakai selagi pemohon mengekalkan akaun / pembiayaan / kredit / apa-apa transaksi dengan organisasi.)</legend>
                             </div>
 
                             <div>

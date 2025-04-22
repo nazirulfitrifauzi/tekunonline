@@ -51,16 +51,23 @@ class MaklumatPinjaman extends Component
     public function submit()
     {
         try {
+
+                $this->purchase_price = str_replace(',', '', $this->purchase_price);
+
+
                 $this->validateSelf();
                 
                 // Dapatkan appln_id yang baru atau sedia ada
                 $applnId = $this->appln_id;
+                
 
                 // Dapatkan data sedia ada dalam MaklumatPinjaman
                 $existingData = ModelsMaklumatPinjaman::where('appln_id', $applnId)->first();
 
                 // Jika wujud, gunakan nilai sedia ada, jika tidak, buat array kosong
                 $existingDataArray = $existingData ? $existingData->toArray() : [];
+
+
 
                 // Gabungkan data lama dengan data baru, pastikan nilai baru tidak menimpa dengan `null`
                 $updatedData = array_merge($existingDataArray, array_filter($this->getFormData($applnId), fn($value) => !is_null($value)));

@@ -1000,6 +1000,11 @@
                                         </div>
                                         <input id="partner_phone" name="partner_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner_phone">
                                     </div>
+                                    @error('partner_phone')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1012,6 +1017,11 @@
                                         </div>
                                         <input id="partner_phone_hp" name="partner_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner_phone_hp">
                                     </div>
+                                    @error('partner_phone_hp')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1019,6 +1029,11 @@
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                         <input id="partner_total_shares" name="partner_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_total_shares">
                                     </div>
+                                    @error('partner_total_shares')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1029,6 +1044,11 @@
                                         <option value="2">PENGARAH</option>
                                         <option value="3">RAKAN KONGSI & PENGARAH</option>
                                     </select>
+                                    @error('partner_roles')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
                             </div>
@@ -1114,6 +1134,11 @@
                                         </div>
                                         <input id="partner2_phone" name="partner2_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_phone">
                                     </div>
+                                    @error('partner2_phone')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1126,6 +1151,11 @@
                                         </div>
                                         <input id="partner2_phone_hp" name="partner2_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner2_phone_hp">
                                     </div>
+                                    @error('partner2_phone_hp')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1133,6 +1163,11 @@
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                         <input id="partner2_total_shares" name="partner2_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner2_total_shares">
                                     </div>
+                                    @error('partner2_total_shares')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1143,6 +1178,11 @@
                                         <option value="2">PENGARAH</option>
                                         <option value="3">RAKAN KONGSI & PENGARAH</option>
                                     </select>
+                                    @error('partner2_roles')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
                             </div>
@@ -1228,6 +1268,11 @@
                                         </div>
                                         <input id="partner3_phone" name="partner3_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_phone">
                                     </div>
+                                    @error('partner3_phone')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1240,6 +1285,11 @@
                                         </div>
                                         <input id="partner3_phone_hp" name="partner3_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="partner3_phone_hp">
                                     </div>
+                                    @error('partner3_phone_hp')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1257,6 +1307,11 @@
                                         <option value="2">PENGARAH</option>
                                         <option value="3">RAKAN KONGSI & PENGARAH</option>
                                     </select>
+                                    @error('partner3_roles')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
                             </div>
@@ -1342,6 +1397,11 @@
                                         </div>
                                         <input id="partner4_phone" name="partner4_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner4_phone">
                                     </div>
+                                    @error('partner4_phone')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}      
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1354,6 +1414,11 @@
                                         </div>
                                         <input id="partner4_phone_hp" name="partner4_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner4_phone_hp">
                                     </div>
+                                    @error('partner4_phone_hp')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1361,6 +1426,11 @@
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                         <input id="partner4_total_shares" name="partner4_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner4_total_shares">
                                     </div>
+                                    @error('partner4_total_shares')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1371,6 +1441,11 @@
                                         <option value="2">PENGARAH</option>
                                         <option value="3">RAKAN KONGSI & PENGARAH</option>
                                     </select>
+                                    @error('partner4_roles')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
                             </div>
@@ -1456,6 +1531,11 @@
                                         </div>
                                         <input id="partner5_phone" name="partner5_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner5_phone">
                                     </div>
+                                    @error('partner5_phone')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1468,6 +1548,11 @@
                                         </div>
                                         <input id="partner5_phone_hp" name="partner5_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner5_phone_hp">
                                     </div>
+                                    @error('partner5_phone_hp')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1475,6 +1560,11 @@
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                         <input id="partner5_total_shares" name="partner5_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner5_total_shares">
                                     </div>
+                                    @error('partner5_total_shares')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror     
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1485,6 +1575,11 @@
                                         <option value="2">PENGARAH</option>
                                         <option value="3">RAKAN KONGSI & PENGARAH</option>
                                     </select>
+                                    @error('partner5_roles')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
                             </div>
                             </div>

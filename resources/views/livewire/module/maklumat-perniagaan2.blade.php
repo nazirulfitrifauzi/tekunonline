@@ -100,11 +100,6 @@
                                             without-seconds
                                             wire:model="buss1_hours_start"
                                         />
-                                        @error('buss1_hours_start')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
                                      </div>
 
                                      <div class="col-span-6 sm:col-span-2">
@@ -115,11 +110,6 @@
                                             without-seconds
                                             wire:model="buss1_hours_end"
                                         />
-                                        @error('buss1_hours_end')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
                                      </div>
 
                                      <div class="col-span-6">
@@ -280,11 +270,6 @@
                                             without-seconds
                                             wire:model="buss2_hours_start"
                                         />
-                                        @error('buss2_hours_start')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
                                      </div>
 
                                      <div class="col-span-6 sm:col-span-2">
@@ -295,11 +280,6 @@
                                             without-seconds
                                             wire:model="buss2_hours_end"
                                         />
-                                        @error('buss2_hours_end')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
                                      </div>
 
                                      <div class="col-span-6">
@@ -460,11 +440,6 @@
                                             without-seconds
                                             wire:model="buss3_hours_start"
                                         />
-                                        @error('buss3_hours_start')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
                                      </div>
 
                                      <div class="col-span-6 sm:col-span-2">
@@ -475,11 +450,6 @@
                                             without-seconds
                                             wire:model="buss3_hours_end"
                                         />
-                                        @error('buss3_hours_end')
-                                            <p class="text-red-500 text-xs italic mt-4">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
                                      </div>
 
                                      <div class="col-span-6">
@@ -656,9 +626,19 @@
                                     <label for="fin1_tot" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan 1</label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
                                         </div>
-                                        <input id="fin1_tot" wire:model.live="fin1_tot" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input 
+                                            id="fin1_tot" 
+                                            name="fin1_tot" 
+                                            type="text"
+                                            wire:model.defer="fin1_tot"
+                                            x-data
+                                            x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                            class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                        >
                                         @error('fin1_tot')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -671,9 +651,19 @@
                                     <label for="fin1_bal" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan 1</label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
                                         </div>
-                                        <input id="fin1_bal" wire:model.live="fin1_bal" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input 
+                                            id="fin1_bal" 
+                                            name="fin1_bal" 
+                                            type="text"
+                                            wire:model.defer="fin1_bal"
+                                            x-data
+                                            x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                            class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                        >
                                         @error('fin1_bal')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -720,9 +710,19 @@
                                     <label for="fin2_tot" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan 2</label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
                                         </div>
-                                        <input id="fin2_tot" wire:model.live="fin2_tot" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input 
+                                            id="fin2_tot" 
+                                            name="fin2_tot" 
+                                            type="text"
+                                            wire:model.defer="fin2_tot"
+                                            x-data
+                                            x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                            class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                        >
                                         @error('fin2_tot')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -734,10 +734,20 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="fin2_bal" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan 2</label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
-                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
                                         </div>
-                                        <input id="fin2_bal" wire:model.live="fin2_bal" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input 
+                                            id="fin2_bal" 
+                                            name="fin2_bal" 
+                                            type="text"
+                                            wire:model.defer="fin2_bal"
+                                            x-data
+                                            x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                            class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                        >
                                         @error('fin2_bal')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -782,10 +792,20 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="fin3_tot" class="block text-sm font-medium leading-5 text-gray-700">Jumlah Pembiayaan 3</label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
-                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
                                         </div>
-                                        <input id="fin3_tot" wire:model.live="fin3_tot" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input 
+                                            id="fin3_tot" 
+                                            name="fin3_tot" 
+                                            type="text"
+                                            wire:model.defer="fin3_tot"
+                                            x-data
+                                            x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                            class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                        >
                                         @error('fin3_tot')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -797,10 +817,20 @@
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="fin3_bal" class="block text-sm font-medium leading-5 text-gray-700">Baki Pembiayaan 3</label>
                                     <div class="relative mt-1 rounded-md shadow-sm">
-                                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                            <span class="text-gray-500 sm:text-sm sm:leading-5">RM</span>
+                                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                            <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                                RM
+                                            </span>
                                         </div>
-                                        <input id="fin3_bal" wire:model.live="fin3_bal" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <input 
+                                            id="fin3_bal" 
+                                            name="fin3_bal" 
+                                            type="text"
+                                            wire:model.defer="fin3_bal"
+                                            x-data
+                                            x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                            class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                        >
                                         @error('fin3_bal')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}

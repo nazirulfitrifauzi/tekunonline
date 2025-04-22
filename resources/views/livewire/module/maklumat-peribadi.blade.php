@@ -141,7 +141,8 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-4">
-                                <label for="bank1_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 1 <span class="text-red-700">*</span></label>
+                                <label for="bank1_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 1 
+                                    @if($bank1_acct_type === 'SEMASA') <span class="text-red-700">*</span></label> @endif
                                 <input id="bank1_register_bank_no" 
                                        name="bank1_register_bank_no" 
                                        type="text" 
@@ -192,8 +193,14 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-4">
-                                <label for="bank2_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 2</label>
+                                <label for="bank2_register_bank_no" class="block text-sm font-medium leading-5 text-gray-700">No Pendaftaran Bank / No Id Akaun Bank / Register Bank 2
+                                @if($bank2_acct_type === 'SEMASA') <span class="text-red-700">*</span></label> @endif
                                 <input id="bank2_register_bank_no" name="bank2_register_bank_no" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="bank2_register_bank_no">
+                                @error('bank2_register_bank_no')
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                         </div>
                         

@@ -101,9 +101,13 @@ class MaklumatPerniagaan extends Component
 
     // #[On('tab-mp')]
     #[On('run-validation2')] 
+
     public function submit()
     {
+
         try {
+
+            
                 $this->validateSelf();
                 //add if error on validate
 
@@ -114,9 +118,9 @@ class MaklumatPerniagaan extends Component
                 $formData['appln_id'] = $this->appln_id;
 
         
-            $business_asset_value_num = floatval(str_replace(',', '', $this->business_asset_value));
-            $business_start_resources_num = floatval(str_replace(',', '', $this->business_start_resources));
-            $business_modal_num = floatval(str_replace(',', '', $this->business_modal));
+            $business_asset_value_num = intval(str_replace(',', '', $this->business_asset_value));
+            $business_start_resources_num = intval(str_replace(',', '', $this->business_start_resources));
+            $business_modal_num = intval(str_replace(',', '', $this->business_modal));
 
 
 
@@ -280,6 +284,8 @@ class MaklumatPerniagaan extends Component
 
                 $this->validateSelf();
             }
+
+            
     }
     
     protected function getFormData($applnId)
