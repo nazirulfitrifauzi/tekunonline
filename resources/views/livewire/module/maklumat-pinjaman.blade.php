@@ -360,6 +360,36 @@
                                     </p>
                                 @enderror
                             </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="sektor_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Sektor <span class="text-red-700">*</span></label>
+                                <select id="sektor_perkeso" name="sektor_perkeso" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="sektor_perkeso">
+                                    <option value="">SILA PILIH</option>
+                                    @foreach ($sektorPerkeso as $sektors)
+                                    <option value="{{ $sektors->id_sektor }}">{{ $sektors->keterangan}}</option>
+                                    @endforeach 
+                                </select>
+                                @error('sektor_perkeso')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                <label for="kelas_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Pakej Skim Keselamatan Sosial Pekerjaan Sendiri PERKESO <span class="text-red-700">*</span></label>
+                                <select id="kelas_perkeso" name="kelas_perkeso" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="kelas_perkeso">
+                                    <option value="">SILA PILIH</option>
+                                    @foreach ($kelasPerkeso as $kelas)
+                                    <option value="{{ $kelas->id_kelas }}">{{ $kelas->keterangan}}</option>
+                                    @endforeach                                 
+                                </select>
+                                @error('kelas_perkeso')
+                                    <p class="text-red-500 text-xs italic mt-4">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
                             @endif
 
                         </div>

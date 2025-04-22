@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Traits;
+use Illuminate\Validation\Rule;
 
 trait MaklumatPerniagaanValidation
 {
@@ -116,7 +117,11 @@ trait MaklumatPerniagaanValidation
             'license_type' =>'required',
             'business_no' => 'required_if:license_type,LESEN|required_if:license_type,ORDINAN|required_if:license_type,NO. SSM',
             'register_date' => 'required_if:license_type,NO. SSM',
-            'license_expired_date' =>'required_if:license_type,NO. SSM',
+            'license_expired_date' => [
+                Rule::requiredIf(function () {
+                    return $this->license_type === 'NO. SSM' && $this->business_ownership != '5';
+                }),
+            ],
             'business_ownership' =>'required',
             'shareholder' =>'required_if:business_ownership,5',
             'business_modal' =>'required_if:business_ownership,5',
@@ -244,7 +249,7 @@ trait MaklumatPerniagaanValidation
         'license_type.required' => 'Sila pilih jenis lesen.',
         'business_no.required_if' => 'Sila masukkan no. lesen.',
         'register_date.required_if' => 'Sila masukkan tarikh pendaftaran.',
-        'license_expired_date.required_if' => 'Sila masukkan tarikh masa lesen.',
+        'license_expired_date.required_if' => 'Sila masukkan tarikh tamat lesen.',
         'license_expired_date.after' => 'Tarikh masa lesen mestilah selepas tarikh pendaftaran.',
         'business_ownership.required' => 'Sila pilih jenis pemilik.',
         'shareholder.required_if' => 'Sila masukkan jumlah pemegang.',
@@ -259,16 +264,16 @@ trait MaklumatPerniagaanValidation
         'business_postcode.required' => 'Sila masukkan poskod.',
         'business_city.required' => 'Sila masukkan bandar.',
         'business_state.required' => 'Sila pilih negeri.',
-        'business_income.required' => 'Sila masukkan pendapatan perniagaan.',
-        'business_phone.required' => 'Sila masukkan nombor telefon.',
-        'business_phone_hp.required' => 'Sila masukkan nombor telefon hp.',
-        'business_premise.required' => 'Sila pilih jenis tempat perniagaan.',
-        'business_other_premise.required_if' => 'Sila masukkan jenis tempat perniagaan.',
-        'premise_loc_code.required' => 'Sila pilih jenis tempat perniagaan.',
-        'buss_other_loc_premise.required_if' => 'Sila masukkan jenis tempat perniagaan.',
-        'total_employees.required' => 'Sila masukkan jumlah pegawai.',
-        'membership_status.required' => 'Sila pilih status perniagaan.',
-        'membership_assoc.required_if' => 'Sila masukkan perniagaan.',
+        'business_income.required' => 'Sila masukkan anggaran pendapatan kasar(sebulan)',
+        'business_phone.required' => 'Sila masukkan nombor telefon premis perniagaan.',
+        'business_phone_hp.required' => 'Sila masukkan nombor telefon bimbit perniagaan.',
+        'business_premise.required' => 'Sila pilih status premis/projek.',
+        'business_other_premise.required_if' => 'Sila masukkan stattus premis/projek (lain-lain).',
+        'premise_loc_code.required' => 'Sila pilih lokasi premis.',
+        'buss_other_loc_premise.required_if' => 'Sila masukkan lokasi premis (lain-lain).',
+        'total_employees.required' => 'Sila masukkan jumlah bilangan pekerja.',
+        'membership_status.required' => 'Sila pilih keahlian persatuan.',
+        'membership_assoc.required_if' => 'Sila pilih jenis keahlian persatuan.',
         'business_open.required' => 'Sila pilih masa buka.',
         'business_closed.required' => 'Sila pilih masa tutup.',
         'cert_recognition_flag.required' => 'Sila pilih maklumat pembiayaan perniagaan sedia ada.',
@@ -279,63 +284,63 @@ trait MaklumatPerniagaanValidation
 
 
         //partner 1
-        'partner_name.required' => 'Sila masukkan nama pemegang.',
+        'partner_name.required' => 'Sila masukkan nama rakan kongsi.',
         'partner_ic.required' => 'Sila masukkan no. kad pengenalan.',
         'partner_address1.required' => 'Sila masukkan alamat 1.',
         'partner_postcode.required' => 'Sila masukkan poskod.',
         'partner_city.required' => 'Sila masukkan bandar.',
         'partner_state.required' => 'Sila pilih negeri.',
-        'partner_phone.required' => 'Sila masukkan nombor telefon.',
+        'partner_phone.required' => 'Sila masukkan nombor telefon rumah.',
         'partner_phone_hp.required' => 'Sila masukkan nombor telefon hp.',
         'partner_total_shares.required' => 'Sila masukkan jumlah saham.',
-        'partner_roles.required' => 'Sila pilih peranan.',
+        'partner_roles.required' => 'Sila pilih jawatan.',
 
         //partner 2
-        'partner2_name.required' => 'Sila masukkan nama pemegang.',
+        'partner2_name.required' => 'Sila masukkan nama rakan kongsi.',
         'partner2_ic.required' => 'Sila masukkan no. kad pengenalan.',
         'partner2_address1.required' => 'Sila masukkan alamat 1.',
         'partner2_postcode.required' => 'Sila masukkan poskod.',    
         'partner2_city.required' => 'Sila masukkan bandar.',
         'partner2_state.required' => 'Sila pilih negeri.',
-        'partner2_phone.required' => 'Sila masukkan nombor telefon.',
+        'partner2_phone.required' => 'Sila masukkan nombor telefon rumah.',
         'partner2_phone_hp.required' => 'Sila masukkan nombor telefon hp.',
         'partner2_total_shares.required' => 'Sila masukkan jumlah saham.',
-        'partner2_roles.required' => 'Sila pilih peranan.',
+        'partner2_roles.required' => 'Sila pilih jawatan.',
 
         //partner 3
-        'partner3_name.required' => 'Sila masukkan nama pemegang.',
+        'partner3_name.required' => 'Sila masukkan nama rakan kongsi.',
         'partner3_ic.required' => 'Sila masukkan no. kad pengenalan.',
         'partner3_address1.required' => 'Sila masukkan alamat 1.',
         'partner3_postcode.required' => 'Sila masukkan poskod.',    
         'partner3_city.required' => 'Sila masukkan bandar.',
         'partner3_state.required' => 'Sila pilih negeri.',
-        'partner3_phone.required' => 'Sila masukkan nombor telefon.',
+        'partner3_phone.required' => 'Sila masukkan nombor telefon rumah.',
         'partner3_phone_hp.required' => 'Sila masukkan nombor telefon hp.',
         'partner3_total_shares.required' => 'Sila masukkan jumlah saham.',
-        'partner3_roles.required' => 'Sila pilih peranan.',
+        'partner3_roles.required' => 'Sila pilih jawatan.',
 
         //partner 4
-        'partner4_name.required' => 'Sila masukkan nama pemegang.',
+        'partner4_name.required' => 'Sila masukkan nama rakan kongsi.',
         'partner4_ic.required' => 'Sila masukkan no. kad pengenalan.',
         'partner4_address1.required' => 'Sila masukkan alamat 1.',
         'partner4_postcode.required' => 'Sila masukkan poskod.',    
         'partner4_city.required' => 'Sila masukkan bandar.',
         'partner4_state.required' => 'Sila pilih negeri.',
-        'partner4_phone.required' => 'Sila masukkan nombor telefon.',
+        'partner4_phone.required' => 'Sila masukkan nombor telefon rumah.',
         'partner4_phone_hp.required' => 'Sila masukkan nombor telefon hp.',
         'partner4_total_shares.required' => 'Sila masukkan jumlah saham.',
-        'partner4_roles.required' => 'Sila pilih peranan.',
+        'partner4_roles.required' => 'Sila pilih jawatan.',
 
         //partner 5
-        'partner5_name.required' => 'Sila masukkan nama pemegang.',
+        'partner5_name.required' => 'Sila masukkan nama rakan kongsi.',
         'partner5_ic.required' => 'Sila masukkan no. kad pengenalan.',
         'partner5_address1.required' => 'Sila masukkan alamat 1.',
         'partner5_postcode.required' => 'Sila masukkan poskod.',   
         'partner5_city.required' => 'Sila masukkan bandar.',
         'partner5_state.required' => 'Sila pilih negeri.',
-        'partner5_phone.required' => 'Sila masukkan nombor telefon.',
+        'partner5_phone.required' => 'Sila masukkan nombor telefon rumah.',
         'partner5_phone_hp.required' => 'Sila masukkan nombor telefon hp.',
         'partner5_total_shares.required' => 'Sila masukkan jumlah saham.',
-        'partner5_roles.required' => 'Sila pilih peranan.',
+        'partner5_roles.required' => 'Sila pilih jawatan.',
         ];
 }

@@ -3,8 +3,10 @@
 namespace App\Livewire\Module;
 
 use App\Models\ApplnStatus;
+use App\Models\KelasPerkeso;
 use App\Models\MaklumatPinjaman as ModelsMaklumatPinjaman;
 use App\Models\Negeri;
+use App\Models\SektorPerkeso;
 use App\Traits\MaklumatPinjamanValidation;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -16,6 +18,8 @@ class MaklumatPinjaman extends Component
     use MaklumatPinjamanValidation, WireUiActions;
 
     public $negeriSelection = []; // Pastikan ia sentiasa array
+    public $kelasPerkeso = []; 
+    public $sektorPerkeso = []; 
     public $date_of_birth;
     public $age;
     public $appln_id;
@@ -121,7 +125,7 @@ class MaklumatPinjaman extends Component
         return array_merge(
             ['appln_id' => $applnId],
             collect($this->all())
-                ->except(['negeriSelection'])
+                ->except(['negeriSelection','kelasPerkeso','sektorPerkeso'])
                 ->toArray()
         );
     }
@@ -141,6 +145,15 @@ class MaklumatPinjaman extends Component
         ->where('kod', '!=', '1')
         ->orderBy('namanegeri', 'ASC')
         ->get();    
+
+        $this->kelasPerkeso = KelasPerkeso::select(['id_kelas','keterangan'])
+        ->where('kod_sektor', $this->sektor_perkeso)
+        ->orderBy('keterangan', 'ASC')
+        ->get();
+
+        $this->sektorPerkeso = SektorPerkeso::select(['id_sektor','keterangan'])
+        ->orderBy('keterangan', 'ASC')
+        ->get();
 
         return view('livewire.module.maklumat-pinjaman');
     }

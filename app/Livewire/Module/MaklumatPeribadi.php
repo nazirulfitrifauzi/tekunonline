@@ -19,7 +19,7 @@ class MaklumatPeribadi extends Component
     use MaklumatPeribadiValidation,WireUiActions;
 
     public $negeriSelection = []; // Pastikan ia sentiasa array
-    public $cawanganSelection = [];
+    public $cawanganSelect = [];
     public $bank = [];
     public $showIcOld = false;
     public $appln_id;
@@ -122,8 +122,6 @@ class MaklumatPeribadi extends Component
             $this->employer_address2 = null;
             $this->employer_postcode = null;
             $this->employer_city = null;
-            $this->tekun_state = null;
-            $this->tekun_branch = null;
             // $this->employer_phone = null;
         }
     }
@@ -215,8 +213,8 @@ class MaklumatPeribadi extends Component
             );
 
             ApplnStatus::where('id', $this->appln_id)->update([
-                'branch_code' => $updatedData['tekun_branch'],
-                'state_code' => $updatedData['tekun_state'],
+                'branch_code' => $this->tekun_branch,
+                'state_code' => $this->tekun_state,
                 'tab1_maklumat_peribadi' => 1,
                 'tab2_maklumat_perniagaan' => 0,
             ]);
@@ -278,7 +276,7 @@ class MaklumatPeribadi extends Component
         return array_merge(
             ['appln_id' => $applnId],
             collect($this->all())
-                ->except(['negeriSelection', 'cawanganSelection', 'bank', 'showIcOld'])
+                ->except(['negeriSelection', 'cawanganSelect', 'bank', 'showIcOld'])
                 ->toArray()
         );
     }
@@ -294,13 +292,12 @@ class MaklumatPeribadi extends Component
             ->get();
 
 
-            $this->cawanganSelection = Cawangan::select(['kodcawangan', 'namacawangan'])
-                ->where('kodnegeri', $this->tekun_state)
-                ->where('batal', '<>', '1')
-                ->where('kodcawangan', '<>', '1412')
-                ->orderBy('namacawangan', 'ASC')
-                ->get();
-    
+        $this->cawanganSelect = Cawangan::select(['kodcawangan','namacawangan'])
+        ->where('kodnegeri', $this->tekun_state)
+        ->where('batal', '<>', '1')
+        ->orderBy('namacawangan', 'ASC')
+        ->get();
+
         $this->bank = Bank::select(['id', 'nama_bank'])
         ->where('res', '0')
         ->orderby('nama_bank', 'ASC')

@@ -27,6 +27,8 @@ trait MaklumatPinjamanValidation
     public $takaful_incident;
     public $skim_safety;
     public $pakej_skim_safety;
+    public $sektor_perkeso;
+    public $kelas_perkeso;
     public $will_registration;
     public $will_comp_name;
     public $will_fi;
