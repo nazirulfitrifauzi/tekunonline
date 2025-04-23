@@ -58,13 +58,12 @@ class MaklumatPerniagaan2 extends Component
                 // Dapatkan appln_id yang baru atau sedia ada
                 $applnId = $this->appln_id;
 
-                $this->fin1_tot = str_replace(',', '', $this->fin1_tot);
-                $this->fin1_bal = str_replace(',', '', $this->fin1_bal);
-                $this->fin2_tot = str_replace(',', '', $this->fin2_tot);
-                $this->fin2_bal = str_replace(',', '', $this->fin2_bal);
-                $this->fin3_tot = str_replace(',', '', $this->fin3_tot);
-                $this->fin3_bal = str_replace(',', '', $this->fin3_bal);
-
+                $this->fin1_tot = intval(str_replace(',', '', $this->fin1_tot));
+                $this->fin1_bal = intval(str_replace(',', '', $this->fin1_bal));
+                $this->fin2_tot = intval(str_replace(',', '', $this->fin2_tot));
+                $this->fin2_bal = intval(str_replace(',', '', $this->fin2_bal));
+                $this->fin3_tot = intval(str_replace(',', '', $this->fin3_tot));
+                $this->fin3_bal = intval(str_replace(',', '', $this->fin3_bal));
 
                 
 
