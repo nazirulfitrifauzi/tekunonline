@@ -50,6 +50,7 @@ trait MaklumatPeribadiValidation
     public $employer_address2;
     public $employer_postcode;
     public $employer_city;
+    public $employer_state;
     public $employer_phone;
     public $spouse_name;
     public $spouse_nationality;

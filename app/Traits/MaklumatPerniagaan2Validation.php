@@ -56,6 +56,8 @@ trait MaklumatPerniagaan2Validation
     public $fin3_other_name;
     public $fin3_tot;
     public $fin3_bal;
+    public $tot_fin_tot;
+    public $tot_bal;
 
 
         // protected $rules = [

@@ -122,12 +122,11 @@ class MaklumatPinjaman extends Component
 
     protected function getFormData($applnId)
     {
-        return array_merge(
-            ['appln_id' => $applnId],
-            collect($this->all())
-                ->except(['negeriSelection','kelasPerkeso','sektorPerkeso'])
-                ->toArray()
-        );
+        $formData = collect($this->all())->map(function($value, $key) {
+            return is_string($value) ? strtoupper($value) : $value;
+        })->except(['negeriSelection','kelasPerkeso','sektorPerkeso'])->toArray();
+
+        return array_merge(['appln_id' => $applnId], $formData);
     }
 
     public function getAge()

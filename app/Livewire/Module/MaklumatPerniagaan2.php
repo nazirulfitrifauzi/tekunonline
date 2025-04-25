@@ -65,6 +65,9 @@ class MaklumatPerniagaan2 extends Component
                 $this->fin3_tot = intval(str_replace(',', '', $this->fin3_tot));
                 $this->fin3_bal = intval(str_replace(',', '', $this->fin3_bal));
 
+                $this->tot_fin_tot = (intval($this->fin1_tot) ?? 0) + (intval($this->fin2_tot) ?? 0) + (intval($this->fin3_tot) ?? 0);
+                $this->tot_bal = (intval($this->fin1_bal) ?? 0) + (intval($this->fin2_bal) ?? 0) + (intval($this->fin3_bal) ?? 0);
+
                 
 
                 // Dapatkan data sedia ada dalam MaklumatPinjaman
@@ -122,12 +125,11 @@ class MaklumatPerniagaan2 extends Component
 
     protected function getFormData($applnId)
     {
-        return array_merge(
-            ['appln_id' => $applnId],
-            collect($this->all())
-                ->except(['negeriSelection'])
-                ->toArray()
-        );
+        $formData = collect($this->all())->map(function($value, $key) {
+            return is_string($value) ? strtoupper($value) : $value;
+        })->except(['negeriSelection'])->toArray();
+
+        return array_merge(['appln_id' => $applnId], $formData);
     }
 
     public function render()

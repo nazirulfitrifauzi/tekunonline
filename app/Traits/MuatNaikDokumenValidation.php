@@ -10,6 +10,8 @@ trait MuatNaikDokumenValidation
     public $document_business_picture;
     public $document_bank_statements;
     public $document_perkeso;
+    public $document_bpc01;
+    public $document_merge;
 
     public $document_perkeso_status;
 

@@ -106,8 +106,6 @@ class MaklumatPerniagaan extends Component
     {
 
         try {
-
-            
                 $this->validateSelf();
                 //add if error on validate
 
@@ -122,7 +120,41 @@ class MaklumatPerniagaan extends Component
             $business_start_resources_num = intval(str_replace(',', '', $this->business_start_resources));
             $business_modal_num = intval(str_replace(',', '', $this->business_modal));
 
-
+            $this->business_name = strtoupper($this->business_name);
+            $this->business_address1 = strtoupper($this->business_address1);
+            $this->business_address2 = strtoupper($this->business_address2 ?? '');
+            $this->business_city = strtoupper($this->business_city ?? '');
+            $this->business_other_premise = $this->business_other_premise ? strtoupper($this->business_other_premise) : null;
+            $this->buss_other_loc_premise = $this->buss_other_loc_premise ? strtoupper($this->buss_other_loc_premise) : null;
+            $this->course_name_attend = $this->course_name_attend ? strtoupper($this->course_name_attend) : null;
+            $this->course_name_attend2 = $this->course_name_attend2 ? strtoupper($this->course_name_attend2) : null;
+            $this->course_name_attend3 = $this->course_name_attend3 ? strtoupper($this->course_name_attend3) : null;
+            $this->previous_business = $this->previous_business ? strtoupper($this->previous_business) : null;
+            $this->partner_name = $this->partner_name ? strtoupper($this->partner_name) : null;
+            $this->partner_address1 = $this->partner_address1 ? strtoupper($this->partner_address1) : null;
+            $this->partner_address2 = $this->partner_address2 ? strtoupper($this->partner_address2) : null;
+            $this->partner_city = $this->partner_city ? strtoupper($this->partner_city) : null;
+            $this->partner_state = $this->partner_state ? strtoupper($this->partner_state) : null;
+            $this->partner2_name = $this->partner2_name ? strtoupper($this->partner2_name) : null;
+            $this->partner2_address1 = $this->partner2_address1 ? strtoupper($this->partner2_address1) : null;
+            $this->partner2_address2 = $this->partner2_address2 ? strtoupper($this->partner2_address2) : null;
+            $this->partner2_city = $this->partner2_city ? strtoupper($this->partner2_city) : null;
+            $this->partner2_state = $this->partner2_state ? strtoupper($this->partner2_state) : null;
+            $this->partner3_name = $this->partner3_name ? strtoupper($this->partner3_name) : null;
+            $this->partner3_address1 = $this->partner3_address1 ? strtoupper($this->partner3_address1) : null;
+            $this->partner3_address2 = $this->partner3_address2 ? strtoupper($this->partner3_address2) : null;
+            $this->partner3_city = $this->partner3_city ? strtoupper($this->partner3_city) : null;
+            $this->partner3_state = $this->partner3_state ? strtoupper($this->partner3_state) : null;
+            $this->partner4_name = $this->partner4_name ? strtoupper($this->partner4_name) : null;
+            $this->partner4_address1 = $this->partner4_address1 ? strtoupper($this->partner4_address1) : null;
+            $this->partner4_address2 = $this->partner4_address2 ? strtoupper($this->partner4_address2) : null;
+            $this->partner4_city = $this->partner4_city ? strtoupper($this->partner4_city) : null;
+            $this->partner4_state = $this->partner4_state ? strtoupper($this->partner4_state) : null;
+            $this->partner5_name = $this->partner5_name ? strtoupper($this->partner5_name) : null;
+            $this->partner5_address1 = $this->partner5_address1 ? strtoupper($this->partner5_address1) : null;
+            $this->partner5_address2 = $this->partner5_address2 ? strtoupper($this->partner5_address2) : null;
+            $this->partner5_city = $this->partner5_city ? strtoupper($this->partner5_city) : null;
+            $this->partner5_state = $this->partner5_state ? strtoupper($this->partner5_state) : null;
 
             ModelsMaklumatPerniagaan::where('appln_id',$this->appln_id)->updateOrCreate(
                 ['appln_id' => $this->appln_id],
@@ -287,17 +319,16 @@ class MaklumatPerniagaan extends Component
 
             
     }
-    
+
     protected function getFormData($applnId)
     {
-        return array_merge(
-            ['appln_id' => $applnId],
-            collect($this->all())
-                ->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection'])
-                ->toArray()
-        );
+        $formData = collect($this->all())->map(function($value, $key) {
+            return is_string($value) ? strtoupper($value) : $value;
+        })->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection'])->toArray();
+
+        return array_merge(['appln_id' => $applnId], $formData);
     }
-    
+
     public function render()
     {
         // Ambil senarai negeri

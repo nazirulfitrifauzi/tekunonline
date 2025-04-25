@@ -194,6 +194,8 @@ class MaklumatPeribadi extends Component
     #[On('run-validation1')]
     public function submit()
     {
+
+        //dd($this->address1);
         try {
             $this->validateSelf();
 
@@ -201,6 +203,7 @@ class MaklumatPeribadi extends Component
 
             $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnId)->first();
             $existingDataArray = $existingData ? $existingData->toArray() : [];
+            
 
             $updatedData = array_merge(
                 $existingDataArray,
@@ -273,13 +276,13 @@ class MaklumatPeribadi extends Component
 
     protected function getFormData($applnId)
     {
-        return array_merge(
-            ['appln_id' => $applnId],
-            collect($this->all())
-                ->except(['negeriSelection', 'cawanganSelect', 'bank', 'showIcOld'])
-                ->toArray()
-        );
+        $formData = collect($this->all())->map(function($value, $key) {
+            return is_string($value) && $key !== 'email' ? strtoupper($value) : $value;
+        })->except(['negeriSelection', 'cawanganSelect', 'bank', 'showIcOld'])->toArray();
+    
+        return array_merge(['appln_id' => $applnId], $formData);
     }
+    
 
     public function render()
     {

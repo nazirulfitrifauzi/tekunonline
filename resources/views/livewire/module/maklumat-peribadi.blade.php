@@ -749,8 +749,8 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2" >
-                                <label for="tekun_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
-                                <select id="tekun_state" name="tekun_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="tekun_state">
+                                <label for="employer_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri</label>
+                                <select id="employer_state" name="employer_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"  wire:model.live="employer_state">
                                     <option value="">Sila Pilih</option>
                                     <option value="JH">JOHOR</option>
                                     <option value="KD">KEDAH</option>
@@ -767,7 +767,7 @@
                                     <option value="TG">TERENGGANU</option>
                                     <option value="WP">WP KUALA LUMPUR</option>
                                 </select>
-                                @error('tekun_state')
+                                @error('employer_state')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}
                                 </p>
@@ -776,11 +776,12 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="employer_phone" class="block text-sm font-medium leading-5 text-gray-700">No Tel Majikan <span class="text-red-700">*</span></label>
-                                <input id="employer_phone" 
-                                       name="employer_phone" 
-                                       wire:model.live="employer_phone" 
-                                       maxlength="11"
-                                       class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm sm:leading-5">
+                                        +6
+                                    </span>
+                                </div>
+                                <input id="employer_phone" name="employer_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" minlength="10" maxlength="11"  wire:model.live="employer_phone">
                                 @error('employer_phone')
                                 <p class="text-red-500 text-xs italic mt-4">{{ $message }}</p>
                                 @enderror
@@ -980,9 +981,9 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6 sm:col-span-2">
                                 <label for="spouse_employer_no" class="block text-sm font-medium leading-5 text-gray-700">No Telefon Majikan</label>
-                                    <div class="relative mt-1 rounded-md shadow-sm">
+                                <div class="relative mt-1 rounded-md shadow-sm">
                                     <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                         <span class="text-gray-500 sm:text-sm sm:leading-5">
                                             +6

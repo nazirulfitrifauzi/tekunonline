@@ -408,6 +408,51 @@ class MuatNaikDokumen extends Component
                     $jpgPath3 = public_path('img/3.jpg');
                     $jpgPath4 = public_path('img/4.jpg');
 
+                    // Ambil masa berniaga (dari) dari data PDF
+                    $businessOpen = $this->pdfData[0]->business_open ?? null;
+                    $businessClose = $this->pdfData[0]->business_closed ?? null;
+
+                    // Default kosong
+                    $masaBukak = '';
+                    $masaTutup = '';
+
+                    // Kenal pasti masa (pagi / petang / malam)
+                    if ($businessOpen) {
+                        try {
+                            $hour = (int) date('H', strtotime($businessOpen));
+
+                            if ($hour >= 1 && $hour < 12) {
+                                $masaBukak = 'pagi';
+                            } elseif ($hour >= 12 && $hour < 18) {
+                                $masaBukak = 'petang';
+                            } else {
+                                $masaBukak = 'malam';
+                            }
+                        } catch (\Exception $e) {
+                            // Handle kalau format masa tak valid
+                            $masaBukak = '';
+                        }
+                    }
+                    
+                    // Kenal pasti masa (pagi / petang / malam)
+                    if ($businessClose) {
+                        try {
+                            $hour = (int) date('H', strtotime($businessClose));
+
+                            if ($hour >= 1 && $hour < 12) {
+                                $masaTutup = 'pagi';
+                            } elseif ($hour >= 12 && $hour < 18) {
+                                $masaTutup = 'petang';
+                            } else {
+                                $masaTutup = 'malam';
+                            }
+                        } catch (\Exception $e) {
+                            // Handle kalau format masa tak valid
+                            $masaTutup = '';
+                        }
+                    }
+
+
                     $html = '
                             <html lang="en">
                                 <head>
@@ -468,22 +513,22 @@ class MuatNaikDokumen extends Component
                                     <!-- Negeri -->
                                     <p
                                         style="position: absolute;top: 109px;left: 186px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                        '.($this->pdfData[0]->state_code ?  : 'n/a').'
+                                        '.($this->pdfData[0]->state_code ?  : ' ').'
                                     </p>
                                     <!-- Cawangan -->
                                     <p
                                         style="position: absolute;top: 122px;left: 186px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                        '.($this->pdfData[0]->branch_code ?  : 'n/a').'
+                                        '.($this->pdfData[0]->branch_code ?  : ' ').'
                                     </p>
                                     <!-- Tarikh diterima -->
                                     <p
                                         style="position: absolute;top: 133px;left: 186px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                        '.($this->pdfData[0]->appln_date_submit ?  : 'n/a').'
+                                    
                                     </p>
                                     <!-- No. Rujukan -->
                                     <p
                                         style="position: absolute;top: 155px;left: 186px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                        '.($this->pdfData[0]->appln_ref_no ? : 'n/a').'
+                                        '.($this->pdfData[0]->appln_ref_no ? : ' ').'
                                     </p>
 
                                     <!-- checkbox Pembiayaan Pertama -->
@@ -580,7 +625,7 @@ class MuatNaikDokumen extends Component
 
                                     <!-- checkbox Qard LAIN-LAIN  -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 298px;
-                                    left: 65px; font-size: 11pt;" checked>
+                                    left: 65px; font-size: 11pt;" unchecked>
 
                                     <!-- Qard nyatakan LAIN-LAIN  -->
                                     <p
@@ -641,43 +686,43 @@ class MuatNaikDokumen extends Component
                                     <!-- Nama bank operasi perniagaan 1 -->
                                     <p
                                     style="position: absolute;top: 379px;left: 230px;height: 17px;width: 206px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->bank1 ? : 'n/a').'
+                                    '.($this->pdfData[0]->bank1 ? : ' ').'
                                     </p>
 
                                     <!-- no akaun bank 1 -->
                                     <p
                                     style="position: absolute;top: 392px;left: 230px;height: 17px;width: 206px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->bank1_acct ? : 'n/a').'
+                                    '.($this->pdfData[0]->bank1_acct ? : ' ').'
                                     </p>
 
                                     <!-- Nama bank operasi perniagaan 2 -->
                                     <p
                                     style="position: absolute;top: 403px;left: 230px;height: 17px;width: 206px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->bank2 ? : 'n/a').'
+                                    '.($this->pdfData[0]->bank2 ? : ' ').'
                                     </p>
 
                                     <!-- no akaun bank 2 -->
                                     <p
                                     style="position: absolute;top: 414px;left: 230px;height: 17px;width: 206px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->bank2_acct ? : 'n/a').'
+                                    '.($this->pdfData[0]->bank2_acct ? : ' ').'
                                     </p>
 
                                     <!-- Nama Permohon-->
                                     <p
                                     style="position: absolute;top: 446px;left: 186px;height: 17px;width: 451px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->name ? : 'n/a').'
+                                    '.($this->pdfData[0]->name ? : ' ').'
                                     </p>
 
                                     <!-- No. KP (Baru)-->
                                     <p
                                     style="position: absolute;top: 469px;left: 186px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->ic_no ? : 'n/a').'
+                                    '.($this->pdfData[0]->ic_no ? : ' ').'
                                     </p>
 
                                     <!-- No. KP (Lama)-->
                                     <p
                                     style="position: absolute;top: 469px;left: 435px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->ic_old ? : 'n/a').'
+                                    '.($this->pdfData[0]->ic_old ? : ' ').'
                                     </p>
 
                                     <!-- checkbox jantina (Lelaki) -->
@@ -699,19 +744,19 @@ class MuatNaikDokumen extends Component
                                     <!-- tarikh lahir -->
                                     <p
                                     style="position: absolute;top: 492px;left: 186px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->birthdate ? : 'n/a').'
+                                    '.($this->pdfData[0]->birthdate ? : ' ').'
                                     </p>
 
                                     <!-- bangsa/kaum -->
                                     <p
                                     style="position: absolute;top: 492px;left: 491px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->race ? : 'n/a').'
+                                    '.($this->pdfData[0]->race ? : ' ').'
                                     </p>
 
                                     <!-- umur semasa memohon -->
                                     <p
                                     style="position: absolute;top: 515px;left: 159px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->age ? : 'n/a').'
+                                    '.($this->pdfData[0]->age ? : ' ').'
                                     </p>
 
                                     <!-- checkbox taraf perkahwinan (bujang) -->
@@ -733,7 +778,7 @@ class MuatNaikDokumen extends Component
                                     <!-- bilangan tanggungan -->
                                     <p
                                     style="position: absolute;top: 514px;left: 567px;height: 17px;width: 250px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->dependent ? : 'n/a').'
+                                    '.($this->pdfData[0]->dependent ? : ' ').'
                                     </p>
 
                                     <!-- checkbox orang kurang upaya (YA) -->
@@ -784,55 +829,55 @@ class MuatNaikDokumen extends Component
                                     <!-- Alamat kediaman 1 -->
                                     <p
                                     style="position: absolute;top: 603px;left: 186px;height: 17px;width: 451px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->address1 ? : 'n/a').'
+                                    '.($this->pdfData[0]->address1 ? : ' ').'
                                     </p>
 
                                     <!-- Alamat kediaman 2 -->
                                     <p
                                     style="position: absolute;top: 615px;left: 186px;height: 17px;width: 451px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->address2 ? : 'n/a').'
+                                    '.($this->pdfData[0]->address2 ? : ' ').'
                                     </p>
 
                                     <!-- Alamat kediaman 3 -->
                                     <p
                                     style="position: absolute;top: 626px;left: 186px;height: 17px;width: 451px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->address2 === 'n/a'? : 'n/a').'
+                                    '.($this->pdfData[0]->address2 === ' '? : ' ').'
                                     </p>
 
                                     <!-- Poskod -->
                                     <p
                                     style="position: absolute;top: 626px;left: 494px;height: 17px;width: 451px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->postcode ? : 'n/a').'
+                                    '.($this->pdfData[0]->postcode ? : ' ').'
                                     </p>
 
                                     <!-- No telefon (rumah) -->
                                     <p
                                     style="position: absolute;top: 637px;left: 186px;height: 17px;width: 451px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->phone_home ? : 'n/a').'
+                                    '.($this->pdfData[0]->phone_home ? : ' ').'
                                     </p>
 
                                     <!-- No telefon (bimbit) -->
                                     <p
                                     style="position: absolute;top: 637px;left: 399px;height: 17px;width: 275px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->phone_hp ? : 'n/a').'
+                                    '.($this->pdfData[0]->phone_hp ? : ' ').'
                                     </p>
 
                                     <!-- Emel -->
                                     <p
                                     style="position: absolute;top: 660px;left: 186px;height: 17px;width: 275px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->email ? : 'n/a').'
+                                    '.($this->pdfData[0]->email ? : ' ').'
                                     </p>
 
                                     <!-- Facebook -->
                                     <p
                                     style="position: absolute;top: 660px;left: 366px;height: 17px;width: 275px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->facebook ? : 'n/a').'
+                                    '.($this->pdfData[0]->facebook ? : ' ').'
                                     </p>
 
                                     <!-- Instagram -->
                                     <p
                                     style="position: absolute;top: 660px;left: 506px;height: 17px;width: 275px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->instagram ? : 'n/a').'
+                                    '.($this->pdfData[0]->instagram ? : ' ').'
                                     </p>
 
                                     <!-- checkbox Status Kediaman (Sendiri) -->
@@ -850,37 +895,37 @@ class MuatNaikDokumen extends Component
                                     <!-- Pekerjaan sekarang -->
                                     <p
                                     style="position: absolute;top: 682px;left: 186px;height: 17px;width: 275px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->profession ? : 'n/a').'
+                                    '.($this->pdfData[0]->profession ? : ' ').'
                                     </p>
 
                                     <!-- Pendapatan RM/Bulan -->
                                     <p
                                     style="position: absolute;top: 682px;left: 452px;height: 17px;width: 275px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->income ? : 'n/a').'
+                                    '.($this->pdfData[0]->income ? : ' ').'
                                     </p>
 
                                     <!-- Nama Majikan (jika berkerja) -->
                                     <p
                                     style="position: absolute;top: 694px;left: 186px;height: 17px;width: 453px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->employer_name ? : 'n/a').'
+                                    '.($this->pdfData[0]->employer_name ? : ' ').'
                                     </p>
 
                                     <!-- Alamat Majikan 1 & 2 -->
                                     <p
                                     style="position: absolute;top: 706px;left: 186px;height: 17px;width: 453px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->employer_address1 ? : 'n/a').'
+                                    '.($this->pdfData[0]->employer_address1 ? : ' ').'
                                     </p>
 
                                     <!-- Alamat Majikan 3 -->
                                     <p
                                     style="position: absolute;top: 717px;left: 186px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->employer_address2 ? : 'n/a').'
+                                    '.($this->pdfData[0]->employer_address2 ? : ' ').'
                                     </p>
 
                                     <!-- No. Telefon Majikan -->
                                     <p
                                     style="position: absolute;top: 717px;left: 537px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->employer_phone ? : 'n/a').'
+                                    '.($this->pdfData[0]->employer_phone ? : ' ').'
                                     </p>
                                     </div>
 
@@ -889,67 +934,67 @@ class MuatNaikDokumen extends Component
                                     <!-- Nama Suami/Isteri -->
                                     <p
                                     style="position: absolute;top: 759px;left: 186px;height: 17px;width: 453px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_name ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_name ? : ' ').'
                                     </p>
 
                                     <!-- No Kad Pengenalan -->
                                     <p
                                     style="position: absolute;top: 772px;left: 186px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_ic_no ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_ic_no ? : ' ').'
                                     </p>
 
                                     <!-- No Passport -->
                                     <p
                                     style="position: absolute;top: 772px;left: 537px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_passport_no ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_passport_no ? : ' ').'
                                     </p>
 
                                     <!-- Pekerjaan -->
                                     <p
                                     style="position: absolute;top: 784px;left: 186px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_profession ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_profession ? : ' ').'
                                     </p>
 
                                     <!-- Alamat Majikan 1 -->
                                     <p
                                     style="position: absolute;top: 795px;left: 186px;height: 17px;width: 453px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_employer_address1 ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_employer_address1 ? : ' ').'
                                     </p>
 
                                     <!-- Alamat Majikan 2 -->
                                     <p
                                     style="position: absolute;top: 806px;left: 186px;height: 17px;width: 453px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_employer_address2 ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_employer_address2 ? : ' ').'
                                     </p>
 
                                     <!-- Alamat Majikan 3 -->
                                     <p
                                     style="position: absolute;top: 817px;left: 186px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_employer_address2 === 'n/a' ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_employer_address2 === ' ' ? : ' ').'
                                     </p>
 
                                     <!-- Poskod -->
                                     <p
                                     style="position: absolute;top: 817px;left: 537px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_employer_postcode ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_employer_postcode ? : ' ').'
                                     </p>
 
                                     <!-- No. Telefon Majikan -->
                                     <p
                                     style="position: absolute;top: 828px;left: 186px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_employer_no ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_employer_no ? : ' ').'
                                     </p>
 
                                     <!-- No. Telefon Bimbit -->
                                     <p
                                     style="position: absolute;top: 828px;left: 537px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_phone ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_phone ? : ' ').'
                                     </p>
 
                                     <!-- Pendapatan RM/Bulan -->
                                     <p
                                     style="position: absolute;top: 839px;left: 201px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_income ? : 'n/a').'
+                                    '.($this->pdfData[0]->spouse_income ? : ' ').'
                                     </p>
 
                                     </div>
@@ -969,49 +1014,49 @@ class MuatNaikDokumen extends Component
                                     <!-- Nama Perniagaan / syarikat -->
                                     <p
                                         style="position: absolute;top: 43px;left: 185px;height: 25px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_name ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_name ? : ' ').'
                                     </p>
 
                                     <!-- No SSM / LESEN / ORDINAN -->
                                     <p
                                         style="position: absolute;top: 68px;left: 185px;height: 17px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->license_type ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_no ? : ' ').'
                                     </p>
 
                                     <!-- Aktiviti Perniagaan / projek -->
                                     <p
                                         style="position: absolute;top: 95px;left: 185px;height: 25px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_activity ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_activity ? : ' ').'
                                     </p>
 
                                     <!-- Tempoh Pengalaman Berniaga -->
                                     <p
                                         style="position: absolute;top: 95px;left: 540px;height: 17px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_duration_year ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_duration_year ? : ' ').'
                                     </p>
 
                                     <!-- Alamat Perniagaan / permis / projek  1 -->
                                     <p
                                         style="position: absolute;top: 122px;left: 185px;height: 17px;width: 450px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_address1 ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_address1 ? : ' ').'
                                     </p>
 
                                     <!-- Alamat Perniagaan / permis / projek  2 -->
                                     <p
                                         style="position: absolute;top: 134px;left: 185px;height: 17px;width: 450px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_address2 ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_address2 ? : ' ').'
                                     </p>
 
                                     <!-- Alamat Perniagaan / permis / projek  3 -->
                                     <p
                                         style="position: absolute;top: 147px;left: 185px;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_address2 ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_address2 ? : ' ').'
                                     </p>
 
                                     <!-- Poskod -->
                                     <p
                                         style="position: absolute;top: 147px;left: 495px;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_postcode ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_postcode ? : ' ').'
                                     </p>
                                     
                                     <!-- checkbox anggaran pendapatan kasar (< RM 5000) -->
@@ -1034,13 +1079,13 @@ class MuatNaikDokumen extends Component
                                     <!-- No TEL (Premis) -->
                                     <p
                                     style="position: absolute;top: 183px;left: 185px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_phone ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_phone ? : ' ').'
                                     </p>
                                     
                                     <!-- No TEL (Bimbit) -->
                                     <p
                                     style="position: absolute;top: 183px;left: 401px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_phone_hp ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_phone_hp ? : ' ').'
                                     </p>
 
                                     <!-- checkbox Status Premis (Sendiri) -->
@@ -1062,7 +1107,7 @@ class MuatNaikDokumen extends Component
                                     <!-- Sila Nyatakan -->
                                     <p
                                     style="position: absolute;top: 221px;left: 561px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                    '.($this->pdfData[0]->business_other_premise ? : 'n/a').'
+                                    '.($this->pdfData[0]->business_other_premise ? : ' ').'
                                     </p>
 
 
@@ -1085,7 +1130,7 @@ class MuatNaikDokumen extends Component
                                     <!-- RM -->
                                     <p
                                     style="position: absolute;top: 247px;left: 414px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_modal ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_modal ? : ' ').'
                                     </p>
 
                                     <!-- checkbox Adakah Pemohonan Pemegang Saham (YA) -->
@@ -1099,124 +1144,123 @@ class MuatNaikDokumen extends Component
                                     <!-- Tarikh Didaftarkan -->
                                     <p
                                     style="position: absolute;top: 271px;left: 185px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->register_date ? : 'n/a').'
+                                        '.($this->pdfData[0]->register_date ? : ' ').'
                                     </p>
 
                                     <!-- Tarikh Tamat Lesen -->
                                     <p
                                     style="position: absolute;top: 284px;left: 185px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->license_expired_date ? : 'n/a').'
+                                        '.($this->pdfData[0]->license_expired_date ? : ' ').'
                                     </p>
 
                                     <!-- checkbox Keahlihan Persatuan (YA) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 305px;
-                                    left: 217px; font-size: 11pt;" '.($this->pdfData[0]->membership_status === 'YA'? : 'n/a').'>
+                                    left: 217px; font-size: 11pt;" '.($this->pdfData[0]->membership_status == 'YA'  ? 'checked' : '').'>
 
                                     <!-- checkbox Keahlihan Persatuan (TIDAK) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 305px;
-                                    left: 298px; font-size: 11pt;" '.($this->pdfData[0]->membership_status === 'TIDAK'? : 'n/a').'>
+                                    left: 298px; font-size: 11pt;" '.($this->pdfData[0]->membership_status === 'TIDAK'? 'checked' : '').'>
 
                                     <!-- checkbox sekiranya ya sila nyatakan (Dewan Perniagaan) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 331px;
-                                    left: 83px; font-size: 11pt;" '.($this->pdfData[0]->membership_assoc === 'DEWAN PERNIAGAAN' ? : 'n/a').'>
+                                    left: 83px; font-size: 11pt;" '.($this->pdfData[0]->membership_assoc === 'DEWAN PERNIAGAAN' ? 'checked' : '').'>
 
                                     <!-- checkbox sekiranya ya sila nyatakan (Persatuan Penjaja / Peniaga) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 344px;
-                                    left: 83px; font-size: 11pt;" '.($this->pdfData[0]->membership_assoc === 'PERSATUAN PENJAJA / PENIAGA' ? : 'n/a').'>
+                                    left: 83px; font-size: 11pt;" '.($this->pdfData[0]->membership_assoc === 'PERSATUAN PENJAJA / PENIAGA'? 'checked' : '').'>
 
                                     <!-- Masa Berniaga (DARI) -->
                                     <p
                                     style="position: absolute;top: 385px;left: 208px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_open ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_open ? : ' ').'
                                     </p>
                                     <!-- Masa Berniaga (DARI - PAGI) -->
-                                    <p
-                                    style="position: absolute;top: 378px;left: 257px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: 1px solid black;">
+                                    <p style="position: absolute;top: 378px;left: 257px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaBukak == 'pagi' ? '1px solid black' : 'none').';">
                                     </p>
+
                                     <!-- Masa Berniaga (DARI - PETANG) -->
-                                    <p
-                                    style="position: absolute;top: 378px;left: 281px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: 1px solid black;">
+                                    <p style="position: absolute;top: 378px;left: 281px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaBukak == 'petang' ? '1px solid black' : 'none').';">
                                     </p>
+
                                     <!-- Masa Berniaga (DARI - MALAM) -->
-                                    <p
-                                    style="position: absolute;top: 378px;left: 306px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: 1px solid black;">
+                                    <p style="position: absolute;top: 378px;left: 306px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaBukak == 'malam' ? '1px solid black' : 'none').';">
                                     </p>
                                     <!-- Masa Berniaga (HINGGA) -->
                                     <p
                                     style="position: absolute;top: 385px;left: 406px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_closed ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_closed ? : ' ').'
                                     </p>
                                     <!-- Masa Berniaga (HINGGA - PAGI) -->
                                     <p
-                                    style="position: absolute;top: 378px;left: 457px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: 1px solid black;">
+                                    style="position: absolute;top: 378px;left: 457px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaTutup == 'pagi' ? '1px solid black' : 'none').';">
                                     </p>
                                     <!-- Masa Berniaga (HINGGA - PETANG) -->
                                     <p
-                                    style="position: absolute;top: 378px;left: 478px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: 1px solid black;">
+                                    style="position: absolute;top: 378px;left: 478px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaTutup == 'petang' ? '1px solid black' : 'none').';">
                                     </p>
                                     <!-- Masa Berniaga (HINGGA - MALAM) -->
                                     <p
-                                    style="position: absolute;top: 378px;left: 506px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: 1px solid black;">
+                                    style="position: absolute;top: 378px;left: 506px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaTutup == 'pagi' ? '1px solid black' : 'none').';">
                                     </p>
                                     
                                     <!-- checkbox Pengitirafan (YA) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 419px;
-                                    left: 327px; font-size: 11pt;" '.($this->pdfData[0]->cert_recognition_flag === 1 ? : 'n/a').'>
+                                    left: 327px; font-size: 11pt;" '.($this->pdfData[0]->cert_recognition_flag === '1' ? 'checked' : '').'>
 
                                     <!-- checkbox Pengitirafan (TIDAK) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 419px;
-                                    left: 421px; font-size: 11pt;" '.($this->pdfData[0]->cert_recognition_flag === 0 ? : 'n/a').'>
+                                    left: 421px; font-size: 11pt;" '.($this->pdfData[0]->cert_recognition_flag === '0' ? 'checked' : '').'>
                                     
                                     <!-- Nilai Asset Perniagaan Sedia Ada -->
                                     <p
                                     style="position: absolute;top: 434px;left: 326px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_asset_value ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_asset_value ? : ' ').'
                                     </p>
 
                                     <!-- Sumber Modal Memulakan Perniagaan -->
                                     <p
                                     style="position: absolute;top: 460px;left: 310px;;height: 17px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_start_resources ? : 'n/a').'
+                                        '.($this->pdfData[0]->business_start_resources ? : ' ').'
                                     </p>
 
                                     <!-- Nama Kursus yang dihadiri anjuran -->
                                     <p
                                     style="position: absolute;top: 495px;left: 310px;;height: 17px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->course_name_attend ? : 'n/a').'
+                                        '.($this->pdfData[0]->course_name_attend ? : ' ').'
                                     </p>
 
                                     <!-- checkbox Nama Agensi Penganjur (INSKEN) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 531px;
-                                    left: 329px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'INSKEN' ? : 'n/a').'>
+                                    left: 329px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'INSKEN' ? 'checked' : '').'>
 
                                     <!-- checkbox Nama Agensi Penganjur (SME CORP) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 531px;
-                                    left: 393px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'SME CORP' ? : 'n/a').'>
+                                    left: 393px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'SME CORP' ? 'checked' : '').'>
 
                                     <!-- checkbox Nama Agensi Penganjur (CEDAR) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 531px;
-                                    left: 480px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'CEDAR' ? : 'n/a').'>
+                                    left: 480px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'CEDAR' ? 'checked' : '').'>
 
                                     <!-- checkbox Nama Agensi Penganjur (Lain-Lain) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 531px;
-                                    left: 532px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'LAIN-LAIN' ? : 'n/a').'>
+                                    left: 532px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'LAIN-LAIN' ? 'checked' : '').'>
 
                                     <!-- Kursus kursus lain yang dihadiri 1-->
                                     <p
                                     style="position: absolute;top: 547px;left: 341px;;height: 17px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->course_name_attend2 ? : 'n/a').'
+                                        '.($this->pdfData[0]->course_name_attend2 ? : ' ').'
                                     </p>
 
                                     <!-- Kursus kursus lain yang dihadiri 2-->
                                     <p
                                     style="position: absolute;top: 560px;left: 341px;;height: 17px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->course_name_attend3 ? : 'n/a').'
+                                        '.($this->pdfData[0]->course_name_attend3 ? : ' ').'
                                     </p>
 
                                     <!-- Sila nyatakan perniagaan terdahulu -->
                                     <p
                                     style="position: absolute;top: 584px;left: 310px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->previous_business ? : 'n/a').'
+                                        '.($this->pdfData[0]->previous_business ? : ' ').'
                                     </p>
 
                                     </div>
@@ -1225,41 +1269,67 @@ class MuatNaikDokumen extends Component
                                     <div>
                                     <!-- checkbox Ada -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 651px;
-                                    left: 90px; font-size: 11pt;" checked>
+                                    left: 90px; font-size: 11pt;" '.($this->pdfData[0]->fin_details_flag == '1' ? 'checked' : '').'>
 
                                     <!-- checkbox Tiada -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 651px;
-                                    left: 206px; font-size: 11pt;" checked>
+                                    left: 206px; font-size: 11pt;" '.($this->pdfData[0]->fin_details_flag == '0' ? 'checked' : '').'>
 
 
                                     <!-- checkbox Institusi Pembiayaan (Mara) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 675px;
-                                    left: 231px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'MARA' ? : 'n/a').'>
+                                    left: 231px; font-size: 11pt;" '.(
+                                        in_array('MARA', [
+                                            $this->pdfData[0]->fin1_flag ?? '',
+                                            $this->pdfData[0]->fin2_flag ?? '',
+                                            $this->pdfData[0]->fin3_flag ?? ''
+                                        ]) ? 'checked' : ''
+                                    ).'
+                                    >
 
                                     <!-- checkbox Institusi Pembiayaan (Aim) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 675px;
-                                    left: 292px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'AIM' ? : 'n/a').'>
+                                    left: 292px; font-size: 11pt;" '.(
+                                        in_array('AIM', [
+                                            $this->pdfData[0]->fin1_flag ?? '',
+                                            $this->pdfData[0]->fin2_flag ?? '',
+                                            $this->pdfData[0]->fin3_flag ?? ''
+                                        ]) ? 'checked' : ''
+                                    ).'
+                                    >
 
                                     <!-- checkbox Institusi Pembiayaan (lain-lain agensi pembiayaan) -->
                                     <input type="checkbox" readonly="" class="text input" style="position: absolute;top: 675px;
-                                    left: 347px; font-size: 11pt;" '.($this->pdfData[0]->agency_name === 'LAIN-LAIN' ? : 'n/a').'>
+                                    left: 347px; font-size: 11pt;" '.(
+                                        in_array('LAIN-LAIN', [
+                                            $this->pdfData[0]->fin1_flag ?? '',
+                                            $this->pdfData[0]->fin2_flag ?? '',
+                                            $this->pdfData[0]->fin3_flag ?? ''
+                                        ]) ? 'checked' : ''
+                                    ).'
+                                    >
 
                                     <!-- Institusi Pembiayaan (lain-lain agensi pembiayaan) -->
                                     <p
                                     style="position: absolute;top: 667px;left: 489px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        
+                                    '.(implode(', ', array_filter([
+                                        $this->pdfData[0]->fin1_other_name ?? '',
+                                        $this->pdfData[0]->fin2_other_name ?? '',
+                                        $this->pdfData[0]->fin3_other_name ?? ''
+                                    ])) ?: ' ').'                                    
                                     </p>
 
                                     <!-- Jumlah Pembiayaan -->
                                     <p
                                     style="position: absolute;top: 679px;left: 245px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        
+                                        '.($this->pdfData[0]->tot_fin_tot ? : ' ').'                                        
                                     </p>
 
                                     <!-- Jumlah Pembiayaan -->
                                     <p
                                     style="position: absolute;top: 679px;left: 525px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        
+                                        '.($this->pdfData[0]->tot_bal ? : ' ').'                                        
+
                                     </p>
                                     </div>
 
@@ -1268,12 +1338,12 @@ class MuatNaikDokumen extends Component
                                     <!-- Jumlah Pembiayaan yang diperlukan -->
                                     <p
                                     style="position: absolute;top: 724px;left: 521px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                    '.($this->pdfData[0]->purchase_price ? : 'n/a').'
+                                    '.($this->pdfData[0]->purchase_price ? : ' ').'
                                     </p>
 
                                     <!-- Tempoh Bayaran -->
                                     <p style="position: absolute;top: 747px;left: 183px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                    '.($this->pdfData[0]->pymt_duration ? : 'n/a').'                               
+                                    '.($this->pdfData[0]->pymt_duration ? : ' ').'                               
                                     </p>
 
                                     <!-- checkbox Kekerapan Bayaran (Mingguan) -->
@@ -1302,19 +1372,19 @@ class MuatNaikDokumen extends Component
                                     <!-- Tempoh Pekenalan pemohon dengan kumpulan -->
                                     <p
                                         style="position: absolute;top: 118px;left: 368px;height: 17px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->duration_intro_team ? : 'n/a').'
+                                        '.($this->pdfData[0]->duration_intro_team ? : ' ').'
                                     </p>
 
                                     <!-- tarik perbincangan kumpulan -->
                                     <p
                                         style="position: absolute;top: 131px;left: 368px;height: 17px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->discussion_date ? : 'n/a').'
+                                        '.($this->pdfData[0]->discussion_date ? : ' ').'
                                     </p>
 
                                     <!-- Jumlah Pembiayaan yang Disokong -->
                                     <p
                                         style="position: absolute;top: 144px;left: 368px;height: 17px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->supported_fin_amount ? : 'n/a').'
+                                        '.($this->pdfData[0]->supported_fin_amount ? : ' ').'
                                     </p>
                                     </div>
 
@@ -1323,25 +1393,25 @@ class MuatNaikDokumen extends Component
                                     <!-- Nama -->
                                     <p
                                         style="position: absolute;top: 213px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->grp_leader_name ? : 'n/a').'
+                                        '.($this->pdfData[0]->grp_leader_name ? : ' ').'
                                     </p>
 
                                     <!-- Alamat 1 & 2 -->
                                     <p
                                         style="position: absolute;top: 227px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->group_leader_addr1 ? : 'n/a').'
+                                        '.($this->pdfData[0]->group_leader_addr1 ? : ' ').'
                                     </p>
 
                                     <!-- Alamat 3 -->
                                     <p
                                         style="position: absolute;top: 240px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->group_leader_addr2 ? : 'n/a').'
+                                        '.($this->pdfData[0]->group_leader_addr2 ? : ' ').'
                                     </p>
 
                                     <!-- No Telefon -->
                                     <p
                                         style="position: absolute;top: 253px;left: 218px;height: 17px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->group_leader_addr3 ? : 'n/a').'
+                                        '.($this->pdfData[0]->group_leader_addr3 ? : ' ').'
                                     </p>
 
                                     <!-- Tarikh -->
@@ -1356,73 +1426,73 @@ class MuatNaikDokumen extends Component
                                     <!-- Nama -->
                                     <p
                                         style="position: absolute;top: 368px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference_name ? : 'n/a').'
+                                        '.($this->pdfData[0]->reference_name ? : ' ').'
                                     </p>
 
                                     <!-- No Kad Pengenalan -->
                                     <p
                                         style="position: absolute;top: 382px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference_icno ? : 'n/a').'
+                                        '.($this->pdfData[0]->reference_icno ? : ' ').'
                                     </p>
 
                                     <!--  Alamat 1 & 2  -->
                                     <p
                                         style="position: absolute;top: 395px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference_address1 ? : 'n/a').'
+                                        '.($this->pdfData[0]->reference_address1 ? : ' ').'
                                     </p>
 
                                     <!--  Alamat 3  -->
                                     <p
                                         style="position: absolute;top: 408px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference_address2 ? : 'n/a').'
+                                        '.($this->pdfData[0]->reference_address2 ? : ' ').'
                                     </p>
 
                                     <!--  Hubungan Dengan Pemohon -->
                                     <p
                                         style="position: absolute;top: 421px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference_relation ? : 'n/a').' 
+                                        '.($this->pdfData[0]->reference_relation ? : ' ').' 
                                     </p>
 
                                     <!--  No Telefon -->
                                     <p
                                         style="position: absolute;top: 433px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference_phone ? : 'n/a').' 
+                                        '.($this->pdfData[0]->reference_phone ? : ' ').' 
                                     </p>
 
                                     <!-- Nama (2) -->
                                     <p
                                         style="position: absolute;top: 455px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference2_name ? : 'n/a').' 
+                                        '.($this->pdfData[0]->reference2_name ? : ' ').' 
                                     </p>
 
                                     <!-- No Kad Pengenalan (2) -->
                                     <p
                                         style="position: absolute;top: 469px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference2_icno ? : 'n/a').' 
+                                        '.($this->pdfData[0]->reference2_icno ? : ' ').' 
                                     </p>
 
                                     <!--  Alamat 1 & 2 (2) -->
                                     <p
                                         style="position: absolute;top: 483px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference2_address1 ? : 'n/a').' 
+                                        '.($this->pdfData[0]->reference2_address1 ? : ' ').' 
                                     </p>
 
                                     <!--  Alamat 3 (2) -->
                                     <p
                                         style="position: absolute;top: 496px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference2_address2 ? : 'n/a').' 
+                                        '.($this->pdfData[0]->reference2_address2 ? : ' ').' 
                                     </p>
 
                                     <!--  Hubungan Dengan Pemohon (2) -->
                                     <p
                                         style="position: absolute;top: 508px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference2_relation ? : 'n/a').' 
+                                        '.($this->pdfData[0]->reference2_relation ? : ' ').' 
                                     </p>
 
                                     <!--  No Telefon (2) -->
                                     <p
                                         style="position: absolute;top: 521px;left: 218px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->reference2_phone ? : 'n/a').' 
+                                        '.($this->pdfData[0]->reference2_phone ? : ' ').' 
                                     </p>
 
                                     </div>
@@ -1460,13 +1530,15 @@ class MuatNaikDokumen extends Component
                                         <!-- Sektor -->
                                         <p
                                         style="position: absolute;top: 781px;left: 117px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        
+                                            '.($this->pdfData[0]->sektor_perkeso ? : ' ').' 
+
                                         </p>
 
                                         <!-- Kelas -->
                                         <p
                                         style="position: absolute;top: 781px;left: 401px;height: 17px;width: 420px;background: transparent;font-size: 10px !important;">
-                                        
+                                            '.($this->pdfData[0]->kelas_perkeso ? : ' ').' 
+
                                         </p>
 
                                         <!-- Tidak -->
@@ -1498,25 +1570,25 @@ class MuatNaikDokumen extends Component
                                     <!-- Nama Syarikat Wasiat -->
                                     <p
                                         style="position: absolute;top: 88px;left: 286px;height: 17px;width: 350px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->will_comp_name  ? : 'n/a').'
+                                        '.($this->pdfData[0]->will_comp_name  ? : ' ').'
                                     </p>
 
                                     <!-- Nama Perujuk (pegawai tekun) -->
                                     <p
                                         style="position: absolute;top: 99px;left: 286px;height: 17px;width: 350px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->will_officer_name  ? : 'n/a').'
+                                        '.($this->pdfData[0]->will_officer_name  ? : ' ').'
                                     </p>
 
                                     <!-- No Kad Pengenalan Perujuk (pegawai tekun) -->
                                     <p
                                         style="position: absolute;top: 112px;left: 286px;height: 17px;width: 350px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->will_officer_icno  ? : 'n/a').'
+                                        '.($this->pdfData[0]->will_officer_icno  ? : ' ').'
                                     </p>
 
                                     <!-- No Telefon Perujuk (pegawai tekun) -->
                                     <p
                                         style="position: absolute;top: 123px;left: 286px;height: 17px;width: 350px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->will_officer_phone  ? : 'n/a').'
+                                        '.($this->pdfData[0]->will_officer_phone  ? : ' ').'
                                     </p>
 
                                     <!-- Tidak -->
@@ -1548,43 +1620,43 @@ class MuatNaikDokumen extends Component
                                     <!-- Nama -->
                                     <p
                                     style="position: absolute;top: 574px;left: 216px;height: 17px;width: 450px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->name_penamaan  ? : 'n/a').'
+                                        '.($this->pdfData[0]->name_penamaan  ? : ' ').'
                                     </p>
 
                                     <!-- No Kad Pengenalan -->
                                     <p
                                     style="position: absolute;top: 588px;left: 216px;height: 17px;width: 450px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->icno_penamaan  ? : 'n/a').'
+                                        '.($this->pdfData[0]->icno_penamaan  ? : ' ').'
                                     </p>
 
                                     <!-- No Passport -->
                                     <p
                                     style="position: absolute;top: 588px;left: 536px;height: 17px;width: 450px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->passportno_penamaan  ? : 'n/a').'
+                                        '.($this->pdfData[0]->passportno_penamaan  ? : ' ').'
                                     </p>
 
                                     <!-- Alamat 1 & 2 -->
                                     <p
                                     style="position: absolute;top: 602px;left: 216px;height: 17px;width: 322px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->penamaan_addr1  ? : 'n/a').'
+                                        '.($this->pdfData[0]->penamaan_addr1  ? : ' ').'
                                     </p>
 
                                     <!-- Alamat 3 -->
                                     <p
                                     style="position: absolute;top: 615px;left: 216px;height: 17px;width: 322px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->penamaan_addr2  ? : 'n/a').'
+                                        '.($this->pdfData[0]->penamaan_addr2  ? : ' ').'
                                     </p>
 
                                     <!-- Hubungan dengan pemohon -->
                                     <p
                                     style="position: absolute;top: 628px;left: 216px;height: 17px;width: 322px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->penamaan_relationship  ? : 'n/a').'
+                                        '.($this->pdfData[0]->penamaan_relationship  ? : ' ').'
                                     </p>
 
                                     <!-- No Telefon -->
                                     <p
                                     style="position: absolute;top: 643px;left: 216px;height: 17px;width: 322px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->penamaan_phone  ? : 'n/a').'
+                                        '.($this->pdfData[0]->penamaan_phone  ? : ' ').'
                                     </p>
 
                                     <!-- checkbox 1 -->
@@ -1683,16 +1755,16 @@ class MuatNaikDokumen extends Component
                         <!-- A. Maklumat Asas -->
                         <div class="section-title">A. Maklumat Asas</div>
                         <label>Negeri:</label>
-                        <input type="text" value="'.($this->pdfData[0]->state_code ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->state_code ?: ' ').'"><br>
 
                         <label>Cawangan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->branch_code ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->branch_code ?: ' ').'"><br>
 
                         <label>Tarikh Diterima:</label>
-                        <input type="text" value="'.($this->pdfData[0]->appln_date_submit ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->appln_date_submit ?: ' ').'"><br>
 
                         <label>No. Rujukan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->appln_ref_no ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->appln_ref_no ?: ' ').'"><br>
 
                         <div class="divider"></div>
                         <!-- Pembiayaan checkboxes (example of simple checkboxes + labels) -->
@@ -1710,69 +1782,69 @@ class MuatNaikDokumen extends Component
 
                         <!-- Example: Name, IC, etc. -->
                         <label>Nama Pemohon:</label>
-                        <input type="text" value="'.($this->pdfData[0]->name ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->name ?: ' ').'"><br>
 
                         <label>No. KP (Baru):</label>
-                        <input type="text" value="'.($this->pdfData[0]->ic_no ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->ic_no ?: ' ').'"><br>
 
                         <label>No. KP (Lama):</label>
-                        <input type="text" value="'.($this->pdfData[0]->ic_old ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->ic_old ?: ' ').'"><br>
 
                         <label>Tarikh Lahir:</label>
-                        <input type="text" value="'.($this->pdfData[0]->birthdate ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->birthdate ?: ' ').'"><br>
 
                         <label>Bangsa/Kaum:</label>
-                        <input type="text" value="'.($this->pdfData[0]->race ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->race ?: ' ').'"><br>
 
                         <label>Umur Semasa Memohon:</label>
-                        <input type="text" value="'.($this->pdfData[0]->age ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->age ?: ' ').'"><br>
 
                         <label>Bilangan Tanggungan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->dependent ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->dependent ?: ' ').'"><br>
 
                         <div class="divider"></div>
 
                         <!-- B. Maklumat Pasangan -->
                         <div class="section-title">B. Maklumat Pasangan</div>
                         <label>Nama Pasangan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->spouse_name ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->spouse_name ?: ' ').'"><br>
 
                         <label>No. Kad Pengenalan (Pasangan):</label>
-                        <input type="text" value="'.($this->pdfData[0]->spouse_ic_no ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->spouse_ic_no ?: ' ').'"><br>
 
                         <label>Pekerjaan (Pasangan):</label>
-                        <input type="text" value="'.($this->pdfData[0]->spouse_profession ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->spouse_profession ?: ' ').'"><br>
 
                         <div class="divider"></div>
 
                         <!-- C. Maklumat Perniagaan -->
                         <div class="section-title">C. Maklumat Perniagaan</div>
                         <label>Nama Perniagaan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_name ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->business_name ?: ' ').'"><br>
 
                         <label>No. SSM/Lesen/Ordinan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->license_type ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->license_type ?: ' ').'"><br>
 
                         <label>Aktiviti Perniagaan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_activity ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->business_activity ?: ' ').'"><br>
 
                         <label>Tempoh Pengalaman (Tahun):</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_duration_year ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->business_duration_year ?: ' ').'"><br>
 
                         <label>Alamat Perniagaan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_address1 ?: 'n/a').'"><br>
-                        <input type="text" value="'.($this->pdfData[0]->business_address2 ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->business_address1 ?: ' ').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->business_address2 ?: ' ').'"><br>
                         <label>Poskod:</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_postcode ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->business_postcode ?: ' ').'"><br>
 
                         <div class="divider"></div>
 
                         <!-- Example: More fields from your data as needed -->
                         <label>Jumlah Pembiayaan Diperlukan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->purchase_price ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->purchase_price ?: ' ').'"><br>
 
                         <label>Tempoh Bayaran:</label>
-                        <input type="text" value="'.($this->pdfData[0]->pymt_duration ?: 'n/a').'"><br>
+                        <input type="text" value="'.($this->pdfData[0]->pymt_duration ?: ' ').'"><br>
 
                         <!-- ... add as many fields/labels as you want from $this->pdfData[0] ... -->
 
