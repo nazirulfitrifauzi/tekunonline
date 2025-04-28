@@ -106,7 +106,7 @@ trait MaklumatPinjamanValidation
     'sektor_perkeso.required_if' => 'Sila Pilih Sektor Perkeso',
     'kelas_perkeso.required_if' => 'Sila Pilih Kelas Perkeso',
     'will_registration.required' => 'Sila Pilih Pendaftaran Wasiat',
-    'will_comp_name.required_if' => 'Sila Pilih Nama Perniagaan',
+    'will_comp_name.required_if' => 'Sila Pilih Nama Syarikat',
     'will_fi.required_if' => 'Sila Masukkan Fi Wasiat',
     'auth_disc_info_flag.required' => 'Sila Tandakan Ya untuk Kebenaran Penzahiran Maklumat Kredit Individu',
     'appl_stmt_flag.required' => 'Sila Tandakan Ya untuk Akuan Pemohon',

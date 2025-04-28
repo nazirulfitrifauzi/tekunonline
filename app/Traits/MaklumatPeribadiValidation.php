@@ -130,7 +130,7 @@ trait MaklumatPeribadiValidation
             $rules['employer_address1'] = 'required|string';
             $rules['employer_postcode'] = 'required|digits:5';
             $rules['employer_city'] = 'required|string';
-            $rules['tekun_state'] = 'required|in:JH,KD,KL,MK,NS,PH,PK,RC,PP,SB,SW,SE,TG,WP';
+            $rules['employer_state'] = 'required|in:JH,KD,KL,MK,NS,PH,PK,RC,PP,SB,SW,SE,TG,WP';
             $rules['employer_phone'] = 'required';
         }
 
@@ -188,14 +188,14 @@ trait MaklumatPeribadiValidation
         'religion.in' => 'Agama tidak sah',
         'ethnic.required' => 'Sila pilih kaum/etnik',
         'ethnic.in' => 'Kaum/etnik tidak sah',
-        'marital.required' => 'Sila pilih status perkahwinan',
+        'marital.required' => 'Sila pilih taraf perkahwinan',
         'marital.in' => 'Status perkahwinan tidak sah',
         'dependent.required' => 'Sila masukkan bilangan tanggungan',
         'dependent.numeric' => 'Bilangan tanggungan mestilah nombor',
         'dependent.min' => 'Bilangan tanggungan tidak boleh kurang dari 0',
-        'oku.required' => 'Sila pilih status oku',
-        'stop_worktime_flag.required' => 'Sila pilih antara salah satu',
-        'education.required' => 'Sila pilih pendidikan',
+        'oku.required' => 'Sila pilih status orang kelainan upaya',
+        'stop_worktime_flag.required' => 'Sila pilih status diberhentikan kerja semasa pandemik',
+        'education.required' => 'Sila pilih taraf pendidikan',
         'address1.required' => 'Sila masukkan alamat kediaman',
         'postcode.required' => 'Sila masukkan poskod',
         'city.required' => 'Sila masukkan bandar',
@@ -214,18 +214,18 @@ trait MaklumatPeribadiValidation
         'income.min' => 'Pendapatan bulanan tidak boleh kurang dari 1',
         'employer_name.required' => 'Sila masukkan nama majikan',
         'employer_address1.required' => 'Sila masukkan alamat majikan',
-        'employer_postcode.required' => 'Sila masukkan poskod',
+        'employer_postcode.required' => 'Sila masukkan poskod majikan',
         'employer_postcode.digits' => 'Poskod mestilah 5 digit',
-        'employer_city.required' => 'Sila masukkan bandar',
-        'tekun_state.required' => 'Sila pilih negeri',
-        'tekun_state.in' => 'Negeri tidak sah',
+        'employer_city.required' => 'Sila masukkan bandar majikan',
+        'employer_state.required' => 'Sila pilih negeri majikan',
+        'employer_state.in' => 'Negeri tidak sah',
         'employer_phone.required' => 'Sila masukkan no telefon majikan',
         'spouse_name.required' => 'Sila masukkan nama suami/isteri',
-        'spouse_nationality.required' => 'Sila pilih kewarganegaraan',
+        'spouse_nationality.required' => 'Sila pilih kewarganegaraan suami/isteri',
         'spouse_nationality.in' => 'Kewarganegaraan tidak sah',
         'spouse_ic_no.required' => 'Sila masukkan nombor kad pengenalan suami/isteri',
         'spouse_ic_no.digits' => 'Nombor kad pengenalan suami/isteri mestilah 12 digit',
-        'spouse_passport_no.required' => 'Sila masukkan nombor paspor suami/isteri',
+        'spouse_passport_no.required' => 'Sila masukkan nombor passport suami/isteri',
         'spouse_profession.required' => 'Sila pilih pekerjaan suami/isteri',
         'spouse_phone.required' => 'Sila masukkan nombor telefon suami/isteri',
         'spouse_income.required' => 'Sila masukkan pendapatan suami/isteri',

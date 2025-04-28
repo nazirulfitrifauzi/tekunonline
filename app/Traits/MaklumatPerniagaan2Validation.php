@@ -139,7 +139,7 @@ trait MaklumatPerniagaan2Validation
                 'buss2_city' => 'required',
                 'buss2_state' => 'required',
                 'buss2_phone' => 'required',
-                'buss2_fax' => 'required',
+                //'buss2_fax' => 'required',
             ]);
         }
 
@@ -156,7 +156,7 @@ trait MaklumatPerniagaan2Validation
                 'buss3_city' => 'required',
                 'buss3_state' => 'required',
                 'buss3_phone' => 'required',
-                'buss3_fax' => 'required',
+                //'buss3_fax' => 'required',
             ]);
         }
 
@@ -193,7 +193,7 @@ trait MaklumatPerniagaan2Validation
         'buss2_city.required' => 'Sila masukkan bandar cawangan 2.',
         'buss2_state.required' => 'Sila pilih negeri cawangan 2.',
         'buss2_phone.required' => 'Sila masukkan nombor telefon cawangan 2.',
-        'buss2_fax.required' => 'Sila masukkan nombor fax cawangan 2.',
+        //'buss2_fax.required' => 'Sila masukkan nombor fax cawangan 2.',
 
         // Cawangan 3 messages
         'buss3_branch_loc.required' => 'Sila pilih lokasi cawangan 3.',
@@ -207,7 +207,7 @@ trait MaklumatPerniagaan2Validation
         'buss3_city.required' => 'Sila masukkan bandar cawangan 3.',
         'buss3_state.required' => 'Sila pilih negeri cawangan 3.',
         'buss3_phone.required' => 'Sila masukkan nombor telefon cawangan 3.',
-        'buss3_fax.required' => 'Sila masukkan nombor fax cawangan 3.',
+        //'buss3_fax.required' => 'Sila masukkan nombor fax cawangan 3.',
 
         //Financing
         'fin_details_flag.required' => 'Sila pilih maklumat pembiayaan perniagaan sedia ada.',
