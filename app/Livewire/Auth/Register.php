@@ -81,7 +81,7 @@ class Register extends Component
 
         $user = User::create([
             'email' => $this->email,
-            'name' => $this->name,
+            'name' => strtoupper($this->name),  // Menukarkan nama ke huruf besar
             'ic_no' => $this->ic_no,
             'password' => Hash::make($this->password),
             'last_pwd_changed' => new DateTime('now')
