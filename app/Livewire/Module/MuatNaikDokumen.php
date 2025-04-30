@@ -59,6 +59,9 @@ class MuatNaikDokumen extends Component
                     $this->$key = $value;
                 }
             }
+            
+            // Initialize document_perkeso_status based on skim_safety value
+            $this->document_perkeso_status = ($this->existingData->skim_safety == 0) ? 1 : 0;
         }
     }
 
@@ -1705,152 +1708,7 @@ class MuatNaikDokumen extends Component
                         mkdir($directory2, 0755, true);
                     }
 
-                    // b) Build the HTML for the "view_form" PDF
-                    $html = '
-                    <html>
-                    <head>
-                        <meta charset="UTF-8">
-                        <title>Form View (No Background)</title>
-                        <style>
-                            body {
-                                font-family: Arial, sans-serif;
-                                margin: 20px;
-                            }
-                            label {
-                                display: inline-block;
-                                width: 200px;
-                                font-weight: bold;
-                                margin-top: 8px;
-                            }
-                            input[type="text"] {
-                                width: 300px;
-                                margin-bottom: 5px;
-                                padding: 2px 5px;
-                            }
-                            .checkbox-label {
-                                display: inline-block;
-                                width: auto;
-                                font-weight: bold;
-                                margin-left: 10px;
-                            }
-                            .checkbox {
-                                margin-right: 3px;
-                            }
-                            .section-title {
-                                font-size: 110%;
-                                font-weight: bold;
-                                margin-top: 20px;
-                            }
-                            .divider {
-                                margin: 20px 0;
-                                border-bottom: 1px solid #ccc;
-                            }
-                        </style>
-                    </head>
-                    <body>
-
-                        <h2>TEKUN Financing Application - View Form</h2>
-                        <p>Below is a simplified view of your application data with text fields and labels (no background images).</p>
-
-                        <!-- A. Maklumat Asas -->
-                        <div class="section-title">A. Maklumat Asas</div>
-                        <label>Negeri:</label>
-                        <input type="text" value="'.($this->pdfData[0]->state_code ?: ' ').'"><br>
-
-                        <label>Cawangan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->branch_code ?: ' ').'"><br>
-
-                        <label>Tarikh Diterima:</label>
-                        <input type="text" value="'.($this->pdfData[0]->appln_date_submit ?: ' ').'"><br>
-
-                        <label>No. Rujukan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->appln_ref_no ?: ' ').'"><br>
-
-                        <div class="divider"></div>
-                        <!-- Pembiayaan checkboxes (example of simple checkboxes + labels) -->
-                        <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox" '.($this->pdfData[0]->business_status == "SEDANG BERNIAGA" ? 'checked' : '').'>
-                        Sedang Berniaga
-                        </label>
-                        <label class="checkbox-label">
-                        <input type="checkbox" class="checkbox" '.($this->pdfData[0]->business_status == "MEMULAKAN PERNIAGAAN" ? 'checked' : '').'>
-                        Memulakan Perniagaan
-                        </label>
-                        <br>
-
-                        <div class="divider"></div>
-
-                        <!-- Example: Name, IC, etc. -->
-                        <label>Nama Pemohon:</label>
-                        <input type="text" value="'.($this->pdfData[0]->name ?: ' ').'"><br>
-
-                        <label>No. KP (Baru):</label>
-                        <input type="text" value="'.($this->pdfData[0]->ic_no ?: ' ').'"><br>
-
-                        <label>No. KP (Lama):</label>
-                        <input type="text" value="'.($this->pdfData[0]->ic_old ?: ' ').'"><br>
-
-                        <label>Tarikh Lahir:</label>
-                        <input type="text" value="'.($this->pdfData[0]->birthdate ?: ' ').'"><br>
-
-                        <label>Bangsa/Kaum:</label>
-                        <input type="text" value="'.($this->pdfData[0]->race ?: ' ').'"><br>
-
-                        <label>Umur Semasa Memohon:</label>
-                        <input type="text" value="'.($this->pdfData[0]->age ?: ' ').'"><br>
-
-                        <label>Bilangan Tanggungan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->dependent ?: ' ').'"><br>
-
-                        <div class="divider"></div>
-
-                        <!-- B. Maklumat Pasangan -->
-                        <div class="section-title">B. Maklumat Pasangan</div>
-                        <label>Nama Pasangan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->spouse_name ?: ' ').'"><br>
-
-                        <label>No. Kad Pengenalan (Pasangan):</label>
-                        <input type="text" value="'.($this->pdfData[0]->spouse_ic_no ?: ' ').'"><br>
-
-                        <label>Pekerjaan (Pasangan):</label>
-                        <input type="text" value="'.($this->pdfData[0]->spouse_profession ?: ' ').'"><br>
-
-                        <div class="divider"></div>
-
-                        <!-- C. Maklumat Perniagaan -->
-                        <div class="section-title">C. Maklumat Perniagaan</div>
-                        <label>Nama Perniagaan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_name ?: ' ').'"><br>
-
-                        <label>No. SSM/Lesen/Ordinan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->license_type ?: ' ').'"><br>
-
-                        <label>Aktiviti Perniagaan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_activity ?: ' ').'"><br>
-
-                        <label>Tempoh Pengalaman (Tahun):</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_duration_year ?: ' ').'"><br>
-
-                        <label>Alamat Perniagaan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_address1 ?: ' ').'"><br>
-                        <input type="text" value="'.($this->pdfData[0]->business_address2 ?: ' ').'"><br>
-                        <label>Poskod:</label>
-                        <input type="text" value="'.($this->pdfData[0]->business_postcode ?: ' ').'"><br>
-
-                        <div class="divider"></div>
-
-                        <!-- Example: More fields from your data as needed -->
-                        <label>Jumlah Pembiayaan Diperlukan:</label>
-                        <input type="text" value="'.($this->pdfData[0]->purchase_price ?: ' ').'"><br>
-
-                        <label>Tempoh Bayaran:</label>
-                        <input type="text" value="'.($this->pdfData[0]->pymt_duration ?: ' ').'"><br>
-
-                        <!-- ... add as many fields/labels as you want from $this->pdfData[0] ... -->
-
-                    </body>
-                    </html>
-                    ';
+                    $html = view('pdf.view_form', ['data' => $this->pdfData[0]])->render();
 
                     // c) Generate PDF using DomPDF (or your PDF facade)
                     $pdf2 = FacadePdf::loadHTML($html);
