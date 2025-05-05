@@ -362,7 +362,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="sektor_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Sektor Perkeso <span class="text-red-700">*</span></label>
+                                <label for="sektor_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Sektor PERKESO <span class="text-red-700">*</span></label>
                                 <select id="sektor_perkeso" name="sektor_perkeso" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="sektor_perkeso">
                                     <option value="">SILA PILIH</option>
                                     @foreach ($sektorPerkeso as $sektors)
@@ -377,7 +377,7 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="kelas_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Kelas Perkeso <span class="text-red-700">*</span></label>
+                                <label for="kelas_perkeso" class="block text-sm font-medium leading-5 text-gray-700">Kelas PERKESO <span class="text-red-700">*</span></label>
                                 <select id="kelas_perkeso" name="kelas_perkeso" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="kelas_perkeso">
                                     <option value="">SILA PILIH</option>
                                     @foreach ($kelasPerkeso as $kelas)
@@ -545,31 +545,31 @@
                                 <legend class="block text-sm font-medium leading-5 text-gray-700">Akuan Pemohon</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">Adalah Dengan Ini Saya Mengaku Bahawa:</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">Adalah Dengan Ini Saya Mengaku Bahawa:</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">1. Segala maklumat dan keterangan yang diberikan adalah benar.</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">1. Segala maklumat dan keterangan yang diberikan adalah benar.</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">2. Pihak TEKUN berhak menolak permohonan ini jika didapati maklumat yang diberikan tidak benar. </legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">2. Pihak TEKUN berhak menolak permohonan ini jika didapati maklumat yang diberikan tidak benar. </legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">3. Saya berikrar untuk membayar jumlah terhutang sepertimana yang dijanjikan.</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">3. Saya berikrar untuk membayar jumlah terhutang sepertimana yang dijanjikan.</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">4. Saya memperakukan bahawa kemudahan pembiayaan ini tidak akan disalahgunakan. </legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">4. Saya memperakukan bahawa kemudahan pembiayaan ini tidak akan disalahgunakan. </legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">5. Saya bukan seorang yang bankrap.</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">5. Saya bukan seorang yang bankrap.</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">6. Saya bersetuju untuk mengikuti Seminar Asas Keusahawanan ( SAK ) TEKUN Nasional yang diwajibkan ke atas saya (Jika berkenaan).</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">6. Saya bersetuju untuk mengikuti Seminar Asas Keusahawanan ( SAK ) TEKUN Nasional yang diwajibkan ke atas saya (Jika berkenaan).</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">7. Saya dengan ini membenarkan pihak TEKUN Nasional memproses data-data peribadi bagi tujuan permohonan pembiayaan.</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">7. Saya dengan ini membenarkan pihak TEKUN Nasional memproses data-data peribadi bagi tujuan permohonan pembiayaan.</legend>
                             </div>
                             <div class="col-span-6">
-                                <legend class="block text-sm font-medium leading-5 text-gray-700">8. Saya mengakui tidak pernah melantik /menggunakan khidmat ejen(orang tengah) bagi memproses permohonan ini.Borang dan proses permohonan ini juga tidak dikenakan sebarang bayaran oleh mana-mana pihak.</legend>
+                                <legend class="block text-sm font-medium leading-5 text-gray-700 text-justify">8. Saya mengakui tidak pernah melantik /menggunakan khidmat ejen(orang tengah) bagi memproses permohonan ini.Borang dan proses permohonan ini juga tidak dikenakan sebarang bayaran oleh mana-mana pihak.</legend>
                             </div>
 
                             <div>

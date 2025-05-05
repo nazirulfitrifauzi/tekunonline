@@ -34,24 +34,23 @@
                                         <label for="buss1_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 1 <span class="text-red-700">*</span></label>
                                         <select id="buss1_branch_loc" name="buss1_branch_loc" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_branch_loc">
                                             <option value="">SILA PILIH</option>
-                                            <option value="Bengkel - Besi">Bengkel - Besi</option>
-                                            <option value="Bengkel - Kayu">Bengkel - Kayu</option>
-                                            <option value="Bengkel - Mekanik">Bengkel - Mekanik</option>
-                                            <option value="Bergerak - Kereta Motor">Bergerak - Kereta Motor</option>
-                                            <option value="Bergerak - Kereta Sorong">Bergerak - Kereta Sorong</option>
-                                            <option value="Bergerak - Motosikal">Bergerak - Motosikal</option>
-                                            <option value="Di Rumah">Di Rumah</option>
-                                            <option value="Gerai - Tetap">Gerai - Tetap</option>
-                                            <option value="Ladang">Ladang</option>
-                                            <option value="Lot Kedai - Sewa">Lot Kedai - Sewa</option>
-                                            <option value="Lot Kedai - Tetap">Lot Kedai - Tetap</option>
-                                            <option value="Pasar Malam">Pasar Malam</option>
-                                            <option value="Pasar Minggu">Pasar Minggu</option>
-                                            <option value="Pasar Tani">Pasar Tani</option>
-                                            <option value="Pasar Tetap">Pasar Tetap</option>
-                                            <option value="Pesisir Pantai">Pesisir Pantai</option>
-                                            <option value="Lain-Lain">Lain-Lain</option>
-                                        </select>
+                                            <option value="BENGKEL - BESI">BENGKEL - BESI</option>
+                                            <option value="BENGKEL - KAYU">Bengkel - Kayu</option>
+                                            <option value="BENGKEL - MEKANIK">Bengkel - Mekanik</option>
+                                            <option value="BERGERAK - KERETA MOTOR">BERGERAK - KERETA MOTOR</option>
+                                            <option value="Bergerak - Kereta Sorong">BERGERAK - KERETA SORONG</option>
+                                            <option value="BERGERAK - MOTOSIKAL">BERGERAK - MOTOSIKAL</option>
+                                            <option value="DI RUMAH">DI RUMAH</option>
+                                            <option value="GERAI - TETAP">GERAI - TETAP</option>
+                                            <option value="LADANG">LADANG</option>
+                                            <option value="LOT KEDAI - SEWA">LOT KEDAI - SEWA</option>
+                                            <option value="LOT KEDAI - TETAP">LOT KEDAI - TETAP</option>
+                                            <option value="PASAR MALAM">PASAR MALAM</option>
+                                            <option value="PASAR MINGGU">PASAR MINGGU</option>
+                                            <option value="PASAR TANI">PASAR TANI</option>
+                                            <option value="PASAR TETAP">PASAR TETAP</option>
+                                            <option value="PESISIR PANTAI">PESISIR PANTAI</option>
+                                            <option value="LAIN-LAIN">LAIN-LAIN</option>                                         </select>
                                         @error('buss1_branch_loc')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -204,24 +203,23 @@
                                         <label for="buss2_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 2 <span class="text-red-700">*</span></label>
                                         <select id="buss2_branch_loc" name="buss2_branch_loc" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_branch_loc">
                                             <option value="">SILA PILIH</option>
-                                            <option value="Bengkel - Besi">Bengkel - Besi</option>
-                                            <option value="Bengkel - Kayu">Bengkel - Kayu</option>
-                                            <option value="Bengkel - Mekanik">Bengkel - Mekanik</option>
-                                            <option value="Bergerak - Kereta Motor">Bergerak - Kereta Motor</option>
-                                            <option value="Bergerak - Kereta Sorong">Bergerak - Kereta Sorong</option>
-                                            <option value="Bergerak - Motosikal">Bergerak - Motosikal</option>
-                                            <option value="Di Rumah">Di Rumah</option>
-                                            <option value="Gerai - Tetap">Gerai - Tetap</option>
-                                            <option value="Ladang">Ladang</option>
-                                            <option value="Lot Kedai - Sewa">Lot Kedai - Sewa</option>
-                                            <option value="Lot Kedai - Tetap">Lot Kedai - Tetap</option>
-                                            <option value="Pasar Malam">Pasar Malam</option>
-                                            <option value="Pasar Minggu">Pasar Minggu</option>
-                                            <option value="Pasar Tani">Pasar Tani</option>
-                                            <option value="Pasar Tetap">Pasar Tetap</option>
-                                            <option value="Pesisir Pantai">Pesisir Pantai</option>
-                                            <option value="Lain-Lain">Lain-Lain</option>
-                                        </select>
+                                            <option value="BENGKEL - BESI">BENGKEL - BESI</option>
+                                            <option value="BENGKEL - KAYU">Bengkel - Kayu</option>
+                                            <option value="BENGKEL - MEKANIK">Bengkel - Mekanik</option>
+                                            <option value="BERGERAK - KERETA MOTOR">BERGERAK - KERETA MOTOR</option>
+                                            <option value="Bergerak - Kereta Sorong">BERGERAK - KERETA SORONG</option>
+                                            <option value="BERGERAK - MOTOSIKAL">BERGERAK - MOTOSIKAL</option>
+                                            <option value="DI RUMAH">DI RUMAH</option>
+                                            <option value="GERAI - TETAP">GERAI - TETAP</option>
+                                            <option value="LADANG">LADANG</option>
+                                            <option value="LOT KEDAI - SEWA">LOT KEDAI - SEWA</option>
+                                            <option value="LOT KEDAI - TETAP">LOT KEDAI - TETAP</option>
+                                            <option value="PASAR MALAM">PASAR MALAM</option>
+                                            <option value="PASAR MINGGU">PASAR MINGGU</option>
+                                            <option value="PASAR TANI">PASAR TANI</option>
+                                            <option value="PASAR TETAP">PASAR TETAP</option>
+                                            <option value="PESISIR PANTAI">PESISIR PANTAI</option>
+                                            <option value="LAIN-LAIN">LAIN-LAIN</option>                                         </select>
                                         @error('buss2_branch_loc')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}
@@ -374,24 +372,23 @@
                                         <label for="buss3_branch_loc" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Cawangan 3 <span class="text-red-700">*</span></label>
                                         <select id="buss3_branch_loc" name="buss3_branch_loc" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_branch_loc">
                                             <option value="">SILA PILIH</option>
-                                            <option value="Bengkel - Besi">Bengkel - Besi</option>
-                                            <option value="Bengkel - Kayu">Bengkel - Kayu</option>
-                                            <option value="Bengkel - Mekanik">Bengkel - Mekanik</option>
-                                            <option value="Bergerak - Kereta Motor">Bergerak - Kereta Motor</option>
-                                            <option value="Bergerak - Kereta Sorong">Bergerak - Kereta Sorong</option>
-                                            <option value="Bergerak - Motosikal">Bergerak - Motosikal</option>
-                                            <option value="Di Rumah">Di Rumah</option>
-                                            <option value="Gerai - Tetap">Gerai - Tetap</option>
-                                            <option value="Ladang">Ladang</option>
-                                            <option value="Lot Kedai - Sewa">Lot Kedai - Sewa</option>
-                                            <option value="Lot Kedai - Tetap">Lot Kedai - Tetap</option>
-                                            <option value="Pasar Malam">Pasar Malam</option>
-                                            <option value="Pasar Minggu">Pasar Minggu</option>
-                                            <option value="Pasar Tani">Pasar Tani</option>
-                                            <option value="Pasar Tetap">Pasar Tetap</option>
-                                            <option value="Pesisir Pantai">Pesisir Pantai</option>
-                                            <option value="Lain-Lain">Lain-Lain</option>
-                                        </select>
+                                            <option value="BENGKEL - BESI">BENGKEL - BESI</option>
+                                            <option value="BENGKEL - KAYU">Bengkel - Kayu</option>
+                                            <option value="BENGKEL - MEKANIK">Bengkel - Mekanik</option>
+                                            <option value="BERGERAK - KERETA MOTOR">BERGERAK - KERETA MOTOR</option>
+                                            <option value="Bergerak - Kereta Sorong">BERGERAK - KERETA SORONG</option>
+                                            <option value="BERGERAK - MOTOSIKAL">BERGERAK - MOTOSIKAL</option>
+                                            <option value="DI RUMAH">DI RUMAH</option>
+                                            <option value="GERAI - TETAP">GERAI - TETAP</option>
+                                            <option value="LADANG">LADANG</option>
+                                            <option value="LOT KEDAI - SEWA">LOT KEDAI - SEWA</option>
+                                            <option value="LOT KEDAI - TETAP">LOT KEDAI - TETAP</option>
+                                            <option value="PASAR MALAM">PASAR MALAM</option>
+                                            <option value="PASAR MINGGU">PASAR MINGGU</option>
+                                            <option value="PASAR TANI">PASAR TANI</option>
+                                            <option value="PASAR TETAP">PASAR TETAP</option>
+                                            <option value="PESISIR PANTAI">PESISIR PANTAI</option>
+                                            <option value="LAIN-LAIN">LAIN-LAIN</option>                                         </select>
                                         @error('buss3_branch_loc')
                                             <p class="text-red-500 text-xs italic mt-4">
                                                 {{ $message }}

@@ -334,7 +334,7 @@
                                 <label for="ethnic" @class([
                                     'block text-sm font-medium leading-5 text-gray-700',
                                     'hidden' => !in_array($race, ['BUMIPUTERA SABAH', 'BUMIPUTERA SARAWAK', 'LAIN-LAIN'])
-                                ])>Bangsa <span class="text-red-700">*</span></label>
+                                ])>Kaum/etnik <span class="text-red-700">*</span></label>
                                 <select id="ethnic" 
                                         name="ethnic" 
                                         wire:model.live="ethnic"
