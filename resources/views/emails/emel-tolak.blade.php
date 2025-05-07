@@ -40,12 +40,12 @@
             <h2>KEPUTUSAN PERMOHONAN PEMBIAYAAN TEKUN NASIONAL</h2>
             <p>Nama: {{ $data['cust_name'] }}</p>
             <p>No. KP: {{ $data['cust_icno'] }}</p>
-            <p>No. Rujukan: {{ $data['id'] }}</p>
+            <p>No. Rujukan: {{ $data['appln_ref_no'] }}</p>
             <p>Tuan/Puan</p>
             <h2>KEPUTUSAN PERMOHONAN PEMBIAYAAN TEKUN NASIONAL</h2>
             <p>Dengan segala hormatnya perkara di atas adalah dirujuk.</p>
-            <p>2. Untuk makluman, permohonan pembiayaan tuan/puan telah diberikan pertimbangan yang sewajarnya. Dukacita dimaklumkan bahawa permohonan pembiayaan TEKUN tuan/puan adalah TIDAK BERJAYA kerana:</p>
-            <p>{{ $data['appln_result1_rem'] }}</p>
+            <p>2. Untuk makluman, permohonan pembiayaan tuan/puan telah diberikan pertimbangan yang sewajarnya. Dukacita dimaklumkan bahawa permohonan pembiayaan TEKUN tuan/puan adalah <strong>TIDAK BERJAYA</strong> kerana:</p>
+            <p>{{ strtoupper($data['appln_result1_rem']) }}</p>
             <p>3. Tuan/Puan boleh mengemukakan semula permohonan sekiranya memenuhi syarat-syarat yang ditetapkan oleh TEKUN Nasional. Sila hubungi atau lawati TEKUN berhampiran untuk maklumat lanjut.</p>
             <p>Sekian, terima kasih.</p>
             <p>“TEMAN NIAGA ANDA”</p>

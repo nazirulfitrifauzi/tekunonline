@@ -105,7 +105,7 @@
                                     id="shareholder" 
                                     name="shareholder" 
                                     class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}"  
-                                    wire:model="shareholder"
+                                    wire:model.live="shareholder"
                                     @if($business_ownership != '5') disabled @endif
                                 >
                                     <option value="">SILA PILIH</option>
@@ -564,25 +564,24 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="premise_loc_code" class="block text-sm font-medium leading-5 text-gray-700">Lokasi Premis <span class="text-red-700">*</span></label>
                                 <select id="premise_loc_code" name="premise_loc_code" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="premise_loc_code">
-                                    <option value="">SILA PILIH</option>
-                                    <option value="Bengkel - Besi">Bengkel - Besi</option>
-                                    <option value="Bengkel - Kayu">Bengkel - Kayu</option>
-                                    <option value="Bengkel - Mekanik">Bengkel - Mekanik</option>
-                                    <option value="Bergerak - Kereta Motor">Bergerak - Kereta Motor</option>
-                                    <option value="Bergerak - Kereta Sorong">Bergerak - Kereta Sorong</option>
-                                    <option value="Bergerak - Motosikal">Bergerak - Motosikal</option>
-                                    <option value="Di Rumah">Di Rumah</option>
-                                    <option value="Gerai - Tetap">Gerai - Tetap</option>
-                                    <option value="Ladang">Ladang</option>
-                                    <option value="Lot Kedai - Sewa">Lot Kedai - Sewa</option>
-                                    <option value="Lot Kedai - Tetap">Lot Kedai - Tetap</option>
-                                    <option value="Pasar Malam">Pasar Malam</option>
-                                    <option value="Pasar Minggu">Pasar Minggu</option>
-                                    <option value="Pasar Tani">Pasar Tani</option>
-                                    <option value="Pasar Tetap">Pasar Tetap</option>
-                                    <option value="Pesisir Pantai">Pesisir Pantai</option>
-                                    <option value="Lain-Lain (Nyatakan)">Lain-Lain (Nyatakan)</option>
-                                </select>
+                                <option value="">SILA PILIH</option>
+                                <option value="BENGKEL - BESI">BENGKEL - BESI</option>
+                                <option value="BENGKEL - KAYU">Bengkel - Kayu</option>
+                                <option value="BENGKEL - MEKANIK">BENGKEL - MEKANIK</option>
+                                <option value="BERGERAK - KERETA MOTOR">BERGERAK - KERETA MOTOR</option>
+                                <option value="BERGERAK - KERETA SORONG">BERGERAK - KERETA SORONG</option>
+                                <option value="BERGERAK - MOTOSIKAL">BERGERAK - MOTOSIKAL</option>
+                                <option value="DI RUMAH">DI RUMAH</option>
+                                <option value="GERAI - TETAP">GERAI - TETAP</option>
+                                <option value="LADANG">LADANG</option>
+                                <option value="LOT KEDAI - SEWA">LOT KEDAI - SEWA</option>
+                                <option value="LOT KEDAI - TETAP">LOT KEDAI - TETAP</option>
+                                <option value="PASAR MALAM">PASAR MALAM</option>
+                                <option value="PASAR MINGGU">PASAR MINGGU</option>
+                                <option value="PASAR TANI">PASAR TANI</option>
+                                <option value="PASAR TETAP">PASAR TETAP</option>
+                                <option value="PESISIR PANTAI">PESISIR PANTAI</option>
+                                <option value="LAIN-LAIN (NYATAKAN)">LAIN-LAIN (NYATAKAN)</option>                                </select>
                                 @error('premise_loc_code')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}

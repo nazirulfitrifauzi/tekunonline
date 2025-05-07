@@ -46,6 +46,17 @@ class MaklumatPerniagaan extends Component
                     $this->$key = $value;
                 }
             }
+            
+            // Format numeric fields for display
+            if ($this->business_modal) {
+                $this->business_modal = number_format((float)$this->business_modal, 0, '.', ',');
+            }
+            if ($this->business_asset_value) {
+                $this->business_asset_value = number_format((float)$this->business_asset_value, 0, '.', ',');
+            }
+            if ($this->business_start_resources) {
+                $this->business_start_resources = number_format((float)$this->business_start_resources, 0, '.', ',');
+            }
         }
     }
 
@@ -336,8 +347,7 @@ class MaklumatPerniagaan extends Component
                     'appln_id' => $this->appln_id,
                     'activeTab' => 3,
                 ]);
-                
-                
+                                
             } catch (\Illuminate\Validation\ValidationException $e) {
                 $this->dialog()->show([
                     'icon' => 'error',
@@ -348,12 +358,7 @@ class MaklumatPerniagaan extends Component
                 ]);
 
                 $this->validateSelf();
-            }
-
-            
-        // Format balik untuk paparan (contohnya di form)
-        $this->business_modal = number_format($business_modal_num, 0, '.', ',');
-            
+            }            
     }
 
     protected function getFormData($applnId)
@@ -367,9 +372,6 @@ class MaklumatPerniagaan extends Component
 
     public function render()
     {
-
-        
-
         // Ambil senarai negeri
         $this->negeriSelection = Negeri::select(['kodnegeri', 'namanegeri'])
         ->where('kod', '!=', '1')
@@ -386,12 +388,10 @@ class MaklumatPerniagaan extends Component
             ->orWhere('sektor', 'Tani');
         })->get();
 
-
         $this->aktivitiSelection = JenisAktivitiBaru::where('idsektor', $this->business_sector)
         ->where('status', '=', '1')
         ->orderBy('Aktiviti', 'ASC')
         ->get();
-
 
         return view('livewire.module.maklumat-perniagaan');
     }

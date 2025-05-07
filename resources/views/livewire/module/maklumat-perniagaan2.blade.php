@@ -79,10 +79,10 @@
                                         <select id="buss1_branch_tot_worker" name="buss1_branch_tot_worker" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss1_branch_tot_worker">
                                             <option value="">SILA PILIH</option>
                                             <option value="TIADA">TIADA</option>
-                                            <option value="1 - 3 Orang">1 - 3 Orang</option>
-                                            <option value="4 - 6 Orang">4 - 6 Orang</option>
-                                            <option value="7 - 10 Orang">7 - 10 Orang</option>
-                                            <option value="> 10 Orang">> 10 Orang</option>
+                                            <option value="1 - 3 ORANG">1 - 3 ORANG</option>
+                                            <option value="4 - 6 ORANG">4 - 6 ORANG</option>
+                                            <option value="7 - 10 ORANG">7 - 10 ORANG</option>
+                                            <option value="> 10 ORANG">> 10 ORANG</option>
                                         </select>
                                         @error('buss1_branch_tot_worker')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -248,10 +248,10 @@
                                         <select id="buss2_branch_tot_worker" name="buss2_branch_tot_worker" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss2_branch_tot_worker">
                                             <option value="">SILA PILIH</option>
                                             <option value="TIADA">TIADA</option>
-                                            <option value="1 - 3 Orang">1 - 3 Orang</option>
-                                            <option value="4 - 6 Orang">4 - 6 Orang</option>
-                                            <option value="7 - 10 Orang">7 - 10 Orang</option>
-                                            <option value="> 10 Orang">> 10 Orang</option>
+                                            <option value="1 - 3 ORANG">1 - 3 ORANG</option>
+                                            <option value="4 - 6 ORANG">4 - 6 ORANG</option>
+                                            <option value="7 - 10 ORANG">7 - 10 ORANG</option>
+                                            <option value="> 10 ORANG">> 10 ORANG</option>
                                         </select>
                                         @error('buss2_branch_tot_worker')
                                             <p class="text-red-500 text-xs italic mt-4">
@@ -417,10 +417,10 @@
                                         <select id="buss3_branch_tot_worker" name="buss3_branch_tot_worker" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="buss3_branch_tot_worker">
                                             <option value="">SILA PILIH</option>
                                             <option value="TIADA">TIADA</option>
-                                            <option value="1 - 3 Orang">1 - 3 Orang</option>
-                                            <option value="4 - 6 Orang">4 - 6 Orang</option>
-                                            <option value="7 - 10 Orang">7 - 10 Orang</option>
-                                            <option value="> 10 Orang">> 10 Orang</option>
+                                            <option value="1 - 3 ORANG">1 - 3 ORANG</option>
+                                            <option value="4 - 6 ORANG">4 - 6 ORANG</option>
+                                            <option value="7 - 10 ORANG">7 - 10 ORANG</option>
+                                            <option value="> 10 ORANG">> 10 ORANG</option>
                                         </select>
                                         @error('buss3_branch_tot_worker')
                                             <p class="text-red-500 text-xs italic mt-4">

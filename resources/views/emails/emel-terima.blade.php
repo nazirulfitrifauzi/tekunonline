@@ -40,11 +40,11 @@
             <h2>KEPUTUSAN PERMOHONAN PEMBIAYAAN TEKUN NASIONAL</h2>
             <p>Nama: {{ $data['cust_name'] }}</p>
             <p>No. KP: {{ $data['cust_icno'] }}</p>
-            <p>No. Rujukan: {{ $data['id'] }}</p>
+            <p>No. Rujukan: {{ $data['appln_ref_no'] }}</p>
             <p>Tuan/Puan</p>
             <h2>KEPUTUSAN PERMOHONAN PEMBIAYAAN TEKUN NASIONAL</h2>
             <p>Dengan segala hormatnya perkara di atas adalah dirujuk.</p>
-            <p>2. Sukacita dimaklumkan bahawa permohonan pembiayaan TEKUN tuan/puan adalah LAYAK DIPERTIMBANGKAN. Pegawai TEKUN akan membuat lawatan dan pengesahan dokumen di premis perniagaan tuan/puan dalam tempoh 1-3 hari bekerja.</p>
+            <p>2. Sukacita dimaklumkan bahawa permohonan pembiayaan TEKUN tuan/puan adalah <strong> LAYAK DIPERTIMBANGKAN </strong>. Pegawai TEKUN akan membuat lawatan dan pengesahan dokumen di premis perniagaan tuan/puan dalam tempoh 1-3 hari bekerja.</p>
             <p>Sekian, terima kasih.</p>
             <p>“TEMAN NIAGA ANDA”</p>
             <p>(e-mel ini adalah cetakan berkomputer dan tidak memerlukan tandatangan serta tidak perlu dibalas)</p>

@@ -30,7 +30,7 @@ class MonitorApplicationStatus extends Command
                     $data = [
                         'cust_name' => $application->cust_name,
                         'cust_icno' => $application->cust_icno,
-                        'id' => $application->id,
+                        'appln_ref_no' => $application->appln_ref_no,
                     ];
 
                     Mail::to($application->user->email)
@@ -41,7 +41,7 @@ class MonitorApplicationStatus extends Command
                     $data = [
                         'cust_name' => $application->cust_name,
                         'cust_icno' => $application->cust_icno,
-                        'id' => $application->id,
+                        'appln_ref_no' => $application->appln_ref_no,
                         'appln_result1_rem' => $application->appln_result1_rem,
                     ];
 

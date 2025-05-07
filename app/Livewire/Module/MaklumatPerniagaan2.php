@@ -38,6 +38,26 @@ class MaklumatPerniagaan2 extends Component
                     $this->$key = $value;
                 }
             }
+        }    
+
+        // Format numeric fields for display
+        if ($this->fin1_tot) {
+            $this->fin1_tot = number_format((float)$this->fin1_tot, 0, '.', ',');
+        }
+        if ($this->fin1_bal) {
+            $this->fin1_bal = number_format((float)$this->fin1_bal, 0, '.', ',');
+        }
+        if ($this->fin2_tot) {
+            $this->fin2_tot = number_format((float)$this->fin2_tot, 0, '.', ',');
+        }
+        if ($this->fin2_bal) {
+            $this->fin2_bal = number_format((float)$this->fin2_bal, 0, '.', ',');
+        }
+        if ($this->fin3_tot) {
+            $this->fin3_tot = number_format((float)$this->fin3_tot, 0, '.', ',');
+        }
+        if ($this->fin3_bal) {
+            $this->fin3_bal = number_format((float)$this->fin3_bal, 0, '.', ',');
         }
     }
 
