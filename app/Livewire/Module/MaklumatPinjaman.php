@@ -137,14 +137,6 @@ class MaklumatPinjaman extends Component
         return null;
     }
 
-    public function updatedSektorPerkeso($value)
-    {
-        $this->kelasPerkeso = KelasPerkeso::select(['id_kelas','keterangan'])
-            ->whereKodSektor($value)
-            ->orderBy('keterangan', 'ASC')
-            ->get();
-    }
-
     public function render()
     {
         // Ambil senarai negeri
@@ -156,6 +148,15 @@ class MaklumatPinjaman extends Component
         $this->sektorPerkeso = SektorPerkeso::select(['kod_sektor','keterangan'])
         ->orderBy('keterangan', 'ASC')
         ->get();
+
+        $this->kelasPerkeso = KelasPerkeso::select(['id_kelas','keterangan'])
+        ->whereKodSektor($this->sektor_perkeso)
+        ->orderBy('keterangan', 'ASC')
+        ->get()
+        ->map(function ($item) {
+            $item->keterangan = strtoupper($item->keterangan);
+            return $item;
+        });
 
 
         return view('livewire.module.maklumat-pinjaman');

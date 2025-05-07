@@ -105,11 +105,12 @@
                                     id="shareholder" 
                                     name="shareholder" 
                                     class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}"  
-                                    wire:model.live="shareholder"
+                                    wire:model="shareholder"
                                     @if($business_ownership != '5') disabled @endif
                                 >
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
+                                    <option value="0">TIDAK</option>
                                 </select>
                                 @error('shareholder')
                                     <p class="text-red-500 text-xs italic mt-4">
@@ -923,10 +924,13 @@
                             @if($tot_partner >= 1)
                             <div class="col-span-6">
                             <h4 class="text-lg font-medium text-gray-900 mb-6">Maklumat Rakan Kongsi 1</h4>
+                            @php
+                                $disabled = $disabledPartnerFields ? 'disabled' : '';
+                            @endphp
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="partner_name" class="block text-sm font-medium leading-5 text-gray-700">Nama <span class="text-red-700">*</span></label>
-                                    <input id="partner_name" name="partner_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner_name">
+                                    <input id="partner_name" name="partner_name" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.lazy="partner_name" {{ $disabled }}>
                                     @error('partner_name')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -936,7 +940,7 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="partner_ic" class="block text-sm font-medium leading-5 text-gray-700">No. Kad Pengenalan <span class="text-red-700">*</span></label>
-                                    <input id="partner_ic" name="partner_ic" maxlength="12" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner_ic">
+                                    <input id="partner_ic" name="partner_ic" maxlength="12" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.lazy="partner_ic" {{ $disabled }}>
                                     @error('partner_ic')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -946,8 +950,8 @@
 
                                 <div class="col-span-6">
                                     <label for="partner_address1" class="block text-sm font-medium leading-5 text-gray-700">Alamat <span class="text-red-700">*</span></label>
-                                    <input id="partner_address1" name="partner_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner_address1">
-                                    <input id="partner_address2" name="partner_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner_address2">
+                                    <input id="partner_address1" name="partner_address1" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.lazy="partner_address1" {{ $disabled }}>
+                                    <input id="partner_address2" name="partner_address2" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.lazy="partner_address2" {{ $disabled }}>
                                     @error('partner_address1')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -957,7 +961,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner_postcode" class="block text-sm font-medium leading-5 text-gray-700">Poskod <span class="text-red-700">*</span></label>
-                                    <input id="partner_postcode" name="partner_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_postcode">
+                                    <input id="partner_postcode" name="partner_postcode" minlength="5" maxlength="5" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.lazy="partner_postcode">
                                     @error('partner_postcode')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -967,7 +971,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner_city" class="block text-sm font-medium leading-5 text-gray-700">Bandar <span class="text-red-700">*</span></label>
-                                    <input id="partner_city" name="partner_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="partner_city">
+                                    <input id="partner_city" name="partner_city" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.lazy="partner_city">
                                     @error('partner_city')
                                         <p class="text-red-500 text-xs italic mt-4">
                                             {{ $message }}
@@ -977,7 +981,7 @@
 
                                 <div class="col-span-6 sm:col-span-2">
                                     <label for="partner_state" class="block text-sm font-medium leading-5 text-gray-700">Negeri <span class="text-red-700">*</span></label>
-                                    <select id="partner_state" name="partner_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner_state">
+                                    <select id="partner_state" name="partner_state" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.lazy="partner_state">
                                         <option value="">SILA PILIH</option>
                                         @foreach ($negeriSelection as $negeris)
                                         <option value="{{ $negeris->kodnegeri }}">{{ $negeris->namanegeri}}</option>
@@ -998,7 +1002,7 @@
                                                 +6
                                             </span>
                                         </div>
-                                        <input id="partner_phone" name="partner_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner_phone">
+                                        <input id="partner_phone" name="partner_phone" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.lazy="partner_phone">
                                     </div>
                                     @error('partner_phone')
                                         <p class="text-red-500 text-xs italic mt-4">
@@ -1015,7 +1019,7 @@
                                                 +6
                                             </span>
                                         </div>
-                                        <input id="partner_phone_hp" name="partner_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.live="partner_phone_hp">
+                                        <input id="partner_phone_hp" name="partner_phone_hp" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase"   wire:model.lazy="partner_phone_hp">
                                     </div>
                                     @error('partner_phone_hp')
                                         <p class="text-red-500 text-xs italic mt-4">
@@ -1297,6 +1301,11 @@
                                     <div class="relative mt-1 rounded-md shadow-sm">
                                         <input id="partner3_total_shares" name="partner3_total_shares" maxlength="3" value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="partner3_total_shares">
                                     </div>
+                                    @error('partner3_total_shares')
+                                        <p class="text-red-500 text-xs italic mt-4">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
@@ -1595,9 +1604,18 @@
     @endif
     <div class="flex justify-center mt-6">
         <span class="inline-flex rounded-md shadow-sm">
-            <button wire:click="submit" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white bg-green-600 rounded-md border border-transparent transition duration-150 ease-in-out hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700">
+            <button 
+                wire:click="submit" 
+                class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-white {{ ($business_ownership === '5' && $shareholder === '0') ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-500 focus:border-green-700 focus:shadow-outline-green active:bg-green-700' }} rounded-md border border-transparent transition duration-150 ease-in-out focus:outline-none"
+                {{ ($business_ownership === '5' && $shareholder === '0') ? 'disabled' : '' }}
+            >
                 Simpan
             </button>
         </span>
     </div>
+    @if($business_ownership === '5' && $shareholder === '0')
+    <div class="mt-4 text-center">
+        <p class="text-red-500 font-medium">Permohonan tidak dapat diteruskan. Pemohon adalah wajib daripada pemegang saham syarikat.</p>
+    </div>
+    @endif
 </div>

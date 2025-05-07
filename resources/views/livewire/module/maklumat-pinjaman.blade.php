@@ -448,10 +448,10 @@
                             </div>
 
                             <div class="col-span-6 sm:col-span-2">
-                                <label for="will_fi" class="block text-sm font-medium leading-5 text-gray-700">Fi Wasiat <span class="text-red-700">*</span></label>
+                                <label for="will_fi" class="block text-sm font-medium leading-5 text-gray-700">Fi Wasiat (RM) <span class="text-red-700">*</span></label>
                                 <select id="will_fi" name="will_fi" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="will_fi">
                                     <option value="">SILA PILIH</option>
-                                    <option value="200">RM 200</option>
+                                    <option value="200">200</option>
                                 </select>
                                 @error('will_fi')
                                     <p class="text-red-500 text-xs italic mt-4">

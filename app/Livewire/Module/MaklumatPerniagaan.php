@@ -12,15 +12,18 @@ use App\Models\MaklumatPerniagaan as ModelsMaklumatPerniagaan;
 use App\Traits\MaklumatPerniagaanValidation;
 use WireUi\Traits\WireUiActions;
 use Livewire\Attributes\On; 
+use App\Models\MaklumatPeribadi;
 
 class MaklumatPerniagaan extends Component
 {
     use MaklumatPerniagaanValidation, WireUiActions;
+    
 
     public $sektorSelection = []; // Pastikan ia sentiasa array
     public $aktivitiSelection = [];
     public $negeriSelection = [];
     public $appln_id;
+    public $disabledPartnerFields = false;
 
     protected $queryString = ['appln_id'];
 
@@ -46,11 +49,41 @@ class MaklumatPerniagaan extends Component
         }
     }
 
+    // Method to show notification when shareholder is set to TIDAK
+    public function updatedShareholder($value)
+    {
+        if ($value === '0' && $this->business_ownership === '5') {
+            $this->dialog()->show([
+                'icon' => 'warning',
+                'title' => 'Perhatian!',
+                'description' => 'Permohonan tidak dapat diteruskan. Pemohon adalah wajib daripada pemegang saham syarikat.',
+            ]);
+            
+        } elseif ($value === '1' && $this->tot_partner >= 1) {
+            $maklumatPeribadi = MaklumatPeribadi::where('appln_id', $this->appln_id)->first();
+            if ($maklumatPeribadi) {
+                $this->partner_name = $maklumatPeribadi->name;
+                $this->partner_ic = $maklumatPeribadi->ic_no;
+                $this->partner_address1 = $maklumatPeribadi->address1;
+                $this->partner_address2 = $maklumatPeribadi->address2;
+                $this->partner_postcode = $maklumatPeribadi->postcode;
+                $this->partner_city = $maklumatPeribadi->city;
+                $this->partner_state = $maklumatPeribadi->state;
+                $this->partner_phone = $maklumatPeribadi->phone;
+                $this->partner_phone_hp = $maklumatPeribadi->phone_hp;
+
+                $this->disabledPartnerFields = true;
+            }
+        }
+    }
+
     protected function isMuslim()
     {
         $maklumatPeribadi = MaklumatPeribadi::where('appln_id', Auth::id())->first();
         return $maklumatPeribadi && $maklumatPeribadi->religion === 'ISLAM';
     }
+
+
 
     public function loadSektorSelection()
     {
@@ -318,6 +351,9 @@ class MaklumatPerniagaan extends Component
             }
 
             
+        // Format balik untuk paparan (contohnya di form)
+        $this->business_modal = number_format($business_modal_num, 0, '.', ',');
+            
     }
 
     protected function getFormData($applnId)
@@ -331,6 +367,9 @@ class MaklumatPerniagaan extends Component
 
     public function render()
     {
+
+        
+
         // Ambil senarai negeri
         $this->negeriSelection = Negeri::select(['kodnegeri', 'namanegeri'])
         ->where('kod', '!=', '1')
