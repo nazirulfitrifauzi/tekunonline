@@ -386,12 +386,20 @@ class MaklumatPerniagaan extends Component
             ->orWhere('sektor', 'Pembuatan')
             ->orWhere('sektor', 'Kontraktor Kecil')
             ->orWhere('sektor', 'Tani');
-        })->get();
+        })->get()
+        ->map(function ($item) {
+            $item->jenisPerniagaan = strtoupper($item->jenisPerniagaan);
+            return $item;
+        });
 
         $this->aktivitiSelection = JenisAktivitiBaru::where('idsektor', $this->business_sector)
         ->where('status', '=', '1')
         ->orderBy('Aktiviti', 'ASC')
-        ->get();
+        ->get()
+        ->map(function ($item) {
+            $item->Aktiviti = strtoupper($item->Aktiviti);
+            return $item;
+        });
 
         return view('livewire.module.maklumat-perniagaan');
     }
