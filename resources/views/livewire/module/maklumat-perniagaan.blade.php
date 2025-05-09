@@ -849,7 +849,7 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="agency_name" class="block text-sm font-medium leading-5 text-gray-700">
-                                    Nama Agensi
+                                    Nama Agensi Penganjur
                                 </label>
                                 <select 
                                     id="agency_name" 
@@ -857,10 +857,9 @@
                                     class="block w-full mt-1 rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select sm:text-sm sm:leading-5"
                                 >
                                     <option value="">SILA PILIH</option>
-                                    <option value="TEKUN">TEKUN</option>
                                     <option value="INSKEN">INSKEN</option>
+                                    <option value="SME CORP">SME CORP</option>
                                     <option value="CEDAR">CEDAR</option>
-                                    <option value="MARA">MARA</option>
                                     <option value="LAIN-LAIN">LAIN-LAIN</option>
                                 </select>
                             </div>

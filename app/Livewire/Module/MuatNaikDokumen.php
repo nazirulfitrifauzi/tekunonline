@@ -414,6 +414,10 @@ class MuatNaikDokumen extends Component
                     // Ambil masa berniaga (dari) dari data PDF
                     $businessOpen = $this->pdfData[0]->business_open ?? null;
                     $businessClose = $this->pdfData[0]->business_closed ?? null;
+                    
+                    // Convert 24-hour format to 12-hour format for display in PDF
+                    $businessOpenFormatted = $businessOpen ? date('h:i A', strtotime($businessOpen)) : null;
+                    $businessCloseFormatted = $businessClose ? date('h:i A', strtotime($businessClose)) : null;
 
                     // Default kosong
                     $masaBukak = '';
@@ -423,10 +427,11 @@ class MuatNaikDokumen extends Component
                     if ($businessOpen) {
                         try {
                             $hour = (int) date('H', strtotime($businessOpen));
+                            $ampm = date('A', strtotime($businessOpen)); // 'A' gives AM or PM
 
-                            if ($hour >= 1 && $hour < 12) {
+                            if ($ampm === 'AM') {
                                 $masaBukak = 'pagi';
-                            } elseif ($hour >= 12 && $hour < 18) {
+                            } elseif ($ampm === 'PM' && $hour >= 1 && $hour <= 6) {
                                 $masaBukak = 'petang';
                             } else {
                                 $masaBukak = 'malam';
@@ -437,14 +442,14 @@ class MuatNaikDokumen extends Component
                         }
                     }
                     
-                    // Kenal pasti masa (pagi / petang / malam)
                     if ($businessClose) {
                         try {
-                            $hour = (int) date('H', strtotime($businessClose));
-
-                            if ($hour >= 1 && $hour < 12) {
+                            $hour = (int) date('g', strtotime($businessClose)); // 'g' gives 1-12
+                            $ampm = date('A', strtotime($businessClose)); // 'A' gives AM or PM
+                    
+                            if ($ampm === 'AM') {
                                 $masaTutup = 'pagi';
-                            } elseif ($hour >= 12 && $hour < 18) {
+                            } elseif ($ampm === 'PM' && $hour >= 1 && $hour <= 6) {
                                 $masaTutup = 'petang';
                             } else {
                                 $masaTutup = 'malam';
@@ -1175,7 +1180,7 @@ class MuatNaikDokumen extends Component
                                     <!-- Masa Berniaga (DARI) -->
                                     <p
                                     style="position: absolute;top: 385px;left: 208px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_open ? : ' ').'
+                                        '.($businessOpenFormatted ? : ' ').'
                                     </p>
                                     <!-- Masa Berniaga (DARI - PAGI) -->
                                     <p style="position: absolute;top: 378px;left: 257px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaBukak == 'pagi' ? '1px solid black' : 'none').';">
@@ -1191,7 +1196,7 @@ class MuatNaikDokumen extends Component
                                     <!-- Masa Berniaga (HINGGA) -->
                                     <p
                                     style="position: absolute;top: 385px;left: 406px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_closed ? : ' ').'
+                                        '.($businessCloseFormatted ? : ' ').'
                                     </p>
                                     <!-- Masa Berniaga (HINGGA - PAGI) -->
                                     <p
@@ -1203,7 +1208,7 @@ class MuatNaikDokumen extends Component
                                     </p>
                                     <!-- Masa Berniaga (HINGGA - MALAM) -->
                                     <p
-                                    style="position: absolute;top: 378px;left: 506px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaTutup == 'pagi' ? '1px solid black' : 'none').';">
+                                    style="position: absolute;top: 378px;left: 506px;height: 17px;width: 10px;background: transparent;font-size: 10px !important; border-bottom: '.($masaTutup == 'malam' ? '1px solid black' : 'none').';">
                                     </p>
                                     
                                     <!-- checkbox Pengitirafan (YA) -->
@@ -1325,14 +1330,21 @@ class MuatNaikDokumen extends Component
                                     <!-- Jumlah Pembiayaan -->
                                     <p
                                     style="position: absolute;top: 679px;left: 245px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->tot_fin_tot ? : ' ').'                                        
+                                    '.(implode(', ', array_filter([
+                                        $this->pdfData[0]->fin1_tot ?? '',
+                                        $this->pdfData[0]->fin2_tot ?? '',
+                                        $this->pdfData[0]->fin3_tot ?? ''
+                                    ])) ?: ' ').' 
                                     </p>
 
                                     <!-- Jumlah Pembiayaan -->
                                     <p
                                     style="position: absolute;top: 679px;left: 525px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->tot_bal ? : ' ').'                                        
-
+                                    '.(implode(', ', array_filter([
+                                        $this->pdfData[0]->fin1_bal ?? '',
+                                        $this->pdfData[0]->fin2_bal ?? '',
+                                        $this->pdfData[0]->fin3_bal ?? ''
+                                    ])) ?: ' ').' 
                                     </p>
                                     </div>
 
@@ -1682,9 +1694,9 @@ class MuatNaikDokumen extends Component
                                         
                                     </p>
                                     
-                                    </div>
-
                                 </div>
+
+                            </div>
                                 </body>
 
                             </html>';
