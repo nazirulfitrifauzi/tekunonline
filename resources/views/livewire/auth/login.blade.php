@@ -7,6 +7,10 @@
                 <a href="{{ route('dashboard') }}">
                     <x-logo class="mx-auto w-auto h-24 text-indigo-600" />
                 </a>
+                
+                <h3 class="mt-2 text-xl font-extrabold text-center bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
+                    Sistem Permohonan Online<br>TEKUN Nasional
+                </h3>
 
                 <h2 class="mt-6 text-3xl font-extrabold leading-9 text-center text-gray-900">
                     Log masuk ke akaun anda

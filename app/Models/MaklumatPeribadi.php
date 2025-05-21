@@ -14,4 +14,10 @@ class MaklumatPeribadi extends Model
     {
         return $this->belongsTo(ApplnStatus::class, 'appln_id', 'id');
     }
+
+    public function isMuslim()
+    {
+        return $this->religion === 'ISLAM';
+    }
+
 }

@@ -84,7 +84,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/home', Home::class)->name('home');
+    Route::get('/home', Home::class)->name('home')->middleware('check.application.ownership');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/maklumat-akaun', MaklumatAkaun::class)->name('maklumat-akaun');
     Route::get('Admin/admin-main', AdminMain::class)->name('admin-main');

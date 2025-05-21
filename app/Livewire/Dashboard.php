@@ -25,6 +25,14 @@ class Dashboard extends Component
 
     public function mount()
     {
+        if (session()->has('error')) {
+            $this->dialog()->show([
+                'icon' => 'error', // 'success', 'info', 'warning', 'error', 'confirmatio
+                'title' => 'Amaran',
+                'description' => session('error')
+            ]);
+        }
+
         //dd($this->tekun_branch,$this->tekun_state);
         $this->user = Auth::user();        
        
