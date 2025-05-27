@@ -91,7 +91,7 @@ class Register extends Component
 
         Auth::login($user, true);
 
-        return redirect()->route('verification.notice');
+        return redirect()->intended(route('verification.notice'));    
     }
 
     public function render()

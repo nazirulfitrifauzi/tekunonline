@@ -13,6 +13,7 @@ use App\Traits\MaklumatPerniagaanValidation;
 use WireUi\Traits\WireUiActions;
 use Livewire\Attributes\On; 
 use App\Models\MaklumatPeribadi;
+use App\Models\SubAktivitiKraf;
 
 class MaklumatPerniagaan extends Component
 {
@@ -22,6 +23,7 @@ class MaklumatPerniagaan extends Component
     public $sektorSelection = []; // Pastikan ia sentiasa array
     public $aktivitiSelection = [];
     public $negeriSelection = [];
+    public $subAktivitiSelection = [];
     public $appln_id;
     public $disabledPartnerFields = false;
 
@@ -46,6 +48,10 @@ class MaklumatPerniagaan extends Component
                     $this->$key = $value;
                 }
             }
+                    
+            // Load sub-activities if they exist
+            $this->loadSubBusinessActivities();
+
             
             // Format numeric fields for display
             if ($this->business_modal) {
@@ -59,6 +65,25 @@ class MaklumatPerniagaan extends Component
             }
         }
     }
+
+        /**
+     * Convert selectedSubActivities array to comma-separated string
+     */
+    protected function getSubBusinessActivityString()
+    {
+        return !empty($this->selectedSubActivities) ? implode(',', $this->selectedSubActivities) : null;
+    }
+    
+    /**
+     * Load existing sub-activities from comma-separated string
+     */
+    protected function loadSubBusinessActivities()
+    {
+        if (!empty($this->sub_business_activity)) {
+            $this->selectedSubActivities = explode(',', $this->sub_business_activity);
+        }
+    }
+
 
     // Method to show notification when shareholder is set to TIDAK
     public function updatedShareholder($value)
@@ -87,14 +112,6 @@ class MaklumatPerniagaan extends Component
             }
         }
     }
-
-    protected function isMuslim()
-    {
-        $maklumatPeribadi = MaklumatPeribadi::where('appln_id', Auth::id())->first();
-        return $maklumatPeribadi && $maklumatPeribadi->religion === 'ISLAM';
-    }
-
-
 
     public function loadSektorSelection()
     {
@@ -148,22 +165,35 @@ class MaklumatPerniagaan extends Component
 
     public function submit()
     {
-
         try {
-                $this->validateSelf();
-                //add if error on validate
+            $this->validateSelf();
+            //add if error on validate
 
-                $formData = collect($this->all())
-                    ->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection'])
-                    ->toArray();
+            $formData = collect($this->all())
+                ->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection','subAktivitiSelection'])
+                ->toArray();
 
-                $formData['appln_id'] = $this->appln_id;
+            $formData['appln_id'] = $this->appln_id;
 
-        
+            // Convert selectedSubActivities to comma-separated string
+            $this->sub_business_activity = $this->getSubBusinessActivityString();
+            
+            // Set sub_business_activity to null if not required
+            $requiresSubActivity = [
+                '100500', '100501', '100502', '100503', '100504',
+                '100505', '100506', '100507', '100508', '100509'
+            ];
+            
+            if (!in_array($this->business_activity, $requiresSubActivity)) {
+                $this->sub_business_activity = null;
+            }
+
+            // Format numeric values
             $business_asset_value_num = intval(str_replace(',', '', $this->business_asset_value));
             $business_start_resources_num = intval(str_replace(',', '', $this->business_start_resources));
             $business_modal_num = intval(str_replace(',', '', $this->business_modal));
 
+            // Format text fields to uppercase
             $this->business_name = strtoupper($this->business_name);
             $this->business_address1 = strtoupper($this->business_address1);
             $this->business_address2 = strtoupper($this->business_address2 ?? '');
@@ -317,7 +347,8 @@ class MaklumatPerniagaan extends Component
                 ]
             );
 
-        // Tambah logik untuk ssm/pbt
+        // Tambah logik untuk ssm/pbt - PERBAIKAN: Hanya simpan ssm_pbt ke appln_status
+        $data = [];
         $data['ssm_pbt'] = ($this->license_type === 'NO. SSM') ? 1 : 0;
 
         ApplnStatus::where('id', $this->appln_id)->update($data);
@@ -365,7 +396,7 @@ class MaklumatPerniagaan extends Component
     {
         $formData = collect($this->all())->map(function($value, $key) {
             return is_string($value) ? strtoupper($value) : $value;
-        })->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection'])->toArray();
+        })->except(['sektorSelection', 'aktivitiSelection', 'negeriSelection','subAktivitiSelection'])->toArray();
 
         return array_merge(['appln_id' => $applnId], $formData);
     }
@@ -398,6 +429,14 @@ class MaklumatPerniagaan extends Component
         ->get()
         ->map(function ($item) {
             $item->Aktiviti = strtoupper($item->Aktiviti);
+            return $item;
+        });
+
+        $this->subAktivitiSelection = SubAktivitiKraf::select(['idSubAktiviti','sub_aktiviti'])
+        ->where('idAktiviti', $this->business_activity)
+        ->orderBy('sub_aktiviti', 'ASC')
+        ->get()        ->map(function ($item) {
+            $item->sub_aktiviti = strtoupper($item->sub_aktiviti);
             return $item;
         });
 

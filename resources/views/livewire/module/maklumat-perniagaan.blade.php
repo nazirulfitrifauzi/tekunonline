@@ -225,87 +225,29 @@
                             @if($business_activity == '100505' || $business_activity == '100506'|| $business_activity == '100507'
                             || $business_activity == '100508'|| $business_activity == '100509'|| $business_activity == '100500'
                             || $business_activity == '100501'|| $business_activity == '100502'|| $business_activity == '100503'|| $business_activity == '100504')
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="sub_business_activity" class="block text-sm font-medium leading-5 text-gray-700">Sub Aktiviti Perniagaan <span class="text-red-700">*</span></label>
-                                <select id="sub_business_activity" name="sub_business_activity" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="sub_business_activity">
-                                    <option value="">SILA PILIH</option>
-                                    @if($business_activity == '100505')
-                                    <option value="1">BATIK</option>
-                                    <option value="2">SONGKET</option>
-                                    <option value="3">TENUNAN</option>
-                                    <option value="4">SULAMAN</option>
-                                    <option value="5">TEKATAN</option>
-                                    <option value="6">JAHITAN</option>
-                                    @elseif($business_activity == '100506')
-                                    <option value="13">KAYU</option>
-                                    <option value="14">BULUH</option>
-                                    <option value="15">ROTAN</option>
-                                    <option value="16">BEMBAN</option>
-                                    <option value="17">MENGKUANG</option>
-                                    <option value="18">DAUN GETAH</option>
-                                    <option value="19">DAUN NIPAH</option>
-                                    <option value="20">RUMBIA</option>
-                                    <option value="21">BUNGA KERING</option>
-                                    <option value="22">TEMPURUNG</option>
-                                    @elseif($business_activity == '100507')
-                                    <option value="33">PERAK</option>
-                                    <option value="34">TEMBAGA</option>
-                                    <option value="35">PIUTER</option>
-                                    <option value="36">BESI</option>
-                                    <option value="37">EMAS</option>
-                                    <option value="38">ALUMINIUM</option>
-                                    @elseif($business_activity == '100508')
-                                    <option value="45">SERAMIK</option>
-                                    <option value="46">BATU</option>
-                                    <option value="47">KRISTAL</option>
-                                    <option value="48">KACA</option>
-                                    @elseif($business_activity == '100509')
-                                    <option value="53">MANIK</option>
-                                    <option value="54">MUTIARA</option>
-                                    <option value="55">CENGKERANG</option>
-                                    <option value="56">KULIT</option>
-                                    @elseif($business_activity == '100500')
-                                    <option value="7">BATIK</option>
-                                    <option value="8">SONGKET</option>
-                                    <option value="9">TENUNAN</option>
-                                    <option value="10">SULAMAN</option>
-                                    <option value="11">TEKATAN</option>
-                                    <option value="12">JAHITAN</option>
-                                    @elseif($business_activity == '100501')
-                                    <option value="23">KAYU</option>
-                                    <option value="24">BULUH</option>
-                                    <option value="25">ROTAN</option>
-                                    <option value="26">BEMBAN</option>
-                                    <option value="27">MENGKUANG</option>
-                                    <option value="28">DAUN GETAH</option>
-                                    <option value="29">DAUN NIPAH</option>
-                                    <option value="30">RUMBIA</option>
-                                    <option value="31">BUNGA KERING</option>
-                                    <option value="32">TEMPURUNG</option>
-                                    @elseif($business_activity == '100502')
-                                    <option value="39">PERAK</option>
-                                    <option value="40">TEMBAGA</option>
-                                    <option value="41">PIUTER</option>
-                                    <option value="42">BESI</option>
-                                    <option value="43">EMAS</option>
-                                    <option value="44">ALUMINIUM</option>
-                                    @elseif($business_activity == '100503')
-                                    <option value="49">SERAMIK</option>
-                                    <option value="50">BATU</option>
-                                    <option value="51">KRISTAL</option>
-                                    <option value="52">KACA</option>
-                                    @elseif($business_activity == '100504')
-                                    <option value="57">MANIK</option>
-                                    <option value="58">MUTIARA</option>
-                                    <option value="59">CENGKERANG</option>
-                                    <option value="60">KULIT</option>
-                                    @endif
-                                </select>
-                                @error('sub_business_activity')
+                            <div class="col-span-6 sm:col-span-6">
+                                <label class="block text-sm font-medium leading-5 text-gray-700">Sub Aktiviti Perniagaan <span class="text-red-700">*</span></label>
+                                <div class="mt-2 grid grid-cols-3 gap-4">
+                                    @foreach ($subAktivitiSelection as $subAktivitis)
+                                    <x-checkbox
+                                        id="sub_business_activity_{{ $subAktivitis->idSubAktiviti }}"
+                                        value="{{ $subAktivitis->idSubAktiviti }}"
+                                        label="{{ $subAktivitis->sub_aktiviti }}"
+                                        wire:model.live="selectedSubActivities"
+                                    />
+                                    @endforeach
+                                </div>
+                                @error('selectedSubActivities')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
                                     </p>
                                 @enderror
+
+                                <!-- Hidden input to store comma-separated values -->
+                                <input type="hidden" 
+                                    wire:model="selectedSubActivitiesString" 
+                                    value="{{ is_array($selectedSubActivities) ? implode(',', $selectedSubActivities) : '' }}"
+                                >
                             </div>
                             @endif
                         @endif

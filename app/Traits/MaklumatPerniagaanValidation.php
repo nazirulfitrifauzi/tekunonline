@@ -18,6 +18,8 @@ trait MaklumatPerniagaanValidation
     public $business_sector;
     public $business_activity;
     public $sub_business_activity;
+    public $selectedSubActivities = [];
+    public $selectedSubActivitiesString;
     public $business_duration;
     public $business_duration_year;
     public $business_duration_month;
@@ -124,14 +126,14 @@ trait MaklumatPerniagaanValidation
             ],
             'business_ownership' =>'required',
             'shareholder' =>'required_if:business_ownership,5',
-            'business_modal' =>'required_if:business_ownership,5|numeric|lte:300000',
+            // 'business_modal' =>'required_if:business_ownership,5|numeric|lte:300000',
             'business_name' =>'required',
             'business_sector' =>'required',
             'business_activity' =>'required',
-            'sub_business_activity' =>'required_if:business_activity,100500|required_if:business_activity,100501|required_if:business_activity,100502
+            'selectedSubActivities' =>'required_if:business_activity,100500|required_if:business_activity,100501|required_if:business_activity,100502
                                     |required_if:business_activity,100503|required_if:business_activity,100504|required_if:business_activity,100505
                                     |required_if:business_activity,100506|required_if:business_activity,100507|required_if:business_activity,100508
-                                    |required_if:business_activity,100509',
+                                    |required_if:business_activity,100509|array',
             'business_duration_year' =>'required',
             'business_duration_month' =>'required',
             'business_address1' =>'required',
@@ -258,7 +260,8 @@ trait MaklumatPerniagaanValidation
         'business_name.required' => 'Sila masukkan nama perniagaan.',
         'business_sector.required' => 'Sila pilih sektor perniagaan.',
         'business_activity.required' => 'Sila pilih aktiviti perniagaan.',
-        'sub_business_activity.required_if' => 'Sila pilih sub aktiviti perniagaan.',
+        'selectedSubActivities.required_if' => 'Sila pilih sub aktiviti perniagaan.',
+        'selectedSubActivities.array' => 'Format sub aktiviti perniagaan tidak sah.',
         'business_duration_year.required' => 'Sila pilih masa perniagaan (tahun).',
         'business_duration_month.required' => 'Sila pilih masa perniagaan (bulan).',
         'business_address1.required' => 'Sila masukkan alamat perniagaan.',
@@ -345,3 +348,4 @@ trait MaklumatPerniagaanValidation
         'partner5_roles.required' => 'Sila pilih jawatan rakan kongsi.',
         ];
 }
+
