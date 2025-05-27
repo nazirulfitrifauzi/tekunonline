@@ -66,7 +66,7 @@ class MaklumatPerniagaan extends Component
         }
     }
 
-        /**
+    /**
      * Convert selectedSubActivities array to comma-separated string
      */
     protected function getSubBusinessActivityString()
@@ -84,6 +84,28 @@ class MaklumatPerniagaan extends Component
         }
     }
 
+    public function updatedBusinessActivity($value)
+    {
+        $this->selectedSubActivities = [];
+        $this->sub_business_activity = null;
+        $this->loadSubActivityOptions($value);
+       // ->where('idAktiviti', $this->business_activity)
+
+    
+        // Simpan terus ke DB
+        ModelsMaklumatPerniagaan::where('appln_id', $this->appln_id)->update([
+            'business_activity' => $value,
+            'sub_business_activity' => null,
+        ]);
+    }
+
+    protected function loadSubActivityOptions($activityId)
+{
+    // Contoh sekiranya anda ambil dari model SubAktivitiKraf
+    $this->subAktivitiSelection = SubAktivitiKraf::where('idAktiviti', $activityId)->get();
+}
+
+    
 
     // Method to show notification when shareholder is set to TIDAK
     public function updatedShareholder($value)
