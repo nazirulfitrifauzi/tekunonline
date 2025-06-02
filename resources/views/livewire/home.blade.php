@@ -211,8 +211,7 @@
                                     { id: 5, label: 'Muat Naik Dokumen', enabled: @js($tab5_enabled) },
                                 ],
                                 reposition(btn) {
-                                    this.$refs.tabMarker.style.width = btn.offsetWidth + 'px';
-                                    this.$refs.tabMarker.style.left = btn.offsetLeft + 'px';
+                                    // Removed tabMarker references
                                 },
                                 init() {
                                     this.$nextTick(() => {

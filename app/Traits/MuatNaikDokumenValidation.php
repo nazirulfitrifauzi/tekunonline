@@ -14,19 +14,20 @@ trait MuatNaikDokumenValidation
     public $document_merge;
 
     public $document_perkeso_status;
+    // public $document_icP_no_status;
 
     public function getRules()
     {
         $rules = [
-            'document_ic_no' => 'required|file|mimes:pdf|max:10240',
-            'document_icP_no' => 'required|file|mimes:pdf|max:10240',
-            'document_ssm' => 'required|file|mimes:pdf|max:10240',
-            'document_business_picture' => 'required|file|mimes:pdf|max:10240',
-            'document_bank_statements' => 'required|file|mimes:pdf|max:10240',
+            'document_ic_no' => $this->existingData && $this->existingData->document_ic_no ? '' : 'required|file|mimes:pdf|max:10240',
+            'document_icP_no' => $this->existingData && $this->existingData->document_icP_no ? '' : 'required|file|mimes:pdf|max:10240',
+            'document_ssm' => $this->existingData && $this->existingData->document_ssm ? '' : 'required|file|mimes:pdf|max:10240',
+            'document_business_picture' => $this->existingData && $this->existingData->document_business_picture ? '' : 'required|file|mimes:pdf|max:10240',
+            'document_bank_statements' => $this->existingData && $this->existingData->document_bank_statements ? '' : 'required|file|mimes:pdf|max:10240',
         ];
 
         if ($this->document_perkeso_status == 1) {
-            $rules['document_perkeso'] = 'required|file|mimes:pdf|max:10240';
+            $rules['document_perkeso'] = $this->existingData && $this->existingData->document_perkeso ? '' : 'required|file|mimes:pdf|max:10240';
         }
 
         return $rules;

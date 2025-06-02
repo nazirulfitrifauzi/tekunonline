@@ -51,6 +51,11 @@ class MuatNaikDokumen extends Component
         $applnStatus = ApplnStatus::where('id', $this->appln_id)->first();
         if ($applnStatus) {
             $this->existingData = ModelsMaklumatPinjaman::where('appln_id', $applnStatus->id)->first();
+            
+            // Set show_hantar to true if documents have been uploaded (tab5_muat_naik_dokumen is 1)
+            if ($applnStatus->tab5_muat_naik_dokumen == 1) {
+                $this->show_hantar = true;
+            }
         }        
     
         if ($this->existingData) {
@@ -64,6 +69,105 @@ class MuatNaikDokumen extends Component
             $this->document_perkeso_status = ($this->existingData->skim_safety == 0) ? 1 : 0;
         }
     }
+
+    public function deleteBankStatement()
+{
+    if ($this->existingData && $this->existingData->document_bank_statements) {
+        Storage::delete('public/' . auth()->user()->ic_no . '/' . $this->existingData->document_bank_statements);
+        $this->existingData->update(['document_bank_statements' => null]);
+        
+        // Set tab5_muat_naik_dokumen to 0 and show_hantar to false immediately
+        ApplnStatus::where('id', $this->appln_id)->update([
+            'tab5_muat_naik_dokumen' => 0,
+        ]);
+        $this->show_hantar = false;
+        
+        session()->flash('message', 'Penyata bank berjaya dipadam.');
+    }
+}
+
+public function deleteIcDocument()
+{
+    if ($this->existingData && $this->existingData->document_ic_no) {
+        Storage::delete('public/' . auth()->user()->ic_no . '/' . $this->existingData->document_ic_no);
+        $this->existingData->update(['document_ic_no' => null]);
+        
+        // Set tab5_muat_naik_dokumen to 0 and show_hantar to false immediately
+        ApplnStatus::where('id', $this->appln_id)->update([
+            'tab5_muat_naik_dokumen' => 0,
+        ]);
+        $this->show_hantar = false;
+        
+        session()->flash('message', 'Dokumen IC berjaya dipadam.');
+    }
+}
+
+public function deleteIcPDocument()
+{
+    if ($this->existingData && $this->existingData->document_icP_no) {
+        Storage::delete('public/' . auth()->user()->ic_no . '/' . $this->existingData->document_icP_no);
+        $this->existingData->update(['document_icP_no' => null]);
+        
+        // Set tab5_muat_naik_dokumen to 0 and show_hantar to false immediately
+        ApplnStatus::where('id', $this->appln_id)->update([
+            'tab5_muat_naik_dokumen' => 0,
+        ]);
+        $this->show_hantar = false;
+        
+        session()->flash('message', 'Dokumen IC Pasangan berjaya dipadam.');
+    }
+}
+
+public function deleteSsmDocument()
+{
+    if ($this->existingData && $this->existingData->document_ssm) {
+        Storage::delete('public/' . auth()->user()->ic_no . '/' . $this->existingData->document_ssm);
+        $this->existingData->update(['document_ssm' => null]);
+        
+        // Set tab5_muat_naik_dokumen to 0 and show_hantar to false immediately
+        ApplnStatus::where('id', $this->appln_id)->update([
+            'tab5_muat_naik_dokumen' => 0,
+        ]);
+        $this->show_hantar = false;
+        
+        session()->flash('message', 'Dokumen SSM berjaya dipadam.');
+    }
+}
+
+public function deleteBusinessPictureDocument()
+{
+    if ($this->existingData && $this->existingData->document_business_picture) {
+        Storage::delete('public/' . auth()->user()->ic_no . '/' . $this->existingData->document_business_picture);
+        $this->existingData->update(['document_business_picture' => null]);
+        
+        // Set tab5_muat_naik_dokumen to 0 and show_hantar to false immediately
+        ApplnStatus::where('id', $this->appln_id)->update([
+            'tab5_muat_naik_dokumen' => 0,
+        ]);
+        $this->show_hantar = false;
+        
+        session()->flash('message', 'Dokumen Perniagaan berjaya dipadam.');
+    }
+}
+
+public function deletePerkesoDocument()
+{
+    if ($this->existingData && $this->existingData->document_perkeso) {
+        Storage::delete('public/' . auth()->user()->ic_no . '/' . $this->existingData->document_perkeso);
+        $this->existingData->update(['document_perkeso' => null]);
+        
+        // For Perkeso document, check if it's required based on skim_safety
+        if ($this->existingData->skim_safety == 0) {
+            // Set tab5_muat_naik_dokumen to 0 and show_hantar to false immediately
+            ApplnStatus::where('id', $this->appln_id)->update([
+                'tab5_muat_naik_dokumen' => 0,
+            ]);
+            $this->show_hantar = false;
+        }
+        
+        session()->flash('message', 'Dokumen Perkeso berjaya dipadam.');
+    }
+}
 
     protected $listeners = ['run-validation' => 'validateSelf'];
 
@@ -199,29 +303,60 @@ class MuatNaikDokumen extends Component
             $folderName = $user->ic_no;
             $appln_id = $this->appln_id;
 
-            // Get file extensions
-            $ic_extension        = $this->document_ic_no->getClientOriginalExtension();
-            $icP_extension       = $this->document_icP_no->getClientOriginalExtension();
-            $ssm_extension       = $this->document_ssm->getClientOriginalExtension();
-            $business_extension  = $this->document_business_picture->getClientOriginalExtension();
-            $bank_extension      = $this->document_bank_statements->getClientOriginalExtension();
+            // Initialize arrays for filenames and paths
+            $fileNames = [];
+            $documentPaths = [];
 
-            // perkeso is optional if skim_safety == 0
-            if (optional($this->existingData)->skim_safety == 0 && is_object($this->document_perkeso)) {
-                $perkeso_extension = $this->document_perkeso->getClientOriginalExtension();
+            // Process each document only if it's an object (uploaded file)
+            // IC Document
+            if (is_object($this->document_ic_no)) {
+                $ic_extension = $this->document_ic_no->getClientOriginalExtension();
+                $fileNames['document_ic_no'] = 'ic_' . now()->format('Y-m-d') . '.' . $ic_extension;
+            } elseif ($this->existingData && $this->existingData->document_ic_no) {
+                // Use existing filename if document wasn't changed
+                $fileNames['document_ic_no'] = $this->existingData->document_ic_no;
             }
 
-            // Create filenames (without path)
-            $fileNames = [
-                'document_ic_no'           => 'ic_' . now()->format('Y-m-d') . '.' . $ic_extension,
-                'document_icP_no'          => 'icP_' . now()->format('Y-m-d') . '.' . $icP_extension,
-                'document_ssm'             => 'ssm_' . now()->format('Y-m-d') . '.' . $ssm_extension,
-                'document_business_picture' => 'business_' . now()->format('Y-m-d') . '.' . $business_extension,
-                'document_bank_statements'  => 'bank_' . now()->format('Y-m-d') . '.' . $bank_extension,
-            ];
+            // IC Pasangan Document
+            if (is_object($this->document_icP_no)) {
+                $icP_extension = $this->document_icP_no->getClientOriginalExtension();
+                $fileNames['document_icP_no'] = 'icP_' . now()->format('Y-m-d') . '.' . $icP_extension;
+            } elseif ($this->existingData && $this->existingData->document_icP_no) {
+                $fileNames['document_icP_no'] = $this->existingData->document_icP_no;
+            }
 
-            if (optional($this->existingData)->skim_safety == 0 && is_object($this->document_perkeso)) {
-                $fileNames['document_perkeso'] = 'perkeso_' . now()->format('Y-m-d') . '.' . $perkeso_extension;
+            // SSM Document
+            if (is_object($this->document_ssm)) {
+                $ssm_extension = $this->document_ssm->getClientOriginalExtension();
+                $fileNames['document_ssm'] = 'ssm_' . now()->format('Y-m-d') . '.' . $ssm_extension;
+            } elseif ($this->existingData && $this->existingData->document_ssm) {
+                $fileNames['document_ssm'] = $this->existingData->document_ssm;
+            }
+
+            // Business Picture Document
+            if (is_object($this->document_business_picture)) {
+                $business_extension = $this->document_business_picture->getClientOriginalExtension();
+                $fileNames['document_business_picture'] = 'business_' . now()->format('Y-m-d') . '.' . $business_extension;
+            } elseif ($this->existingData && $this->existingData->document_business_picture) {
+                $fileNames['document_business_picture'] = $this->existingData->document_business_picture;
+            }
+
+            // Bank Statements Document
+            if (is_object($this->document_bank_statements)) {
+                $bank_extension = $this->document_bank_statements->getClientOriginalExtension();
+                $fileNames['document_bank_statements'] = 'bank_' . now()->format('Y-m-d') . '.' . $bank_extension;
+            } elseif ($this->existingData && $this->existingData->document_bank_statements) {
+                $fileNames['document_bank_statements'] = $this->existingData->document_bank_statements;
+            }
+
+            // Perkeso Document (optional)
+            if (optional($this->existingData)->skim_safety == 0) {
+                if (is_object($this->document_perkeso)) {
+                    $perkeso_extension = $this->document_perkeso->getClientOriginalExtension();
+                    $fileNames['document_perkeso'] = 'perkeso_' . now()->format('Y-m-d') . '.' . $perkeso_extension;
+                } elseif ($this->existingData && $this->existingData->document_perkeso) {
+                    $fileNames['document_perkeso'] = $this->existingData->document_perkeso;
+                }
             }
 
             // Build full paths => subfolder is the IC number
@@ -230,19 +365,40 @@ class MuatNaikDokumen extends Component
                 return $folderName . '/' . $fileName;
             }, $fileNames);
 
-            // 1) Store each file in 'storage/app/public/{IC}/...'
-            $this->document_ic_no->storeAs('', $documentPaths['document_ic_no'], 'public');
-            $this->document_icP_no->storeAs('', $documentPaths['document_icP_no'], 'public');
-            $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
-            $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
-            $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
+            // Store each file in 'storage/app/public/{IC}/...'
+            // Only store files that were actually uploaded (objects)
+            if (is_object($this->document_ic_no)) {
+                $this->document_ic_no->storeAs('', $documentPaths['document_ic_no'], 'public');
+            }
+            
+            if (is_object($this->document_icP_no)) {
+                $this->document_icP_no->storeAs('', $documentPaths['document_icP_no'], 'public');
+            }
+            
+            if (is_object($this->document_ssm)) {
+                $this->document_ssm->storeAs('', $documentPaths['document_ssm'], 'public');
+            }
+            
+            if (is_object($this->document_business_picture)) {
+                $this->document_business_picture->storeAs('', $documentPaths['document_business_picture'], 'public');
+            }
+            
+            if (is_object($this->document_bank_statements)) {
+                $this->document_bank_statements->storeAs('', $documentPaths['document_bank_statements'], 'public');
+            }
 
             if (optional($this->existingData)->skim_safety == 0 && is_object($this->document_perkeso)) {
                 $this->document_perkeso->storeAs('', $documentPaths['document_perkeso'], 'public');
             }
 
             // 2) COPY each file to "public/storage/{IC}/..." as well
-            foreach ($documentPaths as $docPath) {
+            // Only copy files that were actually uploaded (objects)
+            foreach ($documentPaths as $docKey => $docPath) {
+                // Skip if the file wasn't uploaded
+                if (!is_object($this->{$docKey})) {
+                    continue;
+                }
+                
                 // The physical path to the file in storage/app/public
                 $sourcePath = Storage::disk('public')->path($docPath);
 
@@ -270,7 +426,6 @@ class MuatNaikDokumen extends Component
 
             // Store the text file into 'storage/app/public/{IC}/'
             Storage::disk('public')->put($mergedFilePath, $documentLinks);
-            //$fileNames['document_merge'] = $mergedFileName;
 
             // (Optional) Also copy the text file to public/storage/
             $sourceTxt = Storage::disk('public')->path($mergedFilePath);
@@ -305,6 +460,11 @@ class MuatNaikDokumen extends Component
             session()->flash('message', 'Documents uploaded successfully. Document links have been created.');
             $this->show_hantar = true;
 
+        // Tambahkan baris ini untuk me-refresh halaman
+        $this->dispatch('saved');
+        $this->reset(['document_ic_no', 'document_icP_no', 'document_ssm', 'document_business_picture', 'document_bank_statements', 'document_perkeso']);
+        return $this->redirect(request()->header('Referer'));
+
         } catch (\Illuminate\Validation\ValidationException $e) {
             $this->dialog()->show([
                 'icon' => 'error',
@@ -317,7 +477,7 @@ class MuatNaikDokumen extends Component
             $this->validateSelf();
         }
     }
-
+    
 
     // public function submitPermohonan()
     // {
@@ -370,16 +530,18 @@ class MuatNaikDokumen extends Component
     //merge all file
     public function submitPermohonan()
     {
-        $user = Auth::user();
-        $folderName = $user->ic_no;
-        $appln_id = $this->appln_id;
+        try {
+            $user = Auth::user();
+            $folderName = $user->ic_no;
+            $appln_id = $this->appln_id;
+            
+            Log::info('Starting submitPermohonan for user: ' . $user->id . ', appln_id: ' . $appln_id);
 
+            // Execute stored procedure to update application reference number
+            $run = DB::statement('SET NOCOUNT ON;EXEC dbo.up_upd_appln_ref_no ?', [$appln_id]);
+            $this->pdfData = DB::select('EXEC dbo.up_list_individual_apply ?', array($appln_id));
 
-        // Execute stored procedure to update application reference number
-        $run = DB::statement('SET NOCOUNT ON;EXEC dbo.up_upd_appln_ref_no ?', [$appln_id]);
-        $this->pdfData = DB::select('EXEC dbo.up_list_individual_apply ?', array($appln_id));
-
-        $applnStatus = ApplnStatus::where('id', $appln_id)->first();
+            $applnStatus = ApplnStatus::where('id', $appln_id)->first();
 
             if ($applnStatus) {
                 $applnStatus->update([
@@ -390,17 +552,16 @@ class MuatNaikDokumen extends Component
                 // a) Construct a unique PDF name for the first PDF (bpc01)
                 $pdfName = 'bpc01_' . now()->format('Y-m-d') . '.pdf';
                 $pdfFullPath = storage_path('app/public/' . $folderName . '/' . $pdfName);
+                
+                Log::info('BPC01 PDF will be saved to: ' . $pdfFullPath);
 
                 $fileNames['document_bpc01'] = $pdfName;
-
-
-                // // b) Full storage path where we will save the bpc01 PDF
-                // $pdfFullPath = storage_path($folderName . '/' . $pdfName);
 
                 // Create the directory if it doesn't exist
                 $directory = dirname($pdfFullPath);
                 if (!file_exists($directory)) {
                     mkdir($directory, 0755, true);
+                    Log::info('Created directory: ' . $directory);
                 }
 
                 //start for bpc01 pdf generation
@@ -1694,6 +1855,11 @@ class MuatNaikDokumen extends Component
                                         
                                     </p>
                                     
+                                    <!-- Notis Cetakan Komputer -->
+                                    <p
+                                    style="position: absolute;top: 900px;left: 0;right: 0;width: 100%;text-align: center;background: transparent;font-size: 10px !important;font-style: italic;">
+                                        Dokumen ini adalah cetakan komputer, tandatangan tidak diperlukan
+                                    </p>
                                 </div>
 
                             </div>
@@ -1713,11 +1879,14 @@ class MuatNaikDokumen extends Component
                 //start view pdf
                     $pdfName2 = 'view_form_' . now()->format('Y-m-d') . '.pdf';
                     $pdfFullPath2 = storage_path('app/public/' . $folderName . '/' . $pdfName2);
+                    
+                    Log::info('View form PDF will be saved to: ' . $pdfFullPath2);
 
                     // Ensure the directory exists
                     $directory2 = dirname($pdfFullPath2);
                     if (!file_exists($directory2)) {
                         mkdir($directory2, 0755, true);
+                        Log::info('Created directory: ' . $directory2);
                     }
 
                     $html = view('pdf.view_form', ['data' => $this->pdfData[0]])->render();
@@ -1727,6 +1896,7 @@ class MuatNaikDokumen extends Component
 
                     // d) Save the PDF to storage
                     $pdf2->save($pdfFullPath2);
+                    Log::info('View form PDF generated successfully');
                 //end view pdf
 
                 // 3) Store the PDF path in application_pdf table
@@ -1748,99 +1918,123 @@ class MuatNaikDokumen extends Component
                 session()->flash('message', 'Permohonan telah dihantar.');
 
                 // --- MERGE PDF SECTION ---
+                Log::info('Starting PDF merge process');
 
                 // Initialize PDFMerger
                 $oMerger = PDFMergerFacade::init();
 
-                // 1) Add the first PDF (bpc01) using all pages
-                $oMerger->addPDF('file:///' . $pdfFullPath, 'all');
-
-                // 2) IC Bank PDF
+                // Define all required files
                 $bankPdfName = 'ic_' . now()->format('Y-m-d') . '.pdf';
-                $bankPdfPath = storage_path('app/public/' . $folderName . '/' . $bankPdfName);
-
-                if (!file_exists($bankPdfPath)) {
-                    Log::error("ic PDF not found at: " . $bankPdfPath);
-                    session()->flash('error', 'ic PDF file not found.');
-                    return redirect()->back();
-                }
-                $oMerger->addPDF('file:///' . $bankPdfPath, 'all');
-
-                // 3) Add icP PDF
                 $businessPdfName = 'icP_' . now()->format('Y-m-d') . '.pdf';
-                $businessPdfPath = storage_path('app/public/' . $folderName . '/' . $businessPdfName);
-
-                if (!file_exists($businessPdfPath)) {
-                    Log::error("icP PDF not found at: " . $businessPdfPath);
-                    session()->flash('error', 'icP PDF file not found.');
-                    return redirect()->back();
-                }
-                $oMerger->addPDF('file:///' . $businessPdfPath, 'all');
-
-                // 4) Add ssm PDF
                 $iicPdfName = 'ssm_' . now()->format('Y-m-d') . '.pdf';
-                //$iicPdfPath = storage_path('app/public/' . $folderName . '/' . $appln_id . '/' . $iicPdfName);
-                $iicPdfPath = storage_path('app/public/' . $folderName . '/' . $iicPdfName);
-
-                if (!file_exists($iicPdfPath)) {
-                    Log::error("ssm PDF not found at: " . $iicPdfPath);
-                    session()->flash('error', 'ssm PDF file not found.');
-                    return redirect()->back();
-                }
-                $oMerger->addPDF('file:///' . $iicPdfPath, 'all');
-
-                // 5) Add business PDF
                 $iic2PdfName = 'business_' . now()->format('Y-m-d') . '.pdf';
-                $iic2PdfPath = storage_path('app/public/' . $folderName . '/' . $iic2PdfName);
-
-                if (!file_exists($iic2PdfPath)) {
-                    Log::error("business PDF not found at: " . $iic2PdfPath);
-                    session()->flash('error', 'business PDF file not found.');
-                    return redirect()->back();
-                }
-                $oMerger->addPDF('file:///' . $iic2PdfPath, 'all');
-
-                // 6) Add ssm PDF
                 $ssmPdfName = 'bank_' . now()->format('Y-m-d') . '.pdf';
+                
+                $bankPdfPath = storage_path('app/public/' . $folderName . '/' . $bankPdfName);
+                $businessPdfPath = storage_path('app/public/' . $folderName . '/' . $businessPdfName);
+                $iicPdfPath = storage_path('app/public/' . $folderName . '/' . $iicPdfName);
+                $iic2PdfPath = storage_path('app/public/' . $folderName . '/' . $iic2PdfName);
                 $ssmPdfPath = storage_path('app/public/' . $folderName . '/' . $ssmPdfName);
 
-                if (!file_exists($ssmPdfPath)) {
-                    Log::error("Bank PDF not found at: " . $ssmPdfPath);
-                    session()->flash('error', 'Bank PDF file not found.');
+                // Check all required files before starting the merge
+                $requiredFiles = [
+                    'bpc01' => $pdfFullPath,
+                    'ic' => $bankPdfPath,
+                    'icP' => $businessPdfPath,
+                    'ssm' => $iicPdfPath,
+                    'business' => $iic2PdfPath,
+                    'bank' => $ssmPdfPath
+                ];
+
+                $missingFiles = [];
+                foreach ($requiredFiles as $fileType => $filePath) {
+                    if (!file_exists($filePath)) {
+                        $missingFiles[] = $fileType;
+                        Log::error("$fileType PDF not found at: " . $filePath);
+                    }
+                }
+
+                if (!empty($missingFiles)) {
+                    $errorMessage = 'File berikut tidak ditemukan: ' . implode(', ', $missingFiles);
+                    Log::error($errorMessage);
+                    session()->flash('error', $errorMessage);
                     return redirect()->back();
                 }
-                $oMerger->addPDF('file:///' . $ssmPdfPath, 'all');
 
-                // 7) Add ssm PDF
-                // $perkesoPdfName = 'perkeso_' . now()->format('Y-m-d') . '.pdf';
-                // $perkesoPdfPath = storage_path('app/public/' . $folderName . '/' . $perkesoPdfName);
+                // All files exist, proceed with merging
+                Log::info('All required files found, proceeding with merge');
 
-                // if (!file_exists($perkesoPdfPath)) {
-                //     Log::error("Perkeso PDF not found at: " . $perkesoPdfPath);
-                //     session()->flash('error', 'Perkeso PDF file not found.');
-                //     return redirect()->back();
-                // }
-                // $oMerger->addPDF('file:///' . $perkesoPdfPath, 'all');
+                // 1) Add the first PDF (bpc01) using all pages
+                Log::info('Adding bpc01 PDF: ' . $pdfFullPath);
+                $oMerger->addPDF($pdfFullPath, 'all');
 
+                // 2) IC PDF
+                Log::info('Adding IC PDF: ' . $bankPdfPath);
+                $oMerger->addPDF($bankPdfPath, 'all');
+
+                // 3) Add icP PDF
+                Log::info('Adding icP PDF: ' . $businessPdfPath);
+                $oMerger->addPDF($businessPdfPath, 'all');
+
+                // 4) Add ssm PDF
+                Log::info('Adding SSM PDF: ' . $iicPdfPath);
+                $oMerger->addPDF($iicPdfPath, 'all');
+
+                // 5) Add business PDF
+                Log::info('Adding business PDF: ' . $iic2PdfPath);
+                $oMerger->addPDF($iic2PdfPath, 'all');
+
+                // 6) Add bank PDF
+                Log::info('Adding bank PDF: ' . $ssmPdfPath);
+                $oMerger->addPDF($ssmPdfPath, 'all');
+
+                // 7) Add perkeso PDF if needed
                 // Merge perkeso only if it was actually uploaded
                 if ($this->pdfData[0]->skim_safety == 0) {
                     $perkesoPdfName = 'perkeso_' . now()->format('Y-m-d') . '.pdf';
                     $perkesoPdfPath = storage_path('app/public/' . $folderName . '/' . $perkesoPdfName);
+                    Log::info('Adding perkeso PDF: ' . $perkesoPdfPath . ', exists: ' . (file_exists($perkesoPdfPath) ? 'Yes' : 'No'));
 
                     if (file_exists($perkesoPdfPath)) {
-                        $oMerger->addPDF('file:///' . $perkesoPdfPath, 'all');
+                        $oMerger->addPDF($perkesoPdfPath, 'all');
+                    } else {
+                        Log::warning('Perkeso PDF not found but continuing anyway as it might be optional');
                     }
                 }
-
 
                 // 8) Merge everything into a single PDF
                 $mergedPdfName = 'appln_' . now()->format('Y-m-d') . '.pdf';
                 $mergedPdfFullPath = storage_path('app/public/' . $folderName . '/' . $mergedPdfName);
+                Log::info('Saving merged PDF to: ' . $mergedPdfFullPath);
+
+                // Pastikan direktori untuk file gabungan ada
+                $mergedDir = dirname($mergedPdfFullPath);
+                if (!file_exists($mergedDir)) {
+                    if (!mkdir($mergedDir, 0755, true)) {
+                        Log::error("Failed to create directory: " . $mergedDir);
+                        session()->flash('error', 'Gagal membuat direktori untuk file gabungan');
+                        return redirect()->back();
+                    }
+                }
+
+                // Periksa apakah direktori dapat ditulis
+                if (!is_writable($mergedDir)) {
+                    Log::error("Directory is not writable: " . $mergedDir);
+                    session()->flash('error', 'Direktori tidak dapat ditulis: ' . $mergedDir);
+                    return redirect()->back();
+                }
 
                 $fileNames['document_merge'] = $mergedPdfName;
 
-                $oMerger->merge();
-                $oMerger->save($mergedPdfFullPath);
+                try {
+                    $oMerger->merge();
+                    $oMerger->save($mergedPdfFullPath);
+                    Log::info('PDF merge completed successfully');
+                } catch (\Exception $e) {
+                    Log::error('Error during PDF merge: ' . $e->getMessage());
+                    session()->flash('error', 'Gagal menggabungkan PDF: ' . $e->getMessage());
+                    return redirect()->back();
+                }
 
                 
                 $applnId = $appln_id;
@@ -1862,21 +2056,36 @@ class MuatNaikDokumen extends Component
             // 2) The destination is public/storage/{IC_Number}
             $sourceDir = storage_path("app/public/{$folderName}");
             $destinationDir = public_path("storage/{$folderName}");
+            Log::info('Copying files from ' . $sourceDir . ' to ' . $destinationDir);
 
             // Make sure the destination folder exists
             if (!File::isDirectory($destinationDir)) {
                 File::makeDirectory($destinationDir, 0755, true);
+                Log::info('Created destination directory: ' . $destinationDir);
             }
 
             // Copy every file from source folder to destination
             $files = File::allFiles($sourceDir);
+            Log::info('Found ' . count($files) . ' files to copy');
 
             foreach ($files as $file) {
                 $destPath = $destinationDir . DIRECTORY_SEPARATOR . $file->getFilename();
                 File::copy($file->getRealPath(), $destPath);
+                Log::info('Copied: ' . $file->getFilename());
             }
-        
+            
+            // Sebelum pengarahan ke dashboard
+            Log::info('Semua operasi selesai, mengarahkan ke dashboard');
+            $this->dispatchBrowserEvent('redirectToDashboard', ['url' => route('dashboard')]);
+            
+            // Add this line as a backup redirect method
             return redirect()->route('dashboard');
+        } catch (\Exception $e) {
+            Log::error('Error in submitPermohonan: ' . $e->getMessage());
+            Log::error($e->getTraceAsString());
+            session()->flash('error', 'Terjadi kesalahan: ' . $e->getMessage());
+            return redirect()->back();
+        }
     }
 
 
