@@ -2074,9 +2074,9 @@ public function deletePerkesoDocument()
                 Log::info('Copied: ' . $file->getFilename());
             }
             
-            // Sebelum pengarahan ke dashboard
-            Log::info('Semua operasi selesai, mengarahkan ke dashboard');
-            $this->dispatchBrowserEvent('redirectToDashboard', ['url' => route('dashboard')]);
+            // // Sebelum pengarahan ke dashboard
+            // Log::info('Semua operasi selesai, mengarahkan ke dashboard');
+            // $this->dispatchBrowserEvent('redirectToDashboard', ['url' => route('dashboard')]);
             
             // Add this line as a backup redirect method
             return redirect()->route('dashboard');
