@@ -216,6 +216,7 @@ class MaklumatPerniagaan extends Component
             $business_modal_num = intval(str_replace(',', '', $this->business_modal));
 
             // Format text fields to uppercase
+            $this->business_no = strtoupper($this->business_no);
             $this->business_name = strtoupper($this->business_name);
             $this->business_address1 = strtoupper($this->business_address1);
             $this->business_address2 = strtoupper($this->business_address2 ?? '');
