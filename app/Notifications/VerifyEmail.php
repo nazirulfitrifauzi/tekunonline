@@ -21,10 +21,13 @@ class VerifyEmail extends VerifyEmailBase
     protected function buildMailMessage($url)
     {
         return (new MailMessage)
+            ->greeting(Lang::get('Assalamualaikum dan Salam Sejahtera'))
             ->subject(Lang::get('Pengesahan Akaun'))
             ->line(Lang::get('Terima kasih kerana mendaftar. Sila klik butang di bawah untuk mengesahkan alamat e-mel anda.'))
             ->action(Lang::get('Sahkan Alamat E-mel'), $url)
             ->line(Lang::get('Pautan pengesahan ini akan tamat dalam :count minit.', ['count' => Config::get('auth.verification.expire', 60)]))
-            ->line(Lang::get('Jika anda tidak membuat pendaftaran ini, tiada tindakan lanjut diperlukan.'));
+            ->line(Lang::get('Jika anda tidak membuat pendaftaran ini, tiada tindakan lanjut diperlukan.'))
+            ->salutation(Lang::get("Yang benar,\n\nTEKUN Online"));
     }
+
 }
