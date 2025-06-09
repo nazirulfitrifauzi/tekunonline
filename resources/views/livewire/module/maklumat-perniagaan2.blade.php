@@ -17,6 +17,7 @@
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
+                                    <option value="0">TIADA</option>                                  
                                 </select>
                                 @error('buss_branch_tot')
                                     <p class="text-red-500 text-xs italic mt-4">

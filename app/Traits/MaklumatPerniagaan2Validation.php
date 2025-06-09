@@ -74,7 +74,7 @@ trait MaklumatPerniagaan2Validation
     public function rules()
     {
         $rules = [
-            'buss_branch_tot' => 'required|in:1,2,3',
+            'buss_branch_tot' => 'required|in:0,1,2,3',
             'fin_details_flag' => 'required|in:0,1',
             'num_exist_busi_fin' =>'required_if:fin_details_flag,1',
         ];

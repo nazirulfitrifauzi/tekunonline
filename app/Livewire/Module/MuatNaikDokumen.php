@@ -1070,7 +1070,7 @@ public function deletePerkesoDocument()
                                     <!-- Pendapatan RM/Bulan -->
                                     <p
                                     style="position: absolute;top: 682px;left: 452px;height: 17px;width: 275px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->income ? : ' ').'
+                                    '.($this->pdfData[0]->income ? number_format($this->pdfData[0]->income, 2) : ' ').'
                                     </p>
 
                                     <!-- Nama Majikan (jika berkerja) -->
@@ -1163,7 +1163,7 @@ public function deletePerkesoDocument()
                                     <!-- Pendapatan RM/Bulan -->
                                     <p
                                     style="position: absolute;top: 839px;left: 201px;height: 17px;width: 274px;background: transparent;font-size: 9px !important;">
-                                    '.($this->pdfData[0]->spouse_income ? : ' ').'
+                                    '.($this->pdfData[0]->spouse_income ? number_format($this->pdfData[0]->spouse_income, 2) : ' ').'
                                     </p>
 
                                     </div>
@@ -1299,7 +1299,7 @@ public function deletePerkesoDocument()
                                     <!-- RM -->
                                     <p
                                     style="position: absolute;top: 247px;left: 414px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_modal ? : ' ').'
+                                    '.($this->pdfData[0]->business_modal ? number_format($this->pdfData[0]->business_modal, 2) : ' ').'
                                     </p>
 
                                     <!-- checkbox Adakah Pemohonan Pemegang Saham (YA) -->
@@ -1383,13 +1383,13 @@ public function deletePerkesoDocument()
                                     <!-- Nilai Asset Perniagaan Sedia Ada -->
                                     <p
                                     style="position: absolute;top: 434px;left: 326px;;height: 17px;width: 275px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_asset_value ? : ' ').'
+                                    '.($this->pdfData[0]->business_asset_value ? number_format($this->pdfData[0]->business_asset_value, 2) : ' ').'
                                     </p>
 
                                     <!-- Sumber Modal Memulakan Perniagaan -->
                                     <p
                                     style="position: absolute;top: 460px;left: 310px;;height: 17px;width: 326px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->business_start_resources ? : ' ').'
+                                     '.($this->pdfData[0]->business_start_resources ? number_format($this->pdfData[0]->business_start_resources, 2) : ' ').'
                                     </p>
 
                                     <!-- Nama Kursus yang dihadiri anjuran -->
@@ -1491,21 +1491,25 @@ public function deletePerkesoDocument()
                                     <!-- Jumlah Pembiayaan -->
                                     <p
                                     style="position: absolute;top: 679px;left: 245px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                    '.(implode(', ', array_filter([
-                                        $this->pdfData[0]->fin1_tot ?? '',
-                                        $this->pdfData[0]->fin2_tot ?? '',
-                                        $this->pdfData[0]->fin3_tot ?? ''
-                                    ])) ?: ' ').' 
+                                    '.(
+                                        implode(', ', array_filter([
+                                            $this->pdfData[0]->fin1_tot !== null ? number_format($this->pdfData[0]->fin1_tot, 2) : '',
+                                            $this->pdfData[0]->fin2_tot !== null ? number_format($this->pdfData[0]->fin2_tot, 2) : '',
+                                            $this->pdfData[0]->fin3_tot !== null ? number_format($this->pdfData[0]->fin3_tot, 2) : ''
+                                        ])) ?: ' '
+                                    ).'
                                     </p>
 
                                     <!-- Jumlah Pembiayaan -->
                                     <p
                                     style="position: absolute;top: 679px;left: 525px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                    '.(implode(', ', array_filter([
-                                        $this->pdfData[0]->fin1_bal ?? '',
-                                        $this->pdfData[0]->fin2_bal ?? '',
-                                        $this->pdfData[0]->fin3_bal ?? ''
-                                    ])) ?: ' ').' 
+                                    '.(
+                                        implode(', ', array_filter([
+                                            $this->pdfData[0]->fin1_bal !== null ? number_format($this->pdfData[0]->fin1_bal, 2) : '',
+                                            $this->pdfData[0]->fin2_bal !== null ? number_format($this->pdfData[0]->fin2_bal, 2) : '',
+                                            $this->pdfData[0]->fin3_bal !== null ? number_format($this->pdfData[0]->fin3_bal, 2) : ''
+                                        ])) ?: ' '
+                                    ).'
                                     </p>
                                     </div>
 
@@ -1514,7 +1518,7 @@ public function deletePerkesoDocument()
                                     <!-- Jumlah Pembiayaan yang diperlukan -->
                                     <p
                                     style="position: absolute;top: 724px;left: 521px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
-                                    '.($this->pdfData[0]->purchase_price ? : ' ').'
+                                    '.($this->pdfData[0]->purchase_price ? number_format($this->pdfData[0]->purchase_price, 2) : ' ').'
                                     </p>
 
                                     <!-- Tempoh Bayaran -->
