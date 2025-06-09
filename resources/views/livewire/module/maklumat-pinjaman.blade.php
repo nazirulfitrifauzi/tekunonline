@@ -366,7 +366,7 @@
                                 <select id="sektor_perkeso" name="sektor_perkeso" class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="sektor_perkeso">
                                     <option value="">SILA PILIH</option>
                                     @foreach ($sektorPerkeso as $sektors)
-                                    <option value="{{ $sektors->kod_sektor }}">{{ $sektors->keterangan}}</option>
+                                    <option value="{{ $sektors->id_sektor }}">{{ $sektors->keterangan}}</option>
                                     @endforeach 
                                 </select>
                                 @error('sektor_perkeso')

@@ -145,7 +145,7 @@ class MaklumatPinjaman extends Component
         ->orderBy('namanegeri', 'ASC')
         ->get();    
 
-        $this->sektorPerkeso = SektorPerkeso::select(['kod_sektor','keterangan'])
+        $this->sektorPerkeso = SektorPerkeso::select(['id_sektor','keterangan'])
         ->orderBy('keterangan', 'ASC')
         ->get();
 
