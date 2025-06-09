@@ -148,15 +148,16 @@ class MaklumatPinjaman extends Component
         $this->sektorPerkeso = SektorPerkeso::select(['id_sektor','keterangan'])
         ->orderBy('keterangan', 'ASC')
         ->get();
-
-        $this->kelasPerkeso = KelasPerkeso::select(['id_kelas','keterangan'])
-        ->whereKodSektor($this->sektor_perkeso)
+        
+        $this->kelasPerkeso = KelasPerkeso::select(['id_kelas', 'keterangan'])
+        ->where('sektor_nombor', $this->sektor_perkeso)
         ->orderBy('keterangan', 'ASC')
         ->get()
         ->map(function ($item) {
             $item->keterangan = strtoupper($item->keterangan);
             return $item;
         });
+    
 
 
         return view('livewire.module.maklumat-pinjaman');
