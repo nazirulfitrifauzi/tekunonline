@@ -281,7 +281,7 @@
                                         <option value="100514">PERNIAGAAN YANG MELIBATKAN KHINZIR</option>                                       
                                         <option value="100515">PERNIAGAAN YANG MELIBATKAN ANJING</option>
                                         <option value="100516">SALUN UNISEX / SPA UNISEX / KEDAI GUNTING RAMBUT UNISEX</option>
-                                        <option value="100517">PROSEDUR / RAWATAN KOSMETIK</option>
+                                        <option value="100517">PROSEDUR / RAWATAN ESTETIK</option>
                                         <option value="100518">KEAGAMAAN / PERAYAAN SELAIN DARI ISLAM</option>
                                     @endif
                                 </select>
