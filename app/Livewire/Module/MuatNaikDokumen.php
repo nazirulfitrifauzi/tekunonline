@@ -567,9 +567,9 @@ public function deletePerkesoDocument()
                 //start for bpc01 pdf generation
 
                     // c) Get the path to your JPG images in the public folder
-                    $jpgPath  = public_path('img/1.jpg');
+                    $jpgPath  = public_path('img/test1.jpg');
                     $jpgPath2 = public_path('img/2.jpg');
-                    $jpgPath3 = public_path('img/3.jpg');
+                    $jpgPath3 = public_path('img/test3b.jpg');
                     $jpgPath4 = public_path('img/4.jpg');
 
                     // Ambil masa berniaga (dari) dari data PDF
@@ -1493,9 +1493,9 @@ public function deletePerkesoDocument()
                                     style="position: absolute;top: 679px;left: 245px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
                                     '.(
                                         implode(', ', array_filter([
-                                            $this->pdfData[0]->fin1_tot !== null ? number_format($this->pdfData[0]->fin1_tot, 2) : '',
-                                            $this->pdfData[0]->fin2_tot !== null ? number_format($this->pdfData[0]->fin2_tot, 2) : '',
-                                            $this->pdfData[0]->fin3_tot !== null ? number_format($this->pdfData[0]->fin3_tot, 2) : ''
+                                            $this->pdfData[0]->fin1_tot !== null ? number_format((float)$this->pdfData[0]->fin1_tot ?? 0, 2) : '',
+                                            $this->pdfData[0]->fin2_tot !== null ? number_format((float)$this->pdfData[0]->fin2_tot ?? 0, 2) : '', 
+                                            $this->pdfData[0]->fin3_tot !== null ? number_format((float)$this->pdfData[0]->fin3_tot ?? 0, 2) : ''
                                         ])) ?: ' '
                                     ).'
                                     </p>
@@ -1505,9 +1505,9 @@ public function deletePerkesoDocument()
                                     style="position: absolute;top: 679px;left: 525px;;height: 25px;width: 326px;background: transparent;font-size: 10px !important;">
                                     '.(
                                         implode(', ', array_filter([
-                                            $this->pdfData[0]->fin1_bal !== null ? number_format($this->pdfData[0]->fin1_bal, 2) : '',
-                                            $this->pdfData[0]->fin2_bal !== null ? number_format($this->pdfData[0]->fin2_bal, 2) : '',
-                                            $this->pdfData[0]->fin3_bal !== null ? number_format($this->pdfData[0]->fin3_bal, 2) : ''
+                                            $this->pdfData[0]->fin1_tot !== null ? number_format((float)$this->pdfData[0]->fin1_bal ?? 0, 2) : '',
+                                            $this->pdfData[0]->fin2_tot !== null ? number_format((float)$this->pdfData[0]->fin2_bal ?? 0, 2) : '', 
+                                            $this->pdfData[0]->fin3_tot !== null ? number_format((float)$this->pdfData[0]->fin3_bal ?? 0, 2) : ''
                                         ])) ?: ' '
                                     ).'
                                     </p>
