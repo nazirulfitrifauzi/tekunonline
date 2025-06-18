@@ -216,6 +216,7 @@ class MaklumatPeribadi extends Component
             );
 
             ApplnStatus::where('id', $this->appln_id)->update([
+                'branch_code_original' => $this->tekun_branch,
                 'branch_code' => $this->tekun_branch,
                 'state_code' => $this->tekun_state,
                 'tab1_maklumat_peribadi' => 1,
