@@ -523,7 +523,8 @@
                                 <option value="PASAR TANI">PASAR TANI</option>
                                 <option value="PASAR TETAP">PASAR TETAP</option>
                                 <option value="PESISIR PANTAI">PESISIR PANTAI</option>
-                                <option value="LAIN-LAIN (NYATAKAN)">LAIN-LAIN (NYATAKAN)</option>                                </select>
+                                <option value="LAIN-LAIN (NYATAKAN)">LAIN-LAIN (NYATAKAN)</option>                                
+                            </select>
                                 @error('premise_loc_code')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}
@@ -531,20 +532,15 @@
                                 @enderror
                             </div>
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="buss_other_loc_premise" class="block text-sm font-medium leading-5 text-gray-700">
-                                    Lokasi Premis (Lain-lain)
-                                    @if($premise_loc_code === 'Lain-Lain (Nyatakan)')
-                                        <span class="text-red-700">*</span>
-                                    @endif
-                                </label>
+                            <div class="col-span-6 sm:col-span-2">
+                                <label for="buss_other_loc_premise" class="block text-sm font-medium leading-5 text-gray-700"> Lokasi Premis (Lain-lain) <span class="text-red-700">*</span></label>
                                 <input 
                                     id="buss_other_loc_premise" 
                                     name="buss_other_loc_premise" 
                                     value="" 
-                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase disabled:bg-gray-100 {{ $premise_loc_code != 'Lain-Lain (Nyatakan)' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}" 
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase {{ $premise_loc_code != 'LAIN-LAIN (NYATAKAN)' ? 'bg-gray-100' : ''  }}" 
                                     wire:model.live="buss_other_loc_premise"
-                                    @if($premise_loc_code != 'Lain-Lain (Nyatakan)') disabled @endif
+                                    @if($premise_loc_code != 'LAIN-LAIN (NYATAKAN)') disabled @endif
                                 >
                                 @error('buss_other_loc_premise')
                                     <p class="text-red-500 text-xs italic mt-4">
