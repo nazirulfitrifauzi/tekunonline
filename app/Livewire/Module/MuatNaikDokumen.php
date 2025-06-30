@@ -1744,7 +1744,7 @@ public function deletePerkesoDocument()
                                     <!-- Jumlah Bayaran pendaftaran wasiat RM -->
                                     <p
                                         style="position: absolute;top: 53px;left: 302px;height: 17px;width: 250px;background: transparent;font-size: 10px !important;">
-                                        '.($this->pdfData[0]->will_fi  ? : '0').'
+                                        '.($this->pdfData[0]->will_fi  ? : ' ').'
                                     </p>
 
                                     <!-- Nama Syarikat Wasiat -->

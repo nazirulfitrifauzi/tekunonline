@@ -64,6 +64,12 @@ class MaklumatPerniagaan extends Component
                 $this->business_start_resources = number_format((float)$this->business_start_resources, 0, '.', ',');
             }
         }
+    
+        // Periksa apakah pengguna beragama Islam
+        $maklumatPeribadi = MaklumatPeribadi::where('appln_id', $this->appln_id)->first();
+        if ($maklumatPeribadi && $maklumatPeribadi->isMuslim()) {
+            $this->business_syariah = '1';
+        }
     }
 
     /**
