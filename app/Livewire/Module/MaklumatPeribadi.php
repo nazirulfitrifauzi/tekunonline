@@ -45,6 +45,18 @@ class MaklumatPeribadi extends Component
                     $this->$key = $value;
                 }
             }
+
+            // Format numeric fields for display
+            if ($this->income) {
+                $this->income = number_format((float)$this->income, 0, '.', ',');
+            }
+
+            if ($this->spouse_income) {
+                $this->spouse_income = number_format((float)$this->spouse_income, 0, '.', ',');
+            }
+
+            
+
         }
     }
 
@@ -197,6 +209,12 @@ class MaklumatPeribadi extends Component
 
         //dd($this->address1);
         try {
+
+            $this->income = str_replace(',', '', $this->income);
+            $this->spouse_income = str_replace(',', '', $this->spouse_income);
+
+
+
             $this->validateSelf();
 
             $applnId = ApplnStatus::where('user_id', Auth::id())->max('id');

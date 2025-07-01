@@ -689,7 +689,17 @@
                                             RM
                                         </span>
                                     </div>
-                                    <input id="income" name="income" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="income">
+                                    <input 
+                                        id="income" 
+                                        name="income" 
+                                        type="text"
+                                        wire:model.defer="income"
+                                        min="0" 
+                                        x-data
+                                        x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                    >
+
                                 </div>
                                 @error('income')
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -909,7 +919,16 @@
                                             RM
                                         </span>
                                     </div>
-                                    <input id="spouse_income" name="spouse_income" min="0" class="block px-3 py-2 pl-16 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:pl-14 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"   wire:model.live="spouse_income">
+                                    <input 
+                                        id="spouse_income" 
+                                        name="spouse_income" 
+                                        type="text"
+                                        wire:model.defer="spouse_income"
+                                        min="0" 
+                                        x-data
+                                        x-on:keyup="$el.value = $el.value.replace(/[^0-9]/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
+                                        class="block w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5 pl-12 pr-3 py-2"
+                                    >
                                     @error('spouse_income')
                                     <p class="text-red-500 text-xs italic mt-4">
                                         {{ $message }}

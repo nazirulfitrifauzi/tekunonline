@@ -41,6 +41,13 @@ class MaklumatPinjaman extends Component
                     $this->$key = $value;
                 }
             }
+
+            // Format numeric fields for display
+            if ($this->purchase_price) {
+                $this->purchase_price = number_format((float)$this->purchase_price, 0, '.', ',');
+            }
+
+            
         }
     }
 

@@ -18,10 +18,13 @@
                                 <select id="business_syariah" 
                                         name="business_syariah" 
                                         class="block px-3 py-2 mt-1 w-full bg-white rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" 
-                                        wire:model.live="business_syariah" >
+                                        wire:model.live="business_syariah"
+                                        @if(\App\Models\MaklumatPeribadi::where('appln_id', $appln_id)->first()?->isMuslim()) disabled @endif>
                                     <option value="">SILA PILIH</option>
                                     <option value="1">YA</option>
+                                    @if(!\App\Models\MaklumatPeribadi::where('appln_id', $appln_id)->first()?->isMuslim())
                                     <option value="0">TIDAK</option>
+                                    @endif
                                 </select>
                                 @error('business_syariah')
                                     <p class="text-red-500 text-xs italic mt-4">
