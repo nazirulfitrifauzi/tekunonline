@@ -206,15 +206,17 @@ class MaklumatPeribadi extends Component
     #[On('run-validation1')]
     public function submit()
     {
-
-        //dd($this->address1);
         try {
 
             $this->income = str_replace(',', '', $this->income);
-            $this->spouse_income = str_replace(',', '', $this->spouse_income);
-
-
-
+            
+            // Pastikan spouse_income adalah NULL jika marital bukan BERKAHWIN
+            if ($this->marital !== 'BERKAHWIN') {
+                $this->spouse_income = null;
+            } else {
+                $this->spouse_income = str_replace(',', '', $this->spouse_income);
+            }
+            
             $this->validateSelf();
 
             $applnId = ApplnStatus::where('user_id', Auth::id())->max('id');
