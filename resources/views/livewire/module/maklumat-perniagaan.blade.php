@@ -589,7 +589,7 @@
                                 <select 
                                     id="membership_assoc" 
                                     name="membership_assoc" 
-                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $business_ownership != '5' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}"  
+                                    class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 disabled:bg-gray-100 {{ $membership_status != 'YA' ? 'bg-gray-100 cursor-not-allowed' : 'bg-white' }}"  
                                     wire:model.live="membership_assoc"
                                 >
                                     <option value="">SILA PILIH</option>
