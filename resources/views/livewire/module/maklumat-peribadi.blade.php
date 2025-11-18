@@ -276,7 +276,7 @@
 
                             <div class="col-span-6 sm:col-span-2">
                                 <label for="birthdate" class="block text-sm font-medium leading-5 text-gray-700">Tarikh Lahir <span class="text-red-700">*</span></label>
-                                <input id="birthdate" name="birthdate" disabled value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5 uppercase" wire:model.live="birthdate">
+                                <input id="birthdate" name="birthdate" disabled value="" class="block px-3 py-2 mt-1 w-full rounded-md border border-gray-300 shadow-sm transition duration-150 ease-in-out form-input focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5" wire:model.live="birthdate">
                                 @error('birthdate')
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $message }}

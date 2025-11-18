@@ -39,13 +39,20 @@ class MaklumatPeribadi extends Component
             $existingData = ModelsMaklumatPeribadi::where('appln_id', $applnStatus->id)->first();
         }        
     
+        // Dalam method mount(), tambahkan kod berikut selepas mengambil data dari database
         if ($existingData) {
             foreach ($existingData->toArray() as $key => $value) {
                 if (property_exists($this, $key)) {
                     $this->$key = $value;
                 }
             }
-
+        
+            // Format tarikh lahir ke format dd-mm-yyyy jika ada
+            if ($this->birthdate) {
+                $date = Carbon::parse($this->birthdate);
+                $this->birthdate = $date->format('d-m-Y');
+            }
+            
             // Format numeric fields for display
             if ($this->income) {
                 $this->income = number_format((float)$this->income, 0, '.', ',');
@@ -75,7 +82,7 @@ class MaklumatPeribadi extends Component
             // Create birthdate
             try {
                 $birthdate = Carbon::createFromFormat('d-m-Y', "$day-$month-$fullYear");
-                $this->birthdate = $birthdate->format('d-m-Y');
+                $this->birthdate = $birthdate->format('d-m-Y'); // Pastikan format ini konsisten
                 
                 // Calculate age
                 $this->age = $birthdate->age;
