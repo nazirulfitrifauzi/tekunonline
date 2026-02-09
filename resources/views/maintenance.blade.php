@@ -7,15 +7,15 @@
     <title>TEKUN Online | Penyelenggaraan</title>
     <style>
       :root {
-        --bg: #0e0b16;
-        --bg2: #130f20;
-        --ink: #f7f4ff;
-        --muted: #c9c4d6;
-        --accent: #f2b705;
-        --accent2: #ff7a59;
-        --card: rgba(255, 255, 255, 0.06);
-        --border: rgba(255, 255, 255, 0.12);
-        --shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+        --bg: #f6f8ff;
+        --bg2: #ffffff;
+        --ink: #112255;
+        --muted: #4b5a78;
+        --accent: #d61f26;
+        --accent2: #1b4aa5;
+        --card: rgba(255, 255, 255, 0.9);
+        --border: rgba(17, 34, 85, 0.12);
+        --shadow: 0 30px 80px rgba(15, 32, 70, 0.18);
       }
 
       * {
@@ -27,8 +27,8 @@
         min-height: 100vh;
         font-family: "Fraunces", "Playfair Display", "Georgia", serif;
         color: var(--ink);
-        background: radial-gradient(1200px 800px at 20% -10%, #2a1f45 0%, transparent 60%),
-          radial-gradient(900px 700px at 110% 20%, #3a1a2e 0%, transparent 55%),
+        background: radial-gradient(1000px 700px at 0% 0%, rgba(27, 74, 165, 0.12) 0%, transparent 60%),
+          radial-gradient(900px 700px at 100% 10%, rgba(214, 31, 38, 0.12) 0%, transparent 60%),
           linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
         display: grid;
         place-items: center;
@@ -62,8 +62,8 @@
         font-size: 0.85rem;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: #1a1303;
-        background: linear-gradient(120deg, var(--accent), #ffd369);
+        color: #ffffff;
+        background: linear-gradient(120deg, var(--accent), #ff5a5f);
       }
 
       .logo {
@@ -76,8 +76,8 @@
 
       h1 {
         margin: 18px 0 12px;
-        font-size: clamp(2.2rem, 4vw, 3.4rem);
-        line-height: 1.05;
+        font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+        line-height: 1.1;
       }
 
       p {
@@ -99,8 +99,8 @@
         align-items: center;
         padding: 12px 16px;
         border-radius: 14px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(17, 34, 85, 0.05);
+        border: 1px solid rgba(17, 34, 85, 0.12);
         font-size: 0.95rem;
       }
 
@@ -120,8 +120,8 @@
         width: clamp(180px, 28vw, 260px);
         height: clamp(180px, 28vw, 260px);
         border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #ffe29a, #f24f2d 55%, #4c1c5f 100%);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        background: radial-gradient(circle at 30% 30%, #ffffff, #d61f26 55%, #1b4aa5 100%);
+        box-shadow: 0 20px 60px rgba(27, 74, 165, 0.35);
         position: relative;
         animation: float 6s ease-in-out infinite;
       }
@@ -131,17 +131,17 @@
         position: absolute;
         inset: -18%;
         border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(27, 74, 165, 0.2);
+        box-shadow: 0 0 30px rgba(27, 74, 165, 0.15);
       }
 
       .spark {
         position: absolute;
         width: 8px;
         height: 8px;
-        background: var(--accent2);
+        background: var(--accent);
         border-radius: 50%;
-        box-shadow: 0 0 16px var(--accent2);
+        box-shadow: 0 0 16px var(--accent);
         animation: pulse 2.5s ease-in-out infinite;
       }
 
